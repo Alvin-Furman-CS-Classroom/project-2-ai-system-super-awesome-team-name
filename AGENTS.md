@@ -1,16 +1,22 @@
 ## Project Context
 
-- System title: [Your System Title]
-- Theme: [Your Theme]
+- System title: GlycemicGuard : Adpative Diabetic Diet Advisor
+- Theme: Nutrition
 - Proposal link or summary: check in the file `PROPOSAL.md`.
 
 **Module plan:**
 
-[Your Module Plan Table copied from README.md]
+| Module | Required Topic(s)                                   |Topic Covered By| Checkpoint Due       |
+| ------ | ----------------------------------------------------| ---------------| ---------------------|
+| 1      | Knowledge Representation, Knowledge Bases           | Week 2         | Checkpoint 1 (Feb 11)|
+| 2      | Propositional Logic, Knowledge Bases, Inference     | Week 3         | Checkpoint 2 (Feb 26)|
+| 3      | First-Order Logic                                   | Week 4         | Checkpoint 3 (Mar 19)|
+| 4      | Search (Uniform Cost, A\*)                          | Week 5         | Checkpoint 4 (Apr 2) |
+| 5      | Reinforcement Learning (Policy Learning, Q-Learning)| Week 8-9       | Checkpoint 5 (Apr 16)|
 
 ## Constraints
 
-- 5-6 modules total, each tied to course topics.
+- 5 modules total, each tied to course topics.
 - Each module must have clear inputs/outputs and tests.
 - Align module timing with the course schedule.
 
