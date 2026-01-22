@@ -2,7 +2,7 @@
 
 - System title: [Your System Title]
 - Theme: [Your Theme]
-- Proposal link or summary: [Your Proposal Link or Summary]
+- Proposal link or summary: check in the file `PROPOSAL.md`.
 
 **Module plan:**
 
