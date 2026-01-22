@@ -39,6 +39,7 @@ Your system must include 5-6 modules. Fill in the table below as you plan each m
 your-repo/
 ├── src/                              # main system source code
 │   ├── module1/                      # Module 1: Nutrition Knowledge Base
+│   │   └── MODULE1_PLAN.md           # Detailed implementation plan for Module 1
 │   ├── module2/                      # Module 2: Single Food Safety Rules
 │   ├── module3/                      # Module 3: Meal-Level Risk Analyzer
 │   ├── module4/                       # Module 4: Meal Modification & Search
@@ -59,7 +60,6 @@ your-repo/
 │   └── sample_nutrition_data.json    # Sample nutrition data in JSON format
 ├── .claude/skills/code-review/SKILL.md  # rubric-based agent review
 ├── AGENTS.md                         # instructions for your LLM agent
-├── MODULE1_PLAN.md                   # Detailed implementation plan for Module 1
 ├── PROPOSAL.md                       # Full project proposal
 └── README.md                         # system overview and checkpoints
 ```
