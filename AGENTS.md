@@ -26,6 +26,7 @@
 - Suggest clean architecture and module boundaries.
 - Identify missing tests and edge cases.
 - Review work against the rubric using the code-review skill.
+- Suggest code concepts instead of code, unless asked.
 
 ## Agent Workflow
 
