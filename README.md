@@ -23,32 +23,44 @@ See `PROPOSAL.md` for full details.
 
 Your system must include 5-6 modules. Fill in the table below as you plan each module.
 
-| Module | Required Topic(s)                                   |Topic Covered By| Checkpoint Due       |
-| ------ | ----------------------------------------------------| ---------------| ---------------------|
-| 1      | Knowledge Representation, Knowledge Bases           | Week 2         | Checkpoint 1 (Feb 11)|
-| 2      | Propositional Logic, Knowledge Bases, Inference     | Week 3         | Checkpoint 2 (Feb 26)|
-| 3      | First-Order Logic                                   | Week 4         | Checkpoint 3 (Mar 19)|
-| 4      | Search (Uniform Cost, A\*)                          | Week 5         | Checkpoint 4 (Apr 2) |
-| 5      | Reinforcement Learning (Policy Learning, Q-Learning)| Week 8-9       | Checkpoint 5 (Apr 16)|
-
 
 | Module | Topic(s) | Inputs | Outputs | Depends On | Checkpoint |
 | ------ | -------- | ------ | ------- | ---------- | ---------- |
-| 1 | Knowledge Representation, Knowledge Bases | Food name (string) OR nutrition database file (CSV/JSON) | Nutrition features: GI, glycemic load, macronutrients, processing level, serving conversions | None | Checkpoint 1 (Feb 11) |
+| 1 | Knowledge Representation, Knowledge Bases | Food name (string) + optional serving size | Nutrition features dict: GI, glycemic load, macronutrients, processing level, serving conversions | None | Checkpoint 1 (Feb 11) |
 | 2 | Propositional Logic, Knowledge Bases, Inference | Food name + serving size | Safety label (safe/caution/unsafe) + rule explanation | Module 1 | Checkpoint 2 (Feb 26) |
 | 3 | First-Order Logic | List of foods with servings + Module 2 outputs | Meal risk category + risk score (0-100) + contributing factors | Modules 1, 2 | Checkpoint 3 (Mar 19) |
 | 4 | Search (Uniform Cost, A*) | Original meal + constraints + user preferences | Modified meal suggestions with portion adjustments/swaps + change explanations | Modules 2, 3 | Checkpoint 4 (Apr 2) |
 | 5 | Reinforcement Learning (Policy, Q-Learning) | Historical meals + predicted risks + user outcomes + current thresholds | Updated personalized thresholds (glycemic load, carb limits) | Modules 2, 3, 4 | Checkpoint 5 (Apr 16) |
+| 6 | Web Interface / User Interface | User interactions (food inputs, serving sizes, meal building, feedback) | Visual display of nutrition info, risk assessments, meal suggestions, and personalized recommendations | Modules 1, 2, 3, 4, 5 | Optional / Future |
 
 ## Repository Layout
 
 ```
 your-repo/
 ├── src/                              # main system source code
+│   ├── module1/                      # Module 1: Nutrition Knowledge Base
+│   ├── module2/                      # Module 2: Single Food Safety Rules
+│   ├── module3/                      # Module 3: Meal-Level Risk Analyzer
+│   ├── module4/                       # Module 4: Meal Modification & Search
+│   └── module5/                      # Module 5: Reinforcement Learning
 ├── unit_tests/                       # unit tests (parallel structure to src/)
+│   ├── module1/                      # Unit tests for Module 1
+│   ├── module2/                      # Unit tests for Module 2
+│   ├── module3/                      # Unit tests for Module 3
+│   ├── module4/                      # Unit tests for Module 4
+│   └── module5/                      # Unit tests for Module 5
 ├── integration_tests/                # integration tests (new folder for each module)
+│   ├── module2/                      # Integration tests for Module 2 (uses Module 1)
+│   ├── module3/                      # Integration tests for Module 3 (uses Modules 1, 2)
+│   ├── module4/                      # Integration tests for Module 4 (uses Modules 2, 3)
+│   └── module5/                      # Integration tests for Module 5 (uses Modules 2, 3, 4)
+├── data/                             # Sample nutrition data files (CSV/JSON)
+│   ├── sample_nutrition_data.csv     # Sample nutrition data in CSV format
+│   └── sample_nutrition_data.json    # Sample nutrition data in JSON format
 ├── .claude/skills/code-review/SKILL.md  # rubric-based agent review
 ├── AGENTS.md                         # instructions for your LLM agent
+├── MODULE1_PLAN.md                   # Detailed implementation plan for Module 1
+├── PROPOSAL.md                       # Full project proposal
 └── README.md                         # system overview and checkpoints
 ```
 
