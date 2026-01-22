@@ -1,4 +1,4 @@
-# [Your System Title]
+# GlycemicGuard: Adaptive Diabetic Diet Advisor
 
 ## Overview
 
@@ -6,26 +6,39 @@ Provide a concise system overview (200-300 words). Explain the unifying theme an
 
 ## Team
 
-- Member 1
-- Member 2
-- Member 3 (if applicable)
+- Jia Lin
+- Della Avent
 
 ## Proposal
 
-Link to the approved Project 1 proposal (or paste a short summary here).
+This system helps people with type 2 diabetes determine whether meals are blood-sugar friendly. Users input foods they plan to consume, and the system analyzes them using glycemic index and macronutrient data to assess blood-sugar spike risk. For high-risk meals, the system suggests modifications. It learns from user feedback to personalize predictions over time.
+
+The system integrates five AI techniques: (1) Knowledge Bases store nutritional data, (2) Propositional Logic evaluates individual food safety, (3) First-Order Logic analyzes meal-level risk, (4) Search algorithms find optimal meal modifications, and (5) Reinforcement Learning adapts thresholds based on user outcomes. These modules work together—knowledge bases feed logic rules, logic evaluates safety, search uses logic outputs to find alternatives, and reinforcement learning personalizes the system based on feedback.
+
+See `PROPOSAL.md` for full details. 
+
+
 
 ## Module Plan
 
 Your system must include 5-6 modules. Fill in the table below as you plan each module.
 
+| Module | Required Topic(s)                                   |Topic Covered By| Checkpoint Due       |
+| ------ | ----------------------------------------------------| ---------------| ---------------------|
+| 1      | Knowledge Representation, Knowledge Bases           | Week 2         | Checkpoint 1 (Feb 11)|
+| 2      | Propositional Logic, Knowledge Bases, Inference     | Week 3         | Checkpoint 2 (Feb 26)|
+| 3      | First-Order Logic                                   | Week 4         | Checkpoint 3 (Mar 19)|
+| 4      | Search (Uniform Cost, A\*)                          | Week 5         | Checkpoint 4 (Apr 2) |
+| 5      | Reinforcement Learning (Policy Learning, Q-Learning)| Week 8-9       | Checkpoint 5 (Apr 16)|
+
+
 | Module | Topic(s) | Inputs | Outputs | Depends On | Checkpoint |
 | ------ | -------- | ------ | ------- | ---------- | ---------- |
-| 1 |  |  |  |  |  |
-| 2 |  |  |  |  |  |
-| 3 |  |  |  |  |  |
-| 4 |  |  |  |  |  |
-| 5 |  |  |  |  |  |
-| 6 (optional) |  |  |  |  |  |
+| 1 | Knowledge Representation, Knowledge Bases | Food name (string) OR nutrition database file (CSV/JSON) | Nutrition features: GI, glycemic load, macronutrients, processing level, serving conversions | None | Checkpoint 1 (Feb 11) |
+| 2 | Propositional Logic, Knowledge Bases, Inference | Food name + serving size | Safety label (safe/caution/unsafe) + rule explanation | Module 1 | Checkpoint 2 (Feb 26) |
+| 3 | First-Order Logic | List of foods with servings + Module 2 outputs | Meal risk category + risk score (0-100) + contributing factors | Modules 1, 2 | Checkpoint 3 (Mar 19) |
+| 4 | Search (Uniform Cost, A*) | Original meal + constraints + user preferences | Modified meal suggestions with portion adjustments/swaps + change explanations | Modules 2, 3 | Checkpoint 4 (Apr 2) |
+| 5 | Reinforcement Learning (Policy, Q-Learning) | Historical meals + predicted risks + user outcomes + current thresholds | Updated personalized thresholds (glycemic load, carb limits) | Modules 2, 3, 4 | Checkpoint 5 (Apr 16) |
 
 ## Repository Layout
 
