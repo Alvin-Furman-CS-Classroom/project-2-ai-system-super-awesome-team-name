@@ -44,6 +44,16 @@ class NutritionKnowledgeBase:
             raise FoodNotFoundError(f"Food {food_name} not found in the knowledge base.", food_name)
         # Get this food's nutrition row from the dict.
         food_data = self.data[normalized_name]
+        # Require all fields needed for features; raise MissingDataError if any are missing.
+        required_keys = (
+            "glycemic_index", "carbohydrates", "fiber", "protein", "fat",
+            "serving_size_grams", "processing_level",
+        )
+        missing = [k for k in required_keys if food_data.get(k) is None]
+        if missing:
+            raise MissingDataError(
+                f"Missing data for {food_name}: {', '.join(missing)}", food_name
+            )
         # Convert serving_size to grams using _convert_serving_size.
         serving_grams = self._convert_serving_size(serving_size, food_data["serving_size_grams"])
        # Scale nutrients (carbs, fiber, protein, fat) to that serving: per_100g * (serving_grams / 100).
@@ -54,9 +64,6 @@ class NutritionKnowledgeBase:
         scaled_fat = food_data["fat"] * scale
         # Compute glycemic load for this serving with _calculate_glycemic_load.
         glycemic_load = self._calculate_glycemic_load(food_data["glycemic_index"], scaled_carbs)
-        # If required fields are missing/invalid, raise MissingDataError.
-        if food_data["glycemic_index"] is None or scaled_carbs is None:
-            raise MissingDataError(f"Missing data for {food_name}", food_name)
         # Build and return one dict with GI, GL, macronutrients, processing_level, serving info.
         return {"glycemic_index": food_data["glycemic_index"], 
                 "glycemic_load": glycemic_load, 
@@ -76,14 +83,19 @@ class NutritionKnowledgeBase:
         return self.data.copy()
 
     # Load CSV file into dict. Keys are normalized food names.
-    # Numeric columns are converted from strings to float or int; empty cells become None.
+    # Numeric columns are converted to float; empty cells become None.
     def _load_csv(self, filepath: str) -> Dict:
         nutrition_dict: Dict = {}
         with open(filepath, "r", encoding="utf-8") as file:
-            reader = csv.DictReader(file)
-            for row in reader:
-                normalized_name = self._normalize_name(row["name"])
-                nutrition_dict[normalized_name] = row
+            for row in csv.DictReader(file):
+                normalized_name = self._normalize_name((row.get("name") or "").strip())
+                # create a dictionary for the row
+                entry = {k: (v or "").strip() or None for k, v in row.items()}
+                # go through the dictionary and convert the strings to floats where necessary
+                for k in self._FLOAT_KEYS:
+                    v = entry.get(k)
+                    entry[k] = float(v) if v else None
+                nutrition_dict[normalized_name] = entry
         return nutrition_dict
 
     # Normalize food name (e.g. lowercase, strip whitespace).
