@@ -58,14 +58,14 @@ class NutritionKnowledgeBase:
         if food_data["glycemic_index"] is None or scaled_carbs is None:
             raise MissingDataError(f"Missing data for {food_name}", food_name)
         # Build and return one dict with GI, GL, macronutrients, processing_level, serving info.
-        return {glycemic_index: food_data["glycemic_index"], 
-                glycemic_load: glycemic_load, 
-                carbohydrates: scaled_carbs, 
-                fiber: scaled_fiber, 
-                protein: scaled_protein, 
-                fat: scaled_fat, 
-                processing_level: food_data["processing_level"], 
-                serving_size_grams: serving_grams}
+        return {"glycemic_index": food_data["glycemic_index"], 
+                "glycemic_load": glycemic_load, 
+                "carbohydrates": scaled_carbs, 
+                "fiber": scaled_fiber, 
+                "protein": scaled_protein, 
+                "fat": scaled_fat, 
+                "processing_level": food_data["processing_level"], 
+                "serving_size_grams": serving_grams}
 
     # Return list of all food names in the knowledge base (for Module 4 search).
     def list_all_foods(self) -> List[str]:
