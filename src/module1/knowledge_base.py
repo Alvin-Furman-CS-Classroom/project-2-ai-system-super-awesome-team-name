@@ -32,8 +32,8 @@ class NutritionKnowledgeBase:
     Supports lookup by food name and feature extraction (GI, GL, macronutrients).
     """
     # Initialize the knowledge base and load nutrition_data.csv
-    def __init__(self) -> None:
-        self.data = self._load_csv("nutrition_data.csv")
+    def __init__(self, csv_path: str = "nutrition_data.csv") -> None:
+        self.data = self._load_csv(csv_path)
 
     # Return structured nutrition features for a food at the given serving size.
     def get_nutrition_features(self, food_name: str, serving_size: str = "100g") -> dict:
@@ -49,6 +49,7 @@ class NutritionKnowledgeBase:
             "glycemic_index", "carbohydrates", "fiber", "protein", "fat",
             "serving_size_grams", "processing_level",
         )
+        # there shouldn't be any missing keys, but just in case, check for them
         missing = [k for k in required_keys if food_data.get(k) is None]
         if missing:
             raise MissingDataError(
@@ -86,13 +87,16 @@ class NutritionKnowledgeBase:
     # Numeric columns are converted to float; empty cells become None.
     def _load_csv(self, filepath: str) -> Dict:
         nutrition_dict: Dict = {}
+        # Numeric columns that should be converted to float
+        _FLOAT_KEYS = ("glycemic_index", "carbohydrates", "fiber", "protein", "fat", "serving_size_grams")
+
         with open(filepath, "r", encoding="utf-8") as file:
             for row in csv.DictReader(file):
                 normalized_name = self._normalize_name((row.get("name") or "").strip())
                 # create a dictionary for the row
                 entry = {k: (v or "").strip() or None for k, v in row.items()}
                 # go through the dictionary and convert the strings to floats where necessary
-                for k in self._FLOAT_KEYS:
+                for k in _FLOAT_KEYS:
                     v = entry.get(k)
                     entry[k] = float(v) if v else None
                 nutrition_dict[normalized_name] = entry
@@ -117,18 +121,8 @@ class NutritionKnowledgeBase:
         if not s:
             raise ValueError("Serving size string is empty")
 
-        # "100g" or "200 g" -> grams
-        if s.endswith("g"):
-            num_str = s[:-1].strip()
-            try:
-                grams = float(num_str)
-            except ValueError:
-                raise ValueError(f"Invalid grams format: {serving_str!r}")
-            if grams < 0:
-                raise ValueError("Grams cannot be negative")
-            return grams
-
         # "1 serving", "2.5 servings" -> number * base_grams
+        # Check this BEFORE checking for "g" to avoid misparsing "serving" as ending with "g"
         if "serving" in s:
             parts = s.split()
             if not parts:
@@ -140,5 +134,16 @@ class NutritionKnowledgeBase:
             if count < 0:
                 raise ValueError("Serving count cannot be negative")
             return count * base_grams
+
+        # "100g" or "200 g" -> grams
+        if s.endswith("g"):
+            num_str = s[:-1].strip()
+            try:
+                grams = float(num_str)
+            except ValueError:
+                raise ValueError(f"Invalid grams format: {serving_str!r}")
+            if grams < 0:
+                raise ValueError("Grams cannot be negative")
+            return grams
 
         raise ValueError(f"Unrecognized serving size format: {serving_str!r}")
