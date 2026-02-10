@@ -1,0 +1,14 @@
+{
+  "include": [
+    "src",
+    "unit_tests"
+  ],
+  "extraPaths": [
+    "src"
+  ],
+  "exclude": [
+    "**/node_modules",
+    "**/__pycache__"
+  ],
+  "typeCheckingMode": "basic"
+}
