@@ -12,6 +12,9 @@ Last Updated: 2/3/2026
 import csv
 from typing import Dict, List
 
+# Numeric columns in CSV that should be converted to float during loading
+_FLOAT_KEYS = ("glycemic_index", "carbohydrates", "fiber", "protein", "fat", "serving_size_grams")
+
 # Raised when a requested food is not in the knowledge base.
 class FoodNotFoundError(Exception):
     def __init__(self, message: str, food_name: str):
@@ -31,11 +34,34 @@ class NutritionKnowledgeBase:
     In-memory knowledge base of nutrition data loaded from CSV.
     Supports lookup by food name and feature extraction (GI, GL, macronutrients).
     """
-    # Initialize the knowledge base and load nutrition_data.csv
+    """Initialize the knowledge base and load nutrition data from CSV.
+    
+    Args:
+        csv_path: Path to CSV file. Defaults to "nutrition_data.csv".
+    
+    Raises:
+        FileNotFoundError: If CSV file cannot be found.
+        ValueError: If CSV is malformed or missing required columns.
+    """
     def __init__(self, csv_path: str = "nutrition_data.csv") -> None:
         self.data = self._load_csv(csv_path)
 
-    # Return structured nutrition features for a food at the given serving size.
+    """Return structured nutrition features for a food at the given serving size.
+    
+    Args:
+        food_name: Food name (case-insensitive, whitespace-tolerant).
+        serving_size: Serving size string. Formats: "100g", "200 g", "1 serving", "2.5 servings".
+                     Defaults to "100g".
+    
+    Returns:
+        Dict with keys: glycemic_index, glycemic_load, carbohydrates, fiber, protein, fat,
+        processing_level, serving_size_grams. All nutrients are per serving.
+    
+    Raises:
+        FoodNotFoundError: If food name not found.
+        MissingDataError: If required nutrition data missing.
+        ValueError: If serving_size format invalid or negative.
+    """
     def get_nutrition_features(self, food_name: str, serving_size: str = "100g") -> dict:
         # Normalize the food name.
         normalized_name = self._normalize_name(food_name)
@@ -75,20 +101,40 @@ class NutritionKnowledgeBase:
                 "processing_level": food_data["processing_level"], 
                 "serving_size_grams": serving_grams}
 
-    # Return list of all food names in the knowledge base (for Module 4 search).
+    """Return list of all food names in the knowledge base.
+    
+    Returns:
+        List of normalized food name strings (lowercase, whitespace-normalized).
+    """
     def list_all_foods(self) -> List[str]:
         return list(self.data.keys())
 
-    # Return copy of all food data (for Module 4 to search for swaps).
+    """Return copy of all food data in the knowledge base.
+    
+    Returns:
+        Dict mapping normalized food names to nutrition data dicts.
+        Each dict contains: glycemic_index, carbohydrates, fiber, protein, fat,
+        processing_level, serving_size_grams (all per 100g). Returns a copy.
+    """
     def get_all_foods(self) -> Dict:
         return self.data.copy()
 
-    # Load CSV file into dict. Keys are normalized food names.
-    # Numeric columns are converted to float; empty cells become None.
+    """Load CSV file into dictionary. Keys are normalized food names.
+    
+    Numeric columns (from _FLOAT_KEYS) are converted to float; empty cells become None.
+    
+    Args:
+        filepath: Path to CSV file.
+    
+    Returns:
+        Dict mapping normalized food names to nutrition data dicts.
+    
+    Raises:
+        FileNotFoundError: If file cannot be found.
+        ValueError: If CSV is malformed or missing required columns.
+    """
     def _load_csv(self, filepath: str) -> Dict:
         nutrition_dict: Dict = {}
-        # Numeric columns that should be converted to float
-        _FLOAT_KEYS = ("glycemic_index", "carbohydrates", "fiber", "protein", "fat", "serving_size_grams")
 
         with open(filepath, "r", encoding="utf-8") as file:
             for row in csv.DictReader(file):
@@ -102,20 +148,48 @@ class NutritionKnowledgeBase:
                 nutrition_dict[normalized_name] = entry
         return nutrition_dict
 
-    # Normalize food name (e.g. lowercase, strip whitespace).
-    # PROBLEM: this does not currently handle synonyms/plurals (eg, "apple" and "apples")
+    """Normalize food name (lowercase, strip whitespace, collapse spaces).
+    
+    Note: Does not currently handle synonyms/plurals (e.g., "apple" vs "apples").
+    
+    Args:
+        name: Food name string to normalize.
+    
+    Returns:
+        Normalized name string (lowercase, whitespace-collapsed).
+    """
     def _normalize_name(self, name: str) -> str:
         if not name:
             return ""
         # lowercase, strip, collapse repeated spaces
         return " ".join(name.lower().strip().split())
 
-    # Compute glycemic load: (GI × carbs per serving) / 100.
+    """Compute glycemic load: (GI × carbs per serving) / 100.
+    
+    Args:
+        gi: Glycemic index value.
+        carbs_per_serving: Carbohydrates in grams for the serving.
+    
+    Returns:
+        Glycemic load value (float).
+    """
     def _calculate_glycemic_load(self, gi: float, carbs_per_serving: float) -> float:
         return (gi * carbs_per_serving) / 100
 
-    # Parse serving size string and return total grams.
-    # Supports: "100g", "200 g", "1 serving", "2.5 servings". Unknown format raises ValueError.
+    """Parse serving size string and return total grams.
+    
+    Supports formats: "100g", "200 g", "1 serving", "2.5 servings".
+    
+    Args:
+        serving_str: Serving size string to parse.
+        base_grams: Base serving size in grams (for "serving" format).
+    
+    Returns:
+        Total grams for the requested serving size.
+    
+    Raises:
+        ValueError: If serving size format is unrecognized, empty, or negative.
+    """
     def _convert_serving_size(self, serving_str: str, base_grams: float) -> float:
         s = serving_str.strip().lower()
         if not s:
