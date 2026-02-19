@@ -35,7 +35,12 @@ def get_gl_category(glycemic_load: float) -> str:
         "caution" if GL > SAFE_GL_THRESHOLD and <= CAUTION_GL_THRESHOLD,
         "unsafe" if GL > CAUTION_GL_THRESHOLD.
     """
-    # TODO: Implement
+    if glycemic_load <= SAFE_GL_THRESHOLD:
+        return "safe"
+    elif glycemic_load <= CAUTION_GL_THRESHOLD:
+        return "caution"
+    else:
+        return "unsafe"
     pass
 
 
@@ -50,8 +55,12 @@ def get_gi_category(glycemic_index: float) -> str:
         "caution" if GI > SAFE_GI_THRESHOLD and <= CAUTION_GI_THRESHOLD,
         "unsafe" if GI > CAUTION_GI_THRESHOLD.
     """
-    # TODO: Implement
-    pass
+    if glycemic_index <= SAFE_GI_THRESHOLD:
+        return "safe"
+    elif glycemic_index <= CAUTION_GI_THRESHOLD:
+        return "caution"
+    else:
+        return "unsafe"
 
 
 def evaluate_propositions(features: Dict) -> Tuple[str, str]:
@@ -71,12 +80,22 @@ def evaluate_propositions(features: Dict) -> Tuple[str, str]:
     """
     # TODO: Implement
     # 1. Extract GI and GL from features dict
+    gi = features["glycemic_index"]
+    gl = features["glycemic_load"]
     # 2. Call get_gl_category(gl) and get_gi_category(gi) to get categories
+    gl_category = get_gl_category(gl)
+    gi_category = get_gi_category(gi)
     # 3. Determine final label based on priority (unsafe > caution > safe)
     #    - If either GL or GI is "unsafe" → "unsafe"
     #    - Else if either is "caution" → "caution"
     #    - Else → "safe"
+    if gl_category == "unsafe" or gi_category == "unsafe":
+        return "unsafe"
+    elif gl_category == "caution" or gi_category == "caution":
+        return "caution"
+    else:
+        return "safe"
     # 4. Build explanation string mentioning which rules fired and their values/thresholds
     #    Example: "Glycemic load 18.5 exceeds safe threshold (10); within caution range (≤20). Glycemic index within safe range (52)."
-    # 5. Return (label, explanation)
-    pass
+    explanation = f"Glycemic load {gl} exceeds safe threshold ({SAFE_GL_THRESHOLD}); within caution range ({CAUTION_GL_THRESHOLD}). Glycemic index {gi} within safe range ({SAFE_GI_THRESHOLD})."
+    return (label, explanation)
