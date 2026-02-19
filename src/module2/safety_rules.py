@@ -37,11 +37,9 @@ def get_gl_category(glycemic_load: float) -> str:
     """
     if glycemic_load <= SAFE_GL_THRESHOLD:
         return "safe"
-    elif glycemic_load <= CAUTION_GL_THRESHOLD:
+    if glycemic_load <= CAUTION_GL_THRESHOLD:
         return "caution"
-    else:
-        return "unsafe"
-    pass
+    return "unsafe"
 
 
 def get_gi_category(glycemic_index: float) -> str:
@@ -57,10 +55,9 @@ def get_gi_category(glycemic_index: float) -> str:
     """
     if glycemic_index <= SAFE_GI_THRESHOLD:
         return "safe"
-    elif glycemic_index <= CAUTION_GI_THRESHOLD:
+    if glycemic_index <= CAUTION_GI_THRESHOLD:
         return "caution"
-    else:
-        return "unsafe"
+    return "unsafe"
 
 
 def evaluate_propositions(features: Dict) -> Tuple[str, str]:
@@ -78,24 +75,32 @@ def evaluate_propositions(features: Dict) -> Tuple[str, str]:
     Note:
         Priority: unsafe > caution > safe (if multiple rules fire, use highest priority).
     """
-    # TODO: Implement
-    # 1. Extract GI and GL from features dict
-    gi = features["glycemic_index"]
     gl = features["glycemic_load"]
-    # 2. Call get_gl_category(gl) and get_gi_category(gi) to get categories
-    gl_category = get_gl_category(gl)
-    gi_category = get_gi_category(gi)
-    # 3. Determine final label based on priority (unsafe > caution > safe)
-    #    - If either GL or GI is "unsafe" → "unsafe"
-    #    - Else if either is "caution" → "caution"
-    #    - Else → "safe"
-    if gl_category == "unsafe" or gi_category == "unsafe":
-        return "unsafe"
-    elif gl_category == "caution" or gi_category == "caution":
-        return "caution"
+    gi = features["glycemic_index"]
+    gl_cat = get_gl_category(gl)
+    gi_cat = get_gi_category(gi)
+
+    if gl_cat == "unsafe" or gi_cat == "unsafe":
+        label = "unsafe"
+    elif gl_cat == "caution" or gi_cat == "caution":
+        label = "caution"
     else:
-        return "safe"
-    # 4. Build explanation string mentioning which rules fired and their values/thresholds
-    #    Example: "Glycemic load 18.5 exceeds safe threshold (10); within caution range (≤20). Glycemic index within safe range (52)."
-    explanation = f"Glycemic load {gl} exceeds safe threshold ({SAFE_GL_THRESHOLD}); within caution range ({CAUTION_GL_THRESHOLD}). Glycemic index {gi} within safe range ({SAFE_GI_THRESHOLD})."
+        label = "safe"
+
+    parts = []
+    if gl <= SAFE_GL_THRESHOLD:
+        parts.append(f"Glycemic load {gl:.1f} within safe range (≤{SAFE_GL_THRESHOLD}).")
+    elif gl <= CAUTION_GL_THRESHOLD:
+        parts.append(f"Glycemic load {gl:.1f} exceeds safe threshold ({SAFE_GL_THRESHOLD}); within caution range (≤{CAUTION_GL_THRESHOLD}).")
+    else:
+        parts.append(f"Glycemic load {gl:.1f} exceeds caution threshold ({CAUTION_GL_THRESHOLD}).")
+
+    if gi <= SAFE_GI_THRESHOLD:
+        parts.append(f"Glycemic index {gi:.1f} within safe range (≤{SAFE_GI_THRESHOLD}).")
+    elif gi <= CAUTION_GI_THRESHOLD:
+        parts.append(f"Glycemic index {gi:.1f} exceeds safe threshold ({SAFE_GI_THRESHOLD}); within caution range (≤{CAUTION_GI_THRESHOLD}).")
+    else:
+        parts.append(f"Glycemic index {gi:.1f} exceeds caution threshold ({CAUTION_GI_THRESHOLD}).")
+
+    explanation = " ".join(parts)
     return (label, explanation)

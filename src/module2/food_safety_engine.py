@@ -33,12 +33,11 @@ class FoodSafetyEngine:
         Raises:
             TypeError: If knowledge_base is not a NutritionKnowledgeBase instance.
         """
-        # TODO: Validate knowledge_base is correct type
-        # TODO: Store knowledge_base as instance variable
-        # TODO: If thresholds provided, store them (or update safety_rules constants)
-        #       For now, can ignore thresholds parameter if using module-level constants
-        pass
-    
+        if not isinstance(knowledge_base, NutritionKnowledgeBase):
+            raise TypeError("knowledge_base must be a NutritionKnowledgeBase instance.")
+        self.knowledge_base = knowledge_base
+        self._thresholds = thresholds  # Stored for future use; safety_rules uses module constants for now.
+
     def evaluate_food(self, food_name: str, serving_size: str = "100g") -> Dict[str, str]:
         """Evaluate safety of a food at the given serving size.
         
@@ -57,10 +56,6 @@ class FoodSafetyEngine:
             MissingDataError: If required nutrition data missing (from Module 1).
             ValueError: If serving_size format invalid (from Module 1).
         """
-        # TODO: Implement
-        # 1. Call self.knowledge_base.get_nutrition_features(food_name, serving_size)
-        #    This will raise FoodNotFoundError, MissingDataError, or ValueError if needed
-        # 2. Pass features dict to evaluate_propositions() from safety_rules
-        # 3. Get (label, explanation) tuple back
-        # 4. Return {"safety_label": label, "explanation": explanation}
-        pass
+        features = self.knowledge_base.get_nutrition_features(food_name, serving_size)
+        label, explanation = evaluate_propositions(features)
+        return {"safety_label": label, "explanation": explanation}
