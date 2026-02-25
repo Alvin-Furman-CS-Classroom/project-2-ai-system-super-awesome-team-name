@@ -23,7 +23,6 @@ See `PROPOSAL.md` for full details.
 
 Your system must include 5-6 modules. Fill in the table below as you plan each module.
 
-
 | Module | Topic(s) | Inputs | Outputs | Depends On | Checkpoint |
 | ------ | -------- | ------ | ------- | ---------- | ---------- |
 | 1 | Knowledge Representation, Knowledge Bases | Food name (string) + optional serving size | Nutrition features dict: GI, glycemic load, macronutrients, processing level, serving conversions | None | Checkpoint 1 (Feb 11) |
@@ -32,6 +31,37 @@ Your system must include 5-6 modules. Fill in the table below as you plan each m
 | 4 | Search (Uniform Cost, A*) | Original meal + constraints + user preferences | Modified meal suggestions with portion adjustments/swaps + change explanations | Modules 2, 3 | Checkpoint 4 (Apr 2) |
 | 5 | Reinforcement Learning (Policy, Q-Learning) | Historical meals + predicted risks + user outcomes + current thresholds | Updated personalized thresholds (glycemic load, carb limits) | Modules 2, 3, 4 | Checkpoint 5 (Apr 16) |
 | 6 | Web Interface / User Interface | User interactions (food inputs, serving sizes, meal building, feedback) | Visual display of nutrition info, risk assessments, meal suggestions, and personalized recommendations | Modules 1, 2, 3, 4, 5 | Optional / Future |
+
+## Module 2: Single Food Safety Rule Engine
+
+### Inputs
+
+- **Food name**: A string identifier for the food (case-insensitive, whitespace-tolerant), e.g. `"cabbage cruciferous boiled"` or `"Arborio Rice   Boiled"`.
+- **Serving size**: A string describing the amount, parsed by Module 1. Supported formats include:
+  - `"100g"`, `"200 g"` (grams, with or without space before `g`)
+  - `"1 serving"`, `"2.5 servings"`, `"0.5 serving"` (multiples of the food's base serving size)
+- **Example call**: `engine.evaluate_food("cabbage cruciferous boiled", "100g")`
+
+### Outputs
+
+- **Safety label**: One of `"safe"`, `"caution"`, or `"unsafe"`, indicating blood-sugar spike risk for the given serving.
+- **Explanation**: A human-readable string explaining which rules fired, for example:
+  - `"Glycemic load 8.0 within safe range (≤10.0). Glycemic index 50.0 within safe range (≤55.0)."`
+- **Next-module feed**: Module 3 (Meal-Level Risk Analyzer) will:
+  - call Module 2 for each food in a meal to get `safety_label` and `explanation`,
+  - use the per-food labels and Module 1 features as inputs when computing the overall meal risk score and risk category.
+
+### AI Concepts and Design Rationale
+
+- **Knowledge Bases**: Module 2 relies on Module 1's `NutritionKnowledgeBase` as its knowledge source for GI, GL, and macronutrients. It does not load or store raw nutrition data itself.
+- **Propositional Logic and Inference**:
+  - Encodes safety rules as propositions over numeric thresholds for glycemic index and glycemic load.
+  - Applies a clear priority ordering: if any rule marks a food as unsafe, that wins over caution, which in turn wins over safe.
+  - Produces an explanation string that directly reflects which threshold checks fired, supporting explainable, rule-based inference.
+- **Why this fits the problem**:
+  - Threshold-based rules over GI/GL align with clinical guidance and are easy to tune.
+  - The logic is transparent for users and clinicians (no black-box model) and easy to explain in an in-person demo.
+  - Separating the rules (`safety_rules.py`) from the engine (`food_safety_engine.py`) keeps Module 2 small, testable, and ready for reuse by both the CLI and the future web interface.
 
 ## Repository Layout
 
@@ -66,11 +96,20 @@ your-repo/
 
 ## Setup
 
-List dependencies, setup steps, and any environment variables required to run the system.
+- **Python 3** (3.8+).
+- **Optional for food name matching:** The CLI uses **word embeddings** via the [sentence-transformers](https://www.sbert.net/) library to suggest similar foods when the user’s input does not exactly match a food in the knowledge base. Install with:
+  ```bash
+  pip install sentence-transformers
+  ```
+  If not installed, the CLI falls back to simple substring matching. No other external APIs are required for core modules (1–2).
 
 ## Running
 
-Provide commands or scripts for running modules and demos.
+- **Terminal UI:** From the project root, run:
+  ```bash
+  python3 -m src.cli
+  ```
+  The CLI loads the nutrition knowledge base and the food safety engine; when you enter a food name, it uses **sentence-transformers** to compute **word embeddings** and find semantically similar foods if there is no exact match.
 
 ## Testing
 
@@ -78,7 +117,10 @@ Provide commands or scripts for running modules and demos.
 
 **Integration Tests** (`integration_tests/`): Create a new subfolder for each module beyond the first, demonstrating how modules work together.
 
-Provide commands to run tests and describe any test data needed.
+- **Module 2 tests**:
+  - All Module 2 tests (unit + end-to-end with Module 1) live in `unit_tests/module2`:
+    - `python3 -m unittest discover -s unit_tests/module2 -p "test_*.py" -v`
+  - These use the real nutrition CSV in `src/module1/nutrition_data.csv` plus hand-crafted feature dicts for rule-level tests.
 
 ## Checkpoint Log
 
@@ -105,4 +147,5 @@ Keep `AGENTS.md` updated with your module plan, constraints, and links to APIs/d
 
 ## References
 
-List libraries, APIs, datasets, and other references used by the system.
+- **Word embeddings / similar-food matching:** We use the [sentence-transformers](https://www.sbert.net/) library (e.g. model `all-MiniLM-L6-v2`) to compute sentence embeddings for food names and to find nearest-neighbor matches. This provides semantic similarity rather than plain substring matching. See `src/food_matcher.py`.
+- **Nutrition data:** CSV-backed knowledge base in `src/module1/` (see Module 1 plan and data files).

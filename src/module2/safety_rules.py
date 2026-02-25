@@ -4,11 +4,29 @@ Safety Rules: Propositional logic rules for evaluating food safety.
 Defines thresholds and proposition evaluation functions for determining
 blood-sugar safety labels (safe/caution/unsafe) based on nutrition features.
 
+Thresholds follow common clinical-style GI/GL groupings:
+- Glycemic load: low (≤10), medium (11–19), high (≥20)
+- Glycemic index: low (≤55), medium (56–69), high (≥70)
+
 Created 2/3/2026
 Authors: Jia Lin and Della Avent
 """
 
-from typing import Dict, Tuple
+from typing import Dict, Tuple, TypedDict
+
+
+class NutritionFeatures(TypedDict):
+    """Typed view of the nutrition features dict supplied by Module 1."""
+
+    glycemic_index: float
+    glycemic_load: float
+    carbohydrates: float
+    fiber: float
+    protein: float
+    fat: float
+    processing_level: str
+    serving_size_grams: float
+
 
 # Default thresholds for glycemic load (GL)
 SAFE_GL_THRESHOLD = 10.0      # GL <= 10 is safe
@@ -20,8 +38,9 @@ SAFE_GI_THRESHOLD = 55.0       # GI <= 55 is safe
 CAUTION_GI_THRESHOLD = 70.0    # GI > 55 and < 70 is caution
 # GI >= 70 is unsafe
 
-# TODO: Add processing level rules if needed
-# TODO: Document threshold sources/rationale (e.g., clinical guidelines)
+# Additional rules based on processing level (e.g., ultra-processed foods)
+# can be layered on top of these thresholds in future iterations if needed
+# by downstream modules. For Checkpoint 2, we focus on transparent GI/GL rules.
 
 
 def get_gl_category(glycemic_load: float) -> str:
@@ -60,7 +79,33 @@ def get_gi_category(glycemic_index: float) -> str:
     return "unsafe"
 
 
-def evaluate_propositions(features: Dict) -> Tuple[str, str]:
+def _build_explanation(gl: float, gi: float) -> str:
+    """Build a human-readable explanation for the given GL and GI values."""
+    parts = []
+    if gl <= SAFE_GL_THRESHOLD:
+        parts.append(f"Glycemic load {gl:.1f} within safe range (≤{SAFE_GL_THRESHOLD}).")
+    elif gl <= CAUTION_GL_THRESHOLD:
+        parts.append(
+            f"Glycemic load {gl:.1f} exceeds safe threshold ({SAFE_GL_THRESHOLD}); "
+            f"within caution range (≤{CAUTION_GL_THRESHOLD})."
+        )
+    else:
+        parts.append(f"Glycemic load {gl:.1f} exceeds caution threshold ({CAUTION_GL_THRESHOLD}).")
+
+    if gi <= SAFE_GI_THRESHOLD:
+        parts.append(f"Glycemic index {gi:.1f} within safe range (≤{SAFE_GI_THRESHOLD}).")
+    elif gi <= CAUTION_GI_THRESHOLD:
+        parts.append(
+            f"Glycemic index {gi:.1f} exceeds safe threshold ({SAFE_GI_THRESHOLD}); "
+            f"within caution range (≤{CAUTION_GI_THRESHOLD})."
+        )
+    else:
+        parts.append(f"Glycemic index {gi:.1f} exceeds caution threshold ({CAUTION_GI_THRESHOLD}).")
+
+    return " ".join(parts)
+
+
+def evaluate_propositions(features: NutritionFeatures) -> Tuple[str, str]:
     """Evaluate all propositional rules against nutrition features.
     
     Args:
@@ -87,20 +132,5 @@ def evaluate_propositions(features: Dict) -> Tuple[str, str]:
     else:
         label = "safe"
 
-    parts = []
-    if gl <= SAFE_GL_THRESHOLD:
-        parts.append(f"Glycemic load {gl:.1f} within safe range (≤{SAFE_GL_THRESHOLD}).")
-    elif gl <= CAUTION_GL_THRESHOLD:
-        parts.append(f"Glycemic load {gl:.1f} exceeds safe threshold ({SAFE_GL_THRESHOLD}); within caution range (≤{CAUTION_GL_THRESHOLD}).")
-    else:
-        parts.append(f"Glycemic load {gl:.1f} exceeds caution threshold ({CAUTION_GL_THRESHOLD}).")
-
-    if gi <= SAFE_GI_THRESHOLD:
-        parts.append(f"Glycemic index {gi:.1f} within safe range (≤{SAFE_GI_THRESHOLD}).")
-    elif gi <= CAUTION_GI_THRESHOLD:
-        parts.append(f"Glycemic index {gi:.1f} exceeds safe threshold ({SAFE_GI_THRESHOLD}); within caution range (≤{CAUTION_GI_THRESHOLD}).")
-    else:
-        parts.append(f"Glycemic index {gi:.1f} exceeds caution threshold ({CAUTION_GI_THRESHOLD}).")
-
-    explanation = " ".join(parts)
+    explanation = _build_explanation(gl, gi)
     return (label, explanation)

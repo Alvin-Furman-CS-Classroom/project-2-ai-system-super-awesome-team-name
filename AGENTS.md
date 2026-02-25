@@ -41,3 +41,7 @@
 - Code elegance rubric: https://csc-343.path.app/rubrics/code-elegance.rubric.md
 - Course schedule: https://csc-343.path.app/resources/course.schedule.md
 - Rubric: https://csc-343.path.app/projects/project-2-ai-system/ai-system.rubric.md
+
+## Technical notes
+
+- **Food name matching (CLI):** Implemented using **word embeddings** via the **sentence-transformers** library (`src/food_matcher.py`). When the user’s input does not exactly match a food in the knowledge base, the CLI uses sentence-transformers to encode food names and compute cosine similarity to suggest similar foods. If the library is not installed, the code falls back to substring matching.

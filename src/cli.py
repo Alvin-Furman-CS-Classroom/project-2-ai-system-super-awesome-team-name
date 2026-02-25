@@ -1,7 +1,10 @@
 """
 Terminal UI for GlycemicGuard - Adaptive Diabetic Diet Advisor.
 
-Provides command-line interface for interacting with Modules 1-5.
+Provides command-line interface for interacting with Modules 1-5. When the user enters
+a food name that does not exactly match the knowledge base, the CLI uses word embeddings
+from the sentence-transformers library (see src.food_matcher.FoodMatcher) to suggest
+semantically similar foods.
 """
 
 import sys
@@ -65,17 +68,17 @@ def prompt_food_selection(kb: NutritionKnowledgeBase, matcher: FoodMatcher) -> O
             print(f"\nNo similar foods found for '{query}'.")
             return None
         
-        # Display options
+        # Display options (hide raw similarity scores from user)
         print(f"\nFound {len(neighbors)} similar foods:")
-        for i, (food_name, similarity) in enumerate(neighbors, 1):
-            print(f"  {i}. {food_name} (similarity: {similarity:.2f})")
+        for i, (food_name, _similarity) in enumerate(neighbors, 1):
+            print(f"  {i}. {food_name}")
         
         # Prompt user
         print(f"\nOptions:")
         print(f"  Enter 1-{len(neighbors)} to select a food")
         if offset + top_k < len(kb.list_all_foods()):
             print(f"  Enter 'next' to see next {top_k} options")
-        print(f"  Enter 'cancel' to go back")
+        print(f"  Enter 'cancel' to start over")
         
         choice = input("Your choice: ").strip().lower()
         
@@ -176,25 +179,32 @@ def main():
                     print("Cancelled.")
                     continue
                 
-                # Get serving size
-                serving_size = input(f"\nEnter serving size for '{selected_food}' (default: 100g): ").strip()
-                if not serving_size:
-                    serving_size = "100g"
-                
-                # Get nutrition features (Module 1)
-                features = kb.get_nutrition_features(selected_food, serving_size)
-                
-                # Get safety evaluation (Module 2)
-                safety_result = safety_engine.evaluate_food(selected_food, serving_size)
-                
-                # Display results
-                display_food_safety(features, safety_result)
+                # Loop until we get a valid serving size
+                while True:
+                    serving_size = input(
+                        f"\nEnter serving size for '{selected_food}' (default: 100g): "
+                    ).strip()
+                    if not serving_size:
+                        serving_size = "100g"
+                    
+                    try:
+                        # Get nutrition features (Module 1)
+                        features = kb.get_nutrition_features(selected_food, serving_size)
+                        # Get safety evaluation (Module 2)
+                        safety_result = safety_engine.evaluate_food(selected_food, serving_size)
+                    except ValueError:
+                        print("\nServing size format not recognized.")
+                        print("Examples: '100g', '200 g', '1 serving', '2.5 servings'.")
+                        print("Please try entering the serving size again.")
+                        continue
+                    
+                    # Display results and break out of serving-size loop
+                    display_food_safety(features, safety_result)
+                    break
                 
             except FoodNotFoundError as e:
                 print(f"\nError: {e}")
             except MissingDataError as e:
-                print(f"\nError: {e}")
-            except ValueError as e:
                 print(f"\nError: {e}")
             except Exception as e:
                 print(f"\nUnexpected error: {e}")

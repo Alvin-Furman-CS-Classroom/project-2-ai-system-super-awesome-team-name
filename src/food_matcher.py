@@ -1,7 +1,10 @@
 """
 Food Name Matcher: Uses word embeddings to find similar food names.
 
-Uses Sentence Transformers for efficient, semantic food name matching.
+We implement word embeddings via the sentence-transformers library (e.g. SentenceTransformer
+with model 'all-MiniLM-L6-v2'). Food names are encoded into dense vectors; similarity is
+computed with cosine similarity for efficient nearest-neighbor search. If sentence-transformers
+is not installed, the matcher falls back to simple substring matching.
 """
 
 from typing import List, Tuple, Optional
@@ -17,9 +20,11 @@ except ImportError:
 
 class FoodMatcher:
     """
-    Efficient food name matching using sentence embeddings.
+    Food name matching using word embeddings from the sentence-transformers library.
     
-    Pre-computes embeddings for all foods in knowledge base for fast similarity search.
+    When use_embeddings is True and sentence-transformers is installed, encodes all food
+    names with a SentenceTransformer model (word/sentence embeddings) and performs
+    nearest-neighbor search via cosine similarity. Otherwise falls back to substring matching.
     """
     
     def __init__(self, food_names: List[str], 
@@ -29,8 +34,10 @@ class FoodMatcher:
         
         Args:
             food_names: List of all food names in knowledge base.
-            model_name: Sentence transformer model name. Default: "all-MiniLM-L6-v2" (~80MB).
-            use_embeddings: If False, falls back to simple substring matching.
+            model_name: sentence-transformers model name for word embeddings.
+                        Default: "all-MiniLM-L6-v2" (~80MB).
+            use_embeddings: If True, use sentence-transformers for word embeddings; if False
+                           or library missing, fall back to simple substring matching.
         
         Raises:
             ImportError: If sentence-transformers not installed and use_embeddings=True.
@@ -62,7 +69,7 @@ class FoodMatcher:
     
     def find_nearest_neighbors(self, query: str, top_k: int = 5, 
                               offset: int = 0) -> List[Tuple[str, float]]:
-        """Find nearest neighbors using embedding similarity.
+        """Find nearest neighbors using word-embedding (sentence-transformers) similarity.
         
         Args:
             query: User's food name query.

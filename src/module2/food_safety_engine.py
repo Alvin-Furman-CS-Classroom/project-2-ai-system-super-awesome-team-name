@@ -8,10 +8,10 @@ Created 2/3/2026
 Authors: Jia Lin and Della Avent
 """
 
-from typing import Dict, Optional
+from typing import Dict, Optional, cast
 
 from src.module1.knowledge_base import NutritionKnowledgeBase, FoodNotFoundError, MissingDataError
-from src.module2.safety_rules import evaluate_propositions
+from src.module2.safety_rules import evaluate_propositions, NutritionFeatures
 
 
 class FoodSafetyEngine:
@@ -56,6 +56,7 @@ class FoodSafetyEngine:
             MissingDataError: If required nutrition data missing (from Module 1).
             ValueError: If serving_size format invalid (from Module 1).
         """
-        features = self.knowledge_base.get_nutrition_features(food_name, serving_size)
+        raw_features = self.knowledge_base.get_nutrition_features(food_name, serving_size)
+        features = cast(NutritionFeatures, raw_features)
         label, explanation = evaluate_propositions(features)
         return {"safety_label": label, "explanation": explanation}
