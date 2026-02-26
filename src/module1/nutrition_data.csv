@@ -1,0 +1,2001 @@
+name,glycemic_index,carbohydrates,fiber,protein,fat,processing_level,serving_size_grams
+cabbage cruciferous boiled,20,6.0,2.0,2.0,0.2,whole,98
+deli turkey poached,0,0.3,0.0,28.5,7.5,minimally_processed,93
+serrano pepper pickled,20,5.6,1.9,1.4,0.4,whole,155
+arborio rice boiled,94,21.5,1.7,2.6,0.9,processed,146
+russet potato steamed,62,19.8,2.2,2.5,4.9,processed,135
+portobello mushroom steamed,13,3.5,1.9,2.1,0.3,whole,73
+tenderloin pork smoked,0,1.3,0.0,22.1,9.8,processed,101
+ravioli pasta al dente,38,22.8,2.4,4.1,0.8,processed,130
+acorn squash steamed,58,5.6,2.8,1.3,0.2,whole,117
+bell green pepper sauteed,18,4.1,2.2,1.5,0.3,whole,141
+potato chips plain,67,59.9,3.4,7.5,26.2,ultra_processed,27
+reuben sandwich on wheat,52,41.9,2.3,32.8,16.4,processed,155
+gnocchi pasta overcooked,47,20.0,2.9,4.4,1.4,processed,142
+italian sausage braised,3,0.4,0.0,21.4,34.6,processed,77
+ham and cheese croissant,59,49.5,2.8,9.7,22.5,processed,62
+bell red pepper pickled,18,4.9,2.2,1.2,0.4,whole,135
+chickpea bean refried,32,24.9,9.8,8.1,1.0,minimally_processed,162
+loin pork baked,0,0.2,0.0,20.8,10.2,processed,104
+blueberry berry dried,35,10.6,4.8,0.9,0.6,whole,140
+poppy seed,6,23.3,14.7,20.7,44.9,minimally_processed,28
+minestrone soup homemade,60,18.5,1.4,4.0,7.6,processed,241
+skim milk,35,5.3,0.5,4.7,1.0,processed,226
+salmon fish stewed,0,0.0,0.0,22.2,5.3,minimally_processed,93
+spaghetti squash roasted,75,5.4,2.6,1.1,0.3,whole,128
+split pea frozen,46,21.6,7.1,4.6,0.4,minimally_processed,144
+drumstick chicken braised,0,0.0,0.0,26.3,8.6,minimally_processed,105
+peach canned fruit in syrup,61,20.3,2.8,0.8,0.0,processed,114
+breast turkey sliced,0,0.3,0.0,29.2,0.6,minimally_processed,97
+button mushroom grilled,11,2.6,1.1,2.7,0.4,whole,70
+cantaloupe melon chilled,71,7.6,0.7,0.7,0.2,whole,155
+rotisserie chicken braised,0,0.0,0.0,30.8,12.7,minimally_processed,90
+leek onion steamed,13,9.0,2.0,1.0,0.2,whole,144
+garbanzo bean refried,26,23.9,9.5,8.4,1.4,minimally_processed,186
+spinach leafy green pickled,14,4.9,3.0,1.5,0.3,whole,29
+naan bread stale,50,53.1,3.3,11.4,2.9,processed,26
+sweet and salty trail mix,44,54.0,7.3,11.4,27.9,processed,46
+radish root vegetable steamed,37,9.0,3.9,1.4,0.2,whole,124
+americano coffee with milk,12,4.0,0.0,0.4,2.3,minimally_processed,238
+corn chips baked,62,52.9,7.2,9.2,27.6,ultra_processed,26
+blt sandwich wrap,56,55.0,2.0,22.0,29.2,processed,163
+andouille sausage stewed,0,1.9,0.0,19.9,21.2,processed,89
+whole wheat pancake with syrup,72,52.5,1.7,10.8,6.8,processed,81
+ground chicken pan-seared,0,0.0,0.0,29.7,6.7,minimally_processed,100
+chocolate waffle,60,50.4,1.6,9.4,11.3,processed,74
+sausage pork pan-seared,0,0.2,0.0,24.9,22.5,processed,105
+bbq chicken pizza regular crust,60,29.0,2.3,11.1,16.9,processed,101
+pork sausage baked,15,0.9,0.0,16.9,30.4,processed,81
+valencia orange juiced,44,12.5,2.4,1.1,0.2,whole,129
+sweet potato chips fried,59,57.6,3.6,7.1,35.3,ultra_processed,30
+tricolor quinoa boiled,53,21.0,2.9,4.1,1.9,minimally_processed,197
+black rice steamed,56,25.9,0.5,3.3,0.4,processed,159
+thigh chicken smoked,0,0.0,0.0,20.4,1.8,minimally_processed,99
+mashed avocado,14,9.9,6.9,2.8,15.2,whole,153
+ground turkey roasted,0,0.3,0.0,29.2,1.9,minimally_processed,94
+carrot root vegetable roasted,31,8.2,2.1,1.4,0.2,whole,131
+kohlrabi cruciferous sauteed,20,6.2,2.6,1.9,0.4,whole,94
+pork bacon crispy,0,0.3,0.0,26.9,38.8,processed,15
+beef burger single,50,35.1,1.7,27.0,28.5,processed,150
+vegetable soup canned,38,8.5,3.2,3.4,7.1,processed,261
+kohlrabi cruciferous grilled,19,5.2,3.0,2.8,0.3,whole,86
+sweet potato chips salted,70,56.5,6.3,7.8,27.8,ultra_processed,27
+wild rice tempeh steamed,16,9.9,0.0,19.0,10.5,processed,94
+sweet potato boiled,56,23.0,2.2,2.4,14.7,processed,147
+sourdough bread fresh,59,53.7,5.3,13.4,3.4,processed,26
+cappuccino coffee hot,27,4.5,0.0,2.7,3.5,minimally_processed,225
+olive oil,0,0.0,0.0,0.0,100.0,minimally_processed,13
+eel sushi roll with brown rice,55,30.8,2.1,10.2,2.8,processed,109
+poblano pepper,15,6.8,2.2,1.0,0.3,whole,134
+mustard greens leafy green roasted,12,3.5,2.7,2.7,0.3,whole,28
+turkey sausage stewed,7,0.0,0.0,16.8,22.7,processed,77
+watermelon melon,66,7.0,0.4,0.8,0.3,whole,157
+crab seafood baked,0,2.0,0.0,17.5,0.4,minimally_processed,107
+bell green pepper pickled,13,4.7,1.8,1.3,0.4,whole,162
+potato salad no dressing,36,15.8,5.4,10.2,13.6,processed,143
+pistachio ice cream,49,24.1,0.8,4.5,14.6,processed,69
+oysters seafood poached,0,2.4,0.0,24.2,0.6,minimally_processed,92
+maitake mushroom sauteed,17,2.4,1.8,2.9,0.5,whole,74
+buttermilk pancake plain,68,54.5,3.4,9.9,13.5,processed,80
+tenderloin pork pan-seared,0,0.6,0.0,24.4,21.3,minimally_processed,90
+mung bean canned,40,27.5,8.4,9.6,1.3,minimally_processed,171
+deli turkey braised,0,0.0,0.0,26.5,4.4,minimally_processed,99
+tangerine orange,40,12.7,3.0,1.0,0.2,whole,119
+sticky rice cooked,94,24.0,2.0,3.0,0.6,processed,154
+cream soda soda,72,7.2,0.0,0.0,0.0,ultra_processed,364
+silken tofu,19,2.1,1.3,10.2,5.0,processed,104
+beef instant noodle pack,69,45.9,2.3,9.4,17.4,ultra_processed,93
+ground lean beef stewed,0,0.0,0.0,21.2,24.3,minimally_processed,93
+lemon-lime soda,74,39.1,0.0,0.0,0.0,ultra_processed,326
+ground chicken baked,0,0.0,0.0,21.7,12.7,minimally_processed,93
+white rice steamed,104,27.2,1.7,2.8,0.4,processed,154
+hazelnut nut,4,19.3,9.2,24.5,59.9,minimally_processed,30
+spinach leafy green pureed,15,4.3,2.7,1.6,0.2,whole,30
+black grape frozen,62,19.1,1.2,0.8,0.1,whole,85
+lobster seafood stewed,0,1.1,0.0,19.6,1.4,minimally_processed,99
+kale chips plain,68,57.8,4.7,8.1,33.6,ultra_processed,28
+white bread stale,72,54.5,6.8,9.4,3.1,processed,28
+spaghetti squash sauteed,61,5.8,2.0,1.7,0.2,whole,113
+bean taco hard shell,45,28.9,3.8,16.3,17.4,processed,95
+butter lettuce leafy green,19,3.4,2.9,2.3,0.2,whole,28
+shrimp seafood poached,0,1.4,0.0,16.4,1.8,minimally_processed,106
+strawberry jam,61,67.1,1.5,0.2,0.1,processed,20
+tilapia fish roasted,0,0.0,0.0,19.8,5.2,minimally_processed,95
+jalapeno pepper sauteed,19,4.0,1.8,1.1,0.4,whole,139
+watercress leafy green grilled,17,4.8,2.7,1.9,0.4,whole,29
+kohlrabi cruciferous,19,4.9,3.0,3.2,0.3,whole,91
+basmati rice steamed,99,26.3,0.8,3.1,0.4,processed,167
+butter lettuce leafy green sauteed,11,2.7,1.9,3.5,0.4,whole,29
+drumstick chicken poached,0,0.0,0.0,23.3,5.4,minimally_processed,99
+ground lean beef braised,0,0.0,0.0,20.4,18.1,minimally_processed,108
+tortilla chips baked,60,54.0,7.9,7.4,28.5,ultra_processed,30
+arborio rice cooked,66,21.9,2.5,3.2,0.5,processed,149
+canned corn cooked,48,18.8,3.0,3.1,1.1,processed,151
+chocolate croissant,68,54.4,2.8,8.6,22.8,processed,51
+caramel popcorn,55,61.6,13.0,8.3,10.7,minimally_processed,29
+ginger tea iced,13,2.8,0.0,0.1,0.0,minimally_processed,250
+beef taco hard shell,57,33.9,5.4,20.7,14.2,processed,96
+purple potato mashed,69,17.1,2.7,3.0,2.3,processed,147
+flax seed,13,7.0,11.3,23.4,45.9,minimally_processed,27
+shallot onion sauteed,17,8.1,1.9,1.2,0.1,whole,170
+strawberry berry dried,27,11.0,7.9,1.4,0.5,whole,156
+brown rice boiled,103,20.3,0.6,2.8,0.4,processed,150
+red potato roasted,60,21.1,3.7,1.6,8.4,processed,151
+collard greens leafy green pickled,14,3.9,2.0,3.3,0.4,whole,27
+lime juice canned,64,14.6,0.1,0.8,0.2,processed,233
+beefsteak tomato,16,5.0,1.3,1.0,0.2,processed,185
+fuji apple baked,31,15.3,2.0,0.4,0.1,whole,194
+black-eyed pea cooked,33,13.6,6.2,5.6,0.5,minimally_processed,153
+crab seafood poached,0,0.1,0.0,23.9,1.7,minimally_processed,100
+sardines fish roasted,0,0.0,0.0,24.7,4.0,minimally_processed,93
+crab seafood smoked,0,2.4,0.0,21.4,1.6,minimally_processed,100
+brown lentil refried,34,18.7,8.8,9.2,0.4,minimally_processed,199
+portobello mushroom sauteed,13,2.8,1.7,3.4,0.5,whole,63
+coconut milk,36,1.1,1.2,7.9,1.6,minimally_processed,253
+old fashioned oats porridge,57,67.4,11.6,16.2,6.1,minimally_processed,79
+pb and j sandwich on wheat,58,48.0,2.0,34.0,21.6,processed,164
+flax tempeh baked,12,9.9,0.0,20.3,9.3,processed,107
+turkey sandwich on wheat,68,42.8,4.0,30.6,10.5,processed,141
+artichoke dip,39,6.1,2.0,3.8,16.1,processed,31
+chop pork smoked,0,1.1,0.0,20.5,22.7,minimally_processed,93
+teriyaki sauce,30,15.6,1.1,1.9,9.2,processed,30
+purple potato fried,71,18.7,4.0,1.7,2.2,whole,150
+golden delicious apple baked,31,14.0,3.5,0.5,0.2,whole,164
+chop pork pan-seared,0,1.9,0.0,24.2,7.7,processed,106
+andouille sausage roasted,3,0.2,0.0,19.6,17.2,processed,85
+serrano pepper grilled,12,6.3,2.0,1.2,0.3,whole,138
+canned corn,59,19.4,2.9,3.6,1.4,processed,139
+rotisserie chicken stewed,0,0.0,0.0,22.5,4.9,minimally_processed,104
+ground turkey poached,0,0.4,0.0,28.3,7.6,minimally_processed,96
+fruit and nut trail mix,29,54.7,6.5,11.5,37.5,processed,38
+black rice boiled,88,29.6,2.4,2.5,0.6,processed,158
+whole chicken braised,0,0.0,0.0,28.0,6.4,minimally_processed,99
+bell orange pepper,17,5.1,1.7,1.5,0.4,whole,147
+jasmine tea sweetened,17,6.4,0.0,0.0,0.0,minimally_processed,249
+parsnip root vegetable sauteed,48,10.4,3.2,1.3,0.3,whole,123
+pink lady apple baked,31,12.2,2.8,0.2,0.3,whole,197
+pork sausage pan-seared,15,2.8,0.0,17.0,23.2,processed,87
+sunflower oil,0,0.0,0.0,0.0,100.0,minimally_processed,13
+cabbage cruciferous sauteed,18,6.6,3.5,2.5,0.4,whole,91
+honeydew melon,68,7.3,0.7,0.8,0.2,whole,155
+navy bean canned,39,20.4,6.8,9.1,0.7,minimally_processed,172
+buttermilk waffle,72,47.2,2.9,9.6,13.0,processed,78
+ribeye beef roasted,0,0.0,0.0,25.5,5.1,minimally_processed,92
+clams seafood baked,0,1.3,0.0,19.0,1.2,minimally_processed,92
+whole egg,0,1.2,0.0,12.1,11.5,minimally_processed,50
+cold brew coffee hot,27,3.3,0.0,1.6,3.3,minimally_processed,262
+red delicious apple baked,39,13.7,3.3,0.5,0.1,whole,180
+oolong tea hot,19,3.8,0.0,0.2,0.0,minimally_processed,220
+white onion steamed,19,9.3,1.7,1.2,0.1,whole,168
+thigh turkey stewed,0,0.1,0.0,27.6,7.9,minimally_processed,102
+cauliflower cruciferous pickled,15,5.2,2.5,2.3,0.2,whole,98
+loin pork poached,0,1.6,0.0,22.2,16.2,processed,96
+yukon gold potato fried,76,24.7,3.6,2.3,2.2,whole,138
+blt sandwich on white,46,45.2,4.9,16.9,18.9,processed,159
+jalapeno pepper pickled,14,6.4,2.1,1.5,0.3,whole,155
+caesar salad dressing,38,9.8,0.1,0.5,28.6,processed,28
+mandarin orange juiced,49,11.3,2.0,0.9,0.2,whole,143
+tricolor quinoa steamed,51,21.9,2.6,4.4,1.9,minimally_processed,171
+red lentil refried,27,20.4,9.9,8.1,0.6,minimally_processed,212
+breast turkey poached,0,0.1,0.0,25.6,1.0,minimally_processed,97
+ginger ale soda,74,26.2,0.0,0.0,0.0,ultra_processed,357
+thigh turkey pan-seared,0,0.4,0.0,25.3,5.2,minimally_processed,97
+whole wheat pasta al dente,35,27.8,1.8,5.1,0.9,processed,131
+mandarin canned fruit in juice,61,26.7,1.1,0.4,0.0,processed,121
+roast beef grilled,0,0.0,0.0,24.5,12.1,minimally_processed,108
+cod fish poached,0,0.0,0.0,24.2,7.6,minimally_processed,97
+grapefruit juice fresh,67,14.8,0.4,0.6,0.1,processed,243
+black bean canned,32,27.3,7.2,7.0,0.6,minimally_processed,180
+chocolate ice cream,52,22.8,0.7,4.9,14.4,processed,68
+potato chips salted,52,60.0,3.5,9.8,33.5,ultra_processed,26
+pomegranate juice fresh,64,14.6,0.0,1.9,0.1,processed,244
+white bread toasted,78,43.7,6.3,14.8,3.7,processed,28
+button mushroom pureed,20,2.7,1.6,3.1,0.5,whole,67
+banana pancake plain,68,56.6,1.3,11.0,13.4,processed,79
+fettuccine pasta cooked,47,27.3,3.2,5.3,1.7,processed,142
+bison burger double,56,32.3,2.0,25.1,38.5,processed,139
+red onion pureed,18,7.0,1.9,1.4,0.1,whole,146
+breast chicken baked,0,0.0,0.0,26.3,1.6,minimally_processed,99
+jalapeno pepper,11,6.1,2.4,1.3,0.2,whole,159
+rutabaga root vegetable roasted,30,9.4,3.4,1.1,0.2,whole,129
+ground regular beef pan-seared,0,0.0,0.0,26.2,23.9,minimally_processed,90
+green banana,58,21.1,2.6,1.1,0.4,whole,123
+yellow onion sauteed,20,9.7,1.6,1.2,0.2,whole,150
+bell orange pepper sauteed,17,4.1,1.9,1.3,0.3,whole,144
+poppy seed roasted,4,23.2,10.5,28.8,49.2,minimally_processed,27
+whole wheat pasta overcooked,53,26.7,3.6,4.6,1.7,processed,153
+chicken taco soft shell,51,32.5,5.5,20.6,18.3,processed,94
+bok choy cruciferous,14,5.2,2.8,2.9,0.3,whole,85
+pumpernickel bread stale,70,42.0,2.8,8.5,4.8,processed,29
+pink lady apple,38,13.2,2.1,0.3,0.1,whole,187
+bagel bread toasted,66,41.9,7.4,12.3,4.7,processed,25
+cod fish braised,0,0.0,0.0,19.9,5.8,minimally_processed,100
+hawaiian pizza regular crust,54,29.6,3.0,10.4,17.8,processed,111
+herbal tea iced,21,4.7,0.0,0.4,0.0,minimally_processed,237
+black grape,60,18.4,0.8,0.9,0.2,whole,96
+drumstick chicken baked,0,0.0,0.0,27.8,14.3,minimally_processed,109
+soft tofu grilled,17,1.3,1.2,8.2,5.9,processed,90
+ripe banana,58,23.0,2.6,1.3,0.2,whole,129
+cabbage cruciferous,20,5.3,2.5,1.9,0.4,whole,82
+steel cut oats porridge,45,64.1,10.8,17.6,6.8,minimally_processed,73
+mashed avocado ripe,14,8.6,6.4,2.0,14.9,whole,137
+beet root vegetable,47,10.5,2.9,1.5,0.3,whole,140
+corn muffin,56,56.3,3.7,7.3,22.9,processed,62
+zucchini squash,68,8.7,1.4,1.2,0.1,whole,130
+tilapia fish grilled,0,0.0,0.0,27.5,10.1,minimally_processed,103
+swiss chard leafy green steamed,16,4.1,1.6,2.5,0.5,whole,30
+mac and cheese frozen meal,48,33.7,4.2,20.4,15.5,processed,300
+clams seafood poached,0,3.0,0.0,20.1,1.9,minimally_processed,99
+cheerios cereal with milk,85,80.5,12.0,11.4,13.4,processed,28
+bratwurst sausage baked,9,3.7,0.0,17.2,31.9,processed,84
+shrimp dumpling fried,45,32.2,2.0,12.7,7.7,processed,100
+kohlrabi cruciferous roasted,14,6.2,2.7,2.0,0.4,whole,85
+cheese omelette,8,2.4,0.7,16.0,16.7,minimally_processed,128
+chicken instant noodle cup,55,45.6,3.1,10.2,21.7,ultra_processed,87
+soba noodle dish stir fried,55,41.4,3.9,21.2,15.3,processed,320
+crab seafood grilled,0,0.2,0.0,19.9,0.7,minimally_processed,95
+sourdough bread toasted,52,48.6,6.0,13.8,2.8,processed,28
+chai tea sweetened,17,4.5,0.0,0.3,0.0,minimally_processed,257
+jasmine rice cooked,63,26.6,2.2,2.7,0.8,processed,144
+beefsteak tomato canned,16,3.1,1.3,1.1,0.2,whole,167
+kielbasa sausage pan-seared,5,3.3,0.0,16.6,19.9,processed,80
+nectarine stone fruit dried,38,10.0,2.2,1.1,0.3,whole,151
+pumpkin squash roasted,32,9.9,1.3,1.1,0.3,whole,131
+sesame seed salted,11,19.8,14.1,22.2,42.4,minimally_processed,27
+plain tempeh steamed,13,8.4,0.0,18.7,9.3,processed,106
+drumstick chicken stewed,0,0.0,0.0,29.7,2.6,minimally_processed,102
+breakfast burrito whole wheat tortilla,54,64.8,9.9,24.3,21.7,processed,274
+maitake mushroom,19,2.6,1.5,3.4,0.4,whole,76
+red quinoa cooked,54,21.8,2.7,5.0,1.8,minimally_processed,202
+fruit energy bar,57,64.3,4.9,14.4,19.8,processed,61
+romaine leafy green pickled,19,2.0,2.3,3.3,0.4,whole,29
+tenderloin beef smoked,0,0.0,0.0,25.1,18.4,minimally_processed,91
+purple potato baked,90,16.1,3.0,2.4,3.9,whole,151
+ribeye beef stewed,0,0.0,0.0,23.1,21.9,minimally_processed,90
+wing chicken grilled,0,0.0,0.0,26.4,13.9,minimally_processed,95
+turkey sausage roasted,13,4.6,0.0,18.8,20.4,processed,90
+red lentil canned,31,20.5,7.6,8.2,0.6,minimally_processed,216
+lasagna pasta cooked,53,21.1,3.3,6.0,1.5,processed,153
+cheese cracker,60,69.8,6.8,9.9,12.2,processed,27
+nut energy bar,61,56.3,4.1,11.5,22.6,processed,64
+cauliflower cruciferous grilled,10,4.7,2.5,3.3,0.5,whole,99
+cannellini bean refried,34,26.6,9.3,8.9,0.8,minimally_processed,165
+mango juice from concentrate,48,12.2,0.2,1.8,0.1,processed,270
+tuna fish stewed,0,0.0,0.0,26.2,4.5,minimally_processed,109
+drumstick chicken grilled,0,0.0,0.0,30.3,5.9,minimally_processed,107
+sprite soda,74,20.0,0.0,0.0,0.0,ultra_processed,389
+espresso coffee with milk,4,9.2,0.0,3.3,4.6,minimally_processed,222
+thigh turkey braised,0,0.0,0.0,29.0,0.6,minimally_processed,106
+scone pastry,61,49.9,2.5,5.7,23.7,processed,70
+ground chicken braised,0,0.0,0.0,29.7,12.4,minimally_processed,95
+powder peanut,14,16.1,8.9,27.0,51.5,processed,27
+mixed fruit fruit cup in juice,50,22.0,1.3,0.3,0.0,processed,102
+white chocolate,37,42.9,7.1,9.0,44.7,processed,28
+cold brew coffee with cream,16,7.3,0.0,3.8,0.8,minimally_processed,224
+garlic hummus,12,15.6,5.4,6.5,11.9,processed,63
+snow pea canned,22,17.8,6.8,5.4,0.6,minimally_processed,159
+turkey bacon chewy,0,0.1,0.0,28.8,40.2,processed,15
+canned corn grilled,59,20.5,2.8,3.1,1.4,whole,156
+spaghetti squash boiled,21,7.6,1.7,1.3,0.3,whole,113
+kale chips salted,50,53.3,5.0,6.1,27.2,ultra_processed,28
+multigrain cracker,60,67.2,6.3,11.5,9.1,processed,30
+scallops seafood poached,0,2.8,0.0,19.6,1.8,minimally_processed,107
+brown lentil canned,29,19.4,8.7,9.0,0.5,minimally_processed,194
+black rice cooked,92,24.7,1.3,3.2,0.6,processed,171
+americano coffee iced,13,10.1,0.0,3.5,3.0,minimally_processed,242
+egg salad sandwich on white,61,47.4,5.2,27.2,28.9,processed,138
+blueberry muffin,67,57.9,3.0,8.2,18.8,processed,52
+pork sausage roasted,6,3.4,0.0,18.6,31.4,processed,80
+tuna fish poached,0,0.0,0.0,24.4,5.3,minimally_processed,90
+maitake mushroom steamed,15,3.1,1.6,2.8,0.3,whole,63
+tortilla chips plain,67,50.8,3.6,9.7,29.3,ultra_processed,28
+salmon fish poached,0,0.0,0.0,24.2,8.3,minimally_processed,107
+low-fat yogurt,20,10.9,0.0,16.1,8.3,processed,183
+cuban sandwich on white,55,49.0,5.5,26.8,22.0,processed,146
+pearl barley pilaf,27,73.2,16.7,10.0,2.5,minimally_processed,141
+chicken sandwich on rye,45,49.6,4.4,28.3,24.1,processed,146
+club sandwich on wheat,62,49.3,5.9,31.0,27.4,processed,139
+scrambled egg,0,0.7,0.0,12.5,10.0,minimally_processed,46
+ground regular beef roasted,0,0.0,0.0,25.5,11.9,minimally_processed,94
+sushi rice pilaf,91,30.0,0.7,2.6,0.4,processed,168
+watercress leafy green sauteed,11,2.7,2.7,3.4,0.4,whole,31
+ribeye beef grilled,0,0.0,0.0,24.4,6.0,minimally_processed,102
+white potato steamed,79,20.2,3.9,2.7,7.3,whole,161
+cashew nut,16,14.3,11.6,25.0,47.3,minimally_processed,25
+ciabatta bread fresh,71,41.9,5.3,8.1,2.8,processed,26
+elderberry berry frozen,26,7.9,2.2,1.1,0.3,whole,141
+salmon fish baked,0,0.0,0.0,19.4,12.6,minimally_processed,96
+tenderloin beef stewed,0,0.0,0.0,26.8,21.0,minimally_processed,103
+shoulder pork grilled,0,1.7,0.0,22.6,34.2,minimally_processed,105
+green tea iced,5,6.1,0.0,0.3,0.0,minimally_processed,231
+broccoli cruciferous sauteed,13,6.3,2.9,2.4,0.2,whole,93
+carrot root vegetable boiled,40,11.1,4.0,1.5,0.2,whole,117
+white onion boiled,14,7.8,2.3,1.4,0.2,whole,148
+fried egg,0,1.0,0.0,12.0,11.5,minimally_processed,48
+almond nut,4,12.1,3.7,16.3,60.7,minimally_processed,26
+ground regular beef smoked,0,0.0,0.0,22.5,17.5,minimally_processed,108
+thigh chicken braised,0,0.0,0.0,26.5,9.0,minimally_processed,100
+mandarin fruit cup in syrup,58,22.3,1.0,0.7,0.0,processed,102
+carrot root vegetable pureed,31,10.6,4.0,1.0,0.1,whole,124
+walnut nut,1,12.7,12.6,22.7,69.5,minimally_processed,25
+bratwurst sausage poached,13,1.0,0.0,19.6,31.9,processed,85
+scallops seafood smoked,0,1.9,0.0,15.0,1.4,minimally_processed,92
+shrimp taco soft shell,57,30.2,3.4,14.2,17.6,processed,107
+chicken quesadilla corn tortilla,53,30.7,3.6,16.7,18.8,processed,141
+butter lettuce leafy green pureed,19,4.9,2.8,3.1,0.3,whole,32
+sausage pork braised,0,0.3,0.0,24.4,13.4,minimally_processed,104
+breast chicken pan-seared,0,0.0,0.0,30.8,7.2,minimally_processed,103
+portobello mushroom,14,2.3,1.4,2.1,0.4,whole,73
+tahini sauce,23,22.1,1.7,2.0,8.7,processed,27
+grilled cheese sandwich on white,54,43.6,5.0,16.4,25.3,processed,164
+brussels sprouts cruciferous boiled,13,4.4,3.1,3.4,0.4,whole,91
+gala apple frozen,33,15.7,2.7,0.4,0.3,whole,166
+quick oats porridge,54,69.5,11.6,15.0,7.3,minimally_processed,81
+miso soup homemade,35,8.1,3.6,5.8,2.7,processed,258
+soft pretzel,85,74.4,3.2,8.6,12.5,processed,25
+pumpkin seed roasted,15,23.6,14.5,20.4,32.4,minimally_processed,29
+blackberry berry,28,11.0,5.3,1.3,0.4,whole,151
+lamb curry red,43,22.9,5.6,19.5,20.8,processed,269
+protein energy bar,65,45.9,4.8,17.8,13.3,processed,63
+mussels seafood pan-seared,0,2.3,0.0,23.1,0.7,minimally_processed,107
+pinto bean canned,35,25.4,7.1,9.5,1.0,minimally_processed,174
+papaya tropical fruit,62,12.9,3.3,1.1,0.3,whole,155
+shrimp burrito whole wheat tortilla,57,57.7,7.9,34.8,13.2,processed,268
+2% milk,38,8.5,1.6,2.7,1.0,minimally_processed,226
+multigrain rice cake,82,87.7,0.9,6.9,2.9,processed,8
+breast turkey roasted,0,0.1,0.0,28.0,5.2,minimally_processed,96
+bell orange pepper roasted,12,5.6,1.7,1.1,0.3,whole,162
+granny smith apple,39,15.6,2.5,0.4,0.2,whole,183
+enoki mushroom steamed,10,3.7,1.4,2.2,0.5,whole,66
+mustard greens leafy green boiled,11,3.7,2.1,2.6,0.4,whole,32
+italian sausage poached,7,3.8,0.0,15.4,18.4,processed,87
+chicken burrito whole wheat tortilla,47,63.6,6.3,30.0,23.9,processed,235
+arugula leafy green roasted,10,3.9,2.3,3.4,0.4,whole,30
+cherry tomato sun-dried,19,4.6,1.3,0.9,0.2,whole,174
+black coffee iced,18,5.8,0.0,3.5,4.4,minimally_processed,223
+shiitake mushroom steamed,14,3.0,1.3,2.4,0.5,whole,66
+yukon gold potato roasted,70,19.0,3.0,1.6,0.6,whole,146
+leek onion grilled,19,9.4,2.4,1.3,0.2,whole,166
+shiitake mushroom roasted,15,3.1,2.0,3.4,0.4,whole,72
+golden delicious apple dried,39,15.1,2.7,0.5,0.2,whole,172
+sweet potato roasted,74,24.0,3.4,2.4,3.5,processed,136
+nectarine stone fruit canned,32,9.4,1.4,0.8,0.4,whole,142
+bell yellow pepper pureed,11,4.9,2.0,1.5,0.3,whole,152
+oysters seafood roasted,0,0.6,0.0,24.1,1.8,minimally_processed,106
+honeycrisp apple dried,30,12.4,2.8,0.2,0.2,whole,190
+flax seed roasted,14,21.3,11.4,15.5,40.2,minimally_processed,28
+green smoothie,46,15.9,3.2,6.9,2.0,processed,248
+iceberg leafy green steamed,12,4.3,1.8,1.8,0.5,whole,31
+ground turkey grilled,0,0.2,0.0,28.6,4.5,minimally_processed,108
+cranberry juice from concentrate,44,12.3,0.1,0.9,0.1,processed,225
+granola energy bar,56,64.7,5.2,10.4,24.0,processed,64
+acorn squash boiled,60,6.3,2.3,1.5,0.2,whole,113
+enoki mushroom,12,3.2,1.0,2.2,0.3,whole,65
+beef instant noodle cup,67,53.7,2.0,10.8,15.1,ultra_processed,78
+gala apple,33,13.9,2.8,0.2,0.1,whole,171
+mcintosh apple dried,40,13.7,2.0,0.4,0.2,whole,190
+kernels corn,53,19.2,2.2,3.9,1.2,processed,152
+parsnip root vegetable pureed,44,10.4,4.0,1.4,0.1,whole,133
+honeycrisp apple baked,37,13.9,2.8,0.3,0.1,whole,177
+wing chicken baked,0,0.0,0.0,25.1,10.9,minimally_processed,99
+vanilla pudding,70,24.6,0.1,3.7,5.7,processed,106
+raspberry berry frozen,33,10.6,5.5,1.4,0.7,whole,151
+protein smoothie,40,28.3,3.5,12.2,0.5,processed,232
+chicken sausage stewed,4,4.2,0.0,18.1,29.8,processed,78
+ground lean beef roasted,0,0.0,0.0,21.5,23.8,minimally_processed,107
+guacamole avocado ripe,14,8.1,6.0,2.5,15.6,whole,142
+cabbage cruciferous pickled,20,6.6,3.5,2.8,0.3,whole,97
+yogurt covered pretzel,70,77.6,2.9,8.9,8.9,processed,30
+dr pepper soda,50,1.3,0.0,0.0,0.0,ultra_processed,326
+plain tempeh,4,9.4,0.0,18.7,10.8,processed,91
+green apple frozen,30,13.8,3.4,0.3,0.2,whole,184
+carrot root vegetable pickled,35,9.7,2.3,0.8,0.1,whole,133
+center cut bacon chewy,0,0.4,0.0,28.2,47.6,processed,14
+mango tropical fruit frozen,60,17.7,3.5,1.3,0.5,whole,149
+basmati rice pilaf,79,23.9,1.5,2.7,0.8,processed,150
+yukon gold potato mashed,46,22.8,3.4,3.0,2.8,whole,145
+chicken noodle soup homemade,53,10.6,1.1,11.3,6.7,processed,268
+pear canned fruit in juice,57,22.6,2.5,0.9,0.1,processed,116
+oolong tea unsweetened,10,0.7,0.0,0.3,0.0,minimally_processed,248
+ground lean beef grilled,0,0.0,0.0,23.4,7.7,minimally_processed,93
+oil-popped popcorn,61,59.6,13.6,10.9,27.0,processed,29
+breast chicken roasted,0,0.0,0.0,27.1,13.5,minimally_processed,99
+trout fish smoked,0,0.0,0.0,22.2,1.8,minimally_processed,92
+scotch barley cooked,34,70.4,15.7,11.5,2.4,minimally_processed,165
+beet root vegetable boiled,48,11.9,3.5,1.4,0.2,whole,130
+poblano pepper boiled,10,4.1,2.2,1.0,0.3,whole,146
+whole avocado,12,8.6,6.6,2.1,15.7,whole,164
+halibut fish braised,0,0.0,0.0,18.7,9.8,minimally_processed,104
+peach stone fruit dried,39,9.2,2.3,1.1,0.3,whole,154
+cheddar cheese,0,2.5,0.0,25.0,15.5,processed,27
+cherry tomato canned,13,4.8,1.3,1.2,0.3,processed,181
+peaches fruit cup in juice,50,21.6,1.0,0.6,0.1,processed,115
+thigh chicken stewed,0,0.0,0.0,23.2,14.9,minimally_processed,105
+roast beef baked,0,0.0,0.0,24.6,22.1,minimally_processed,99
+white tea iced,6,6.4,0.0,0.1,0.0,minimally_processed,221
+apple juice fresh,45,13.7,0.2,1.8,0.1,processed,265
+white quinoa cooked,51,20.9,2.9,4.1,2.1,minimally_processed,187
+ginger cookie,66,74.3,1.7,6.8,25.0,ultra_processed,27
+tenderloin pork baked,0,1.7,0.0,24.8,17.4,minimally_processed,93
+blt sandwich on rye,50,41.1,2.8,17.3,25.8,processed,155
+greek salad with dressing,52,6.1,2.1,2.4,12.9,processed,138
+prune juice fresh,60,10.9,0.0,0.6,0.0,processed,255
+romaine leafy green grilled,12,3.6,2.5,1.9,0.5,whole,27
+arugula leafy green pureed,16,3.0,2.8,3.3,0.5,whole,31
+cranberry berry,39,14.2,6.7,1.4,0.4,whole,156
+canadian bacon chewy,0,0.4,0.0,27.1,48.1,processed,14
+spinach leafy green grilled,15,2.6,1.6,2.3,0.3,whole,28
+walnut nut unsalted,4,28.1,3.1,16.9,64.6,minimally_processed,25
+fuji apple juiced,38,15.2,2.1,0.3,0.2,whole,186
+bean chips plain,67,54.0,7.8,9.3,25.2,ultra_processed,28
+shoulder pork stewed,0,1.3,0.0,20.3,6.2,minimally_processed,105
+sausage pork smoked,0,0.7,0.0,25.4,31.9,minimally_processed,97
+italian salad dressing,36,14.4,0.0,1.5,38.1,processed,27
+roasted peanut,12,14.3,8.5,25.0,50.4,processed,25
+yellow squash squash steamed,18,5.7,1.6,1.5,0.1,whole,115
+five grain tempeh,10,9.6,0.0,18.3,11.6,processed,103
+white rice boiled,98,27.6,0.9,3.3,0.8,processed,142
+golden delicious apple,35,14.9,3.4,0.5,0.2,whole,191
+almond nut butter,7,23.7,6.7,25.1,54.1,processed,33
+shallot onion grilled,15,8.9,1.6,1.4,0.1,whole,168
+zucchini squash roasted,22,7.9,2.3,1.6,0.1,whole,121
+whole chicken pan-seared,0,0.0,0.0,21.1,13.0,minimally_processed,105
+bagel bread fresh,55,45.7,3.9,14.1,2.4,processed,26
+arugula leafy green boiled,11,3.4,2.3,3.2,0.5,whole,30
+tuna fish grilled,0,0.0,0.0,29.0,1.5,minimally_processed,100
+swiss chard leafy green pickled,18,4.7,2.8,1.9,0.5,whole,28
+whole milk,29,3.5,0.2,2.0,3.6,minimally_processed,267
+bok choy cruciferous roasted,11,4.9,2.6,2.5,0.3,whole,96
+white rice pilaf,51,26.8,0.5,3.4,0.2,processed,159
+veggie taco corn tortilla,59,27.3,4.7,17.8,13.2,processed,101
+sweet onion sauteed,11,7.0,1.6,1.1,0.2,whole,169
+russet potato boiled,52,17.4,2.1,1.9,10.8,processed,146
+iceberg leafy green boiled,20,4.8,2.6,2.3,0.6,whole,27
+red potato mashed,58,22.8,2.1,2.7,0.2,processed,147
+passion fruit tropical fruit dried,67,13.1,2.7,0.9,0.4,whole,148
+kidney bean refried,26,20.8,7.8,9.4,1.4,minimally_processed,177
+parsnip root vegetable boiled,39,9.5,2.9,1.3,0.1,whole,116
+split pea cooked,43,16.7,7.4,4.3,0.3,minimally_processed,147
+hulled barley steamed,26,71.1,17.1,12.9,2.1,minimally_processed,145
+salmon fish roasted,0,0.0,0.0,23.3,7.0,minimally_processed,92
+tropical trail mix,40,46.3,9.5,17.0,25.8,processed,46
+tapioca pudding,74,18.6,0.1,3.9,4.9,processed,97
+tenderloin pork roasted,0,0.6,0.0,21.5,19.5,processed,97
+scallops seafood stewed,0,0.8,0.0,20.9,1.9,minimally_processed,99
+rotisserie chicken grilled,0,0.0,0.0,26.1,8.4,minimally_processed,91
+turkey sausage baked,11,4.9,0.0,19.9,19.6,processed,85
+twist pretzel,75,75.7,2.7,10.6,5.5,processed,26
+yellow onion pureed,15,7.3,2.4,1.3,0.2,whole,157
+scallion onion roasted,20,9.1,1.7,1.2,0.2,whole,166
+egg salad sandwich on rye,62,36.8,4.4,17.6,22.4,processed,157
+corn chips fried,56,46.0,5.8,6.7,29.8,ultra_processed,27
+flax tempeh steamed,4,7.9,0.0,20.2,8.9,processed,101
+crab seafood pan-seared,0,1.1,0.0,17.7,1.5,minimally_processed,91
+zucchini squash pureed,20,5.5,1.9,2.0,0.2,whole,122
+arugula leafy green grilled,18,2.3,2.2,1.9,0.3,whole,32
+sweet onion pureed,15,8.7,1.9,1.1,0.2,whole,164
+ginger tea sweetened,6,7.1,0.0,0.2,0.0,minimally_processed,240
+serrano pepper,20,5.0,2.1,1.2,0.4,whole,150
+whole grain cracker,67,71.7,7.4,9.8,7.2,processed,25
+ravioli pasta overcooked,43,24.4,4.3,5.3,2.0,processed,151
+bok choy cruciferous boiled,19,4.9,2.2,3.4,0.3,whole,96
+cranberry juice canned,62,13.6,0.2,1.5,0.2,processed,252
+ground turkey braised,0,0.2,0.0,27.7,3.6,minimally_processed,108
+bratwurst sausage pan-seared,13,3.5,0.0,15.8,19.3,processed,82
+green banana frozen,61,24.8,3.4,1.1,0.4,whole,108
+shrimp instant noodle pack,64,51.7,3.2,11.1,15.2,ultra_processed,87
+leek onion pickled,19,8.3,1.8,1.2,0.1,whole,165
+extra firm tofu grilled,20,2.0,0.9,11.6,5.2,processed,101
+basmati rice boiled,69,22.0,0.7,3.3,0.4,processed,153
+braeburn apple,40,13.2,3.1,0.4,0.3,whole,180
+trout fish stewed,0,0.0,0.0,29.6,1.6,minimally_processed,92
+halibut fish stewed,0,0.0,0.0,28.6,10.1,minimally_processed,100
+chicken instant noodle pack,62,51.8,2.2,8.4,18.9,ultra_processed,90
+cannellini bean canned,28,22.9,9.6,9.6,1.3,minimally_processed,186
+fingerling potato fried,62,18.3,2.1,1.7,11.9,processed,153
+green pea frozen,22,14.8,5.0,4.7,0.5,minimally_processed,138
+focaccia bread toasted,64,52.7,4.7,14.4,2.8,processed,26
+cheesecake cake,65,58.1,1.6,5.9,18.6,processed,85
+beef stir fry with rice,55,25.8,4.7,24.9,11.8,processed,357
+ramen noodle dish with broth,57,47.6,2.4,21.3,10.7,processed,329
+vegetable soup homemade,36,14.6,2.0,4.6,7.4,processed,265
+bell yellow pepper boiled,10,4.1,1.7,1.2,0.4,whole,156
+maitake mushroom grilled,15,2.5,1.9,2.3,0.3,whole,73
+vinaigrette salad dressing,20,10.9,0.3,0.9,16.2,processed,28
+navel orange juiced,46,11.0,2.7,0.9,0.1,whole,136
+chicken noodle soup canned,59,17.9,1.2,10.5,4.5,processed,242
+bagel bread stale,66,47.2,4.0,10.5,3.0,processed,28
+chia seed roasted,19,15.9,20.8,22.0,31.7,minimally_processed,28
+alfredo sauce,43,24.6,1.7,4.0,0.7,processed,30
+oyster mushroom sauteed,20,2.9,1.6,2.9,0.4,whole,67
+honey sweetener,51,77.2,0.4,0.3,0.0,processed,21
+bean chips salted,69,58.7,6.0,8.3,33.5,ultra_processed,30
+kohlrabi cruciferous steamed,19,4.4,2.3,3.2,0.3,whole,94
+jasmine rice steamed,90,23.5,1.2,2.6,1.0,processed,155
+peanut butter cookie,57,74.3,1.2,5.7,20.3,ultra_processed,28
+turkey burger single,51,39.6,1.9,40.2,33.4,processed,162
+cold brew coffee iced,0,12.0,0.0,2.2,4.5,minimally_processed,253
+eel sushi roll with white rice,56,25.3,1.6,12.4,11.4,processed,95
+beet root vegetable pickled,45,8.9,2.1,1.3,0.1,whole,118
+fig dried fruit,53,77.6,9.9,3.5,0.4,processed,41
+red onion pickled,16,8.1,1.6,1.1,0.2,whole,172
+butternut squash grilled,58,4.9,2.6,1.7,0.2,whole,118
+shrimp instant noodle cup,61,53.5,3.4,10.8,16.0,ultra_processed,88
+bean taco corn tortilla,48,34.2,4.6,15.6,10.0,processed,106
+spinach leafy green sauteed,11,4.3,2.3,2.0,0.3,whole,30
+veggie pizza thin crust,51,39.6,2.4,15.6,13.9,processed,96
+valencia orange canned,41,11.6,2.2,0.9,0.1,whole,133
+whole wheat bread toasted,50,44.9,2.6,13.1,3.5,processed,25
+veggie taco soft shell,47,34.4,4.5,21.0,20.3,processed,104
+egg salad sandwich wrap,57,39.0,2.6,27.4,25.3,processed,135
+wheat cracker,67,66.2,4.4,9.2,7.6,processed,28
+brussels sprouts cruciferous sauteed,11,6.6,2.9,3.3,0.2,whole,90
+peach stone fruit canned,36,9.7,2.0,1.0,0.3,whole,150
+maitake mushroom pureed,12,3.6,1.1,2.6,0.4,whole,72
+chicken burrito flour tortilla,54,60.4,7.4,29.7,25.9,processed,234
+earl grey tea iced,9,4.4,0.0,0.1,0.0,minimally_processed,253
+chicken quesadilla flour tortilla,64,41.3,2.0,17.9,24.1,processed,153
+bell yellow pepper grilled,13,5.0,2.4,1.4,0.3,whole,136
+mung bean cooked,30,20.9,7.0,9.4,0.9,minimally_processed,178
+lobster seafood smoked,0,0.5,0.0,16.7,1.9,minimally_processed,106
+maitake mushroom boiled,12,2.5,1.4,2.2,0.4,whole,66
+veggie pizza regular crust,70,34.6,3.1,14.4,9.5,processed,106
+heirloom tomato sun-dried,16,3.7,1.3,0.9,0.2,processed,187
+acorn squash pickled,23,4.8,2.9,1.1,0.2,whole,114
+americano coffee hot,28,10.8,0.0,1.0,0.3,minimally_processed,244
+pita chips fried,59,54.5,3.8,5.3,33.7,ultra_processed,30
+rutabaga root vegetable pureed,47,10.8,3.8,1.5,0.3,whole,125
+yellow lentil canned,34,20.8,8.7,9.3,0.4,minimally_processed,179
+yukon gold potato baked,80,23.8,2.8,2.8,9.5,whole,147
+bratwurst sausage smoked,14,3.8,0.0,16.7,17.9,processed,82
+russet potato mashed,60,22.0,3.2,1.7,1.5,whole,136
+portobello mushroom grilled,13,3.1,1.8,2.6,0.3,whole,72
+honeycrisp apple stewed,31,13.5,2.6,0.5,0.2,whole,169
+cashew nut roasted,7,17.9,9.2,23.4,56.7,minimally_processed,26
+pumpernickel bread toasted,59,44.7,6.1,9.1,3.5,processed,26
+steak beef smoked,0,0.0,0.0,25.7,9.3,minimally_processed,101
+white onion,18,8.0,2.5,1.4,0.2,whole,154
+white potato baked,65,17.4,3.8,1.9,6.5,whole,145
+blood orange canned,47,11.9,2.3,1.0,0.1,whole,125
+turkey sausage smoked,0,1.2,0.0,15.0,22.8,processed,83
+tofu stir fry with rice,59,48.0,4.9,20.2,7.2,processed,331
+rice krispies cereal with milk,52,79.1,3.2,14.1,19.3,ultra_processed,28
+linguine pasta overcooked,51,29.3,4.2,4.0,1.8,processed,153
+bacon pork stewed,0,1.5,0.0,25.5,21.8,processed,101
+pork sausage smoked,6,0.5,0.0,21.0,27.7,processed,87
+cod fish baked,0,0.0,0.0,24.6,3.5,minimally_processed,108
+cremini mushroom grilled,20,3.7,1.2,2.2,0.3,whole,71
+sardines fish smoked,0,0.0,0.0,20.9,4.8,minimally_processed,104
+honeydew melon chilled,74,8.8,0.4,0.6,0.1,whole,138
+mandarin canned fruit in syrup,61,27.7,1.4,0.9,0.0,processed,121
+sirloin beef grilled,0,0.0,0.0,23.5,17.4,minimally_processed,93
+plum stone fruit,45,11.5,2.5,1.1,0.4,whole,150
+rice pudding,70,19.1,0.7,2.3,4.8,processed,98
+guava tropical fruit,44,13.7,2.4,1.1,0.2,whole,143
+potato chips baked,69,49.7,3.3,8.5,26.6,ultra_processed,28
+pumpkin squash,35,9.1,1.8,1.8,0.2,whole,115
+ribeye beef poached,0,0.0,0.0,23.9,8.1,minimally_processed,99
+green tea unsweetened,18,2.7,0.0,0.1,0.0,minimally_processed,222
+beef burrito whole wheat tortilla,51,59.2,6.6,26.5,19.7,processed,233
+cantaloupe melon,65,8.2,0.5,0.6,0.2,whole,144
+shrimp fried rice white rice,64,40.8,1.6,10.7,12.2,processed,255
+rutabaga root vegetable boiled,45,9.7,2.3,1.3,0.2,whole,134
+bell orange pepper pickled,13,5.8,2.1,1.0,0.2,whole,143
+chicken curry red,57,23.7,5.1,12.0,20.9,processed,243
+lobster seafood poached,0,2.2,0.0,22.1,0.7,minimally_processed,96
+pink lady apple pureed,35,12.8,3.2,0.3,0.3,whole,172
+pork bacon chewy,0,1.0,0.0,34.2,40.0,processed,15
+white quinoa steamed,50,20.1,2.5,5.0,2.1,minimally_processed,169
+red wine vinegar,8,2.6,0.0,0.0,0.0,processed,13
+roast beef roasted,0,0.0,0.0,23.9,10.7,minimally_processed,107
+purple potato boiled,75,24.0,2.6,2.1,9.9,processed,151
+sushi rice steamed,105,28.8,0.7,3.4,1.0,processed,164
+butter lettuce leafy green boiled,10,3.6,2.1,2.2,0.5,whole,28
+potato chips fried,73,49.6,7.2,5.3,38.2,ultra_processed,30
+margherita pizza regular crust,57,32.2,3.2,13.8,10.4,processed,100
+carnitas taco soft shell,50,26.5,6.0,18.5,24.3,processed,101
+prune juice canned,48,11.3,0.1,1.1,0.0,processed,226
+black quinoa pilaf,53,21.9,2.7,4.9,1.9,minimally_processed,184
+cremini mushroom steamed,15,2.7,1.8,2.5,0.2,whole,74
+sweet potato chips plain,62,51.2,6.3,8.6,27.4,ultra_processed,25
+shrimp seafood baked,0,1.1,0.0,19.1,2.0,minimally_processed,92
+rutabaga root vegetable,41,11.2,2.7,1.1,0.1,whole,139
+sardines fish braised,0,0.0,0.0,20.5,13.2,minimally_processed,90
+greek salad no dressing,27,27.6,4.4,3.3,7.5,processed,159
+rotisserie chicken baked,0,0.0,0.0,22.2,10.9,minimally_processed,96
+arborio rice pilaf,88,21.4,1.3,3.1,0.5,processed,166
+fuji apple frozen,40,15.7,2.7,0.3,0.2,whole,191
+mustard greens leafy green sauteed,16,4.2,1.8,3.3,0.6,whole,28
+thigh chicken baked,0,0.0,0.0,24.2,9.3,minimally_processed,98
+sticky rice boiled,67,23.3,1.0,3.3,0.4,processed,151
+rutabaga root vegetable sauteed,42,9.6,2.4,1.4,0.2,whole,136
+black bean soup canned,52,6.1,3.0,9.0,2.5,processed,247
+fettuccine pasta al dente,51,22.0,2.4,4.7,1.7,processed,153
+pineapple juice canned,52,10.1,0.2,1.1,0.1,processed,236
+serrano pepper boiled,15,6.2,1.8,1.2,0.3,whole,160
+tuna fish smoked,0,0.0,0.0,27.3,7.7,minimally_processed,100
+pumpkin squash sauteed,69,11.1,2.1,1.3,0.3,whole,113
+honeycrisp apple,31,14.3,2.1,0.4,0.3,whole,177
+elderberry berry dried,26,8.0,6.9,0.7,0.2,whole,148
+apricot canned fruit in syrup,64,21.1,1.5,0.8,0.1,processed,121
+watermelon melon chilled,67,7.0,0.7,0.6,0.3,whole,166
+jalapeno pepper steamed,12,5.2,2.5,1.0,0.3,whole,143
+green apple juiced,39,15.7,3.1,0.5,0.3,whole,188
+sausage pork grilled,0,0.6,0.0,25.7,18.2,processed,102
+mussels seafood roasted,0,2.0,0.0,19.7,1.8,minimally_processed,93
+red potato boiled,66,16.4,2.8,2.9,13.8,processed,138
+cod fish grilled,0,0.0,0.0,23.7,12.2,minimally_processed,92
+beef quesadilla corn tortilla,64,30.8,3.5,17.4,14.4,processed,149
+halibut fish baked,0,0.0,0.0,25.4,9.6,minimally_processed,99
+bison burger single,47,33.9,2.9,32.9,26.8,processed,154
+cocoa powder chocolate,34,51.7,11.3,7.2,41.4,processed,29
+veggie stir fry with noodles,47,48.9,3.1,24.6,6.2,processed,363
+sweet onion,12,9.3,1.9,1.2,0.1,whole,145
+red delicious apple stewed,30,15.6,3.5,0.4,0.2,whole,186
+bell green pepper pureed,17,4.8,2.4,1.0,0.2,whole,135
+chickpea bean canned,40,24.3,9.8,9.2,0.6,minimally_processed,158
+cauliflower cruciferous roasted,17,5.7,3.2,2.2,0.3,whole,83
+poblano pepper grilled,11,4.8,1.7,1.1,0.2,whole,138
+burrito frozen meal,70,28.6,5.5,21.5,15.6,processed,268
+scotch barley boiled,31,71.0,15.7,10.0,2.3,minimally_processed,146
+cappuccino coffee with milk,19,2.1,0.0,1.7,2.5,minimally_processed,243
+veggie quesadilla flour tortilla,57,41.7,3.2,24.1,19.8,processed,159
+cuban sandwich on wheat,45,37.2,5.3,26.3,10.9,processed,143
+parmesan cheese,0,2.2,0.0,22.5,11.0,processed,25
+apricot dried fruit,56,67.0,10.6,2.4,0.7,processed,36
+cappuccino coffee iced,2,3.5,0.0,0.2,1.7,minimally_processed,249
+yellow banana,55,21.3,3.2,1.2,0.3,whole,117
+navy bean refried,29,23.1,7.2,8.7,1.4,minimally_processed,165
+collard greens leafy green,14,4.7,2.4,1.6,0.3,whole,30
+margherita pizza thin crust,68,26.2,2.9,16.0,17.0,processed,113
+crenshaw melon,80,7.3,0.5,0.6,0.2,whole,143
+pesto sauce,35,7.9,1.3,2.1,18.2,processed,27
+yellow onion steamed,10,9.2,2.1,1.3,0.1,whole,173
+bratwurst sausage roasted,0,0.8,0.0,18.3,34.3,processed,87
+pita chips baked,56,58.8,3.6,8.0,34.9,ultra_processed,29
+bell red pepper steamed,13,5.6,1.9,1.2,0.3,whole,140
+shoulder pork braised,0,1.1,0.0,22.5,7.7,minimally_processed,96
+cuban sandwich on rye,59,44.2,5.9,28.7,28.8,processed,158
+california sushi roll with white rice,73,34.9,1.2,8.1,9.0,processed,103
+raspberry berry,51,10.8,2.6,1.1,0.6,whole,130
+fuji apple canned,35,15.6,2.6,0.3,0.3,whole,198
+ravioli pasta cooked,47,26.4,3.2,5.8,1.3,processed,131
+cashew nut unsalted,7,19.5,5.7,22.6,59.8,minimally_processed,28
+flax seed unsalted,4,18.1,20.5,29.0,39.5,minimally_processed,27
+sardines fish baked,0,0.0,0.0,19.7,14.6,minimally_processed,109
+shiitake mushroom boiled,12,2.7,1.6,2.0,0.3,whole,73
+beef burger double,47,39.2,1.3,21.0,37.9,processed,161
+angel food cake,58,50.3,1.6,5.5,20.1,processed,85
+cheese quesadilla corn tortilla,63,33.4,2.8,26.1,13.2,processed,138
+regular vanilla yogurt,24,13.7,0.0,11.8,2.8,processed,179
+watercress leafy green boiled,20,2.8,1.7,1.9,0.2,whole,31
+chocolate trail mix,44,53.5,9.4,12.6,28.0,processed,38
+sesame seed unsalted,2,17.0,5.1,15.3,46.4,minimally_processed,26
+jalapeno pepper grilled,15,5.6,2.0,1.4,0.3,whole,157
+turnip root vegetable roasted,31,10.2,3.2,1.4,0.1,whole,125
+oyster mushroom,20,3.3,2.0,2.7,0.4,whole,68
+breast turkey smoked,0,0.0,0.0,29.0,0.6,minimally_processed,108
+green salad no dressing,20,24.4,1.3,6.5,7.7,processed,161
+turkey sandwich wrap,58,43.4,4.3,33.3,23.8,processed,152
+italian sausage stewed,3,3.8,0.0,20.2,25.4,processed,91
+ham sandwich on white,48,35.2,4.8,25.5,18.0,processed,145
+fish taco hard shell,52,20.4,4.2,17.7,16.4,processed,99
+white potato mashed,88,21.5,3.2,2.5,12.9,processed,152
+kohlrabi cruciferous pickled,10,6.9,2.5,1.9,0.5,whole,95
+gala apple baked,38,15.2,3.4,0.4,0.2,whole,193
+thigh chicken poached,0,0.0,0.0,30.0,2.2,minimally_processed,91
+chop pork poached,0,0.4,0.0,25.8,8.8,processed,92
+pear canned fruit in syrup,61,19.3,2.6,0.8,0.1,processed,120
+sugar snap pea canned,26,19.6,6.0,6.0,0.6,minimally_processed,138
+chocolate pudding,74,24.1,0.3,2.0,6.9,processed,93
+fuji apple,35,14.0,3.4,0.3,0.2,whole,185
+stir fry frozen meal,56,37.0,3.9,16.0,20.0,processed,271
+broccoli cruciferous pureed,17,6.1,3.0,2.7,0.4,whole,98
+pork sausage stewed,5,1.3,0.0,19.2,27.3,processed,85
+bacon pork roasted,0,0.0,0.0,22.8,12.4,processed,91
+apple juice canned,53,14.4,0.3,0.7,0.1,processed,241
+bell green pepper grilled,17,5.6,1.8,1.3,0.3,whole,156
+fingerling potato roasted,58,19.4,3.1,2.6,9.0,processed,142
+marinara sauce,56,24.8,0.6,3.0,17.4,processed,27
+carrot juice canned,47,11.6,0.2,1.9,0.1,processed,249
+paneer curry red,47,22.9,2.7,16.1,13.8,processed,253
+hulled barley cooked,27,73.9,16.3,11.4,2.4,minimally_processed,155
+steak beef pan-seared,0,0.0,0.0,25.6,23.3,minimally_processed,97
+coconut sugar sweetener,67,80.7,0.3,0.1,0.0,minimally_processed,19
+guava tropical fruit dried,62,12.2,2.6,0.9,0.5,whole,157
+cauliflower cruciferous steamed,12,6.5,2.0,2.8,0.4,whole,84
+brazil nut unsalted,16,11.3,9.1,24.6,60.2,minimally_processed,29
+shallot onion pureed,17,8.1,2.0,1.5,0.1,whole,150
+fish taco soft shell,60,28.8,4.4,17.5,12.4,processed,99
+steak beef baked,0,0.0,0.0,25.2,13.5,minimally_processed,97
+sweet potato mashed,90,23.0,3.7,2.0,14.0,processed,155
+bell red pepper sauteed,10,4.3,2.2,1.2,0.4,whole,160
+ripe banana frozen,46,22.3,2.6,1.4,0.2,whole,115
+blackberry berry dried,44,8.7,5.3,1.3,0.4,whole,138
+chicken sausage baked,9,4.7,0.0,21.4,15.8,processed,78
+shrimp taco corn tortilla,64,33.8,2.5,19.0,16.7,processed,102
+jasmine tea hot,18,1.1,0.0,0.1,0.0,minimally_processed,253
+tilapia fish stewed,0,0.0,0.0,24.5,4.6,minimally_processed,107
+thigh turkey sliced,0,0.5,0.0,29.4,0.9,minimally_processed,96
+mcintosh apple,36,12.4,2.5,0.3,0.2,whole,180
+five grain tempeh baked,2,9.3,0.0,20.8,10.2,processed,108
+udon noodle dish stir fried,58,43.3,2.2,15.0,11.3,processed,341
+bok choy cruciferous pickled,19,6.2,2.8,3.2,0.3,whole,87
+decaf coffee hot,15,9.1,0.0,1.2,0.6,minimally_processed,240
+balsamic vinegar,10,2.3,0.0,0.0,0.0,processed,13
+yellow lentil refried,30,21.9,8.9,9.1,0.5,minimally_processed,213
+sirloin beef baked,0,0.0,0.0,23.5,22.1,minimally_processed,105
+butternut squash pureed,67,8.2,1.7,1.2,0.2,whole,117
+water cracker,73,68.8,3.2,10.4,19.5,processed,30
+honeycrisp apple juiced,33,15.3,3.3,0.4,0.1,whole,164
+clams seafood roasted,0,0.1,0.0,23.5,0.6,minimally_processed,91
+bean burrito flour tortilla,50,57.5,7.4,30.2,24.9,processed,232
+salted peanut,13,14.1,8.2,26.1,48.3,minimally_processed,29
+plum stone fruit canned,41,10.8,1.7,0.9,0.3,whole,147
+corn chips plain,51,54.2,6.9,7.0,36.4,ultra_processed,27
+trout fish roasted,0,0.0,0.0,27.4,12.1,minimally_processed,109
+tortilla chips salted,68,51.9,7.8,6.5,27.9,ultra_processed,28
+tenderloin beef poached,0,0.0,0.0,20.1,23.5,minimally_processed,100
+espresso coffee hot,21,10.6,0.0,2.6,3.7,minimally_processed,261
+club sandwich on rye,63,46.7,5.5,29.3,10.4,processed,156
+heirloom tomato canned,20,4.1,1.0,0.8,0.2,whole,178
+black tea unsweetened,10,0.9,0.0,0.2,0.0,minimally_processed,228
+steak beef braised,0,0.0,0.0,24.0,7.5,minimally_processed,91
+instant oats porridge,43,68.1,10.6,16.7,6.6,minimally_processed,89
+non-fat yogurt,20,5.7,0.0,13.1,6.7,processed,155
+chicken burger single,59,30.7,2.7,34.0,35.6,processed,139
+black-eyed pea canned,30,16.2,7.1,5.3,0.4,minimally_processed,154
+blackberry jam,55,72.1,1.8,0.3,0.2,processed,19
+canadian bacon crispy,0,0.2,0.0,25.9,49.6,processed,14
+enoki mushroom sauteed,18,3.2,1.1,3.3,0.2,whole,75
+veggie sushi roll with white rice,59,37.2,1.1,10.2,7.0,processed,109
+white quinoa boiled,54,21.4,2.8,4.4,1.8,minimally_processed,167
+navel orange,45,11.5,2.8,1.0,0.2,whole,137
+acorn squash roasted,57,5.5,1.5,1.9,0.2,whole,132
+orange juice canned,48,11.8,0.2,0.6,0.0,processed,256
+mcintosh apple frozen,35,12.9,2.1,0.4,0.2,whole,164
+yellow squash squash pickled,43,11.7,2.2,1.8,0.2,whole,112
+lamb curry green,40,22.6,5.4,20.8,18.1,processed,274
+egg salad sandwich on wheat,63,44.8,2.6,26.6,17.6,processed,158
+distilled vinegar,12,2.8,0.0,0.0,0.0,processed,13
+mandarin orange canned,42,12.7,2.8,1.1,0.2,whole,122
+granny smith apple juiced,40,12.2,3.0,0.3,0.2,whole,170
+pomegranate juice canned,68,13.7,0.2,1.8,0.0,processed,230
+baguette bread stale,52,43.8,5.7,10.6,3.3,processed,30
+blueberry pancake plain,72,58.5,1.9,10.1,13.4,processed,77
+latte coffee iced,0,1.8,0.0,1.9,3.7,minimally_processed,222
+mcintosh apple canned,38,12.8,2.3,0.4,0.3,whole,171
+mustard greens leafy green steamed,20,4.4,1.9,3.2,0.4,whole,29
+kabocha squash boiled,69,9.3,2.6,1.9,0.2,whole,126
+milk chocolate,20,52.6,9.1,7.8,42.4,processed,27
+vegetable frozen meal,52,31.2,4.9,18.8,22.4,processed,290
+pork dumpling fried,46,26.6,1.9,8.9,11.3,processed,103
+ham sandwich on rye,58,43.5,4.9,32.9,24.8,processed,164
+cashew nut salted,25,13.3,9.4,20.6,65.5,minimally_processed,26
+halibut fish grilled,0,0.0,0.0,22.5,11.3,minimally_processed,107
+beet root vegetable grilled,44,11.3,2.7,1.2,0.1,whole,132
+enoki mushroom pickled,17,2.2,2.0,2.2,0.5,whole,63
+wing chicken roasted,0,0.0,0.0,31.7,8.8,minimally_processed,93
+spinach leafy green steamed,12,2.9,2.7,2.7,0.2,whole,27
+focaccia bread fresh,79,51.4,7.9,14.3,3.0,processed,29
+fruit cocktail fruit cup in juice,57,20.3,1.9,0.7,0.1,processed,110
+tenderloin pork stewed,0,0.7,0.0,25.8,32.8,processed,99
+shiitake mushroom grilled,19,2.4,1.5,2.7,0.4,whole,75
+oyster mushroom roasted,17,3.0,1.5,3.3,0.3,whole,76
+watercress leafy green pickled,20,2.2,2.5,2.2,0.4,whole,32
+bell red pepper roasted,16,5.7,2.2,1.0,0.4,whole,139
+raw peanut,15,16.9,8.5,24.9,49.3,processed,27
+butter peanut,12,14.3,8.7,27.3,50.5,minimally_processed,28
+chocolate muffin,63,49.1,4.1,7.5,19.6,processed,58
+guacamole avocado,11,8.4,6.2,3.0,15.7,whole,154
+sprouted bread toasted,60,52.8,5.5,9.2,4.3,processed,25
+sugar snap pea frozen,22,19.1,7.9,5.0,0.4,minimally_processed,144
+watercress leafy green steamed,11,2.0,1.7,3.0,0.3,whole,28
+yellow onion grilled,11,7.8,1.9,1.3,0.1,whole,162
+supreme pizza thin crust,59,31.3,3.9,12.1,16.1,processed,98
+bran flakes cereal dry,58,71.6,10.0,13.5,12.6,processed,27
+ground chicken grilled,0,0.0,0.0,30.4,4.2,minimally_processed,96
+pita bread fresh,56,40.5,5.8,13.8,4.0,processed,26
+plain tempeh fried,2,8.9,0.0,18.0,10.3,processed,91
+chicken sausage poached,15,1.6,0.0,19.1,27.6,processed,82
+mango tropical fruit,46,14.1,3.2,0.8,0.1,whole,135
+chicken stir fry with rice,60,42.4,3.2,20.2,10.4,processed,336
+spicy tuna sushi roll with white rice,57,38.4,2.0,17.9,7.5,processed,106
+pot pie frozen meal,50,33.8,3.6,23.6,23.9,processed,268
+shrimp burrito flour tortilla,62,54.7,9.0,34.0,19.3,processed,249
+valencia orange,47,11.1,2.7,1.1,0.2,whole,131
+tempura sushi roll with brown rice,73,34.8,2.2,13.3,11.0,processed,94
+pearl barley cooked,34,70.7,17.9,11.2,2.2,minimally_processed,146
+bell red pepper boiled,19,6.2,2.1,1.3,0.2,whole,147
+tomato juice fresh,43,14.2,0.5,0.6,0.0,processed,259
+lo mein noodle dish with broth,63,51.4,3.2,16.6,12.2,processed,328
+blue cheese,0,1.2,0.0,19.6,20.9,processed,26
+black quinoa boiled,51,21.1,2.8,4.3,1.8,minimally_processed,185
+zucchini squash grilled,29,6.9,2.7,1.4,0.1,whole,124
+steak beef grilled,0,0.0,0.0,24.3,24.7,minimally_processed,98
+boysenberry berry,28,12.2,7.7,1.2,0.2,whole,131
+strawberry ice cream,45,22.2,0.2,3.8,13.0,processed,60
+pad thai noodle dish with broth,58,50.0,3.7,18.7,18.1,processed,337
+clementine orange canned,49,12.4,2.8,0.9,0.1,whole,137
+boysenberry berry frozen,34,12.9,5.4,1.0,0.4,whole,148
+zucchini squash boiled,19,10.9,2.7,1.9,0.3,whole,124
+pork sausage grilled,10,0.9,0.0,17.3,28.7,processed,81
+whole wheat waffle,59,46.8,2.1,7.7,13.0,processed,74
+vegetable spring roll fresh,61,21.1,1.9,11.7,6.2,processed,86
+grilled cheese sandwich on rye,55,42.1,2.9,30.1,20.5,processed,135
+cauliflower cruciferous sauteed,15,6.3,2.6,2.3,0.4,whole,87
+tilapia fish poached,0,0.0,0.0,22.5,13.7,minimally_processed,95
+oatmeal cookie,68,60.5,2.2,5.7,23.2,ultra_processed,25
+italian sausage pan-seared,1,4.1,0.0,21.2,34.4,processed,78
+scallops seafood roasted,0,1.3,0.0,23.2,1.9,minimally_processed,93
+shrimp spring roll fresh,67,32.9,1.9,7.8,11.7,processed,84
+lime juice fresh,69,11.3,0.2,1.4,0.2,processed,265
+tenderloin pork grilled,0,1.1,0.0,24.7,28.6,minimally_processed,96
+miso soup canned,31,8.1,2.5,8.9,3.0,processed,268
+breast chicken poached,0,0.0,0.0,24.9,10.9,minimally_processed,95
+rutabaga root vegetable grilled,43,9.2,2.7,1.5,0.1,whole,125
+buckwheat pancake with syrup,70,46.5,2.1,10.8,10.6,processed,71
+butter lettuce leafy green roasted,14,2.1,1.9,1.9,0.3,whole,29
+extra firm tofu baked,6,2.1,1.3,9.0,5.7,processed,98
+overripe banana frozen,54,21.2,3.2,1.0,0.2,whole,127
+zucchini squash sauteed,44,9.4,2.6,1.9,0.1,whole,121
+loin pork grilled,0,1.7,0.0,26.8,15.4,minimally_processed,100
+kiwi tropical fruit,61,12.8,1.5,0.9,0.2,whole,162
+roast beef stewed,0,0.0,0.0,26.7,16.1,minimally_processed,97
+romaine leafy green sauteed,20,4.1,1.9,3.0,0.3,whole,31
+kielbasa sausage baked,13,1.0,0.0,20.1,30.5,processed,78
+oolong tea sweetened,19,6.5,0.0,0.4,0.0,minimally_processed,255
+brussels sprouts cruciferous roasted,11,4.1,3.2,2.5,0.5,whole,94
+hazelnut nut unsalted,8,28.3,6.6,20.2,54.5,minimally_processed,28
+ginger tea hot,12,7.8,0.0,0.1,0.0,minimally_processed,252
+loin pork smoked,0,1.8,0.0,24.6,9.6,minimally_processed,91
+coconut water sports drink,63,12.7,0.0,0.2,0.0,processed,218
+pot barley cooked,32,70.9,16.7,12.3,2.2,minimally_processed,171
+pepperoni pizza regular crust,55,25.9,2.3,14.6,12.7,processed,96
+instant oats cooked,49,64.9,10.2,17.7,7.6,minimally_processed,88
+oysters seafood pan-seared,0,0.7,0.0,21.4,0.9,minimally_processed,103
+tuna fish baked,0,0.0,0.0,27.2,3.1,minimally_processed,101
+fingerling potato boiled,67,16.6,2.1,1.8,6.1,processed,164
+turnip root vegetable pickled,33,11.8,2.2,1.4,0.3,whole,130
+roast beef poached,0,0.0,0.0,21.9,11.7,minimally_processed,93
+ground chicken poached,0,0.0,0.0,31.3,2.6,minimally_processed,96
+sweet onion grilled,16,8.7,2.2,1.2,0.2,whole,172
+yellow onion pickled,16,9.2,2.4,1.4,0.2,whole,149
+sprouted bread fresh,53,49.8,7.3,11.5,3.4,processed,29
+orange juice fresh,56,12.6,0.4,0.7,0.1,processed,262
+turkey bacon crispy,0,0.9,0.0,29.5,44.7,processed,14
+black quinoa steamed,55,21.6,2.7,4.6,1.9,minimally_processed,188
+mango tropical fruit dried,42,15.2,1.9,0.6,0.3,whole,164
+hot sauce,38,17.5,0.6,4.3,2.8,processed,31
+scotch barley steamed,28,74.8,15.8,11.0,2.1,minimally_processed,159
+green apple canned,34,13.4,3.1,0.3,0.3,whole,163
+ramen noodle dish stir fried,63,48.5,4.0,17.7,12.2,processed,332
+trout fish braised,0,0.0,0.0,18.5,4.7,minimally_processed,95
+on cob corn cooked,54,20.6,2.2,3.8,1.1,processed,134
+crab seafood roasted,0,0.0,0.0,17.6,1.4,minimally_processed,93
+bacon pork braised,0,0.7,0.0,20.8,18.9,processed,98
+yellow squash squash grilled,44,3.3,2.4,1.9,0.3,whole,128
+leek onion boiled,13,8.4,2.4,1.1,0.2,whole,149
+collard greens leafy green grilled,17,3.2,2.6,3.1,0.3,whole,30
+carrot root vegetable sauteed,39,8.7,2.6,1.1,0.2,whole,120
+swiss chard leafy green roasted,13,3.3,2.5,2.8,0.3,whole,28
+lemon juice from concentrate,60,10.0,0.4,1.4,0.2,processed,255
+thousand island salad dressing,41,5.0,0.4,1.3,26.3,processed,30
+green salad with dressing,48,27.9,2.9,9.4,15.2,processed,154
+poblano pepper sauteed,11,6.7,1.7,1.4,0.2,whole,144
+ground chicken roasted,0,0.0,0.0,24.0,1.9,minimally_processed,109
+broccoli cruciferous steamed,17,4.8,2.5,3.2,0.2,whole,92
+full-fat yogurt,23,14.7,0.0,4.5,6.3,processed,164
+green tea hot,11,6.5,0.0,0.5,0.0,minimally_processed,224
+herbal tea unsweetened,22,7.2,0.0,0.1,0.0,minimally_processed,235
+braeburn apple juiced,39,14.9,2.4,0.5,0.3,whole,181
+shortbread cookie,60,72.1,1.1,7.3,19.4,ultra_processed,25
+shiitake mushroom,19,3.4,1.9,2.2,0.2,whole,73
+hazelnut nut roasted,16,14.0,10.0,16.5,46.0,minimally_processed,28
+chia seed salted,8,25.0,10.8,24.2,44.8,minimally_processed,26
+mussels seafood stewed,0,0.3,0.0,24.3,1.5,minimally_processed,96
+pearl barley steamed,31,71.8,15.6,10.9,2.2,minimally_processed,158
+pumpkin seed salted,14,17.0,28.7,29.2,49.8,minimally_processed,29
+rice vinegar,9,2.1,0.0,0.0,0.0,processed,13
+ground lean beef poached,0,0.0,0.0,24.2,14.1,minimally_processed,90
+golden delicious apple stewed,38,13.8,2.7,0.2,0.2,whole,169
+swiss chard leafy green,17,4.2,1.9,2.9,0.4,whole,30
+sour cream dip,32,10.2,0.8,3.3,22.9,processed,27
+butter lettuce leafy green steamed,13,2.5,1.7,3.3,0.6,whole,28
+guacamole dip,40,10.2,0.7,2.5,17.5,processed,27
+espresso coffee iced,8,1.3,0.0,1.2,0.1,minimally_processed,227
+vegetable instant noodle cup,54,54.4,3.7,10.0,15.2,ultra_processed,84
+kabocha squash pickled,38,8.1,2.1,1.6,0.2,whole,123
+prune dried fruit,42,68.1,9.6,3.9,1.5,processed,41
+vegetable curry green,40,24.6,4.1,16.4,11.3,processed,225
+butternut squash,41,4.3,2.7,1.5,0.3,whole,123
+vanilla ice cream,52,22.3,0.9,3.3,14.8,processed,68
+almond nut roasted,5,27.3,10.7,17.9,62.8,minimally_processed,27
+halibut fish pan-seared,0,0.0,0.0,25.9,2.1,minimally_processed,103
+spicy tuna sushi roll with brown rice,66,32.2,2.2,9.1,2.9,processed,108
+fingerling potato steamed,50,23.0,3.6,2.9,2.9,whole,136
+roma tomato,12,3.7,1.2,1.1,0.3,processed,181
+silken tofu baked,20,2.7,0.5,11.6,4.8,processed,93
+rod pretzel,76,77.8,3.5,11.6,3.4,processed,25
+blue cheese salad dressing,15,11.7,0.0,0.9,18.3,processed,29
+turkey sausage pan-seared,6,2.4,0.0,15.4,15.6,processed,88
+kiwi tropical fruit frozen,67,12.2,2.7,1.2,0.4,whole,144
+canadian bacon baked,0,0.2,0.0,26.3,47.5,processed,14
+pita chips salted,67,58.8,4.5,9.2,28.0,ultra_processed,26
+avocado oil,0,0.0,0.0,0.0,100.0,minimally_processed,14
+shrimp taco hard shell,60,29.5,4.9,22.8,18.7,processed,100
+plain hummus,14,19.8,4.5,7.8,8.0,processed,64
+old fashioned oats cooked,60,60.1,10.2,16.0,7.5,minimally_processed,88
+cheerios cereal dry,86,70.9,6.4,11.4,1.9,processed,30
+roma tomato sun-dried,20,3.6,1.5,0.9,0.1,processed,173
+golden delicious apple pureed,33,14.9,2.9,0.2,0.1,whole,185
+mackerel fish grilled,0,0.0,0.0,20.6,14.1,minimally_processed,93
+jalapeno pepper boiled,13,4.4,2.0,1.0,0.3,whole,151
+sesame seed roasted,5,19.0,18.3,29.7,49.0,minimally_processed,30
+button mushroom boiled,18,2.7,1.6,2.7,0.4,whole,70
+mcintosh apple juiced,40,12.2,2.8,0.3,0.3,whole,174
+fuji apple pureed,31,12.2,2.9,0.3,0.3,whole,171
+carrot root vegetable steamed,44,9.1,3.0,1.4,0.2,whole,127
+drumstick chicken roasted,0,0.0,0.0,21.3,7.1,minimally_processed,90
+electrolyte sports drink,71,10.0,0.0,0.2,0.0,processed,261
+frozen corn cooked,50,19.2,2.7,3.6,1.4,whole,158
+cremini mushroom pureed,14,2.0,1.7,2.2,0.2,whole,63
+lentil soup canned,51,19.9,2.4,6.6,1.2,processed,231
+rutabaga root vegetable steamed,34,9.5,2.7,0.9,0.3,whole,119
+collard greens leafy green sauteed,12,3.0,1.8,3.0,0.4,whole,32
+grape jam,66,69.2,0.8,0.3,0.1,processed,20
+wild rice boiled,81,28.0,2.4,3.3,0.3,processed,159
+lasagna pasta overcooked,55,23.5,4.3,4.1,2.0,processed,132
+sticky rice steamed,88,25.0,1.7,3.5,0.9,processed,145
+papaya tropical fruit frozen,66,12.8,2.9,1.0,0.1,whole,160
+tropical smoothie,37,25.0,5.3,8.5,0.7,processed,227
+pink lady apple frozen,30,15.2,3.0,0.2,0.1,whole,199
+turkey burger double,57,35.1,2.4,26.7,24.7,processed,146
+golden delicious apple juiced,39,12.9,3.3,0.2,0.1,whole,184
+halibut fish roasted,0,0.0,0.0,29.2,8.9,minimally_processed,106
+red delicious apple frozen,38,15.6,3.2,0.3,0.1,whole,176
+rice krispies cereal dry,47,75.9,13.6,5.7,8.2,processed,26
+clams seafood grilled,0,2.9,0.0,18.4,1.2,minimally_processed,93
+flax seed salted,9,21.0,26.2,23.5,31.0,minimally_processed,29
+linguine pasta al dente,47,22.7,3.2,4.3,1.0,processed,131
+yellow onion roasted,14,7.4,1.9,1.4,0.1,whole,163
+black lentil canned,25,19.5,8.5,9.2,0.6,minimally_processed,183
+vegetable dumpling fried,58,26.9,1.4,9.7,8.4,processed,99
+kale leafy green boiled,10,2.2,2.6,2.7,0.3,whole,32
+boiled egg,0,1.3,0.0,12.3,9.1,minimally_processed,46
+coleslaw salad no dressing,30,32.9,4.8,11.0,5.9,processed,161
+cauliflower cruciferous,16,4.7,2.9,2.7,0.3,whole,87
+fingerling potato mashed,81,20.0,2.3,2.4,8.7,whole,151
+green grape,61,17.4,0.8,0.8,0.2,whole,97
+bell yellow pepper steamed,13,6.9,1.9,1.4,0.3,whole,158
+pine nut salted,6,19.0,8.3,19.4,43.8,minimally_processed,28
+pecan nut salted,6,23.2,3.1,24.0,62.5,minimally_processed,27
+cauliflower cruciferous pureed,12,5.3,2.2,2.5,0.2,whole,96
+fruit cocktail canned fruit in syrup,61,21.6,2.2,0.5,0.2,processed,109
+cherry stone fruit canned,42,9.8,1.9,1.1,0.4,whole,163
+whole wheat pasta cooked,53,26.3,3.4,5.6,2.0,processed,153
+pumpkin squash grilled,70,9.2,2.1,1.2,0.2,whole,124
+caesar salad no dressing,18,16.5,2.1,3.9,11.4,processed,155
+poblano pepper pickled,13,5.2,1.6,1.2,0.3,whole,159
+quick oats cooked,59,67.0,11.9,16.6,7.7,minimally_processed,79
+sticky rice pilaf,55,23.0,0.8,3.1,0.9,processed,159
+split pea canned,37,12.5,6.6,5.5,0.4,minimally_processed,143
+pumpkin seed,0,15.7,11.2,20.9,46.9,minimally_processed,28
+kohlrabi cruciferous boiled,20,6.1,2.8,3.0,0.5,whole,98
+macaroni pasta cooked,36,27.2,4.0,4.5,1.7,processed,132
+fruit salad no dressing,19,26.0,3.8,11.7,3.9,processed,161
+shallot onion steamed,15,8.8,1.7,1.4,0.2,whole,151
+turnover pastry,69,50.9,2.5,6.0,20.8,processed,61
+butternut squash sauteed,40,6.0,2.5,1.2,0.3,whole,133
+sweet corn grilled,58,20.2,2.2,3.1,1.4,processed,131
+italian sausage baked,4,1.7,0.0,17.4,22.7,processed,89
+peanut nut butter,2,19.8,6.3,24.1,52.3,processed,33
+mackerel fish stewed,0,0.0,0.0,29.7,6.3,minimally_processed,95
+rolled oats cooked,46,64.4,10.3,16.0,6.3,minimally_processed,73
+brazil nut salted,24,25.6,3.3,19.0,44.1,minimally_processed,30
+oyster mushroom pureed,17,2.6,1.7,2.2,0.4,whole,69
+collard greens leafy green roasted,18,2.1,2.1,2.8,0.5,whole,27
+balsamic salad dressing,22,4.5,0.1,2.0,28.0,processed,27
+white rice cooked,96,20.8,1.4,3.4,0.6,processed,145
+egg fried rice white rice,73,37.8,2.0,11.4,9.3,processed,265
+firm tofu baked,8,2.8,1.0,8.1,4.9,processed,103
+collard greens leafy green steamed,20,2.8,2.5,2.9,0.5,whole,28
+veggie sandwich wrap,46,54.5,5.2,31.9,20.5,processed,159
+radish root vegetable roasted,31,9.3,2.9,1.2,0.2,whole,132
+multigrain bread fresh,75,43.6,5.4,12.6,3.5,processed,30
+romaine leafy green steamed,11,4.2,1.7,1.7,0.3,whole,29
+clams seafood smoked,0,2.1,0.0,15.5,1.6,minimally_processed,97
+crab seafood braised,0,2.6,0.0,19.7,0.9,minimally_processed,106
+red grape frozen,63,16.9,0.9,0.8,0.3,whole,96
+wild rice tempeh baked,18,8.9,0.0,19.1,11.3,processed,96
+clams seafood stewed,0,1.2,0.0,23.8,0.8,minimally_processed,93
+baked tofu grilled,3,2.7,0.7,9.7,4.8,processed,100
+pork spring roll fresh,55,34.7,1.5,9.1,15.8,processed,78
+tempura sushi roll with white rice,61,31.6,2.3,8.9,11.0,processed,106
+whole wheat pancake plain,71,53.8,2.1,9.1,6.3,processed,72
+ground regular beef grilled,0,0.0,0.0,22.6,15.9,minimally_processed,95
+chicken sausage roasted,10,3.0,0.0,15.5,28.0,processed,85
+chop pork grilled,0,0.2,0.0,23.5,12.2,processed,93
+microwave popcorn,64,57.8,12.8,10.6,12.2,minimally_processed,25
+bell orange pepper grilled,19,6.4,1.8,1.3,0.2,whole,142
+bell yellow pepper pickled,20,5.8,1.7,1.2,0.3,whole,162
+radish root vegetable pickled,37,9.9,2.8,1.4,0.2,whole,137
+quinoa salad no dressing,54,13.8,3.9,3.6,20.6,processed,146
+pork bacon baked,0,0.7,0.0,32.0,36.9,processed,15
+hulled barley pilaf,28,70.8,17.5,10.1,2.4,minimally_processed,148
+broccoli cruciferous grilled,18,4.2,2.4,2.6,0.4,whole,99
+shrimp stir fry with rice,48,40.7,2.7,28.5,9.5,processed,369
+spinach leafy green roasted,13,3.0,2.8,3.1,0.5,whole,32
+rye cracker,57,72.6,6.9,12.1,10.3,processed,26
+parsnip root vegetable grilled,42,9.4,3.8,1.4,0.3,whole,127
+greek vanilla yogurt,30,6.6,0.0,12.8,4.1,processed,170
+enoki mushroom roasted,19,3.6,1.7,2.8,0.2,whole,70
+pb and j sandwich on white,50,51.9,4.0,31.1,29.7,processed,156
+ripe banana dried,48,20.4,2.8,1.0,0.3,whole,108
+pork dumpling steamed,55,32.3,1.5,11.5,18.0,processed,105
+apricot stone fruit canned,43,11.9,1.6,1.0,0.2,whole,159
+pumpkin muffin,54,53.8,4.9,8.5,23.6,processed,52
+corn chips salted,72,48.8,7.0,7.6,28.8,ultra_processed,29
+mackerel fish pan-seared,0,0.0,0.0,29.8,6.6,minimally_processed,105
+mussels seafood braised,0,0.5,0.0,16.1,1.7,minimally_processed,102
+yellow squash squash boiled,41,7.9,1.9,1.2,0.3,whole,129
+grapefruit juice canned,42,12.8,0.1,1.2,0.1,processed,242
+peaches fruit cup in syrup,50,20.3,1.3,0.7,0.0,processed,104
+bratwurst sausage stewed,4,4.2,0.0,16.5,16.7,processed,90
+tuna sandwich on rye,45,38.0,5.5,17.0,13.4,processed,158
+blueberry pie,56,52.7,1.6,4.8,20.5,processed,128
+chickpea curry red,57,17.4,4.5,20.4,20.3,processed,263
+turnip root vegetable boiled,38,9.8,3.5,1.3,0.2,whole,120
+penne pasta cooked,54,25.2,2.5,4.1,1.7,processed,147
+shrimp curry green,59,22.9,3.4,17.6,8.9,processed,260
+coffee ice cream,61,22.9,0.4,3.6,13.8,processed,70
+watercress leafy green,10,3.4,2.1,3.3,0.3,whole,27
+sushi rice boiled,55,25.9,2.2,3.1,1.0,processed,163
+kale leafy green pureed,11,2.6,2.8,2.1,0.4,whole,27
+cookie dough ice cream,50,25.6,0.0,4.2,15.2,processed,69
+turkey sandwich on rye,53,47.1,4.2,24.1,29.2,processed,152
+fruit punch soda,65,36.9,0.0,0.0,0.0,ultra_processed,347
+naan bread toasted,68,53.5,6.6,10.3,2.4,processed,29
+white potato fried,85,24.9,2.5,1.7,7.1,processed,161
+greek plain yogurt,19,14.2,0.0,14.8,7.9,processed,167
+turkey sausage poached,8,1.7,0.0,16.7,18.1,processed,90
+carrot root vegetable grilled,36,8.0,3.2,1.1,0.3,whole,125
+agave sweetener,81,85.5,0.6,0.2,0.0,minimally_processed,19
+wing chicken smoked,0,0.0,0.0,30.9,6.6,minimally_processed,97
+red onion grilled,13,8.6,2.3,1.3,0.2,whole,168
+latte coffee with milk,20,10.1,0.0,0.1,1.1,minimally_processed,228
+chai tea iced,11,6.4,0.0,0.3,0.0,minimally_processed,257
+baked tofu baked,17,1.8,1.0,8.9,5.1,processed,92
+pistachio nut roasted,13,27.4,5.0,17.9,62.0,minimally_processed,26
+cranberry dried fruit,40,70.2,6.1,2.3,0.8,processed,36
+ground regular beef braised,0,0.0,0.0,26.0,23.2,minimally_processed,92
+sundried tomato hummus,11,15.0,5.6,6.7,12.6,processed,59
+shrimp spring roll fried,51,26.5,2.0,8.0,14.4,processed,93
+lima bean refried,29,24.8,6.7,9.5,0.3,minimally_processed,181
+ranch salad dressing,19,6.9,0.4,1.0,19.2,processed,29
+wing chicken poached,0,0.0,0.0,22.3,12.2,minimally_processed,93
+oyster mushroom grilled,19,2.2,1.2,2.3,0.4,whole,64
+red delicious apple juiced,34,13.5,3.4,0.3,0.3,whole,189
+date dried fruit,52,73.5,8.5,2.3,1.2,processed,38
+overripe banana,51,24.9,2.6,1.2,0.2,whole,111
+green apple dried,39,13.8,3.4,0.4,0.2,whole,196
+sugar snap pea cooked,35,21.9,7.0,5.8,0.3,minimally_processed,156
+chicken dinner frozen meal,54,46.0,3.2,12.9,8.6,processed,305
+blueberry pancake with syrup,59,46.5,3.7,9.9,9.8,processed,78
+mandarin fruit cup in juice,59,20.5,1.1,0.4,0.0,processed,109
+kabocha squash grilled,58,9.8,2.2,1.1,0.1,whole,130
+salmon sushi roll with white rice,65,30.7,2.5,15.7,5.9,processed,92
+red delicious apple canned,34,15.0,2.7,0.4,0.1,whole,178
+miso instant noodle pack,57,50.9,2.6,10.0,17.1,ultra_processed,91
+mussels seafood smoked,0,1.5,0.0,17.2,1.1,minimally_processed,93
+tomato soup canned,59,7.7,2.9,6.8,5.6,processed,269
+cremini mushroom sauteed,19,2.6,2.0,2.9,0.4,whole,66
+halibut fish poached,0,0.0,0.0,19.8,3.1,minimally_processed,103
+blood orange juiced,41,12.1,2.3,0.9,0.2,whole,126
+radish root vegetable boiled,44,11.0,2.2,1.3,0.1,whole,136
+cabbage cruciferous steamed,12,5.8,3.3,3.4,0.4,whole,89
+breast chicken braised,0,0.0,0.0,29.7,6.6,minimally_processed,106
+andouille sausage pan-seared,15,1.6,0.0,16.0,29.3,processed,79
+fruit salad with dressing,17,34.7,5.6,6.8,3.8,processed,143
+white egg,0,1.1,0.0,12.1,10.1,minimally_processed,52
+fish frozen meal,54,47.6,4.3,22.2,14.6,processed,266
+cornflakes cereal with milk,47,80.9,7.4,9.0,6.3,ultra_processed,30
+beef taco soft shell,65,24.8,3.1,14.3,17.8,processed,92
+pb and j sandwich on rye,64,48.5,5.7,17.1,11.4,processed,143
+peach stone fruit,30,9.7,1.9,0.8,0.3,whole,143
+belgian waffle,65,52.9,1.1,7.3,8.8,processed,67
+ribeye beef baked,0,0.0,0.0,22.4,14.9,minimally_processed,106
+seedless grape,60,19.1,0.9,0.7,0.1,whole,99
+clementine orange juiced,44,12.1,2.5,0.9,0.2,whole,123
+rye bread stale,61,50.4,7.2,15.0,4.2,processed,25
+kidney bean canned,39,24.5,8.2,7.7,0.3,minimally_processed,164
+wild rice cooked,68,24.9,2.4,2.6,0.4,processed,166
+apple pie,66,53.6,2.8,3.8,16.3,processed,120
+raspberry jam,51,68.7,0.8,0.5,0.1,processed,18
+sunflower nut butter,15,19.7,6.0,23.8,49.3,processed,32
+white tea sweetened,23,4.1,0.0,0.1,0.0,minimally_processed,248
+cherry tomato,16,3.2,1.6,0.9,0.1,processed,177
+gala apple dried,36,14.5,3.3,0.3,0.3,whole,190
+acorn squash,34,8.2,1.4,1.8,0.2,whole,130
+loin pork stewed,0,1.9,0.0,26.2,26.2,minimally_processed,97
+plain omelette,12,3.9,0.2,14.7,14.4,minimally_processed,110
+rice cracker,74,72.7,6.8,8.4,19.5,processed,27
+lentil soup homemade,40,7.3,1.0,6.1,1.3,processed,221
+soft tofu,15,2.8,1.2,10.3,4.3,processed,97
+pineapple tropical fruit frozen,53,13.9,3.1,1.5,0.3,whole,145
+pistachio nut unsalted,25,17.8,10.8,15.4,63.4,minimally_processed,29
+cherry stone fruit,43,9.6,1.6,1.0,0.3,whole,149
+swiss chard leafy green grilled,15,4.7,2.2,1.6,0.5,whole,30
+banana smoothie,43,15.7,3.5,13.9,4.6,processed,221
+soft tofu fried,9,2.4,1.1,10.5,4.9,processed,90
+cashew nut butter,13,24.9,7.3,24.8,48.3,processed,33
+wild rice pilaf,61,27.4,0.7,3.0,0.9,processed,149
+mustard greens leafy green pureed,13,4.3,2.9,1.9,0.5,whole,31
+sardines fish stewed,0,0.0,0.0,23.4,11.8,minimally_processed,108
+beef quesadilla flour tortilla,62,31.2,2.6,15.6,15.5,processed,144
+green apple pureed,35,14.6,2.3,0.5,0.2,whole,169
+cheese quesadilla flour tortilla,52,41.0,3.5,21.5,23.9,processed,161
+apple cinnamon muffin,50,57.1,4.9,7.3,20.8,processed,58
+flax tempeh fried,13,10.0,0.0,19.9,9.9,processed,102
+pb and j sandwich wrap,49,43.9,3.1,33.0,19.2,processed,139
+pinto bean refried,28,26.2,9.0,9.0,0.9,minimally_processed,183
+white onion sauteed,10,9.7,2.2,1.1,0.2,whole,156
+portobello mushroom pureed,20,2.6,1.9,2.3,0.3,whole,65
+lasagna pasta al dente,40,28.3,1.8,5.3,1.3,processed,152
+ground turkey stewed,0,0.2,0.0,28.5,0.8,minimally_processed,91
+portobello mushroom pickled,16,3.6,1.6,2.9,0.3,whole,74
+pineapple canned fruit in syrup,62,27.4,2.0,0.8,0.2,processed,122
+ground turkey sliced,0,0.2,0.0,27.9,1.6,minimally_processed,106
+white onion roasted,20,9.1,2.2,1.2,0.2,whole,160
+honeycrisp apple frozen,39,14.4,3.3,0.4,0.3,whole,192
+green tea sweetened,15,1.3,0.0,0.3,0.0,minimally_processed,235
+beet root vegetable steamed,33,11.3,2.4,1.3,0.1,whole,120
+carrot juice from concentrate,56,12.0,0.3,1.7,0.1,processed,267
+turnip root vegetable steamed,50,11.1,2.3,1.3,0.3,whole,139
+granny smith apple baked,35,14.0,3.5,0.4,0.1,whole,168
+butternut squash boiled,75,7.6,2.2,1.8,0.2,whole,115
+trout fish baked,0,0.0,0.0,22.9,14.7,minimally_processed,105
+arugula leafy green steamed,19,4.7,2.0,2.7,0.3,whole,29
+sardines fish grilled,0,0.0,0.0,21.1,2.5,minimally_processed,97
+bell red pepper pureed,11,6.3,1.6,1.3,0.2,whole,140
+shoulder pork roasted,0,0.7,0.0,26.1,13.5,processed,96
+chickpea curry green,41,20.0,2.5,18.0,20.1,processed,254
+black tea sweetened,5,1.1,0.0,0.2,0.0,minimally_processed,254
+raspberry berry dried,54,10.0,7.3,0.8,0.6,whole,141
+five grain tempeh fried,1,9.8,0.0,18.4,8.4,processed,93
+breast turkey grilled,0,0.2,0.0,28.7,5.6,minimally_processed,91
+vegetable instant noodle pack,51,54.8,3.6,11.8,14.4,ultra_processed,81
+breast turkey stewed,0,0.2,0.0,25.2,7.5,minimally_processed,93
+grape juice canned,51,13.5,0.0,1.9,0.2,processed,269
+bell red pepper grilled,14,5.4,1.7,1.0,0.3,whole,151
+honeycrisp apple pureed,40,12.8,2.1,0.5,0.2,whole,169
+beefsteak tomato sun-dried,12,3.2,1.4,0.9,0.3,whole,180
+pot barley pilaf,34,73.6,15.3,10.2,2.2,minimally_processed,168
+clams seafood pan-seared,0,2.1,0.0,15.3,1.9,minimally_processed,92
+green pea cooked,35,15.3,7.9,5.7,0.6,minimally_processed,130
+tahini nut butter,0,20.2,8.2,25.6,54.8,processed,30
+pumpkin squash pureed,30,11.6,2.6,1.5,0.3,whole,112
+scallion onion grilled,19,8.9,1.5,1.3,0.1,whole,153
+decaf coffee iced,9,9.5,0.0,3.6,1.9,minimally_processed,253
+miso instant noodle cup,55,48.5,2.0,12.9,21.8,ultra_processed,81
+hemp seed,3,13.0,7.4,15.3,40.7,minimally_processed,28
+shrimp seafood pan-seared,0,2.8,0.0,19.3,2.0,minimally_processed,98
+beet root vegetable pureed,36,11.2,3.4,1.1,0.1,whole,120
+granny smith apple canned,37,15.0,2.8,0.4,0.2,whole,190
+tilapia fish pan-seared,0,0.0,0.0,24.4,2.7,minimally_processed,102
+whole chicken stewed,0,0.0,0.0,23.2,2.2,minimally_processed,100
+whole wheat bread stale,71,45.0,3.0,13.3,4.8,processed,26
+ground turkey pan-seared,0,0.2,0.0,28.4,6.0,minimally_processed,107
+lobster seafood pan-seared,0,1.9,0.0,19.9,1.1,minimally_processed,92
+sesame oil,0,0.0,0.0,0.0,100.0,minimally_processed,12
+almond nut salted,24,27.6,6.0,23.3,43.7,minimally_processed,27
+chia seed,20,16.9,5.4,21.3,39.6,minimally_processed,30
+brussels sprouts cruciferous pickled,11,5.6,3.0,2.4,0.3,whole,84
+soy milk,19,10.7,1.0,4.3,3.9,minimally_processed,226
+tuna sandwich on white,63,39.1,4.2,31.6,29.4,processed,136
+sweet corn,51,20.2,2.9,3.8,1.3,whole,158
+sweet potato baked,55,17.0,3.9,2.0,10.7,processed,155
+kale leafy green roasted,17,4.2,2.7,2.5,0.2,whole,30
+salmon burger double,52,38.0,1.6,38.2,21.3,processed,158
+frozen corn,54,21.4,2.4,3.9,1.3,whole,141
+navy bean cooked,36,20.8,6.4,7.4,1.2,minimally_processed,161
+pita bread stale,57,45.8,7.6,13.0,2.4,processed,30
+red potato steamed,51,17.4,2.2,2.6,6.5,whole,144
+lasagna frozen meal,66,44.5,3.5,23.4,20.2,processed,264
+oysters seafood smoked,0,1.7,0.0,18.2,1.0,minimally_processed,103
+breast turkey braised,0,0.2,0.0,25.8,7.0,minimally_processed,94
+jasmine rice boiled,98,22.0,2.1,2.8,0.3,processed,165
+mackerel fish smoked,0,0.0,0.0,22.5,8.7,minimally_processed,95
+cranberry juice fresh,65,13.2,0.5,0.8,0.1,processed,267
+portobello mushroom roasted,15,2.6,1.2,3.5,0.2,whole,63
+pineapple dried fruit,52,73.7,10.2,2.8,1.0,processed,38
+grilled cheese sandwich on wheat,46,43.7,4.4,29.4,10.6,processed,136
+fingerling potato baked,88,23.7,3.3,1.7,5.1,processed,135
+ranch dip,29,9.9,1.8,2.4,10.1,processed,27
+gnocchi pasta cooked,43,28.1,2.0,4.4,1.0,processed,146
+red velvet cake,74,59.0,0.8,5.8,24.3,processed,87
+diet cola soda,65,8.0,0.0,0.0,0.0,ultra_processed,330
+enoki mushroom pureed,15,2.7,1.2,3.1,0.3,whole,76
+green banana dried,60,24.6,3.1,1.3,0.4,whole,107
+cottage cheese,0,3.4,0.0,25.9,18.6,processed,27
+ham sandwich wrap,45,45.1,6.0,21.3,12.1,processed,149
+black lentil cooked,32,19.6,8.7,9.4,0.4,minimally_processed,212
+white bread fresh,78,45.5,3.6,12.5,4.3,processed,28
+kidney bean cooked,33,23.9,9.6,8.8,1.5,minimally_processed,187
+butternut squash soup canned,32,17.2,1.8,6.6,5.9,processed,268
+chicken burger double,47,37.6,2.2,27.7,35.4,processed,141
+pumpkin squash pickled,48,11.2,2.2,1.7,0.1,whole,121
+chicken curry green,58,19.7,5.6,13.0,16.9,processed,250
+mackerel fish poached,0,0.0,0.0,18.1,7.5,minimally_processed,107
+watercress leafy green roasted,15,4.4,1.8,2.0,0.5,whole,32
+mustard greens leafy green pickled,10,4.9,2.6,1.8,0.3,whole,27
+kielbasa sausage stewed,5,2.4,0.0,20.0,21.2,processed,77
+plain rice cake,79,83.1,1.6,6.3,2.5,processed,9
+kiwi tropical fruit dried,51,16.3,1.5,1.4,0.1,whole,160
+mackerel fish braised,0,0.0,0.0,19.7,13.7,minimally_processed,106
+parsnip root vegetable pickled,43,10.6,3.8,1.2,0.2,whole,116
+bok choy cruciferous sauteed,19,5.8,2.6,2.2,0.3,whole,99
+tilapia fish braised,0,0.0,0.0,28.0,7.6,minimally_processed,107
+kale chips fried,56,50.6,7.0,8.9,32.2,ultra_processed,28
+peach pie,66,50.1,2.8,5.8,18.2,processed,124
+bean dip,40,10.0,2.6,3.3,14.0,processed,31
+black coffee hot,8,11.6,0.0,3.0,2.3,minimally_processed,234
+golden delicious apple frozen,39,12.9,3.3,0.3,0.3,whole,186
+turnip root vegetable pureed,46,10.7,2.6,1.3,0.1,whole,115
+veggie burrito whole wheat tortilla,52,51.6,11.0,33.9,27.1,processed,270
+spaghetti pasta al dente,42,24.7,2.6,4.8,1.0,processed,131
+pecan nut unsalted,23,18.1,8.0,21.1,55.2,minimally_processed,26
+low calorie sports drink,58,10.4,0.0,0.2,0.0,processed,242
+carrot root vegetable,46,11.6,2.2,1.2,0.3,whole,138
+cranberry berry dried,45,12.3,4.3,1.2,0.4,whole,150
+honeycrisp apple canned,37,12.4,3.2,0.3,0.2,whole,190
+pot barley boiled,35,72.0,17.6,12.4,2.4,minimally_processed,150
+ribeye beef pan-seared,0,0.0,0.0,23.3,6.5,minimally_processed,97
+iceberg leafy green sauteed,17,4.6,2.0,2.9,0.3,whole,27
+latte coffee with cream,24,5.9,0.0,0.7,2.6,minimally_processed,216
+danish pastry,61,51.4,1.1,5.5,20.5,processed,71
+salmon fish braised,0,0.0,0.0,22.4,1.7,minimally_processed,109
+paneer curry green,41,19.9,5.8,12.9,18.6,processed,267
+bell green pepper roasted,14,5.5,2.4,1.4,0.2,whole,140
+mint ice cream,64,22.2,0.9,4.0,13.1,processed,70
+jasmine rice pilaf,55,21.9,1.9,2.9,0.6,processed,154
+drumstick chicken pan-seared,0,0.0,0.0,23.3,2.5,minimally_processed,99
+green tea smoothie,34,19.8,2.2,3.7,4.1,processed,261
+fava bean canned,34,20.7,6.8,9.4,0.6,minimally_processed,165
+thigh chicken roasted,0,0.0,0.0,25.3,5.0,minimally_processed,96
+grilled cheese sandwich wrap,53,44.3,2.9,21.0,27.6,processed,149
+sweet potato steamed,74,21.0,2.7,1.9,4.5,whole,146
+deli turkey roasted,0,0.3,0.0,25.7,6.6,minimally_processed,91
+cold brew coffee with milk,8,1.1,0.0,1.6,2.9,minimally_processed,263
+shrimp seafood braised,0,0.0,0.0,17.2,1.2,minimally_processed,103
+italian sausage roasted,5,3.9,0.0,20.8,18.4,processed,88
+wing chicken braised,0,0.0,0.0,25.7,6.8,minimally_processed,96
+breast turkey baked,0,0.3,0.0,26.8,8.0,minimally_processed,99
+carnitas taco hard shell,45,27.1,4.9,17.1,12.1,processed,109
+trout fish grilled,0,0.0,0.0,29.0,4.2,minimally_processed,98
+turnip root vegetable sauteed,50,9.6,3.3,1.4,0.2,whole,123
+shoulder pork pan-seared,0,0.9,0.0,26.3,13.9,processed,107
+pumpkin squash steamed,50,3.8,2.9,1.9,0.3,whole,119
+blueberry berry frozen,45,13.9,2.7,0.9,0.6,whole,144
+bell yellow pepper sauteed,14,6.7,2.4,1.0,0.3,whole,143
+purple potato roasted,50,17.5,2.8,1.9,11.5,processed,147
+lemon juice fresh,40,10.6,0.1,1.5,0.0,processed,224
+breakfast burrito flour tortilla,64,45.5,6.2,30.5,18.6,processed,233
+enoki mushroom grilled,10,2.4,1.0,2.5,0.3,whole,71
+romaine leafy green roasted,18,3.0,1.9,1.9,0.5,whole,27
+black coffee with cream,17,5.5,0.0,0.7,2.1,minimally_processed,249
+pork sausage poached,10,3.5,0.0,19.9,18.5,processed,81
+salmon fish pan-seared,0,0.0,0.0,24.9,10.3,minimally_processed,99
+ginger tea unsweetened,24,6.1,0.0,0.5,0.0,minimally_processed,260
+pine nut roasted,17,29.1,10.0,23.5,54.1,minimally_processed,26
+cannellini bean cooked,25,22.7,9.9,9.4,1.2,minimally_processed,164
+ground lean beef smoked,0,0.0,0.0,26.0,14.5,minimally_processed,107
+kielbasa sausage braised,15,4.3,0.0,16.4,24.8,processed,91
+kabocha squash roasted,62,3.6,2.2,1.3,0.2,whole,119
+chicken sandwich on white,45,53.4,3.2,15.9,30.0,processed,147
+garbanzo bean canned,35,20.8,7.8,8.4,1.3,minimally_processed,179
+shoulder pork baked,0,0.2,0.0,23.1,29.7,processed,93
+lo mein noodle dish stir fried,62,54.1,4.0,16.4,18.1,processed,349
+breast chicken stewed,0,0.0,0.0,24.5,12.4,minimally_processed,107
+tenderloin beef baked,0,0.0,0.0,26.3,10.1,minimally_processed,96
+lobster seafood braised,0,2.0,0.0,22.2,0.6,minimally_processed,108
+green apple,39,14.9,3.1,0.3,0.3,whole,182
+ciabatta bread toasted,79,40.8,3.5,8.3,2.7,processed,26
+apple cider vinegar,7,0.3,0.0,0.0,0.0,processed,16
+oysters seafood stewed,0,0.7,0.0,15.2,1.2,minimally_processed,100
+key lime pie,61,48.1,2.8,5.1,16.5,processed,112
+brussels sprouts cruciferous,13,5.0,2.3,3.4,0.2,whole,85
+scallion onion,19,8.4,1.5,1.4,0.1,whole,161
+pumpkin pie,57,52.5,1.4,4.4,19.6,processed,118
+brown rice rice cake,67,87.7,1.4,6.4,1.2,processed,9
+lobster seafood roasted,0,1.4,0.0,16.0,0.4,minimally_processed,97
+arborio rice steamed,100,22.6,0.4,3.3,0.5,processed,160
+wing chicken stewed,0,0.0,0.0,21.4,4.8,minimally_processed,100
+egg fried rice brown rice,57,43.3,2.9,12.1,8.9,processed,261
+tomato soup homemade,33,11.4,1.8,4.6,4.0,processed,265
+rice milk,36,1.3,0.6,1.1,0.1,minimally_processed,232
+turkey sandwich on white,51,42.7,2.9,15.1,21.8,processed,163
+steak beef roasted,0,0.0,0.0,25.5,16.5,minimally_processed,101
+tilapia fish baked,0,0.0,0.0,20.1,4.9,minimally_processed,109
+sausage pork stewed,0,0.0,0.0,25.1,30.1,processed,97
+traditional trail mix,36,50.1,8.6,16.9,29.7,processed,43
+shallot onion pickled,19,8.4,2.2,1.2,0.1,whole,153
+passion fruit tropical fruit frozen,56,15.5,2.1,0.8,0.5,whole,141
+sirloin beef roasted,0,0.0,0.0,20.1,12.3,minimally_processed,95
+russet potato fried,52,16.3,2.1,2.2,10.2,whole,140
+air-popped popcorn,66,57.2,13.2,9.3,12.2,processed,27
+gala apple stewed,36,14.2,3.3,0.4,0.1,whole,187
+roasted red pepper hummus,7,14.2,5.8,6.5,11.7,processed,58
+veggie taco hard shell,52,34.0,5.3,14.6,24.9,processed,102
+root beer soda,57,23.0,0.0,0.0,0.0,ultra_processed,326
+rotisserie chicken roasted,0,0.0,0.0,28.3,12.0,minimally_processed,105
+red rice boiled,77,24.5,0.6,3.2,1.0,processed,165
+herbal tea hot,2,6.0,0.0,0.4,0.0,minimally_processed,224
+hard pretzel,84,73.9,3.9,9.5,12.9,processed,30
+decaf coffee with cream,5,0.4,0.0,3.8,0.1,minimally_processed,220
+oolong tea iced,3,6.8,0.0,0.4,0.0,minimally_processed,262
+chicken dumpling steamed,50,34.4,2.8,13.9,9.0,processed,100
+russet potato roasted,89,17.9,2.7,2.8,6.3,processed,154
+chop pork roasted,0,1.2,0.0,20.6,21.1,minimally_processed,97
+latte coffee hot,30,7.9,0.0,0.8,3.0,minimally_processed,217
+swiss cheese,0,3.1,0.0,11.1,25.3,processed,30
+almond nut unsalted,1,19.1,11.1,15.1,64.5,minimally_processed,28
+quinoa salad with dressing,28,16.2,5.9,6.5,15.7,processed,162
+chai tea hot,21,3.2,0.0,0.2,0.0,minimally_processed,238
+mcintosh apple pureed,33,15.7,3.0,0.3,0.1,whole,193
+spaghetti pasta overcooked,45,28.1,2.0,4.0,1.5,processed,130
+black lentil refried,35,21.0,7.7,8.3,0.4,minimally_processed,196
+andouille sausage poached,7,0.5,0.0,21.2,25.6,processed,84
+ground chicken stewed,0,0.0,0.0,26.8,11.4,minimally_processed,91
+andouille sausage braised,6,3.0,0.0,21.5,19.8,processed,89
+steak beef poached,0,0.0,0.0,20.3,17.8,minimally_processed,107
+mustard greens leafy green grilled,19,3.0,1.8,3.3,0.6,whole,28
+halibut fish smoked,0,0.0,0.0,19.1,15.0,minimally_processed,97
+tuna fish braised,0,0.0,0.0,22.1,5.9,minimally_processed,103
+pad thai noodle dish stir fried,52,46.6,2.8,11.7,13.8,processed,359
+ground turkey baked,0,0.5,0.0,29.8,1.9,minimally_processed,93
+fuji apple dried,33,14.4,3.2,0.3,0.2,whole,182
+red delicious apple,38,15.4,2.9,0.2,0.2,whole,184
+dark 85% chocolate,20,44.0,11.4,6.5,33.1,processed,26
+cabbage cruciferous pureed,15,4.9,2.9,2.5,0.4,whole,84
+plum stone fruit dried,42,10.6,2.4,1.0,0.3,whole,145
+leek onion pureed,12,9.9,2.3,1.0,0.1,whole,147
+sourdough bread stale,64,42.3,2.9,13.3,4.4,processed,27
+basmati rice cooked,88,27.3,1.0,2.7,0.3,processed,165
+strawberry berry frozen,25,9.6,6.5,1.3,0.3,whole,138
+caramel rice cake,63,85.2,0.7,8.0,2.2,processed,9
+parsnip root vegetable,35,10.4,2.0,0.9,0.2,whole,123
+pepperoni pizza thin crust,52,37.5,2.9,14.8,11.7,processed,97
+turkey bacon baked,0,0.5,0.0,34.4,48.9,processed,15
+pasta salad no dressing,25,10.0,3.4,5.3,13.4,processed,157
+rolled oats porridge,60,60.2,10.1,16.4,6.2,minimally_processed,88
+banana pancake with syrup,70,57.5,1.7,8.7,7.7,processed,72
+mcintosh apple stewed,30,12.4,3.2,0.4,0.2,whole,191
+yellow banana frozen,45,23.7,3.2,1.1,0.2,whole,123
+scallops seafood braised,0,0.1,0.0,22.9,0.6,minimally_processed,109
+pumpkin squash boiled,26,10.8,1.6,1.4,0.2,whole,130
+sardines fish pan-seared,0,0.0,0.0,18.5,7.1,minimally_processed,96
+serrano pepper roasted,10,5.1,2.5,1.0,0.3,whole,140
+cornflakes cereal dry,68,81.0,9.5,9.5,2.9,processed,26
+coconut oil,0,0.0,0.0,0.0,100.0,minimally_processed,13
+bratwurst sausage grilled,8,1.6,0.0,19.7,26.9,processed,77
+shrimp dumpling steamed,58,34.1,2.7,9.5,15.3,processed,90
+concord grape,50,18.5,1.2,0.8,0.2,whole,89
+leek onion sauteed,20,8.1,1.9,1.5,0.1,whole,155
+strudel pastry,64,51.0,1.6,6.2,26.4,processed,59
+pork sausage braised,6,1.1,0.0,19.0,28.4,processed,85
+granny smith apple pureed,35,13.2,2.5,0.3,0.3,whole,168
+wild rice steamed,86,20.4,0.7,2.6,0.3,processed,167
+poblano pepper steamed,10,6.4,2.1,1.3,0.3,whole,144
+sweet onion roasted,12,8.1,1.8,1.2,0.1,whole,154
+tortilla chips fried,66,55.6,6.0,5.0,28.9,ultra_processed,30
+red delicious apple pureed,32,15.5,2.2,0.4,0.3,whole,169
+tricolor quinoa cooked,55,21.0,2.8,4.5,2.0,minimally_processed,178
+mustard greens leafy green,17,2.4,2.8,2.1,0.2,whole,27
+mandarin orange,49,11.5,2.2,1.0,0.1,whole,133
+shiitake mushroom pickled,14,3.6,1.3,2.8,0.3,whole,65
+white onion grilled,20,9.6,1.8,1.2,0.1,whole,155
+multigrain bread toasted,76,45.5,2.9,11.6,3.4,processed,25
+brie cheese,0,1.3,0.0,30.8,27.2,processed,29
+chicken fried rice brown rice,66,36.5,2.9,17.8,5.1,processed,227
+carrot cake,60,55.0,0.6,6.3,19.9,processed,73
+pink lady apple canned,35,15.8,2.0,0.4,0.2,whole,195
+black tea iced,21,6.2,0.0,0.4,0.0,minimally_processed,225
+rye bread toasted,57,48.9,6.8,12.3,4.9,processed,28
+red grape,65,16.6,1.1,0.6,0.1,whole,91
+gala apple canned,38,12.1,3.2,0.4,0.2,whole,164
+sirloin beef braised,0,0.0,0.0,20.2,8.4,minimally_processed,103
+beef burrito flour tortilla,59,56.5,5.3,18.2,19.6,processed,235
+sunflower seed salted,18,10.3,16.1,23.1,30.4,minimally_processed,27
+bran muffin,69,57.4,4.8,8.1,24.7,processed,52
+cherry stone fruit dried,32,11.0,1.5,1.0,0.4,whole,144
+coleslaw salad with dressing,46,16.4,2.2,11.2,23.0,processed,150
+pink lady apple stewed,36,13.3,2.8,0.3,0.3,whole,177
+jasmine tea iced,0,7.6,0.0,0.1,0.0,minimally_processed,250
+gooseberry berry,45,14.0,2.0,1.5,0.4,whole,136
+sweet potato chips baked,60,51.1,7.1,9.7,38.6,ultra_processed,30
+swiss chard leafy green pureed,12,4.7,1.8,3.1,0.5,whole,31
+arugula leafy green sauteed,10,3.7,2.9,2.9,0.4,whole,29
+mango juice fresh,66,11.4,0.3,0.9,0.1,processed,246
+green apple baked,38,12.5,2.6,0.5,0.2,whole,185
+americano coffee with cream,28,8.9,0.0,2.9,2.9,minimally_processed,238
+iceberg leafy green grilled,14,4.2,1.5,2.0,0.3,whole,32
+deli turkey pan-seared,0,0.1,0.0,27.4,5.3,minimally_processed,100
+vegetable fried rice white rice,58,35.3,1.2,16.6,7.7,processed,234
+brussels sprouts cruciferous steamed,16,5.8,2.4,3.2,0.3,whole,89
+on cob corn,50,20.0,3.0,3.1,1.0,processed,132
+arugula leafy green pickled,20,3.1,1.5,3.3,0.5,whole,29
+fig jam,70,71.1,0.7,0.3,0.0,processed,21
+brown rice cooked,100,20.9,0.7,2.8,0.6,processed,151
+radish root vegetable grilled,32,11.7,2.3,1.2,0.2,whole,130
+whole chicken poached,0,0.0,0.0,23.4,3.5,minimally_processed,92
+meat lovers pizza thin crust,54,32.6,3.6,13.7,16.2,processed,110
+tuna fish pan-seared,0,0.0,0.0,21.6,7.4,minimally_processed,99
+bok choy cruciferous steamed,12,6.0,3.3,3.0,0.3,whole,86
+poppy seed unsalted,11,16.0,11.5,24.6,35.1,minimally_processed,26
+macadamia nut,17,25.8,3.5,16.5,68.7,minimally_processed,27
+beet root vegetable roasted,43,8.0,3.2,1.0,0.1,whole,122
+shrimp seafood roasted,0,2.5,0.0,17.6,1.5,minimally_processed,105
+crab seafood stewed,0,2.1,0.0,23.0,1.1,minimally_processed,92
+orange soda,74,16.3,0.0,0.0,0.0,ultra_processed,337
+spicy trail mix,32,49.8,7.7,12.6,37.8,processed,40
+minestrone soup canned,48,14.7,4.6,10.0,2.0,processed,236
+bell yellow pepper,17,4.1,1.8,1.0,0.4,whole,146
+soy sauce,47,6.6,1.6,2.7,18.7,processed,27
+chop pork braised,0,1.2,0.0,20.4,14.2,processed,100
+tuna sandwich wrap,70,47.1,3.9,32.9,16.2,processed,140
+soft tofu baked,4,2.3,0.7,9.6,4.3,processed,101
+focaccia bread stale,54,50.9,3.6,12.4,2.5,processed,25
+frozen corn grilled,57,19.2,2.7,3.2,1.2,processed,143
+pink lady apple juiced,32,13.9,3.2,0.2,0.3,whole,165
+watercress leafy green pureed,20,4.7,1.6,2.2,0.5,whole,29
+wild rice tempeh,6,7.9,0.0,19.2,11.1,processed,102
+baked tofu fried,14,2.3,0.5,11.9,5.5,processed,104
+tangerine orange juiced,46,11.2,2.5,1.0,0.1,whole,135
+radish root vegetable sauteed,50,10.0,2.2,1.0,0.1,whole,133
+orange juice from concentrate,66,11.2,0.4,1.8,0.0,processed,233
+red onion,14,7.6,1.9,1.3,0.1,whole,171
+button mushroom,11,2.1,1.9,2.4,0.5,whole,69
+apricot stone fruit,39,9.0,2.0,1.0,0.4,whole,141
+pita chips plain,63,46.9,7.0,6.3,30.6,ultra_processed,29
+heirloom tomato,17,3.2,1.7,1.1,0.2,processed,181
+beet root vegetable sauteed,38,11.2,2.6,0.8,0.1,whole,125
+pineapple juice fresh,61,11.0,0.1,1.5,0.1,processed,232
+flax tempeh,16,8.5,0.0,21.0,10.5,processed,105
+broccoli cruciferous roasted,10,4.7,2.7,2.2,0.4,whole,86
+beet juice canned,45,12.2,0.2,0.9,0.2,processed,248
+fruit cocktail canned fruit in juice,56,23.5,1.3,0.7,0.0,processed,109
+lima bean cooked,40,21.7,8.4,7.6,0.9,minimally_processed,170
+pumpkin seed unsalted,15,6.2,20.4,19.7,38.2,minimally_processed,26
+quinoa rice cake,81,89.1,1.2,7.1,1.6,processed,9
+spinach leafy green boiled,13,2.4,2.8,2.7,0.3,whole,32
+jalapeno pepper roasted,10,4.9,2.0,1.4,0.3,whole,152
+golden delicious apple canned,33,14.5,3.2,0.2,0.2,whole,168
+elderberry berry,51,9.5,4.4,0.7,0.2,whole,133
+cauliflower cruciferous boiled,20,6.9,3.1,3.3,0.3,whole,96
+lime juice from concentrate,53,11.9,0.2,0.5,0.0,processed,223
+salmon sushi roll with brown rice,60,30.5,2.5,14.3,7.4,processed,90
+vegetable curry red,51,22.3,5.4,18.7,9.0,processed,249
+cabbage cruciferous roasted,15,6.1,2.6,3.0,0.4,whole,83
+granny smith apple stewed,40,12.3,2.4,0.4,0.1,whole,182
+granny smith apple frozen,36,14.6,2.4,0.3,0.1,whole,195
+rotisserie chicken smoked,0,0.0,0.0,27.3,13.4,minimally_processed,105
+bok choy cruciferous grilled,14,6.6,2.8,2.6,0.4,whole,99
+veggie sushi roll with brown rice,62,33.6,3.0,8.2,11.7,processed,108
+spaghetti squash,59,6.2,2.2,1.7,0.2,whole,117
+sunflower seed,5,20.9,23.0,23.7,42.0,minimally_processed,30
+lemon juice canned,70,10.6,0.4,1.0,0.2,processed,234
+serrano pepper pureed,13,4.4,1.6,1.1,0.4,whole,153
+cuban sandwich wrap,48,37.4,4.7,22.4,12.3,processed,148
+veggie sandwich on white,56,36.5,2.6,15.3,29.4,processed,161
+pecan nut,16,10.6,3.6,21.8,47.4,minimally_processed,26
+zucchini squash steamed,56,8.2,2.6,1.8,0.1,whole,124
+ham sandwich on wheat,61,35.5,2.4,22.6,17.4,processed,158
+yellow lentil cooked,25,18.8,9.0,9.8,0.4,minimally_processed,192
+sweet onion pickled,17,9.6,2.3,1.2,0.1,whole,151
+beef stir fry with noodles,61,38.5,3.7,17.5,11.1,processed,336
+penne pasta overcooked,48,20.0,1.7,4.5,1.6,processed,141
+boysenberry berry dried,50,9.5,2.0,1.0,0.3,whole,139
+breast turkey pan-seared,0,0.2,0.0,29.8,7.5,minimally_processed,94
+bok choy cruciferous pureed,20,5.7,3.0,2.4,0.2,whole,91
+mixed fruit fruit cup in syrup,62,16.8,1.1,0.6,0.0,processed,113
+sprouted bread stale,61,43.4,2.8,14.7,4.7,processed,28
+loin pork braised,0,1.1,0.0,24.9,24.2,processed,94
+red rice pilaf,100,29.4,2.4,2.6,0.3,processed,171
+chicken dumpling fried,52,30.0,1.1,10.3,9.7,processed,101
+poppy seed salted,8,13.8,13.9,27.4,49.3,minimally_processed,27
+regular plain yogurt,34,15.0,0.0,11.0,0.9,processed,182
+pound cake,71,52.8,1.9,5.0,23.4,processed,78
+pineapple juice from concentrate,70,13.1,0.2,0.5,0.0,processed,243
+salmon burger single,55,38.3,2.7,20.3,35.6,processed,138
+scallops seafood grilled,0,0.8,0.0,22.7,1.8,minimally_processed,108
+acorn squash pureed,39,4.3,1.4,1.2,0.3,whole,115
+andouille sausage grilled,10,2.3,0.0,21.4,34.8,processed,79
+pinto bean cooked,40,20.4,7.7,9.8,0.7,minimally_processed,160
+beet juice from concentrate,65,11.7,0.3,1.3,0.0,processed,249
+ground chicken smoked,0,0.0,0.0,29.7,13.9,minimally_processed,97
+cremini mushroom roasted,18,4.0,2.0,3.0,0.5,whole,73
+baguette bread fresh,68,40.5,6.5,14.0,4.5,processed,28
+energy sports drink,57,12.2,0.0,0.0,0.0,processed,227
+enchilada frozen meal,65,43.9,4.1,20.3,10.4,processed,261
+cola soda,52,29.9,0.0,0.0,0.0,ultra_processed,322
+buttermilk pancake with syrup,55,54.0,1.1,10.7,13.3,processed,79
+red quinoa boiled,50,20.3,2.6,4.9,2.1,minimally_processed,183
+kernels corn grilled,54,18.2,2.6,3.8,1.2,processed,137
+reuben sandwich on rye,66,50.9,5.9,22.4,12.8,processed,141
+kale chips baked,57,54.2,7.4,6.7,35.5,ultra_processed,30
+shallot onion roasted,20,9.9,2.5,1.2,0.2,whole,172
+bean taco soft shell,64,22.5,5.7,14.0,20.5,processed,104
+oyster mushroom steamed,15,2.8,1.1,2.1,0.5,whole,69
+shoulder pork poached,0,1.1,0.0,21.8,14.3,processed,105
+poblano pepper roasted,17,4.7,2.4,0.9,0.3,whole,142
+clams seafood braised,0,0.4,0.0,17.4,1.9,minimally_processed,102
+pita bread toasted,62,51.8,4.9,13.3,4.6,processed,25
+bean chips fried,72,54.7,6.5,9.2,30.7,ultra_processed,28
+mackerel fish roasted,0,0.0,0.0,21.0,4.4,minimally_processed,104
+white wine vinegar,10,1.8,0.0,0.0,0.0,processed,13
+chicken sausage braised,15,2.9,0.0,18.9,28.0,processed,79
+white pasta al dente,45,23.7,1.9,4.1,1.7,processed,137
+iceberg leafy green pickled,16,2.6,1.6,2.1,0.4,whole,29
+seedless grape frozen,50,17.8,0.9,0.6,0.2,whole,101
+veggie sandwich on wheat,56,52.7,2.6,19.9,22.9,processed,140
+muesli cereal dry,90,76.5,9.7,10.6,12.3,ultra_processed,27
+pine nut unsalted,5,22.4,10.3,23.7,67.8,minimally_processed,25
+lobster seafood grilled,0,0.3,0.0,19.8,0.9,minimally_processed,109
+lobster seafood baked,0,0.3,0.0,20.0,0.7,minimally_processed,93
+carrot juice fresh,41,13.0,0.1,0.8,0.0,processed,247
+guava tropical fruit frozen,43,12.7,3.1,1.5,0.4,whole,148
+romaine leafy green boiled,19,2.0,2.9,3.4,0.5,whole,29
+romaine leafy green,17,4.0,1.5,2.2,0.4,whole,31
+green pea canned,49,14.3,4.3,5.8,0.5,minimally_processed,142
+deli turkey sliced,0,0.1,0.0,25.9,1.1,minimally_processed,103
+original sports drink,51,10.9,0.0,0.5,0.0,processed,227
+tenderloin beef roasted,0,0.0,0.0,26.9,9.5,minimally_processed,104
+brazil nut roasted,7,25.4,11.3,15.0,44.6,minimally_processed,28
+shiitake mushroom pureed,18,3.8,1.8,3.4,0.5,whole,75
+swiss chard leafy green sauteed,20,2.2,1.5,3.3,0.5,whole,32
+peach canned fruit in juice,51,19.7,2.4,0.5,0.1,processed,111
+blt sandwich on wheat,58,52.4,4.1,19.6,13.9,processed,138
+butter croissant,70,45.5,2.7,10.6,26.2,processed,55
+andouille sausage smoked,12,5.0,0.0,15.2,22.3,processed,78
+veggie quesadilla corn tortilla,53,40.8,3.5,26.7,21.6,processed,152
+grape juice from concentrate,58,14.9,0.1,1.8,0.1,processed,256
+roast beef braised,0,0.0,0.0,21.7,9.8,minimally_processed,96
+serrano pepper steamed,10,4.7,2.1,1.2,0.3,whole,162
+green lentil cooked,34,21.9,8.6,8.6,0.4,minimally_processed,193
+chicken sandwich on wheat,45,45.7,2.6,31.6,29.7,processed,146
+cheddar popcorn,66,65.0,11.7,9.7,2.2,processed,26
+oysters seafood baked,0,0.8,0.0,15.1,1.8,minimally_processed,94
+button mushroom pickled,19,4.0,1.1,2.9,0.4,whole,65
+pink lady apple dried,35,13.4,3.5,0.5,0.1,whole,190
+butternut squash steamed,22,5.3,2.4,1.8,0.3,whole,119
+jasmine tea unsweetened,18,1.0,0.0,0.1,0.0,minimally_processed,234
+cremini mushroom boiled,14,2.1,1.6,2.6,0.3,whole,66
+sardines fish poached,0,0.0,0.0,25.5,3.6,minimally_processed,108
+whole avocado ripe,15,9.6,6.8,2.0,15.0,whole,135
+blackberry berry frozen,52,8.6,3.1,0.9,0.3,whole,154
+bacon pork poached,0,1.1,0.0,24.3,11.3,minimally_processed,100
+club sandwich on white,56,37.2,4.3,15.0,29.8,processed,162
+thigh turkey roasted,0,0.2,0.0,25.0,2.7,minimally_processed,106
+broccoli cruciferous,17,4.4,2.3,2.9,0.3,whole,84
+iceberg leafy green,20,4.2,1.7,2.7,0.5,whole,29
+wild rice tempeh fried,14,7.3,0.0,19.9,8.0,processed,93
+shrimp fried rice brown rice,69,38.1,2.8,19.8,6.7,processed,261
+club sandwich wrap,62,49.2,5.0,31.3,26.5,processed,148
+zucchini squash pickled,31,11.6,2.7,1.3,0.3,whole,132
+yellow squash squash,54,7.1,1.1,2.0,0.1,whole,118
+snow pea cooked,24,13.5,5.2,4.2,0.4,minimally_processed,149
+potato salad with dressing,23,16.0,1.7,7.4,22.9,processed,151
+tenderloin pork poached,0,1.9,0.0,22.3,33.0,processed,97
+sirloin beef poached,0,0.0,0.0,22.4,19.1,minimally_processed,104
+black coffee with milk,6,4.0,0.0,3.4,0.2,minimally_processed,227
+tomato juice from concentrate,64,14.2,0.2,1.9,0.2,processed,267
+yellow squash squash roasted,64,7.3,1.4,1.1,0.1,whole,132
+hemp seed salted,6,17.9,22.9,27.2,47.6,minimally_processed,30
+acorn squash sauteed,45,4.1,1.7,1.1,0.2,whole,114
+oat milk,35,3.1,1.6,1.5,0.7,minimally_processed,229
+kabocha squash steamed,48,8.0,2.3,1.6,0.3,whole,129
+earl grey tea sweetened,3,5.2,0.0,0.2,0.0,minimally_processed,228
+rotisserie chicken pan-seared,0,0.0,0.0,22.4,5.5,minimally_processed,99
+baguette bread toasted,52,54.3,2.9,10.6,3.1,processed,29
+red quinoa steamed,55,21.3,2.7,4.5,2.1,minimally_processed,177
+caesar salad with dressing,32,32.6,5.6,8.7,8.3,processed,146
+whole wheat bread fresh,77,47.9,6.4,9.8,3.3,processed,25
+collard greens leafy green pureed,15,2.1,2.4,3.3,0.2,whole,28
+kale leafy green steamed,16,4.0,1.7,1.9,0.4,whole,31
+chicken taco corn tortilla,56,31.4,2.8,19.5,12.6,processed,94
+sunflower seed unsalted,11,15.9,10.9,24.9,49.9,minimally_processed,29
+chickpea bean cooked,30,25.9,6.6,8.9,1.4,minimally_processed,185
+linguine pasta cooked,42,23.8,2.0,4.8,1.9,processed,145
+italian sausage grilled,12,1.0,0.0,15.7,16.7,processed,81
+shoulder pork smoked,0,1.3,0.0,25.8,34.3,minimally_processed,103
+thigh chicken pan-seared,0,0.0,0.0,29.8,15.0,minimally_processed,101
+shrimp seafood grilled,0,2.9,0.0,16.0,1.7,minimally_processed,98
+turkey sausage grilled,1,2.0,0.0,19.8,20.3,processed,92
+kielbasa sausage grilled,11,3.7,0.0,19.1,33.5,processed,84
+cod fish roasted,0,0.0,0.0,21.3,2.3,minimally_processed,95
+maitake mushroom pickled,12,2.9,1.3,2.4,0.3,whole,65
+saltine cracker,56,75.3,6.9,11.3,7.1,processed,30
+whole chicken grilled,0,0.0,0.0,28.7,11.4,minimally_processed,95
+beef taco corn tortilla,47,23.8,4.8,13.0,24.8,processed,102
+bbq sauce,37,23.6,1.8,3.3,14.3,processed,30
+yellow onion boiled,17,8.0,2.3,1.3,0.2,whole,147
+udon noodle dish with broth,65,47.9,3.5,14.6,13.6,processed,359
+multigrain bread stale,72,49.6,6.5,10.1,5.0,processed,28
+bran flakes cereal with milk,78,63.7,9.3,14.5,9.6,ultra_processed,30
+butternut squash soup homemade,44,11.0,3.0,9.0,4.0,processed,265
+snow pea frozen,22,12.8,5.8,4.6,0.4,minimally_processed,134
+green apple stewed,33,14.9,3.2,0.2,0.1,whole,185
+butter lettuce leafy green pickled,12,4.7,2.9,2.4,0.3,whole,32
+ribeye beef braised,0,0.0,0.0,23.5,21.1,minimally_processed,97
+kielbasa sausage poached,15,0.9,0.0,20.8,16.0,processed,79
+poached egg,0,1.4,0.0,12.6,11.0,minimally_processed,48
+tofu stir fry with noodles,63,40.1,3.4,15.8,10.3,processed,330
+grapefruit juice from concentrate,58,14.3,0.2,0.6,0.1,processed,250
+seltzer soda,51,31.0,0.0,0.0,0.0,ultra_processed,374
+loin pork roasted,0,1.3,0.0,20.6,6.3,processed,103
+black-eyed pea frozen,45,16.1,6.9,5.1,0.6,minimally_processed,146
+five grain tempeh steamed,9,7.2,0.0,19.6,8.1,processed,91
+macadamia nut unsalted,13,10.6,11.3,20.0,40.0,minimally_processed,29
+extra firm tofu,19,2.3,1.5,8.1,4.7,processed,107
+black quinoa cooked,55,21.1,2.6,4.7,2.1,minimally_processed,196
+espresso coffee with cream,7,3.7,0.0,0.2,3.5,minimally_processed,217
+mango juice canned,45,10.3,0.0,1.3,0.2,processed,263
+hulled barley boiled,30,71.2,15.8,11.8,2.1,minimally_processed,160
+mackerel fish baked,0,0.0,0.0,25.8,4.9,minimally_processed,101
+veggie stir fry with rice,52,39.8,4.7,23.0,9.4,processed,320
+thigh turkey baked,0,0.2,0.0,28.6,2.0,minimally_processed,106
+navel orange canned,44,11.9,2.7,0.8,0.2,whole,136
+thigh turkey grilled,0,0.3,0.0,26.6,5.4,minimally_processed,104
+goat cheese,0,0.8,0.0,13.9,10.0,processed,25
+granola cereal with milk,78,81.2,12.7,13.6,6.4,processed,29
+andouille sausage baked,14,1.5,0.0,17.6,27.6,processed,78
+rutabaga root vegetable pickled,37,11.4,3.1,0.8,0.1,whole,119
+chia seed unsalted,14,15.5,31.2,19.1,48.5,minimally_processed,26
+berry smoothie,35,21.9,5.5,9.7,1.3,processed,257
+earl grey tea unsweetened,25,5.5,0.0,0.2,0.0,minimally_processed,221
+broccoli cruciferous pickled,13,4.1,2.3,2.1,0.3,whole,88
+butternut squash pickled,34,5.4,1.9,1.4,0.3,whole,116
+lima bean canned,39,21.5,7.5,8.8,0.6,minimally_processed,176
+collard greens leafy green boiled,13,2.2,2.3,3.1,0.5,whole,29
+firm tofu fried,3,1.6,1.3,11.7,5.1,processed,109
+tenderloin beef grilled,0,0.0,0.0,23.3,13.5,minimally_processed,107
+ciabatta bread stale,71,49.0,3.6,13.8,2.5,processed,28
+kabocha squash sauteed,33,3.6,1.0,1.9,0.1,whole,115
+grape juice fresh,53,10.6,0.1,0.7,0.1,processed,259
+white tea hot,2,0.2,0.0,0.4,0.0,minimally_processed,238
+oysters seafood braised,0,2.2,0.0,20.3,1.2,minimally_processed,107
+italian sausage smoked,14,4.7,0.0,16.2,33.0,processed,89
+spinach dip,29,10.3,1.8,4.0,23.4,processed,31
+red rice cooked,107,29.9,1.5,3.4,0.4,processed,143
+bell orange pepper steamed,20,4.8,2.4,1.4,0.2,whole,141
+on cob corn grilled,55,19.5,2.3,3.8,1.1,processed,146
+maitake mushroom roasted,20,3.6,1.4,2.7,0.4,whole,74
+brussels sprouts cruciferous grilled,19,5.6,2.1,2.1,0.4,whole,90
+cremini mushroom pickled,18,3.6,1.9,2.8,0.4,whole,74
+mung bean refried,36,22.3,8.6,10.0,1.0,minimally_processed,161
+tilapia fish smoked,0,0.0,0.0,19.7,14.7,minimally_processed,102
+green lentil canned,31,18.7,9.3,8.6,0.5,minimally_processed,209
+herbal tea sweetened,2,6.1,0.0,0.1,0.0,minimally_processed,247
+pine nut,16,16.1,4.1,24.2,63.9,minimally_processed,28
+scallion onion boiled,20,8.3,2.5,1.4,0.1,whole,175
+pineapple tropical fruit,68,13.6,2.7,0.7,0.4,whole,158
+gala apple pureed,32,15.0,2.8,0.4,0.3,whole,187
+tzatziki dip,27,10.7,1.1,3.8,23.1,processed,28
+black tea hot,19,6.4,0.0,0.2,0.0,minimally_processed,256
+scallion onion pureed,13,8.9,2.4,1.3,0.2,whole,171
+chicken sandwich wrap,46,43.8,2.1,24.5,23.5,processed,141
+buckwheat pancake plain,56,54.8,3.6,11.8,9.7,processed,76
+gala apple juiced,37,15.5,2.6,0.2,0.2,whole,180
+kohlrabi cruciferous pureed,15,4.1,3.4,2.7,0.4,whole,89
+chocolate energy bar,53,63.3,7.1,22.7,19.5,processed,56
+sushi rice cooked,93,29.0,2.1,2.6,0.5,processed,162
+cod fish pan-seared,0,0.0,0.0,28.0,0.6,minimally_processed,93
+granola cereal dry,90,63.5,13.3,15.0,7.7,ultra_processed,30
+sweet corn cooked,60,20.7,2.2,3.6,1.5,processed,138
+shiitake mushroom sauteed,14,2.8,2.0,2.7,0.3,whole,74
+spaghetti squash pureed,26,8.6,1.3,1.1,0.1,whole,112
+bacon pork pan-seared,0,0.3,0.0,22.6,18.3,processed,102
+sweet potato fried,50,22.5,2.5,2.7,14.7,processed,164
+brown lentil cooked,34,20.0,8.7,9.5,0.3,minimally_processed,202
+blueberry berry,25,10.7,5.7,0.7,0.6,whole,149
+kale leafy green pickled,15,2.5,2.5,1.8,0.4,whole,29
+mussels seafood poached,0,1.7,0.0,21.9,1.2,minimally_processed,109
+roma tomato canned,19,3.8,1.2,1.0,0.1,processed,175
+tuna sandwich on wheat,51,42.9,4.0,27.8,29.1,processed,146
+veggie omelette,2,2.9,0.5,13.5,15.3,minimally_processed,109
+naan bread fresh,68,45.4,6.3,13.5,2.7,processed,27
+mango dried fruit,65,75.1,8.1,2.6,0.9,processed,36
+sausage pork baked,0,1.4,0.0,25.0,22.3,minimally_processed,101
+sugar cookie,64,63.9,1.5,7.2,23.3,ultra_processed,26
+deli turkey stewed,0,0.3,0.0,25.2,7.1,minimally_processed,107
+serrano pepper sauteed,15,6.2,2.5,1.2,0.4,whole,142
+red rice steamed,53,28.0,0.9,3.1,0.6,processed,146
+nectarine stone fruit,36,10.8,1.9,0.8,0.2,whole,140
+shrimp seafood stewed,0,2.2,0.0,19.1,1.9,minimally_processed,103
+cheese pizza regular crust,67,29.9,3.2,15.3,14.7,processed,108
+yellow banana dried,55,24.7,3.2,1.4,0.4,whole,119
+arugula leafy green,14,3.4,2.7,2.1,0.4,whole,28
+red potato fried,86,22.8,2.5,1.7,5.7,whole,154
+macadamia nut salted,22,17.2,5.5,20.0,63.1,minimally_processed,25
+kernels corn cooked,57,21.3,2.8,3.4,1.4,processed,132
+vegetable fried rice brown rice,55,40.2,1.9,14.5,12.7,processed,252
+fava bean refried,37,25.9,9.1,8.2,1.0,minimally_processed,182
+pasta salad with dressing,22,14.0,3.5,10.7,13.8,processed,157
+rotisserie chicken poached,0,0.0,0.0,23.7,8.0,minimally_processed,105
+yolk egg,0,1.3,0.0,12.8,10.8,minimally_processed,53
+bell yellow pepper roasted,10,6.3,2.3,1.1,0.4,whole,136
+apricot stone fruit dried,37,11.7,2.5,1.1,0.3,whole,155
+bacon pork baked,0,0.4,0.0,24.6,28.1,processed,105
+plain croissant,59,49.6,2.9,10.2,20.3,processed,52
+brussels sprouts cruciferous pureed,11,5.7,2.7,3.4,0.3,whole,83
+sirloin beef pan-seared,0,0.0,0.0,22.0,14.0,minimally_processed,103
+california sushi roll with brown rice,55,36.2,2.1,10.6,3.6,processed,107
+oyster mushroom boiled,18,2.8,1.2,3.0,0.2,whole,66
+roast beef smoked,0,0.0,0.0,21.0,16.0,minimally_processed,95
+thigh chicken grilled,0,0.0,0.0,29.1,11.2,minimally_processed,90
+prune juice from concentrate,50,10.3,0.4,1.0,0.0,processed,244
+sunflower seed roasted,3,7.8,8.5,21.6,42.0,minimally_processed,29
+shallot onion,20,8.7,2.2,1.4,0.1,whole,151
+oat energy bar,46,47.4,4.4,18.1,13.6,processed,55
+papaya tropical fruit dried,45,15.1,2.3,1.2,0.4,whole,146
+red onion steamed,14,9.8,1.7,1.2,0.2,whole,170
+pearl barley boiled,35,71.4,17.0,11.5,2.2,minimally_processed,149
+supreme pizza regular crust,56,26.6,3.5,14.9,16.3,processed,110
+spaghetti pasta cooked,51,26.9,2.3,4.9,1.4,processed,152
+deli turkey smoked,0,0.5,0.0,27.0,1.4,minimally_processed,100
+hemp seed unsalted,0,12.6,19.3,25.2,48.7,minimally_processed,28
+sirloin beef stewed,0,0.0,0.0,22.5,22.6,minimally_processed,106
+orange jam,56,71.9,1.5,0.4,0.2,processed,19
+shrimp stir fry with noodles,45,28.1,4.8,22.1,8.0,processed,351
+breast chicken grilled,0,0.0,0.0,20.6,7.7,minimally_processed,101
+broccoli cruciferous boiled,20,6.2,2.2,2.7,0.4,whole,88
+mountain trail mix,42,54.5,7.9,17.9,32.6,processed,45
+chicken sausage pan-seared,1,0.7,0.0,18.3,16.6,processed,85
+yellow onion,20,9.5,1.6,1.4,0.1,whole,147
+cremini mushroom,20,2.6,1.6,3.0,0.4,whole,67
+white onion pureed,14,8.2,1.6,1.2,0.2,whole,154
+chicken fried rice white rice,58,40.8,2.7,16.0,7.1,processed,245
+tricolor quinoa pilaf,54,21.6,2.7,5.0,2.0,minimally_processed,201
+spinach leafy green,13,3.6,1.8,3.4,0.4,whole,30
+meat lovers pizza regular crust,69,39.6,2.2,15.0,8.9,processed,110
+poblano pepper pureed,15,6.2,2.2,1.2,0.3,whole,139
+sweet onion boiled,17,9.0,2.3,1.1,0.2,whole,164
+fish taco corn tortilla,60,27.2,3.7,13.5,8.8,processed,101
+jalapeno pepper pureed,11,5.2,1.6,1.1,0.2,whole,159
+scallops seafood pan-seared,0,1.0,0.0,19.0,1.2,minimally_processed,99
+kale leafy green sauteed,17,2.7,2.4,3.3,0.3,whole,30
+canola oil,0,0.0,0.0,0.0,100.0,minimally_processed,14
+gnocchi pasta al dente,36,26.6,4.2,5.5,1.5,processed,148
+acorn squash grilled,32,10.2,2.5,1.6,0.2,whole,130
+black bean hummus,12,16.0,4.8,6.4,10.6,processed,65
+cranberry berry frozen,27,9.6,2.6,0.7,0.6,whole,140
+apple cinnamon rice cake,65,80.5,1.7,7.7,2.1,processed,8
+butter lettuce leafy green grilled,15,4.9,2.7,3.1,0.6,whole,30
+mussels seafood grilled,0,2.1,0.0,18.8,1.7,minimally_processed,104
+braeburn apple pureed,37,13.3,3.3,0.5,0.2,whole,172
+white sugar sweetener,36,78.9,0.3,0.1,0.0,processed,22
+kielbasa sausage smoked,1,1.3,0.0,18.7,28.2,processed,86
+button mushroom sauteed,18,2.5,1.9,3.3,0.3,whole,69
+chicken taco hard shell,46,30.3,5.1,13.3,9.4,processed,92
+braeburn apple frozen,31,15.8,2.7,0.5,0.2,whole,168
+drumstick chicken smoked,0,0.0,0.0,31.5,8.1,minimally_processed,109
+grape soda,63,6.5,0.0,0.0,0.0,ultra_processed,374
+green grape frozen,45,19.9,1.1,0.7,0.2,whole,100
+hazelnut nut salted,3,23.0,10.4,24.7,57.5,minimally_processed,25
+pot barley steamed,26,71.7,16.0,10.7,2.5,minimally_processed,167
+sausage pork poached,0,1.1,0.0,26.1,34.7,minimally_processed,101
+rye bread fresh,72,54.1,4.8,8.2,3.5,processed,26
+ground turkey smoked,0,0.1,0.0,30.0,7.7,minimally_processed,104
+veggie burger double,59,30.8,1.8,28.0,17.5,processed,149
+bell orange pepper boiled,20,4.5,1.9,1.4,0.2,whole,141
+radish root vegetable pureed,38,9.9,2.0,1.1,0.3,whole,125
+feta cheese,0,2.6,0.0,26.3,8.2,processed,29
+western omelette,5,3.6,0.3,12.6,19.1,minimally_processed,113
+sesame seed,1,14.7,8.6,18.6,40.9,minimally_processed,25
+tenderloin pork braised,0,1.9,0.0,23.1,12.3,processed,96
+bell green pepper boiled,15,6.3,2.3,1.2,0.3,whole,154
+salmon fish grilled,0,0.0,0.0,25.5,10.9,minimally_processed,104
+black bean refried,25,26.4,9.3,7.3,0.4,minimally_processed,160
+peanut oil,0,0.0,0.0,0.0,100.0,minimally_processed,14
+veggie burger single,53,37.0,1.8,29.0,22.4,processed,151
+mini pretzel,76,72.0,2.6,9.4,12.4,processed,28
+enoki mushroom boiled,15,2.4,1.7,2.8,0.5,whole,65
+parsnip root vegetable steamed,43,10.2,2.2,1.3,0.2,whole,133
+cheddar rice cake,61,86.5,1.6,7.2,2.0,processed,9
+reuben sandwich on white,63,48.0,6.0,20.5,21.3,processed,141
+cappuccino coffee with cream,18,10.2,0.0,3.1,0.8,minimally_processed,254
+macadamia nut roasted,0,11.5,3.2,23.2,40.9,minimally_processed,25
+soba noodle dish with broth,53,52.2,3.2,14.0,11.5,processed,336
+spaghetti squash grilled,63,8.9,2.3,1.6,0.2,whole,115
+decaf coffee with milk,26,7.2,0.0,1.8,0.7,minimally_processed,258
+tenderloin beef braised,0,0.0,0.0,23.9,23.2,minimally_processed,107
+trout fish pan-seared,0,0.0,0.0,29.6,6.5,minimally_processed,98
+reuben sandwich wrap,45,51.7,5.3,26.7,19.8,processed,136
+beet juice fresh,41,13.3,0.3,1.6,0.2,processed,266
+russet potato baked,78,22.2,3.0,2.8,9.0,processed,141
+ricotta cheese,0,1.0,0.0,20.4,7.0,processed,26
+green lentil refried,25,20.7,7.9,9.0,0.4,minimally_processed,201
+mcintosh apple baked,34,15.6,2.8,0.2,0.3,whole,173
+gooseberry berry frozen,53,13.2,2.9,0.9,0.6,whole,132
+roast beef pan-seared,0,0.0,0.0,24.8,7.2,minimally_processed,93
+steel cut oats cooked,52,67.5,10.8,15.6,6.7,minimally_processed,85
+steak beef stewed,0,0.0,0.0,26.1,24.2,minimally_processed,96
+whole chicken smoked,0,0.0,0.0,26.9,2.7,minimally_processed,91
+silken tofu grilled,7,1.7,1.4,8.4,4.1,processed,96
+concord grape frozen,51,16.9,1.0,0.7,0.2,whole,91
+red onion sauteed,19,7.6,2.0,1.4,0.1,whole,156
+butternut squash roasted,62,3.8,1.4,1.9,0.2,whole,125
+chai tea unsweetened,0,5.1,0.0,0.5,0.0,minimally_processed,235
+scallops seafood baked,0,0.2,0.0,21.2,0.4,minimally_processed,96
+extra firm tofu fried,14,1.8,1.1,11.0,6.0,processed,90
+sweet onion steamed,19,9.5,1.5,1.0,0.2,whole,158
+tenderloin beef pan-seared,0,0.0,0.0,21.6,21.5,minimally_processed,100
+pomegranate juice from concentrate,65,12.4,0.4,0.7,0.1,processed,229
+oyster mushroom pickled,14,3.8,1.1,2.4,0.3,whole,72
+silken tofu fried,4,2.3,1.1,10.2,4.8,processed,102
+almond croissant,64,49.3,2.7,8.1,22.5,processed,53
+vanilla cake,64,59.5,0.6,6.1,28.5,processed,87
+deli turkey baked,0,0.1,0.0,28.0,4.4,minimally_processed,102
+penne pasta al dente,50,25.3,2.8,4.5,1.8,processed,149
+button mushroom steamed,15,2.6,1.9,2.4,0.5,whole,73
+braeburn apple canned,31,14.7,3.5,0.2,0.2,whole,164
+shrimp seafood smoked,0,2.8,0.0,20.8,1.1,minimally_processed,90
+white tea unsweetened,3,1.7,0.0,0.5,0.0,minimally_processed,236
+black bean cooked,37,24.0,8.5,7.2,1.0,minimally_processed,167
+braeburn apple stewed,34,15.0,3.0,0.4,0.1,whole,175
+chocolate chip cookie,57,69.8,1.6,6.2,21.0,ultra_processed,26
+brown rice pilaf,107,21.8,1.7,3.2,0.3,processed,148
+butterscotch pudding,70,18.5,0.2,4.0,6.5,processed,106
+apricot canned fruit in juice,47,21.2,1.5,0.5,0.0,processed,123
+kale leafy green grilled,10,3.7,1.8,3.3,0.6,whole,28
+whole chicken roasted,0,0.0,0.0,20.5,3.5,minimally_processed,102
+unsalted peanut,15,16.8,8.4,25.0,51.0,minimally_processed,25
+cod fish smoked,0,0.0,0.0,29.2,14.5,minimally_processed,96
+spaghetti squash steamed,58,10.2,3.0,1.5,0.2,whole,135
+ground lean beef pan-seared,0,0.0,0.0,24.6,7.2,minimally_processed,93
+firm tofu,8,1.4,1.0,11.8,4.7,processed,107
+pistachio nut,6,10.7,5.3,22.8,64.6,minimally_processed,26
+1% milk,35,7.1,1.1,5.3,0.8,minimally_processed,246
+garbanzo bean cooked,29,24.8,7.2,9.4,1.4,minimally_processed,158
+carnitas taco corn tortilla,58,33.0,4.5,23.0,14.7,processed,93
+bean burrito whole wheat tortilla,60,58.6,6.8,31.6,20.6,processed,257
+braeburn apple dried,38,15.3,2.1,0.5,0.2,whole,186
+pecan nut roasted,15,23.9,7.6,17.6,46.3,minimally_processed,29
+veggie sandwich on rye,63,52.2,3.6,19.9,18.6,processed,145
+red onion boiled,16,8.6,2.3,1.3,0.2,whole,164
+cod fish stewed,0,0.0,0.0,19.3,3.4,minimally_processed,97
+pecan pie,66,52.5,3.8,3.9,16.1,processed,117
+clementine orange,46,12.7,2.5,1.2,0.2,whole,142
+mozzarella cheese,0,1.2,0.0,16.9,4.7,processed,29
+granny smith apple dried,34,12.8,2.4,0.4,0.3,whole,171
+trout fish poached,0,0.0,0.0,22.5,12.8,minimally_processed,107
+passion fruit tropical fruit,65,14.3,3.3,1.0,0.2,whole,164
+cabbage cruciferous grilled,15,4.3,3.0,3.1,0.4,whole,90
+center cut bacon baked,0,0.0,0.0,31.2,47.0,processed,15
+tangerine orange canned,45,12.8,3.0,0.9,0.1,whole,120
+fettuccine pasta overcooked,36,24.2,2.5,4.7,1.7,processed,147
+mussels seafood baked,0,2.2,0.0,23.9,0.8,minimally_processed,99
+white pasta overcooked,46,21.1,2.8,5.4,0.9,processed,137
+black bean soup homemade,30,18.2,4.6,3.9,5.4,processed,259
+overripe banana dried,60,22.7,2.6,1.1,0.2,whole,109
+denver omelette,0,2.2,0.5,15.1,18.8,minimally_processed,115
+walnut nut roasted,11,19.0,5.0,17.6,50.0,minimally_processed,30
+plain tempeh baked,9,9.9,0.0,20.3,11.5,processed,100
+pork spring roll fried,64,20.5,2.0,7.1,5.8,processed,82
+vegetable spring roll fried,68,25.3,2.0,9.3,16.0,processed,92
+ground lean beef baked,0,0.0,0.0,26.2,16.7,minimally_processed,107
+white quinoa pilaf,52,20.4,2.6,4.6,2.1,minimally_processed,166
+bacon pork grilled,0,0.9,0.0,22.2,13.3,minimally_processed,100
+bell green pepper steamed,13,5.7,2.1,1.2,0.3,whole,135
+chicken stir fry with noodles,46,35.2,4.6,20.1,7.7,processed,326
+chop pork baked,0,0.7,0.0,20.9,20.9,minimally_processed,90
+kale leafy green,13,3.8,2.4,2.8,0.4,whole,30
+chicken sausage smoked,8,4.1,0.0,18.9,17.7,processed,79
+brown rice steamed,72,28.7,1.2,3.0,0.8,processed,171
+bratwurst sausage braised,15,2.6,0.0,20.8,32.5,processed,88
+sausage pork roasted,0,1.4,0.0,22.4,22.9,processed,97
+bean chips baked,52,60.0,7.4,9.2,27.9,ultra_processed,29
+bell green pepper,12,6.6,2.3,1.2,0.4,whole,146
+leek onion roasted,17,8.4,2.4,1.1,0.1,whole,156
+brown sugar sweetener,73,92.7,0.7,0.5,0.0,minimally_processed,20
+oatmeal cereal with milk,42,62.3,8.9,9.5,8.0,processed,29
+scotch barley pilaf,27,74.2,17.6,11.4,2.2,minimally_processed,154
+center cut bacon crispy,0,0.1,0.0,28.3,38.3,processed,16
+button mushroom roasted,16,2.3,1.9,3.1,0.2,whole,65
+kimchi instant noodle pack,67,54.2,3.5,8.5,17.2,ultra_processed,79
+cheese pizza thin crust,67,34.9,3.5,14.5,16.6,processed,103
+red delicious apple dried,30,14.0,2.8,0.3,0.2,whole,182
+apricot jam,55,70.7,0.8,0.3,0.1,processed,19
+whole chicken baked,0,0.0,0.0,23.5,12.7,minimally_processed,94
+turkey sausage braised,6,2.7,0.0,15.6,21.7,processed,88
+loin pork pan-seared,0,1.6,0.0,24.1,10.0,processed,100
+strawberry berry,30,11.8,7.7,0.9,0.5,whole,148
+cherry pie,51,52.6,1.3,3.1,13.2,processed,120
+chicken sausage grilled,14,2.7,0.0,20.1,27.9,processed,89
+scallion onion sauteed,16,8.4,1.7,1.1,0.2,whole,146
+iceberg leafy green roasted,14,4.1,1.6,2.4,0.4,whole,30
+salmon fish smoked,0,0.0,0.0,26.3,5.6,minimally_processed,91
+gooseberry berry dried,36,7.6,3.3,1.5,0.6,whole,154
+kabocha squash,38,11.4,1.3,1.6,0.3,whole,120
+braeburn apple baked,36,14.2,2.3,0.2,0.2,whole,180
+bell red pepper,14,5.4,1.9,1.1,0.4,whole,155
+kimchi instant noodle cup,57,47.1,2.2,12.3,18.5,ultra_processed,81
+breast chicken smoked,0,0.0,0.0,25.4,14.6,minimally_processed,99
+red potato baked,75,20.5,3.3,2.2,1.9,processed,162
+kabocha squash pureed,56,3.1,2.1,1.3,0.3,whole,121
+tomato juice canned,40,12.0,0.2,1.5,0.2,processed,240
+kielbasa sausage roasted,15,0.7,0.0,17.3,30.9,processed,87
+yukon gold potato steamed,87,21.4,2.9,2.6,3.3,whole,150
+thigh turkey poached,0,0.1,0.0,29.4,6.4,minimally_processed,99
+tuna fish roasted,0,0.0,0.0,25.9,11.0,minimally_processed,107
+ground regular beef stewed,0,0.0,0.0,25.5,12.6,minimally_processed,94
+scallion onion pickled,16,8.5,2.2,1.3,0.2,whole,164
+white onion pickled,15,9.5,1.9,1.2,0.1,whole,168
+bbq chicken pizza thin crust,63,34.4,2.6,13.3,12.7,processed,110
+black rice pilaf,56,29.5,1.5,2.6,0.8,processed,170
+ground regular beef poached,0,0.0,0.0,20.7,5.4,minimally_processed,93
+fruit cocktail fruit cup in syrup,63,16.7,1.3,0.5,0.0,processed,115
+white potato roasted,81,16.4,2.3,2.2,6.4,processed,155
+shallot onion boiled,15,9.3,2.0,1.4,0.2,whole,168
+maple syrup sweetener,76,80.3,0.0,0.3,0.0,processed,19
+pistachio nut salted,7,28.5,4.1,23.5,64.3,minimally_processed,26
+turnip root vegetable grilled,48,11.2,3.6,1.2,0.1,whole,124
+beef dinner frozen meal,51,37.2,5.4,12.8,10.8,processed,257
+macaroni pasta overcooked,53,28.3,2.5,4.1,0.9,processed,130
+walnut nut salted,19,22.8,12.4,15.8,54.1,minimally_processed,25
+ground regular beef baked,0,0.0,0.0,22.0,19.2,minimally_processed,98
+firm tofu grilled,0,1.6,1.2,9.3,4.1,processed,93
+spaghetti squash pickled,35,7.0,2.2,1.0,0.2,whole,132
+white pasta cooked,45,20.1,2.3,4.7,1.9,processed,128
+baked tofu,4,2.0,0.7,8.3,4.2,processed,91
+hawaiian pizza thin crust,51,28.2,3.0,14.4,15.9,processed,109
+earl grey tea hot,8,7.7,0.0,0.4,0.0,minimally_processed,250
+hemp seed roasted,14,17.4,8.0,24.7,31.3,minimally_processed,30
+bacon pork smoked,0,0.8,0.0,26.6,6.6,processed,107
+edamame hummus,25,17.7,4.2,7.7,9.3,processed,64
+raisin dried fruit,70,67.5,7.6,2.9,0.5,processed,39
+turnip root vegetable,48,11.9,3.5,1.3,0.1,whole,127
+iceberg leafy green pureed,13,2.5,2.2,1.6,0.4,whole,30
+bell orange pepper pureed,15,4.2,2.0,1.2,0.2,whole,155
+pumpernickel bread fresh,56,40.1,7.2,9.6,4.7,processed,28
+chop pork stewed,0,1.2,0.0,23.7,5.9,minimally_processed,104
+veggie burrito flour tortilla,50,53.8,7.9,22.9,22.8,processed,251
+muesli cereal with milk,64,64.4,4.2,10.1,7.4,ultra_processed,29
+pineapple tropical fruit dried,61,12.8,2.7,0.5,0.4,whole,163
+red lentil cooked,32,19.4,9.0,9.0,0.4,minimally_processed,205
+pineapple canned fruit in juice,64,25.8,2.2,0.3,0.2,processed,110
+wing chicken pan-seared,0,0.0,0.0,31.5,13.7,minimally_processed,102
+honey mustard salad dressing,20,9.4,0.1,1.6,36.7,processed,27
+purple potato steamed,81,21.6,2.2,2.1,8.7,whole,141
+vegetable dumpling steamed,46,27.9,1.7,10.3,15.8,processed,90
+deli turkey grilled,0,0.5,0.0,30.0,2.6,minimally_processed,95
+blood orange,42,12.1,2.3,1.0,0.2,whole,125
+fuji apple stewed,32,13.9,2.1,0.2,0.3,whole,163
+scallion onion steamed,18,7.8,1.7,1.5,0.2,whole,174
+thigh turkey smoked,0,0.3,0.0,27.0,6.1,minimally_processed,99
+yellow squash squash pureed,59,6.6,2.9,2.0,0.3,whole,128
+oysters seafood grilled,0,0.7,0.0,17.3,2.0,minimally_processed,98
+red quinoa pilaf,50,21.8,2.7,4.6,2.1,minimally_processed,168
+oatmeal cereal dry,74,77.3,5.5,13.2,13.0,processed,26
+red onion roasted,14,7.6,1.6,1.3,0.1,whole,147
+yukon gold potato boiled,87,17.0,3.8,2.6,0.3,whole,141
+yellow squash squash sauteed,51,9.2,1.0,1.9,0.2,whole,133
+swiss chard leafy green boiled,17,3.6,2.2,2.0,0.3,whole,27
+apple juice from concentrate,57,11.5,0.1,1.1,0.2,processed,250
+crenshaw melon chilled,67,8.7,0.5,0.9,0.2,whole,159
+ribeye beef smoked,0,0.0,0.0,24.6,10.2,minimally_processed,97
+sirloin beef smoked,0,0.0,0.0,20.2,12.4,minimally_processed,109
+macaroni pasta al dente,52,26.8,3.1,6.0,1.6,processed,145
+almond milk,24,7.5,0.3,4.6,3.1,processed,266
+portobello mushroom boiled,12,2.2,1.7,3.1,0.3,whole,73
+shrimp curry red,53,20.5,4.6,18.3,18.3,processed,262
+parsnip root vegetable roasted,39,9.9,3.1,1.3,0.2,whole,131
+fava bean cooked,36,27.6,7.4,9.0,0.5,minimally_processed,172
+radish root vegetable,37,11.3,2.7,1.2,0.3,whole,125
+dark 70% chocolate,24,53.3,10.2,5.1,31.3,processed,30
+romaine leafy green pureed,11,4.2,2.3,2.8,0.6,whole,27
+chocolate cake,73,50.7,1.5,7.5,24.3,processed,77
+leek onion,19,8.7,1.6,1.0,0.2,whole,144
+brazil nut,3,23.1,4.1,24.3,54.6,minimally_processed,25
+white potato boiled,64,21.1,3.0,2.4,7.5,processed,156
