@@ -83,6 +83,8 @@ class FoodMatcher:
         query_lower = query.lower().strip()
         
         if self.use_embeddings:
+            # Narrow types for static checkers: self.model is only set when embeddings are enabled.
+            assert self.model is not None
             # Encode query
             query_embedding = self.model.encode([query_lower], convert_to_numpy=True)[0]
             query_normalized = query_embedding / np.linalg.norm(query_embedding)
