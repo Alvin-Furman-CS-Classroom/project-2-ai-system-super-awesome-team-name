@@ -17,6 +17,7 @@ sys.path.insert(0, str(project_root))
 
 from src.module1.knowledge_base import NutritionKnowledgeBase, FoodNotFoundError, MissingDataError
 from src.module2.food_safety_engine import FoodSafetyEngine
+from src.module3.meal_risk_analyzer import MealRiskAnalyzer
 from src.food_matcher import FoodMatcher
 
 
@@ -101,6 +102,112 @@ def prompt_food_selection(kb: NutritionKnowledgeBase, matcher: FoodMatcher) -> O
         except ValueError:
             print("Invalid input. Please enter a number, 'next', or 'cancel'.")
 
+def select_food_by_query(query: str, kb: NutritionKnowledgeBase, matcher: FoodMatcher) -> Optional[str]:
+    """
+    Helper for meal input:
+    - Accepts the user's raw `query`
+    - Returns a normalized food name from the KB, or None if cancelled / no match
+    """
+    normalized_query = normalize_food_name(query)
+    all_foods = kb.list_all_foods()
+
+    if normalized_query in all_foods:
+        return normalized_query
+
+    offset = 0
+    top_k = 5
+
+    while True:
+        neighbors = matcher.find_nearest_neighbors(query, top_k=top_k, offset=offset)
+
+        if not neighbors:
+            print(f"\nNo similar foods found for '{query}'.")
+            return None
+
+        print(f"\nFound {len(neighbors)} similar foods:")
+        for i, (food_name, _similarity) in enumerate(neighbors, 1):
+            print(f"  {i}. {food_name}")
+
+        print(f"\nOptions:")
+        print(f"  Enter 1-{len(neighbors)} to select a food")
+        if offset + top_k < len(kb.list_all_foods()):
+            print(f"  Enter 'next' to see next {top_k} options")
+        print(f"  Enter 'cancel' to start over")
+
+        choice = input("Your choice: ").strip().lower()
+
+        if choice == "cancel":
+            return None
+
+        if choice == "next":
+            offset += top_k
+            continue
+
+        try:
+            choice_num = int(choice)
+            if 1 <= choice_num <= len(neighbors):
+                return neighbors[choice_num - 1][0]
+            print(f"Please enter a number between 1 and {len(neighbors)}.")
+        except ValueError:
+            print("Invalid input. Please enter a number, 'next', or 'cancel'.")
+
+
+def prompt_meal_items(
+    kb: NutritionKnowledgeBase,
+    matcher: FoodMatcher,
+) -> Optional[list[dict]]:
+    """
+    Prompt the user to build a meal for Module 3.
+
+    Returns:
+      - list of {"food_name": str, "serving_size": str}
+      - None if cancelled
+    """
+    meal_items: list[dict] = []
+
+    print("\nBuild your meal for Module 3.")
+    print("Add foods one by one. When you're done, type 'done'.")
+    print("Type 'cancel' to return to the main menu.\n")
+
+    while True:
+        query = input("Enter a food name (or 'done'/'cancel'): ").strip()
+        if not query:
+            continue
+
+        choice = query.lower()
+        if choice == "cancel":
+            return None
+
+        if choice == "done":
+            if not meal_items:
+                print("Meal can't be empty. Add at least one food.")
+                continue
+            return meal_items
+
+        selected_food = select_food_by_query(query, kb, matcher)
+        if selected_food is None:
+            print("No food selected. Try again.")
+            continue
+
+        while True:
+            serving_size = input(
+                f"Enter serving size for '{selected_food}' (default: 100g): "
+            ).strip()
+            if not serving_size:
+                serving_size = "100g"
+
+            # Validate serving format early to avoid confusing downstream errors.
+            try:
+                _ = kb.get_nutrition_features(selected_food, serving_size)
+            except ValueError:
+                print("\nServing size format not recognized.")
+                print("Examples: '100g', '200 g', '1 serving', '2.5 servings'.")
+                print("Please try entering the serving size again.")
+                continue
+
+            meal_items.append({"food_name": selected_food, "serving_size": serving_size})
+            break
+
 
 def display_food_safety(features: dict, safety_result: dict):
     """Display nutrition features and safety information."""
@@ -159,6 +266,13 @@ def main():
     print("Initializing safety engine...")
     safety_engine = FoodSafetyEngine(kb)
     print("Ready!\n")
+
+    # Initialize meal risk analyzer (Module 3).
+    meal_risk_analyzer = MealRiskAnalyzer(
+        knowledge_base=kb,
+        food_safety_engine=safety_engine,
+        enable_effective_gl_adjustments=True,
+    )
     
     # Main loop
     while True:
@@ -166,7 +280,8 @@ def main():
         print("MAIN MENU")
         print("="*50)
         print("1. Check food safety")
-        print("2. Exit")
+        print("2. Check meal risk (Module 3)")
+        print("3. Exit")
         
         choice = input("\nChoose option: ").strip()
         
@@ -210,11 +325,70 @@ def main():
                 print(f"\nUnexpected error: {e}")
         
         elif choice == "2":
+            try:
+                meal_items = prompt_meal_items(kb, matcher)
+                if meal_items is None:
+                    print("Cancelled.")
+                    continue
+
+                # Show per-food (Module 2) results and precompute totals.
+                per_food_results: list[dict] = []
+                total_gl = 0.0
+                total_fiber_g = 0.0
+                total_protein_g = 0.0
+
+                for item in meal_items:
+                    features = kb.get_nutrition_features(item["food_name"], item["serving_size"])
+                    safety_result = safety_engine.evaluate_food(item["food_name"], item["serving_size"])
+
+                    display_food_safety(features, safety_result)
+
+                    per_food_results.append(
+                        {
+                            "safety_label": safety_result["safety_label"],
+                            "explanation": safety_result["explanation"],
+                        }
+                    )
+
+                    total_gl += float(features["glycemic_load"])
+                    total_fiber_g += float(features["fiber"])
+                    total_protein_g += float(features["protein"])
+
+                # Compute overall meal risk (Module 3) using precomputed totals.
+                meal_analysis = meal_risk_analyzer.analyze_meal_from_precomputed(
+                    meal_items=meal_items,
+                    per_food_results=per_food_results,  # type: ignore[arg-type]
+                    precomputed_totals={
+                        "total_gl": total_gl,
+                        "total_fiber_g": total_fiber_g,
+                        "total_protein_g": total_protein_g,
+                    },
+                )
+
+                print("\n" + "=" * 50)
+                print("MEAL RISK ANALYSIS (Module 3)")
+                print("=" * 50)
+                print(f"\nOverall meal risk: {meal_analysis['meal_risk_category'].upper()}")
+                print(f"Risk score: {meal_analysis['risk_score']:.1f}/100")
+                print("\nContributing factors:")
+                for f in meal_analysis["contributing_factors"]:
+                    print(f"  - {f}")
+
+            except FoodNotFoundError as e:
+                print(f"\nError: {e}")
+            except MissingDataError as e:
+                print(f"\nError: {e}")
+            except ValueError as e:
+                print(f"\nError: {e}")
+            except Exception as e:
+                print(f"\nUnexpected error: {e}")
+
+        elif choice == "3":
             print("\nGoodbye!")
             break
         
         else:
-            print("Invalid choice. Please enter 1 or 2.")
+            print("Invalid choice. Please enter 1, 2, or 3.")
 
 
 if __name__ == "__main__":
