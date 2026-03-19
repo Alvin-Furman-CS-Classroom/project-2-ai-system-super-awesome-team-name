@@ -40,6 +40,7 @@ class MealItem(TypedDict):
 
     food_name: str
     serving_size: str
+    
 
 
 class PerFoodSafetyResult(TypedDict):
