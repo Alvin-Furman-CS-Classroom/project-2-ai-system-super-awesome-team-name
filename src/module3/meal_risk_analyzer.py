@@ -40,7 +40,7 @@ class MealItem(TypedDict):
 
     food_name: str
     serving_size: str
-    
+
 
 
 class PerFoodSafetyResult(TypedDict):
@@ -140,7 +140,64 @@ class MealRiskAnalyzer:
         Output:
           A MealAnalysisResult dict with category/score/factors.
         """
-        raise NotImplementedError
+        if not meal_items:
+            raise ValueError("meal_items must be a non-empty list.")
+
+        for idx, item in enumerate(meal_items):
+            if "food_name" not in item or "serving_size" not in item:
+                raise ValueError(f"Invalid meal item at index {idx}: {item!r}")
+
+        per_food_results: List[PerFoodSafetyResult] = []
+        for item in meal_items:
+            label_result = self.food_safety_engine.evaluate_food(
+                item["food_name"], item["serving_size"]
+            )
+            # normalize keys to the schema used by this module
+            per_food_results.append(
+                PerFoodSafetyResult(
+                    safety_label=label_result["safety_label"],  # type: ignore[arg-type]
+                    explanation=label_result["explanation"],  # type: ignore[arg-type]
+                )
+            )
+
+        label_category, label_score, label_factors = self.aggregate_from_labels(
+            per_food_results
+        )
+
+        if not self.enable_effective_gl_adjustments:
+            return MealAnalysisResult(
+                meal_risk_category=label_category,
+                risk_score=label_score,
+                contributing_factors=label_factors,
+            )
+
+        totals = self.compute_meal_totals(meal_items)
+        total_gl = totals["total_gl"]
+        total_fiber_g = totals["total_fiber_g"]
+        total_protein_g = totals["total_protein_g"]
+
+        reduction = self.compute_effective_gl(total_gl, total_fiber_g, total_protein_g)
+        effective_gl = reduction.effective_gl
+
+        meal_category = self.classify_meal_by_effective_gl(effective_gl)
+        score = self.risk_score_from_effective_gl(effective_gl)
+
+        factors = self.build_contributing_factors(
+            per_food_results=per_food_results,
+            label_category=label_category,
+            total_gl=total_gl,
+            total_fiber_g=total_fiber_g,
+            total_protein_g=total_protein_g,
+            effective_gl_reduction=reduction,
+            effective_gl=effective_gl,
+            meal_category=meal_category,
+        )
+
+        return MealAnalysisResult(
+            meal_risk_category=meal_category,
+            risk_score=score,
+            contributing_factors=factors,
+        )
 
     # ---------------------------------------------------------------------
     # 2) Labels-only aggregation helpers
@@ -167,7 +224,32 @@ class MealRiskAnalyzer:
           - "Contains unsafe food(s)" / "Contains caution food(s)" / "All foods safe"
           - optionally list how many safe/caution/unsafe items
         """
-        raise NotImplementedError
+        if not per_food_results:
+            raise ValueError("per_food_results must be non-empty.")
+
+        unsafe_count = sum(1 for r in per_food_results if r["safety_label"] == "unsafe")
+        caution_count = sum(1 for r in per_food_results if r["safety_label"] == "caution")
+        safe_count = len(per_food_results) - unsafe_count - caution_count
+
+        if unsafe_count > 0:
+            category: MealRiskCategory = "high"
+        elif caution_count > 0:
+            category = "medium"
+        else:
+            category = "low"
+
+        # Simple count-based score:
+        # unsafe = 1.0, caution = 0.5, safe = 0.0, normalized by meal size.
+        meal_size = max(1, len(per_food_results))
+        risk_score = 100.0 * (unsafe_count * 1.0 + caution_count * 0.5) / meal_size
+
+        factors: List[str] = [
+            f"Per-food safety labels: {unsafe_count} unsafe, {caution_count} caution, {safe_count} safe."
+        ]
+        factors.append(
+            f"Meal categorized as {category.replace('low', 'low spike risk').replace('medium', 'medium spike risk').replace('high', 'high spike risk')}"
+        )
+        return category, float(risk_score), factors
 
     def _exists_label(
         self,
@@ -179,7 +261,7 @@ class MealRiskAnalyzer:
 
         This is optional but makes the code clearer and testable.
         """
-        raise NotImplementedError
+        return any(r["safety_label"] == label for r in per_food_results)
 
     # ---------------------------------------------------------------------
     # 3) Nutrition totals aggregation helpers
@@ -204,7 +286,26 @@ class MealRiskAnalyzer:
                 - carbohydrates
               add these to running totals.
         """
-        raise NotImplementedError
+        if not meal_items:
+            raise ValueError("meal_items must be non-empty to compute totals.")
+
+        total_gl = 0.0
+        total_fiber_g = 0.0
+        total_protein_g = 0.0
+
+        for item in meal_items:
+            features = self.knowledge_base.get_nutrition_features(
+                item["food_name"], item["serving_size"]
+            )
+            total_gl += float(features["glycemic_load"])
+            total_fiber_g += float(features["fiber"])
+            total_protein_g += float(features["protein"])
+
+        return {
+            "total_gl": total_gl,
+            "total_fiber_g": total_fiber_g,
+            "total_protein_g": total_protein_g,
+        }
 
     def compute_effective_gl(
         self,
@@ -215,11 +316,19 @@ class MealRiskAnalyzer:
         # Suggested step-band thresholds (you choose the exact cutoffs):
         fiber_bands: Tuple[Tuple[float, float], ...] = (
             # (min_inclusive, multiplier)
+            # <2g -> 1.0
+            # 2-4.9g -> 0.9
+            # >=5g -> 0.8
             (0.0, 1.0),
+            (2.0, 0.9),
             (5.0, 0.8),
         ),
         protein_bands: Tuple[Tuple[float, float], ...] = (
+            # <7g -> 1.0
+            # 7-14.9g -> 0.9
+            # >=15g -> 0.8
             (0.0, 1.0),
+            (7.0, 0.9),
             (15.0, 0.8),
         ),
     ) -> EffectiveGLReduction:
@@ -237,7 +346,37 @@ class MealRiskAnalyzer:
           - For a class project, step bands are typically easier than a
             continuous function and easier to explain in a report.
         """
-        raise NotImplementedError
+        def multiplier_from_bands(value_g: float, bands: Tuple[Tuple[float, float], ...]) -> float:
+            # Pick the band with the highest min_inclusive that is <= value_g
+            # Example: bands [(0,1),(5,0.8)] => value 6 -> 0.8, value 2 -> 1.0.
+            selected_multiplier = 1.0
+            selected_min = -1.0
+            for min_inclusive, multiplier in bands:
+                if value_g >= min_inclusive and min_inclusive >= selected_min:
+                    selected_min = min_inclusive
+                    selected_multiplier = multiplier
+            return float(selected_multiplier)
+
+        fiber_multiplier = multiplier_from_bands(total_fiber_g, fiber_bands)
+        protein_multiplier = multiplier_from_bands(total_protein_g, protein_bands)
+
+        # Clamp multipliers to a reasonable range to avoid negative/overshooting.
+        fiber_multiplier = max(0.0, min(1.0, fiber_multiplier))
+        protein_multiplier = max(0.0, min(1.0, protein_multiplier))
+
+        total_gl = max(0.0, float(total_gl))
+        effective_gl = total_gl * fiber_multiplier * protein_multiplier
+
+        fiber_reduction_pct = (1.0 - fiber_multiplier) * 100.0
+        protein_reduction_pct = (1.0 - protein_multiplier) * 100.0
+
+        return EffectiveGLReduction(
+            fiber_multiplier=fiber_multiplier,
+            protein_multiplier=protein_multiplier,
+            effective_gl=effective_gl,
+            fiber_reduction_pct=fiber_reduction_pct,
+            protein_reduction_pct=protein_reduction_pct,
+        )
 
     def classify_meal_by_effective_gl(self, effective_gl: float) -> MealRiskCategory:
         """
@@ -252,7 +391,17 @@ class MealRiskAnalyzer:
           - You can align directly with Module 2’s thresholds (safe/caution/unsafe)
             then map safe->low, caution->medium, unsafe->high.
         """
-        raise NotImplementedError
+        effective_gl = float(effective_gl)
+
+        # Module 2 GL thresholds are:
+        # - safe: GL <= 10.0
+        # - caution: GL > 10.0 and <= 20.0
+        # - unsafe: GL > 20.0
+        if effective_gl <= 10.0:
+            return "low"
+        if effective_gl <= 20.0:
+            return "medium"
+        return "high"
 
     def risk_score_from_effective_gl(
         self, effective_gl: float
@@ -266,7 +415,18 @@ class MealRiskAnalyzer:
             or
               piecewise linear by bands.
         """
-        raise NotImplementedError
+        effective_gl = float(effective_gl)
+        if effective_gl <= 10.0:
+            # 0..10 maps to 0..40
+            score = (effective_gl / 10.0) * 40.0
+        elif effective_gl <= 20.0:
+            # 10..20 maps to 40..70
+            score = 40.0 + ((effective_gl - 10.0) / 10.0) * 30.0
+        else:
+            # >20 maps to 70..100 with a gentler slope
+            score = 70.0 + ((effective_gl - 20.0) / 20.0) * 30.0
+
+        return float(max(0.0, min(100.0, score)))
 
     # ---------------------------------------------------------------------
     # 4) Human-readable explanation helpers
@@ -292,7 +452,37 @@ class MealRiskAnalyzer:
           - fiber reduction % and protein reduction %
           - effective GL value and how it maps to meal category
         """
-        raise NotImplementedError
+        unsafe_count = sum(1 for r in per_food_results if r["safety_label"] == "unsafe")
+        caution_count = sum(1 for r in per_food_results if r["safety_label"] == "caution")
+        safe_count = len(per_food_results) - unsafe_count - caution_count
+
+        factors: List[str] = [
+            f"Per-food safety labels: {unsafe_count} unsafe, {caution_count} caution, {safe_count} safe.",
+        ]
+
+        factors.append(
+            f"Meal nutrition totals: GL={total_gl:.1f}, fiber={total_fiber_g:.1f}g, protein={total_protein_g:.1f}g."
+        )
+
+        if effective_gl is not None and effective_gl_reduction is not None:
+            factors.append(
+                f"Fiber reduced effective GL by {effective_gl_reduction.fiber_reduction_pct:.0f}% "
+                f"(multiplier {effective_gl_reduction.fiber_multiplier:.2f})."
+            )
+            factors.append(
+                f"Protein reduced effective GL by {effective_gl_reduction.protein_reduction_pct:.0f}% "
+                f"(multiplier {effective_gl_reduction.protein_multiplier:.2f})."
+            )
+            factors.append(f"Effective GL={effective_gl:.1f} -> overall meal risk: {meal_category}.")
+
+            if label_category != meal_category:
+                factors.append(
+                    "Some foods were labeled more risky, but fiber/protein lowered the meal's effective glycemic impact."
+                )
+        else:
+            factors.append(f"Overall meal risk based on labels: {meal_category}.")
+
+        return factors
 
     # ---------------------------------------------------------------------
     # 5) Optional: testing/integration-friendly API
@@ -309,5 +499,51 @@ class MealRiskAnalyzer:
           - lets tests inject per_food_results and totals
           - avoids calling Module 1/2 in the middle of meal-risk unit tests
         """
-        raise NotImplementedError
+        if not meal_items:
+            raise ValueError("meal_items must be non-empty.")
+        if not per_food_results:
+            raise ValueError("per_food_results must be non-empty.")
+
+        label_category, label_score, label_factors = self.aggregate_from_labels(
+            per_food_results
+        )
+
+        if not self.enable_effective_gl_adjustments:
+            return MealAnalysisResult(
+                meal_risk_category=label_category,
+                risk_score=label_score,
+                contributing_factors=label_factors,
+            )
+
+        if precomputed_totals is not None:
+            totals = precomputed_totals
+        else:
+            totals = self.compute_meal_totals(meal_items)
+
+        total_gl = float(totals["total_gl"])
+        total_fiber_g = float(totals["total_fiber_g"])
+        total_protein_g = float(totals["total_protein_g"])
+
+        reduction = self.compute_effective_gl(total_gl, total_fiber_g, total_protein_g)
+        effective_gl = reduction.effective_gl
+
+        meal_category = self.classify_meal_by_effective_gl(effective_gl)
+        score = self.risk_score_from_effective_gl(effective_gl)
+
+        factors = self.build_contributing_factors(
+            per_food_results=per_food_results,
+            label_category=label_category,
+            total_gl=total_gl,
+            total_fiber_g=total_fiber_g,
+            total_protein_g=total_protein_g,
+            effective_gl_reduction=reduction,
+            effective_gl=effective_gl,
+            meal_category=meal_category,
+        )
+
+        return MealAnalysisResult(
+            meal_risk_category=meal_category,
+            risk_score=score,
+            contributing_factors=factors,
+        )
 
