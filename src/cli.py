@@ -210,7 +210,7 @@ def prompt_meal_items(
 
 
 def display_food_safety(features: dict, safety_result: dict):
-    """Display nutrition features and safety information."""
+    """Display a simplified, plain-language food safety summary."""
     print("\n" + "="*50)
     print("FOOD SAFETY ANALYSIS")
     print("="*50)
@@ -223,21 +223,31 @@ def display_food_safety(features: dict, safety_result: dict):
         "UNSAFE": "✗"
     }
     symbol = label_colors.get(label, "•")
-    print(f"\nSafety: {symbol} {label}")
-    print(f"Explanation: {safety_result['explanation']}")
-    
-    # Nutrition features
-    print(f"\nNutrition Information:")
-    print(f"  Glycemic Index (GI): {features['glycemic_index']:.1f}")
-    print(f"  Glycemic Load (GL): {features['glycemic_load']:.1f}")
-    print(f"  Serving Size: {features['serving_size_grams']:.1f}g")
-    print(f"\nMacronutrients (per serving):")
-    print(f"  Carbohydrates: {features['carbohydrates']:.1f}g")
-    print(f"  Fiber: {features['fiber']:.1f}g")
-    print(f"  Protein: {features['protein']:.1f}g")
-    print(f"  Fat: {features['fat']:.1f}g")
-    print(f"  Processing Level: {features['processing_level']}")
+    plain_label = {
+        "SAFE": "Lower spike risk",
+        "CAUTION": "Medium spike risk",
+        "UNSAFE": "High spike risk",
+    }.get(label, label.title())
+
+    print(f"\nOverall result: {symbol} {plain_label}")
+    print(f"Why: {safety_result['explanation']}")
+
+    # Show only high-value, easy-to-understand metrics.
+    print("\nQuick facts (for this serving):")
+    print(f"  - Sugar-impact score (Glycemic Load): {features['glycemic_load']:.1f}")
+    print(f"  - Carbs: {features['carbohydrates']:.1f}g")
+    print(f"  - Fiber: {features['fiber']:.1f}g")
+    print(f"  - Protein: {features['protein']:.1f}g")
+    print(f"  - Serving size: {features['serving_size_grams']:.1f}g")
     print("="*50)
+
+    show_more = input("\nShow more detailed nutrition information? (y/n): ").strip().lower()
+    if show_more in ("y", "yes"):
+        print("\nAdditional details:")
+        print(f"  - Glycemic Index (GI): {features['glycemic_index']:.1f}")
+        print(f"  - Fat: {features['fat']:.1f}g")
+        print(f"  - Processing level: {features['processing_level']}")
+        print("=" * 50)
 
 
 def main():
@@ -280,7 +290,7 @@ def main():
         print("MAIN MENU")
         print("="*50)
         print("1. Check food safety")
-        print("2. Check meal risk (Module 3)")
+        print("2. Check meal risk")
         print("3. Exit")
         
         choice = input("\nChoose option: ").strip()
@@ -331,8 +341,9 @@ def main():
                     print("Cancelled.")
                     continue
 
-                # Show per-food (Module 2) results and precompute totals.
+                # Precompute per-food outputs and meal totals.
                 per_food_results: list[dict] = []
+                per_food_details: list[dict] = []
                 total_gl = 0.0
                 total_fiber_g = 0.0
                 total_protein_g = 0.0
@@ -341,12 +352,18 @@ def main():
                     features = kb.get_nutrition_features(item["food_name"], item["serving_size"])
                     safety_result = safety_engine.evaluate_food(item["food_name"], item["serving_size"])
 
-                    display_food_safety(features, safety_result)
-
                     per_food_results.append(
                         {
                             "safety_label": safety_result["safety_label"],
                             "explanation": safety_result["explanation"],
+                        }
+                    )
+                    per_food_details.append(
+                        {
+                            "food_name": item["food_name"],
+                            "serving_size": item["serving_size"],
+                            "features": features,
+                            "safety_result": safety_result,
                         }
                     )
 
@@ -368,11 +385,53 @@ def main():
                 print("\n" + "=" * 50)
                 print("MEAL RISK ANALYSIS (Module 3)")
                 print("=" * 50)
-                print(f"\nOverall meal risk: {meal_analysis['meal_risk_category'].upper()}")
-                print(f"Risk score: {meal_analysis['risk_score']:.1f}/100")
-                print("\nContributing factors:")
-                for f in meal_analysis["contributing_factors"]:
+
+                print("\nYour meal:")
+                for idx, item in enumerate(meal_items, 1):
+                    print(f"  {idx}. {item['food_name']} ({item['serving_size']})")
+
+                readable_meal = {
+                    "low": "Lower spike risk",
+                    "medium": "Medium spike risk",
+                    "high": "High spike risk",
+                }.get(meal_analysis["meal_risk_category"], meal_analysis["meal_risk_category"])
+                print(f"\nOverall meal result: {readable_meal}")
+                print(f"Meal risk score: {meal_analysis['risk_score']:.1f}/100")
+
+                # Keep this short and scannable: show top 3 factors.
+                factors = meal_analysis["contributing_factors"][:3]
+                print("\nMain reasons:")
+                for f in factors:
                     print(f"  - {f}")
+                if len(meal_analysis["contributing_factors"]) > 3:
+                    print("  - (More details available in the full analysis.)")
+
+                show_more = input("\nShow full meal analysis details? (y/n): ").strip().lower()
+                if show_more in ("y", "yes"):
+                    print("\nFull contributing factors:")
+                    for f in meal_analysis["contributing_factors"]:
+                        print(f"  - {f}")
+
+                    print("\nPer-food details:")
+                    for idx, detail in enumerate(per_food_details, 1):
+                        features = detail["features"]
+                        safety_result = detail["safety_result"]
+                        label = safety_result["safety_label"].upper()
+                        plain_label = {
+                            "SAFE": "Lower spike risk",
+                            "CAUTION": "Medium spike risk",
+                            "UNSAFE": "High spike risk",
+                        }.get(label, label.title())
+
+                        print(f"\nFood {idx}: {detail['food_name']} ({detail['serving_size']})")
+                        print(f"  Result: {plain_label}")
+                        print(f"  Why: {safety_result['explanation']}")
+                        print(
+                            f"  Quick facts: GL {features['glycemic_load']:.1f}, "
+                            f"Carbs {features['carbohydrates']:.1f}g, "
+                            f"Fiber {features['fiber']:.1f}g, "
+                            f"Protein {features['protein']:.1f}g"
+                        )
 
             except FoodNotFoundError as e:
                 print(f"\nError: {e}")

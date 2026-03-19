@@ -456,31 +456,51 @@ class MealRiskAnalyzer:
         caution_count = sum(1 for r in per_food_results if r["safety_label"] == "caution")
         safe_count = len(per_food_results) - unsafe_count - caution_count
 
-        factors: List[str] = [
-            f"Per-food safety labels: {unsafe_count} unsafe, {caution_count} caution, {safe_count} safe.",
-        ]
+        factors: List[str] = []
 
-        factors.append(
-            f"Meal nutrition totals: GL={total_gl:.1f}, fiber={total_fiber_g:.1f}g, protein={total_protein_g:.1f}g."
-        )
+        # Lead with final meal-level conclusion first to avoid confusion.
+        readable_category = {
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+        }[meal_category]
 
         if effective_gl is not None and effective_gl_reduction is not None:
             factors.append(
-                f"Fiber reduced effective GL by {effective_gl_reduction.fiber_reduction_pct:.0f}% "
-                f"(multiplier {effective_gl_reduction.fiber_multiplier:.2f})."
+                f"Final meal risk is {readable_category} (final sugar-impact score: {effective_gl:.1f})."
             )
             factors.append(
-                f"Protein reduced effective GL by {effective_gl_reduction.protein_reduction_pct:.0f}% "
-                f"(multiplier {effective_gl_reduction.protein_multiplier:.2f})."
+                f"Before balancing effects, your meal's sugar-impact score was {total_gl:.1f}."
             )
-            factors.append(f"Effective GL={effective_gl:.1f} -> overall meal risk: {meal_category}.")
+            factors.append(
+                f"This meal has {total_fiber_g:.1f}g of fiber and {total_protein_g:.1f}g of protein."
+            )
+            factors.append(
+                f"Fiber lowers the sugar impact by about {effective_gl_reduction.fiber_reduction_pct:.0f}%."
+            )
+            factors.append(
+                f"Protein lowers the sugar impact by about {effective_gl_reduction.protein_reduction_pct:.0f}%."
+            )
 
             if label_category != meal_category:
                 factors.append(
-                    "Some foods were labeled more risky, but fiber/protein lowered the meal's effective glycemic impact."
+                    "Note: individual foods and overall meal can differ because meal-level risk uses the full meal together."
                 )
         else:
-            factors.append(f"Overall meal risk based on labels: {meal_category}.")
+            factors.append(f"Final meal risk is {readable_category}.")
+
+        # Keep wording simple and concrete for broad audiences.
+        food_level_parts: List[str] = []
+        if unsafe_count > 0:
+            food_level_parts.append(f"{unsafe_count} high-risk")
+        if caution_count > 0:
+            food_level_parts.append(f"{caution_count} medium-risk")
+        if safe_count > 0:
+            food_level_parts.append(f"{safe_count} lower-risk")
+        if food_level_parts:
+            factors.append(
+                "At the individual-food level: " + ", ".join(food_level_parts) + " food(s)."
+            )
 
         return factors
 
