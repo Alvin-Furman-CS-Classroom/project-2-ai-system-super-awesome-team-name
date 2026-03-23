@@ -1,38 +1,55 @@
 """
 Meal-Level Risk Analyzer (Module 3).
 
-Goal
-----
-Aggregate Module 2 outputs (per-food safety labels + explanations) into an
-overall meal-level risk category and numeric risk score.
+Purpose
+-------
+Aggregate Module 2 outputs (per-food safety labels and explanations) with
+Module 1 meal totals into an overall **meal risk category**, **numeric risk
+score** (0–100), and **plain-language contributing factors**.
 
-In addition to labels-only aggregation, this module can optionally compute
-an "effective glycemic load" (effective GL) where:
-  - Meal fiber reduces effective GL
-  - Meal protein also reduces effective GL
+Two modes
+---------
+1. **Labels-only:** Combine per-food ``safety_label`` values (existential-style
+   checks and counts) into a meal category and score.
+2. **Labels + effective GL:** Sum glycemic load, fiber, and protein across the
+   meal, then apply **fiber** and **protein** step-band multipliers to obtain an
+   *effective* glycemic load. Classify and score the meal from that value so a
+   single high-risk item does not always dominate the whole meal.
 
-This lets the meal-level decision avoid "worst-food dominates" behavior.
+Dependencies
+------------
+- **Module 1** (`NutritionKnowledgeBase`): nutrition features and totals.
+- **Module 2** (`FoodSafetyEngine`): per-food safety labels for each item.
 
-Design notes
--------------
-- Module 1 provides nutrition totals (carbs, fiber, protein, GL, etc.)
-- Module 2 provides per-food `safety_label` ("safe"|"caution"|"unsafe")
-- Module 3 combines both into meal category/score and a human explanation
-
-This file is a scaffolding / implementation checklist. The functions below
-describe what you need to implement; they intentionally contain no full logic.
+Default fiber/protein bands for effective GL are module-level constants
+(`DEFAULT_FIBER_BANDS`, `DEFAULT_PROTEIN_BANDS`) so thresholds and multipliers
+stay discoverable and documented in one place.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Dict, List, Optional, Sequence, TypedDict, Tuple, Literal, Any
+from typing import Dict, List, Optional, Sequence, TypedDict, Tuple, Literal
 
 from src.module1.knowledge_base import NutritionKnowledgeBase
 from src.module2.food_safety_engine import FoodSafetyEngine
 
 MealRiskCategory = Literal["low", "medium", "high"]
 FoodSafetyLabel = Literal["safe", "caution", "unsafe"]
+
+# Step bands: ``(min_inclusive_grams, glycemic_load_multiplier)``.
+# The band with the largest ``min_inclusive`` that is still ``<=`` the meal total
+# applies (see ``compute_effective_gl``).
+DEFAULT_FIBER_BANDS: Tuple[Tuple[float, float], ...] = (
+    (0.0, 1.0),  # < 2 g fiber
+    (2.0, 0.9),  # 2–4.9 g
+    (5.0, 0.8),  # ≥ 5 g
+)
+DEFAULT_PROTEIN_BANDS: Tuple[Tuple[float, float], ...] = (
+    (0.0, 1.0),  # < 7 g protein
+    (7.0, 0.9),  # 7–14.9 g
+    (15.0, 0.8),  # ≥ 15 g
+)
 
 
 class MealItem(TypedDict):
@@ -88,9 +105,12 @@ class MealRiskAnalyzer:
     """
     Public entry point for Module 3.
 
-    You can implement Module 3 in two modes:
-      1) labels-only: use per-food `safety_label` to aggregate meal risk
-      2) labels + nutrition totals: compute total GL and adjust to effective GL
+    Modes (controlled by ``enable_effective_gl_adjustments``):
+
+    1. **Labels-only:** aggregate per-food ``safety_label`` values into a meal
+       category and score.
+    2. **Effective GL:** after Module 2 labels, sum meal GL/fiber/protein from
+       Module 1, compute effective GL, then classify and score the meal.
     """
 
     def __init__(
@@ -119,26 +139,22 @@ class MealRiskAnalyzer:
         meal_items: Sequence[MealItem],
     ) -> MealAnalysisResult:
         """
-        Main orchestrator for Module 3.
+        Run the full meal analysis pipeline.
 
-        Inputs:
-          meal_items: list of {"food_name": str, "serving_size": str}
+        Validates ``meal_items``, evaluates each food with Module 2, then either
+        returns label-only aggregation or (when effective GL is enabled) loads
+        Module 1 totals, computes effective GL, and builds meal category, score,
+        and contributing factors.
 
-        Steps you should implement:
-          1. Validate meal_items is non-empty and has required keys
-          2. For each item:
-             - call Module 2 to get per-food safety label + explanation
-             - call Module 1 to get nutrition features for totals (GI/GL/fiber/protein)
-          3. Combine per-food safety labels:
-             - compute label-based meal category and factors
-          4. If enable_effective_gl_adjustments:
-             - sum total GL, total fiber (g), total protein (g)
-             - compute effective_gl = total_gl * fiber_multiplier * protein_multiplier
-             - compute meal category using thresholds for effective_gl
-             - include both label factors and numeric total factors
+        Args:
+            meal_items: Non-empty sequence of ``{"food_name": str, "serving_size": str}``.
 
-        Output:
-          A MealAnalysisResult dict with category/score/factors.
+        Returns:
+            ``MealAnalysisResult`` with ``meal_risk_category``, ``risk_score``, and
+            ``contributing_factors``.
+
+        Raises:
+            ValueError: If ``meal_items`` is empty or an item is missing keys.
         """
         if not meal_items:
             raise ValueError("meal_items must be a non-empty list.")
@@ -209,20 +225,14 @@ class MealRiskAnalyzer:
         """
         Aggregate meal risk only from per-food labels.
 
-        Suggested logic:
-          - if any label == "unsafe":
-              category = "high"
-          - elif any label == "caution":
-              category = "medium"
-          - else category = "low"
+        Category: any ``unsafe`` → ``high``; else any ``caution`` → ``medium``;
+        else ``low``.
 
-        Suggested scoring:
-          - risk_score can depend on counts, e.g.
-              risk_score = 100 * (unsafe_count*1.0 + caution_count*0.5) / meal_size
+        Score: ``100 * (unsafe_count + 0.5 * caution_count) / meal_size`` (meal
+        size is at least 1).
 
-        Suggested contributing_factors:
-          - "Contains unsafe food(s)" / "Contains caution food(s)" / "All foods safe"
-          - optionally list how many safe/caution/unsafe items
+        Contributing factors summarize counts and the resulting category in plain
+        language.
         """
         if not per_food_results:
             raise ValueError("per_food_results must be non-empty.")
@@ -313,38 +323,17 @@ class MealRiskAnalyzer:
         total_fiber_g: float,
         total_protein_g: float,
         *,
-        # Suggested step-band thresholds (you choose the exact cutoffs):
-        fiber_bands: Tuple[Tuple[float, float], ...] = (
-            # (min_inclusive, multiplier)
-            # <2g -> 1.0
-            # 2-4.9g -> 0.9
-            # >=5g -> 0.8
-            (0.0, 1.0),
-            (2.0, 0.9),
-            (5.0, 0.8),
-        ),
-        protein_bands: Tuple[Tuple[float, float], ...] = (
-            # <7g -> 1.0
-            # 7-14.9g -> 0.9
-            # >=15g -> 0.8
-            (0.0, 1.0),
-            (7.0, 0.9),
-            (15.0, 0.8),
-        ),
+        fiber_bands: Tuple[Tuple[float, float], ...] = DEFAULT_FIBER_BANDS,
+        protein_bands: Tuple[Tuple[float, float], ...] = DEFAULT_PROTEIN_BANDS,
     ) -> EffectiveGLReduction:
         """
-        Convert totals into effective GL using fiber/protein reduction.
+        Convert meal totals into effective GL using fiber and protein multipliers.
 
-        Implementation plan:
-          1. Determine fiber_multiplier based on total_fiber_g
-          2. Determine protein_multiplier based on total_protein_g
-          3. effective_gl = total_gl * fiber_multiplier * protein_multiplier
-          4. Compute reduction percentages for explanation
-          5. Clamp multipliers/effective_gl to reasonable bounds
-
-        Note:
-          - For a class project, step bands are typically easier than a
-            continuous function and easier to explain in a report.
+        Chooses the applicable multiplier from each band table (highest
+        ``min_inclusive`` such that the meal total is still ``>=`` that minimum),
+        clamps multipliers to ``[0, 1]``, then computes
+        ``effective_gl = total_gl * fiber_multiplier * protein_multiplier``.
+        Returns reduction percentages for user-facing explanations.
         """
         def multiplier_from_bands(value_g: float, bands: Tuple[Tuple[float, float], ...]) -> float:
             # Pick the band with the highest min_inclusive that is <= value_g
@@ -380,16 +369,11 @@ class MealRiskAnalyzer:
 
     def classify_meal_by_effective_gl(self, effective_gl: float) -> MealRiskCategory:
         """
-        Convert effective GL into meal_risk_category.
+        Map effective GL to ``meal_risk_category`` using Module 2’s GL bands:
 
-        Option A (simple):
-          - low: effective_gl <= 10
-          - medium: 10 < effective_gl <= 20
-          - high: effective_gl > 20
-
-        Option B:
-          - You can align directly with Module 2’s thresholds (safe/caution/unsafe)
-            then map safe->low, caution->medium, unsafe->high.
+        - ``low`` if ``effective_gl <= 10`` (safe GL range)
+        - ``medium`` if ``10 < effective_gl <= 20`` (caution)
+        - ``high`` if ``effective_gl > 20`` (unsafe)
         """
         effective_gl = float(effective_gl)
 
@@ -407,13 +391,9 @@ class MealRiskAnalyzer:
         self, effective_gl: float
     ) -> float:
         """
-        Convert effective GL into a 0-100 score.
-
-        Suggested approach:
-          - Use thresholds for normalization:
-              risk_score = min(100, max(0, (effective_gl / 20) * 100))
-            or
-              piecewise linear by bands.
+        Map effective GL to a ``risk_score`` in ``[0, 100]`` using a piecewise
+        linear curve: ``0–10`` → ``0–40``, ``10–20`` → ``40–70``, ``>20`` →
+        ``70–100`` (capped at 100).
         """
         effective_gl = float(effective_gl)
         if effective_gl <= 10.0:

@@ -63,6 +63,33 @@ Your system must include 5-6 modules. Fill in the table below as you plan each m
   - The logic is transparent for users and clinicians (no black-box model) and easy to explain in an in-person demo.
   - Separating the rules (`safety_rules.py`) from the engine (`food_safety_engine.py`) keeps Module 2 small, testable, and ready for reuse by both the CLI and the future web interface.
 
+## Module 3: Meal-Level Risk Analyzer
+
+### Inputs
+
+- **Meal**: A non-empty list of foods with servings, each item shaped as:
+  - `food_name` (string, same resolution as Module 1 / Module 2)
+  - `serving_size` (string, same formats as Module 1, e.g. `"100g"`, `"1 serving"`)
+- **Underlying data**: Module 3 uses **Module 2** for per-food `safety_label` / `explanation` and **Module 1** for summed glycemic load, fiber, and protein when **effective GL** mode is on.
+
+### Outputs
+
+- **Meal risk category**: One of `"low"`, `"medium"`, or `"high"` (blood-sugar spike risk for the whole meal).
+- **Risk score**: A number from **0–100** (higher = higher spike risk).
+- **Contributing factors**: Short, plain-language strings explaining the result (totals, fiber/protein balance when applicable, and per-food label summary).
+
+### How to run (CLI)
+
+1. Start the app: `python -m src.cli` (or `py -m src.cli` on Windows).
+2. Choose **“Check meal risk”** (or the menu option that runs meal analysis).
+3. Enter foods and servings as prompted; the meal summary appears first, with optional detail for each labeled food.
+
+### AI concepts and design rationale
+
+- **First-order style reasoning over a meal:** The analyzer aggregates over *all* foods (e.g., counts and existence of caution/unsafe labels, plus meal-level totals), not only a single item.
+- **Meal-level glycemic load:** Summed GL with optional **fiber** and **protein** step bands to compute an *effective* GL so the meal outcome reflects the full plate, not only the worst single food.
+- **Explainability:** Outputs connect Module 2 labels and numeric meal totals to a single meal decision and user-facing reasons.
+
 ## Repository Layout
 
 ```
