@@ -7,9 +7,32 @@ from the sentence-transformers library (see src.food_matcher.FoodMatcher) to sug
 semantically similar foods.
 """
 
+import re
 import sys
 from pathlib import Path
-from typing import Optional
+from typing import FrozenSet, Optional
+
+# Phrases that contain " and " but should stay one search query (not split into two foods).
+_MEAL_COMPOUND_PHRASES: FrozenSet[str] = frozenset(
+    {
+        "mac and cheese",
+        "macaroni and cheese",
+        "bread and butter",
+        "salt and pepper",
+        "fish and chips",
+        "peanut butter and jelly",
+        "ham and cheese",
+        "bacon and eggs",
+        "egg and cheese",
+        "rice and beans",
+        "chips and salsa",
+        "sweet and sour",
+        "chicken and waffles",
+        "cookies and cream",
+        "gin and tonic",
+        "oil and vinegar",
+    }
+)
 
 # Add project root to Python path
 project_root = Path(__file__).parent.parent
@@ -26,6 +49,57 @@ def normalize_food_name(name: str) -> str:
     if not name:
         return ""
     return " ".join(name.lower().strip().split())
+
+
+def split_meal_line(line: str) -> list[str]:
+    """
+    Split one user line into several ingredient search strings.
+
+    - Commas separate items: ``spaghetti, meatballs, tomato sauce``.
+    - If there is no comma, `` and `` also separates items:
+      ``spaghetti and meatballs`` → two parts.
+    - Known *compound dishes* (e.g. ``mac and cheese``) stay as one query.
+    """
+    raw = (line or "").strip()
+    if not raw:
+        return []
+    if raw.lower() in _MEAL_COMPOUND_PHRASES:
+        return [raw]
+
+    parts: list[str] = []
+    for segment in re.split(r"\s*,\s*", raw):
+        seg = segment.strip()
+        if not seg:
+            continue
+        if seg.lower() in _MEAL_COMPOUND_PHRASES:
+            parts.append(seg)
+            continue
+        if re.search(r"\s+and\s+", seg, flags=re.IGNORECASE):
+            sub = re.split(r"\s+and\s+", seg, flags=re.IGNORECASE)
+            parts.extend(s.strip() for s in sub if s.strip())
+        else:
+            parts.append(seg)
+    return parts
+
+
+def _prompt_serving_until_valid(kb: NutritionKnowledgeBase, food_name: str) -> Optional[str]:
+    """Ask for a serving size and validate against the KB. Returns None if user cancels."""
+    while True:
+        serving_size = input(
+            f"Enter serving size for '{food_name}' (default: 100g): "
+        ).strip()
+        if not serving_size:
+            serving_size = "100g"
+        if serving_size.lower() == "cancel":
+            return None
+        try:
+            _ = kb.get_nutrition_features(food_name, serving_size)
+        except ValueError:
+            print("\nServing size format not recognized.")
+            print("Examples: '100g', '200 g', '1 serving', '2.5 servings'.")
+            print("Type 'cancel' to abort this item.")
+            continue
+        return serving_size
 
 
 def prompt_food_selection(kb: NutritionKnowledgeBase, matcher: FoodMatcher) -> Optional[str]:
@@ -159,54 +233,91 @@ def prompt_meal_items(
     """
     Prompt the user to build a meal for Module 3.
 
+    **One line of foods** (commas and/or ``and`` between items), then match each
+    ingredient to the knowledge base and optionally use the **same serving for all**.
+
     Returns:
       - list of {"food_name": str, "serving_size": str}
       - None if cancelled
     """
-    meal_items: list[dict] = []
-
     print("\nBuild your meal for Module 3.")
-    print("Add foods one by one. When you're done, type 'done'.")
-    print("Type 'cancel' to return to the main menu.\n")
+    print("Enter all foods on one line, separated by commas or by 'and'.")
+    print("Examples: spaghetti, meatballs, tomato sauce")
+    print("          spaghetti and meatballs")
+    print("Type 'cancel' at any prompt to return to the main menu.\n")
 
     while True:
-        query = input("Enter a food name (or 'done'/'cancel'): ").strip()
-        if not query:
-            continue
-
-        choice = query.lower()
-        if choice == "cancel":
+        line = input(
+            "Enter your foods (comma-separated, or use 'and' between items):\n> "
+        ).strip()
+        if line.lower() == "cancel":
             return None
-
-        if choice == "done":
-            if not meal_items:
-                print("Meal can't be empty. Add at least one food.")
-                continue
-            return meal_items
-
-        selected_food = select_food_by_query(query, kb, matcher)
-        if selected_food is None:
-            print("No food selected. Try again.")
+        parts = split_meal_line(line)
+        if not parts:
+            print("No foods found. Try again or type 'cancel'.")
             continue
 
-        while True:
-            serving_size = input(
-                f"Enter serving size for '{selected_food}' (default: 100g): "
+        print(f"\nParsed {len(parts)} ingredient(s): {', '.join(parts)}")
+
+        same = input(
+            "Use the same serving size for every item? (y/n, default y): "
+        ).strip().lower()
+        use_same = same in ("", "y", "yes")
+        default_serving = "100g"
+        if use_same:
+            sv = input(
+                "Serving size for all items (default 100g): "
             ).strip()
-            if not serving_size:
-                serving_size = "100g"
+            if sv.lower() == "cancel":
+                return None
+            if sv:
+                default_serving = sv
 
-            # Validate serving format early to avoid confusing downstream errors.
-            try:
-                _ = kb.get_nutrition_features(selected_food, serving_size)
-            except ValueError:
-                print("\nServing size format not recognized.")
-                print("Examples: '100g', '200 g', '1 serving', '2.5 servings'.")
-                print("Please try entering the serving size again.")
+        resolved: list[tuple[str, str]] = []
+        shared_serving_validated = False
+        for i, query in enumerate(parts, 1):
+            print(f"\n--- Ingredient {i}/{len(parts)}: {query!r} ---")
+            selected_food = select_food_by_query(query, kb, matcher)
+            if selected_food is None:
+                print("Skipped this ingredient. You can re-run meal entry to try again.")
                 continue
+            if use_same:
+                if not shared_serving_validated:
+                    while True:
+                        try:
+                            _ = kb.get_nutrition_features(
+                                selected_food, default_serving
+                            )
+                            shared_serving_validated = True
+                            break
+                        except ValueError:
+                            print(
+                                "\nServing size format not recognized. "
+                                "Examples: '100g', '200 g', '1 serving', '2.5 servings'."
+                            )
+                            default_serving = input(
+                                "Serving size for all items (or 'cancel'): "
+                            ).strip()
+                            if default_serving.lower() == "cancel":
+                                return None
+                            if not default_serving:
+                                default_serving = "100g"
+                    serving = default_serving
+                else:
+                    serving = default_serving
+            else:
+                serving = _prompt_serving_until_valid(kb, selected_food)
+                if serving is None:
+                    return None
+            resolved.append((selected_food, serving))
 
-            meal_items.append({"food_name": selected_food, "serving_size": serving_size})
-            break
+        if not resolved:
+            print("No foods were added. Try again or type 'cancel'.")
+            continue
+
+        return [
+            {"food_name": name, "serving_size": size} for name, size in resolved
+        ]
 
 
 def display_food_safety(features: dict, safety_result: dict):

@@ -81,8 +81,11 @@ Your system must include 5-6 modules. Fill in the table below as you plan each m
 ### How to run (CLI)
 
 1. Start the app: `python -m src.cli` (or `py -m src.cli` on Windows).
-2. Choose **“Check meal risk”** (or the menu option that runs meal analysis).
-3. Enter foods and servings as prompted; the meal summary appears first, with optional detail for each labeled food.
+2. Choose **“Check meal risk”** (menu option **2**).
+3. **Enter the whole meal on one line** — separate foods with commas and/or `and`, e.g. `spaghetti, meatballs, tomato sauce` or `spaghetti and meatballs`. The CLI splits that into ingredients and helps you pick the closest match in the database for each. Say **yes** to “same serving for all” (e.g. `100g` each) to set one serving for every item, or **no** to enter a serving per food.
+4. The meal summary appears first, with optional detail for each labeled food.
+
+**Note:** The CSV lists ingredients (e.g. pasta types, ground beef), not full restaurant dish names—listing components separately matches how the knowledge base works.
 
 ### AI concepts and design rationale
 
