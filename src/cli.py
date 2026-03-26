@@ -41,6 +41,7 @@ sys.path.insert(0, str(project_root))
 from src.module1.knowledge_base import NutritionKnowledgeBase, FoodNotFoundError, MissingDataError
 from src.module2.food_safety_engine import FoodSafetyEngine
 from src.module3.meal_risk_analyzer import MealRiskAnalyzer
+from src.module4.meal_suggestion_planner import MealSuggestionPlanner
 from src.food_matcher import FoodMatcher
 
 
@@ -394,6 +395,11 @@ def main():
         food_safety_engine=safety_engine,
         enable_effective_gl_adjustments=True,
     )
+    meal_suggestion_planner = MealSuggestionPlanner(
+        knowledge_base=kb,
+        meal_risk_analyzer=meal_risk_analyzer,
+        matcher=matcher,
+    )
     
     # Main loop
     while True:
@@ -543,6 +549,27 @@ def main():
                             f"Fiber {features['fiber']:.1f}g, "
                             f"Protein {features['protein']:.1f}g"
                         )
+
+                # Module 4 suggestions appear immediately after meal analysis.
+                suggestion_result = meal_suggestion_planner.generate_suggestions(
+                    meal_items, original_category=meal_analysis["meal_risk_category"], algorithm="astar"
+                )
+                if suggestion_result["suggestions"]:
+                    print("\n" + "=" * 50)
+                    print("MEAL IMPROVEMENT SUGGESTIONS (Module 4)")
+                    print("=" * 50)
+                    print(suggestion_result["target_message"])
+                    print("Pick any one option below:")
+                    for idx, suggestion in enumerate(suggestion_result["suggestions"], 1):
+                        print(f"\nOption {idx}:")
+                        for action in suggestion["actions"]:
+                            print(f"  - {action}")
+                        print(f"  Why this helps: {suggestion['explanation']}")
+                else:
+                    if suggestion_result["status"] == "low_risk_no_suggestions_needed":
+                        print("\nModule 4: No additional risk-lowering suggestions needed for this meal.")
+                    else:
+                        print("\nModule 4: No suggestions found within current search limits.")
 
             except FoodNotFoundError as e:
                 print(f"\nError: {e}")
