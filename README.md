@@ -93,6 +93,49 @@ Your system must include 5-6 modules. Fill in the table below as you plan each m
 - **Meal-level glycemic load:** Summed GL with optional **fiber** and **protein** step bands to compute an *effective* GL so the meal outcome reflects the full plate, not only the worst single food.
 - **Explainability:** Outputs connect Module 2 labels and numeric meal totals to a single meal decision and user-facing reasons.
 
+---
+
+## Module 4: Meal Modification & Alternative Generator
+
+### Inputs
+- **Original meal**: a non-empty list of meal items, each shaped as:
+  - `{"food_name": str, "serving_size": str}`
+- **Original meal risk category** (from Module 3): `low` / `medium` / `high`.
+- **Search constraints** (internal defaults):
+  - edit budget: up to `max_edits` (default `5`)
+  - action set: `swap` and `add` only
+  - swap validity: replacements must share the same coarse food category as the original food
+
+### Outputs
+- **Suggestion bundles** (3–5 depending on original category):
+  - `medium` (or `caution`): up to **3** suggestions
+  - `high`: up to **5** suggestions
+  - `low`: no suggestions needed
+- Each suggestion is presented as a list of **actions**, e.g.:
+  - `Swap white rice -> brown rice`
+  - `Add broccoli (100g)`
+
+### Dependencies
+- **Module 3**: evaluates candidate meals and provides the meal risk category used by Module 4’s goal test.
+- **Module 2**: indirectly via Module 3 for per-food safety labeling.
+- **Module 1**: used to generate/filter plausible “add” candidates and to compute nutrition-informed heuristics.
+- **Word embeddings** (optional): used to rank swap candidates *within* the valid same-category pool when the CLI provides a `FoodMatcher`.
+
+### AI concepts and design rationale
+- **Search (Uniform Cost Search, A\*)**:
+  - Module 4 explores a discrete state space where each action is a small meal edit.
+  - The goal test checks whether the candidate meal is at least **one risk tier down** relative to Module 3’s category.
+  - Returned suggestions are ranked to prefer fewer edits and lower resulting risk scores.
+- **Constraint satisfaction**:
+  - Swaps are constrained to **same-category replacements** to keep suggestions realistic.
+  - Swaps only modify foods that existed in the original meal (added items are not later swapped away).
+- **Diversity filtering**:
+  - Prevents redundant suggestions that only differ by preparation-style tokens (e.g., “boiled” vs “steamed”).
+
+### Testing
+- Unit tests: `unit_tests/module4/test_meal_suggestion_planner.py`
+- Integration test: `integration_tests/module4/test_module4_with_module3.py`
+
 ## Repository Layout
 
 ```

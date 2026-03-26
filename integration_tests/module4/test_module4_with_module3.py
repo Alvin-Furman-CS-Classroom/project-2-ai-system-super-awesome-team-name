@@ -39,6 +39,30 @@ class TestModule4Integration(unittest.TestCase):
             for suggestion in result["suggestions"]:
                 self.assertLessEqual(len(suggestion["actions"]), 5)
 
+    def test_module4_low_risk_returns_no_suggestions_needed(self):
+        kb = NutritionKnowledgeBase("src/module1/nutrition_data.csv")
+        safety_engine = FoodSafetyEngine(kb)
+        analyzer = MealRiskAnalyzer(
+            knowledge_base=kb,
+            food_safety_engine=safety_engine,
+            enable_effective_gl_adjustments=True,
+        )
+        planner = MealSuggestionPlanner(kb, analyzer, matcher=None, max_edits=2, max_expansions=60)
+
+        # Two zero-GI foods should produce a low effective GL and a low meal category.
+        meal_items = [
+            {"food_name": "deli turkey poached", "serving_size": "100g"},
+            {"food_name": "loin pork baked", "serving_size": "100g"},
+        ]
+        original = analyzer.analyze_meal(meal_items)
+        result = planner.generate_suggestions(
+            meal_items,
+            original_category=original["meal_risk_category"],
+            algorithm="astar",
+        )
+        self.assertEqual(result["status"], "low_risk_no_suggestions_needed")
+        self.assertEqual(result["suggestions"], [])
+
 
 if __name__ == "__main__":
     unittest.main()

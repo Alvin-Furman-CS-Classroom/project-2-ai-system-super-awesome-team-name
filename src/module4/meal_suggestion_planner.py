@@ -3,11 +3,14 @@
 from __future__ import annotations
 
 import heapq
+import logging
 from dataclasses import dataclass
 from typing import Dict, List, Literal, Optional, Sequence, Tuple, TypedDict
 
 from src.module1.knowledge_base import NutritionKnowledgeBase
 from src.module3.meal_risk_analyzer import MealRiskAnalyzer
+
+logger = logging.getLogger(__name__)
 
 MealRiskCategory = Literal["low", "medium", "high"]
 
@@ -82,6 +85,7 @@ _CATEGORY_KEYWORDS: Dict[str, Tuple[str, ...]] = {
 # and “brown rice boiled” as two separate suggestions).
 _DIVERSITY_PREP_TERMS: Tuple[str, ...] = (
     "boiled",
+    "sweetened",
     "steamed",
     "grilled",
     "sauteed",
@@ -97,10 +101,28 @@ _DIVERSITY_PREP_TERMS: Tuple[str, ...] = (
     "frozen",
     "raw",
     "overcooked",
+    "iced",
     "al dente",
     "from concentrate",
     "concentrate",
 )
+
+# Search tuning and candidate-generation constants.
+SWAP_NEIGHBORS_TOP_K: int = 60
+SWAP_CANDIDATE_SLICE: int = 8
+
+ADD_CANDIDATE_GI_MAX: float = 55.0
+ADD_CANDIDATE_MIN_FIBER: float = 1.5
+ADD_CANDIDATE_SLICE: int = 10
+
+ABSOLUTE_MAX_FOUND_CANDIDATES: int = 50
+MIN_FOUND_CANDIDATES: int = 10
+FOUND_CANDIDATES_MULTIPLIER: int = 8
+
+DEFAULT_ADD_SERVING_SIZE: str = "100g"
+
+MAX_ALLOWED_DIVERSITY_OVERLAP: int = 1
+EMPTY_DIVERSITY_SIGNATURE_SENTINEL: str = ""
 
 
 class MealItem(TypedDict):
@@ -187,61 +209,10 @@ class MealSuggestionPlanner:
             }
 
         self._original_count = len(meal_items)
-
-        start_meal = tuple((item["food_name"], item["serving_size"]) for item in meal_items)
-        start_node = _Node(meal=start_meal, actions=tuple(), edits_count=0)
-        frontier: List[Tuple[Tuple[int, int, int], int, _Node]] = []
-        counter = 0
-        heapq.heappush(frontier, (self._priority_tuple(start_node, original_level, algorithm), counter, start_node))
-
-        best_seen_edits: Dict[Tuple[Tuple[str, str], ...], int] = {self._canonical(start_node.meal): 0}
-        found_candidates: List[Suggestion] = []
-        expansions = 0
-        # Collect more than we will ultimately display, then pick a diverse subset.
-        max_found_candidates = min(50, max(10, desired_count * 8))
-
-        while (
-            frontier
-            and len(found_candidates) < max_found_candidates
-            and expansions < self.max_expansions
-        ):
-            _, _, node = heapq.heappop(frontier)
-            expansions += 1
-
-            if node.edits_count > 0:
-                analysis = self.meal_risk_analyzer.analyze_meal(
-                    [{"food_name": f, "serving_size": s} for f, s in node.meal]
-                )
-                new_category = analysis["meal_risk_category"]
-                if self._is_goal(original_level, new_category):
-                    found_candidates.append(
-                        {
-                            "edited_meal": [{"food_name": f, "serving_size": s} for f, s in node.meal],
-                            "actions": list(node.actions),
-                            "resulting_category": new_category,
-                            "resulting_score": float(analysis["risk_score"]),
-                        }
-                    )
-                    continue
-
-            if node.edits_count >= self.max_edits:
-                continue
-
-            for next_node in self._expand(node):
-                key = self._canonical(next_node.meal)
-                prev_best = best_seen_edits.get(key)
-                if prev_best is not None and prev_best <= next_node.edits_count:
-                    continue
-                best_seen_edits[key] = next_node.edits_count
-                counter += 1
-                heapq.heappush(
-                    frontier,
-                    (self._priority_tuple(next_node, original_level, algorithm), counter, next_node),
-                )
-
-        found_candidates.sort(key=lambda s: (len(s["actions"]), s["resulting_score"]))
         target = "Any one of these suggestions should lower your meal risk by at least one category."
-        diverse = self._select_diverse(found_candidates, desired_count)
+        start_meal = tuple((item["food_name"], item["serving_size"]) for item in meal_items)
+        found_candidates = self._collect_goal_candidates(start_meal, original_level, desired_count, algorithm)
+        diverse = self._select_diverse(found_candidates, desired_count, start_meal=start_meal)
         if diverse:
             return {
                 "target_message": target,
@@ -254,21 +225,187 @@ class MealSuggestionPlanner:
             "status": "no_suggestions_found",
         }
 
-    def _priority_tuple(self, node: _Node, original_level: int, algorithm: str) -> Tuple[int, int, int]:
-        if algorithm.lower() == "ucs":
-            return (node.edits_count, 0, 0)
-        h = self._heuristic(node, original_level)
-        return (node.edits_count + h, node.edits_count, h)
-
-    def _heuristic(self, node: _Node, original_level: int) -> int:
-        if node.edits_count == 0:
-            return 1
-        analysis = self.meal_risk_analyzer.analyze_meal(
-            [{"food_name": f, "serving_size": s} for f, s in node.meal]
+    def _collect_goal_candidates(
+        self,
+        start_meal: Tuple[Tuple[str, str], ...],
+        original_level: int,
+        desired_count: int,
+        algorithm: str,
+    ) -> List[Suggestion]:
+        """Run the search and return all goal-satisfying candidates found."""
+        start_node, frontier, counter, best_seen_edits, analysis_cache = self._init_search(
+            start_meal=start_meal,
+            original_level=original_level,
+            algorithm=algorithm,
         )
-        if self._is_goal(original_level, analysis["meal_risk_category"]):
-            return 0
-        return 1
+        found_candidates: List[Suggestion] = []
+        expansions = 0
+        max_found_candidates = min(
+            ABSOLUTE_MAX_FOUND_CANDIDATES,
+            max(MIN_FOUND_CANDIDATES, desired_count * FOUND_CANDIDATES_MULTIPLIER),
+        )
+
+        while (
+            frontier
+            and expansions < self.max_expansions
+            and len(found_candidates) < max_found_candidates
+        ):
+            _, _, node = heapq.heappop(frontier)
+            expansions += 1
+
+            if self._try_add_goal_candidate(
+                node=node,
+                original_level=original_level,
+                analysis_cache=analysis_cache,
+                found_candidates=found_candidates,
+            ):
+                continue
+
+            if node.edits_count >= self.max_edits:
+                continue
+
+            counter = self._enqueue_children(
+                node=node,
+                frontier=frontier,
+                counter=counter,
+                best_seen_edits=best_seen_edits,
+                original_level=original_level,
+                algorithm=algorithm,
+                analysis_cache=analysis_cache,
+            )
+
+        # Lexicographic-like ranking key: fewer edits first, then lower risk score.
+        found_candidates.sort(key=lambda s: (len(s["actions"]), s["resulting_score"]))
+        return found_candidates
+
+    def _init_search(
+        self,
+        *,
+        start_meal: Tuple[Tuple[str, str], ...],
+        original_level: int,
+        algorithm: str,
+    ) -> Tuple[_Node, List[Tuple[Tuple[int, int, float], int, _Node]], int, Dict[Tuple[Tuple[str, str], ...], int], Dict[Tuple[Tuple[str, str], ...], Tuple[str, float]]]:
+        """Initialize frontier and memoization for the search."""
+        start_node = _Node(meal=start_meal, actions=tuple(), edits_count=0)
+        frontier: List[Tuple[Tuple[int, int, float], int, _Node]] = []
+        counter = 0
+        heapq.heappush(
+            frontier,
+            (self._priority_tuple(start_node, original_level, algorithm, analysis_category=None, risk_score=0.0), counter, start_node),
+        )
+        best_seen_edits: Dict[Tuple[Tuple[str, str], ...], int] = {
+            self._canonical(start_node.meal): 0
+        }
+        analysis_cache: Dict[Tuple[Tuple[str, str], ...], Tuple[str, float]] = {}
+        return start_node, frontier, counter, best_seen_edits, analysis_cache
+
+    def _try_add_goal_candidate(
+        self,
+        *,
+        node: _Node,
+        original_level: int,
+        analysis_cache: Dict[Tuple[Tuple[str, str], ...], Tuple[str, float]],
+        found_candidates: List[Suggestion],
+    ) -> bool:
+        """If the node satisfies the goal, append it and return True."""
+        if node.edits_count <= 0:
+            return False
+
+        analysis_category, risk_score = self._get_cached_analysis(
+            node.meal, analysis_cache
+        )
+        if not self._is_goal(original_level, analysis_category):
+            return False
+
+        found_candidates.append(
+            {
+                "edited_meal": [{"food_name": f, "serving_size": s} for f, s in node.meal],
+                "actions": list(node.actions),
+                "resulting_category": analysis_category,
+                "resulting_score": float(risk_score),
+            }
+        )
+        return True
+
+    def _enqueue_children(
+        self,
+        *,
+        node: _Node,
+        frontier: List[Tuple[Tuple[int, int, float], int, _Node]],
+        counter: int,
+        best_seen_edits: Dict[Tuple[Tuple[str, str], ...], int],
+        original_level: int,
+        algorithm: str,
+        analysis_cache: Dict[Tuple[Tuple[str, str], ...], Tuple[str, float]],
+    ) -> int:
+        """Expand a node and enqueue successors into the frontier."""
+        for next_node in self._expand(node):
+            key = self._canonical(next_node.meal)
+            prev_best = best_seen_edits.get(key)
+            if prev_best is not None and prev_best <= next_node.edits_count:
+                continue
+
+            best_seen_edits[key] = next_node.edits_count
+            counter += 1
+
+            next_analysis_category, next_risk_score = self._get_cached_analysis(
+                next_node.meal, analysis_cache
+            )
+            heapq.heappush(
+                frontier,
+                (
+                    self._priority_tuple(
+                        next_node,
+                        original_level,
+                        algorithm,
+                        analysis_category=next_analysis_category,
+                        risk_score=next_risk_score,
+                    ),
+                    counter,
+                    next_node,
+                ),
+            )
+        return counter
+
+    def _priority_tuple(
+        self,
+        node: _Node,
+        original_level: int,
+        algorithm: str,
+        *,
+        analysis_category: Optional[str],
+        risk_score: float,
+    ) -> Tuple[int, int, float]:
+        """
+        Explicit lexicographic priority:
+          1) edits_count (or edits_count + goal-distance for A*)
+          2) edits_count (tie-break)
+          3) resulting risk score (lower is better)
+        """
+        if algorithm.lower() == "ucs":
+            return (node.edits_count, node.edits_count, float(risk_score))
+
+        goal_met = False if analysis_category is None else self._is_goal(original_level, analysis_category)
+        h = 0 if goal_met else 1
+        return (node.edits_count + h, node.edits_count, float(risk_score))
+
+    def _get_cached_analysis(
+        self,
+        meal: Tuple[Tuple[str, str], ...],
+        cache: Dict[Tuple[Tuple[str, str], ...], Tuple[str, float]],
+    ) -> Tuple[str, float]:
+        """Memoize Module 3 analysis results during search."""
+        key = self._canonical(meal)
+        cached = cache.get(key)
+        if cached is not None:
+            return cached
+
+        analysis = self.meal_risk_analyzer.analyze_meal(
+            [{"food_name": f, "serving_size": s} for f, s in meal]
+        )
+        result = (analysis["meal_risk_category"], float(analysis["risk_score"]))
+        cache[key] = result
+        return result
 
     def _is_goal(self, original_level: int, new_category: str) -> bool:
         new_level = _RISK_TO_LEVEL.get(new_category, 0)
@@ -278,7 +415,7 @@ class MealSuggestionPlanner:
         out: List[_Node] = []
 
         # Swap actions (same category only).
-        for idx in range(min(self._original_count, len(node.meal))):
+        for idx in range(self._original_count):
             food_name, serving_size = node.meal[idx]
             for replacement in self._swap_candidates(food_name):
                 if replacement == food_name:
@@ -317,11 +454,15 @@ class MealSuggestionPlanner:
         pool: List[str] = []
         if self.matcher is not None and hasattr(self.matcher, "find_nearest_neighbors"):
             try:
-                neighbors = self.matcher.find_nearest_neighbors(food_name, top_k=60, offset=0)
+                neighbors = self.matcher.find_nearest_neighbors(
+                    food_name, top_k=SWAP_NEIGHBORS_TOP_K, offset=0
+                )
                 for candidate, _ in neighbors:
                     if infer_food_category(candidate) == src_category:
                         pool.append(candidate)
-            except Exception:
+            except (AttributeError, TypeError, ValueError) as e:
+                # Best-effort: if neighbor search fails, fall back to scanning all foods.
+                logger.debug("Swap candidate neighbor search failed for %r: %s", food_name, e)
                 pool = []
 
         if not pool:
@@ -335,19 +476,21 @@ class MealSuggestionPlanner:
             {c for c in pool if c != food_name},
             key=lambda c: (self._safe_gi(c) > src_gi, self._safe_gi(c), c),
         )
-        return ranked[:8]
+        return ranked[:SWAP_CANDIDATE_SLICE]
 
     def _add_candidates(self) -> List[str]:
-        pool: List[str] = []
+        ranked: List[Tuple[float, str]] = []
         for food in self._all_foods:
             category = infer_food_category(food)
             if category not in {"vegetable", "legume", "protein"}:
                 continue
             features = self.knowledge_base.get_nutrition_features(food, "100g")
-            if float(features["glycemic_index"]) <= 55.0 and float(features["fiber"]) >= 1.5:
-                pool.append(food)
-        pool.sort(key=lambda f: (-float(self.knowledge_base.get_nutrition_features(f, "100g")["fiber"]), f))
-        return pool[:10]
+            gi = float(features["glycemic_index"])
+            fiber_g = float(features["fiber"])
+            if gi <= ADD_CANDIDATE_GI_MAX and fiber_g >= ADD_CANDIDATE_MIN_FIBER:
+                ranked.append((fiber_g, food))
+        ranked.sort(key=lambda t: (-t[0], t[1]))
+        return [name for _, name in ranked[:ADD_CANDIDATE_SLICE]]
 
     def _safe_gi(self, food_name: str) -> float:
         return float(self.knowledge_base.get_nutrition_features(food_name, "100g")["glycemic_index"])
@@ -371,41 +514,59 @@ class MealSuggestionPlanner:
             lowered = lowered.replace(term, " ")
         return " ".join(lowered.split())
 
-    def _changed_new_foods_from_actions(self, actions: Sequence[str]) -> List[str]:
-        new_foods: List[str] = []
-        for a in actions:
-            if a.startswith("Swap "):
-                # "Swap old -> new"
-                if "->" in a:
-                    new_food = a.split("->", 1)[1].strip()
-                    new_foods.append(new_food)
-            elif a.startswith("Add "):
-                # "Add X (100g)"
-                core = a[len("Add ") :]
-                if " (" in core:
-                    new_foods.append(core.split(" (", 1)[0].strip())
-                else:
-                    new_foods.append(core.strip())
-        return new_foods
+    def _candidate_diversity_signature(
+        self,
+        candidate: Suggestion,
+        *,
+        start_meal: Tuple[Tuple[str, str], ...],
+    ) -> set[str]:
+        """Build a diversity signature from the candidate meal edit.
 
-    def _select_diverse(self, candidates: Sequence[Suggestion], k: int) -> List[Suggestion]:
-        """Select up to k suggestions that differ in underlying food changes."""
+        The signature is the set of *underlying* food names introduced by edits
+        (swaps on original positions + added items). Cooking/prep modifiers are
+        normalized so prep variants don't count as “different foods.”
+        """
+        orig_count = len(start_meal)
+        edited = [(i["food_name"], i["serving_size"]) for i in candidate["edited_meal"]]
+
+        signature: set[str] = set()
+        # Include swapped-in foods (positions that correspond to original meal items).
+        for idx in range(orig_count):
+            original_food = start_meal[idx][0]
+            edited_food = edited[idx][0] if idx < len(edited) else original_food
+            if edited_food != original_food:
+                signature.add(self._normalize_food_for_diversity(edited_food))
+
+        # Include added foods (items beyond original positions).
+        for idx in range(orig_count, len(edited)):
+            signature.add(self._normalize_food_for_diversity(edited[idx][0]))
+
+        # If the signature is empty (should be rare since goal candidates imply edits),
+        # return a sentinel so it doesn't accidentally become “disjoint from everything.”
+        return signature if signature else {EMPTY_DIVERSITY_SIGNATURE_SENTINEL}
+
+    def _select_diverse(
+        self,
+        candidates: Sequence[Suggestion],
+        k: int,
+        *,
+        start_meal: Tuple[Tuple[str, str], ...],
+    ) -> List[Suggestion]:
+        """Select up to k suggestions with distinct underlying edits."""
         if not candidates or k <= 0:
             return []
 
-        sigs: List[set[str]] = []
-        for c in candidates:
-            new_foods = self._changed_new_foods_from_actions(c["actions"])
-            sigs.append({self._normalize_food_for_diversity(f) for f in new_foods if f})
-
         selected: List[Suggestion] = []
         selected_sigs: List[set[str]] = []
+        candidate_sigs: List[set[str]] = [
+            self._candidate_diversity_signature(c, start_meal=start_meal) for c in candidates
+        ]
 
         # Strict phase: require disjoint underlying new-food sets.
         for i, c in enumerate(candidates):
             if len(selected) >= k:
                 break
-            s = sigs[i]
+            s = candidate_sigs[i]
             if all(s.isdisjoint(prev) for prev in selected_sigs):
                 selected.append(c)
                 selected_sigs.append(s)
@@ -419,8 +580,8 @@ class MealSuggestionPlanner:
                 break
             if c in selected:
                 continue
-            s = sigs[i]
-            if all(len(s.intersection(prev)) <= 1 for prev in selected_sigs):
+            s = candidate_sigs[i]
+            if all(len(s.intersection(prev)) <= MAX_ALLOWED_DIVERSITY_OVERLAP for prev in selected_sigs):
                 selected.append(c)
                 selected_sigs.append(s)
 

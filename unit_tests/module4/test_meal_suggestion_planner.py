@@ -102,7 +102,9 @@ class TestMealSuggestionPlanner(unittest.TestCase):
             original_category="medium",
             algorithm="astar",
         )["suggestions"]
-        self.assertGreaterEqual(len(suggestions), 1)
+        self.assertEqual(len(suggestions), 3)
+        for s in suggestions:
+            self.assertEqual(s["resulting_category"], "low")
         joined_actions = " ".join(" ".join(s["actions"]) for s in suggestions)
         self.assertIn("brown rice", joined_actions)
         self.assertNotIn("white bread", joined_actions)
@@ -120,6 +122,37 @@ class TestMealSuggestionPlanner(unittest.TestCase):
         self.assertLessEqual(len(result["suggestions"]), 5)
         for s in result["suggestions"]:
             self.assertLessEqual(len(s["actions"]), 5)
+            self.assertIn(s["resulting_category"], ("medium", "low"))
+
+    def test_diversity_filters_prep_variants(self):
+        class KB3(FakeKB):
+            def __init__(self):
+                super().__init__()
+                # Same underlying change, different prep tokens.
+                self._foods["brown rice boiled"] = {"glycemic_index": 50.0, "fiber": 2.2}
+                self._foods["brown rice steamed"] = {"glycemic_index": 50.0, "fiber": 2.2}
+
+        class Matcher3:
+            def find_nearest_neighbors(self, query, top_k=5, offset=0):
+                if query == "white rice":
+                    return [
+                        ("brown rice boiled", 0.9),
+                        ("brown rice steamed", 0.8),
+                        ("quinoa", 0.7),
+                    ][offset: offset + top_k]
+                return []
+
+        planner = MealSuggestionPlanner(KB3(), FakeAnalyzer(), matcher=Matcher3(), max_edits=2, max_expansions=120)
+        result = planner.generate_suggestions(
+            [{"food_name": "white rice", "serving_size": "100g"}],
+            original_category="medium",
+            algorithm="astar",
+            top_k=2,
+        )
+        self.assertEqual(result["status"], "suggestions_found")
+        actions_text = " ".join(" ".join(s["actions"]) for s in result["suggestions"])
+        # We should not show both boiled and steamed variants together.
+        self.assertFalse("brown rice boiled" in actions_text and "brown rice steamed" in actions_text)
 
     def test_status_low_risk_no_suggestions_needed(self):
         planner = MealSuggestionPlanner(FakeKB(), FakeAnalyzer(), matcher=FakeMatcher(), max_edits=2, max_expansions=40)
