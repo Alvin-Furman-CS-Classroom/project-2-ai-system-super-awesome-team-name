@@ -77,6 +77,31 @@ _CATEGORY_KEYWORDS: Dict[str, Tuple[str, ...]] = {
     "fat_condiment": ("oil", "butter", "dressing", "vinaigrette", "sauce", "mayo"),
 }
 
+# Cooking/prep modifiers that should not create artificial “different” foods.
+# Used only for diversity selection (so we don’t return “brown rice steamed”
+# and “brown rice boiled” as two separate suggestions).
+_DIVERSITY_PREP_TERMS: Tuple[str, ...] = (
+    "boiled",
+    "steamed",
+    "grilled",
+    "sauteed",
+    "saute",
+    "baked",
+    "fried",
+    "roasted",
+    "pureed",
+    "pickled",
+    "smoked",
+    "canned",
+    "fresh",
+    "frozen",
+    "raw",
+    "overcooked",
+    "al dente",
+    "from concentrate",
+    "concentrate",
+)
+
 
 class MealItem(TypedDict):
     food_name: str
@@ -86,7 +111,6 @@ class MealItem(TypedDict):
 class Suggestion(TypedDict):
     edited_meal: List[MealItem]
     actions: List[str]
-    explanation: str
     resulting_category: MealRiskCategory
     resulting_score: float
 
@@ -168,10 +192,16 @@ class MealSuggestionPlanner:
         heapq.heappush(frontier, (self._priority_tuple(start_node, original_level, algorithm), counter, start_node))
 
         best_seen_edits: Dict[Tuple[Tuple[str, str], ...], int] = {self._canonical(start_node.meal): 0}
-        found: List[Suggestion] = []
+        found_candidates: List[Suggestion] = []
         expansions = 0
+        # Collect more than we will ultimately display, then pick a diverse subset.
+        max_found_candidates = min(50, max(10, desired_count * 8))
 
-        while frontier and len(found) < desired_count and expansions < self.max_expansions:
+        while (
+            frontier
+            and len(found_candidates) < max_found_candidates
+            and expansions < self.max_expansions
+        ):
             _, _, node = heapq.heappop(frontier)
             expansions += 1
 
@@ -181,11 +211,10 @@ class MealSuggestionPlanner:
                 )
                 new_category = analysis["meal_risk_category"]
                 if self._is_goal(original_level, new_category):
-                    found.append(
+                    found_candidates.append(
                         {
                             "edited_meal": [{"food_name": f, "serving_size": s} for f, s in node.meal],
                             "actions": list(node.actions),
-                            "explanation": self._build_simple_explanation(list(node.actions)),
                             "resulting_category": new_category,
                             "resulting_score": float(analysis["risk_score"]),
                         }
@@ -207,12 +236,13 @@ class MealSuggestionPlanner:
                     (self._priority_tuple(next_node, original_level, algorithm), counter, next_node),
                 )
 
-        found.sort(key=lambda s: (len(s["actions"]), s["resulting_score"]))
+        found_candidates.sort(key=lambda s: (len(s["actions"]), s["resulting_score"]))
         target = "Any one of these suggestions should lower your meal risk by at least one category."
-        if found:
+        diverse = self._select_diverse(found_candidates, desired_count)
+        if diverse:
             return {
                 "target_message": target,
-                "suggestions": found[:desired_count],
+                "suggestions": diverse,
                 "status": "suggestions_found",
             }
         return {
@@ -321,9 +351,69 @@ class MealSuggestionPlanner:
     def _canonical(self, meal: Tuple[Tuple[str, str], ...]) -> Tuple[Tuple[str, str], ...]:
         return tuple(sorted(meal))
 
-    def _build_simple_explanation(self, actions: List[str]) -> str:
-        if not actions:
-            return "No changes needed."
-        if len(actions) == 1:
-            return "This single change keeps the meal familiar while improving blood-sugar friendliness."
-        return "These small changes keep the meal similar while reducing likely blood-sugar impact."
+    def _normalize_food_for_diversity(self, food_name: str) -> str:
+        """Normalize food name for diversity checks.
+
+        Strips common cooking/prep modifiers so two suggestions that only differ
+        by prep style don't count as “different foods”.
+        """
+        lowered = (food_name or "").lower().strip()
+        # Multi-word modifiers first (so "from concentrate" is removed as a phrase).
+        for term in sorted(_DIVERSITY_PREP_TERMS, key=len, reverse=True):
+            lowered = lowered.replace(term, " ")
+        return " ".join(lowered.split())
+
+    def _changed_new_foods_from_actions(self, actions: Sequence[str]) -> List[str]:
+        new_foods: List[str] = []
+        for a in actions:
+            if a.startswith("Swap "):
+                # "Swap old -> new"
+                if "->" in a:
+                    new_food = a.split("->", 1)[1].strip()
+                    new_foods.append(new_food)
+            elif a.startswith("Add "):
+                # "Add X (100g)"
+                core = a[len("Add ") :]
+                if " (" in core:
+                    new_foods.append(core.split(" (", 1)[0].strip())
+                else:
+                    new_foods.append(core.strip())
+        return new_foods
+
+    def _select_diverse(self, candidates: Sequence[Suggestion], k: int) -> List[Suggestion]:
+        """Select up to k suggestions that differ in underlying food changes."""
+        if not candidates or k <= 0:
+            return []
+
+        sigs: List[set[str]] = []
+        for c in candidates:
+            new_foods = self._changed_new_foods_from_actions(c["actions"])
+            sigs.append({self._normalize_food_for_diversity(f) for f in new_foods if f})
+
+        selected: List[Suggestion] = []
+        selected_sigs: List[set[str]] = []
+
+        # Strict phase: require disjoint underlying new-food sets.
+        for i, c in enumerate(candidates):
+            if len(selected) >= k:
+                break
+            s = sigs[i]
+            if all(s.isdisjoint(prev) for prev in selected_sigs):
+                selected.append(c)
+                selected_sigs.append(s)
+
+        if len(selected) >= k:
+            return selected[:k]
+
+        # Relaxed phase: allow up to 1 overlap.
+        for i, c in enumerate(candidates):
+            if len(selected) >= k:
+                break
+            if c in selected:
+                continue
+            s = sigs[i]
+            if all(len(s.intersection(prev)) <= 1 for prev in selected_sigs):
+                selected.append(c)
+                selected_sigs.append(s)
+
+        return selected[:k]

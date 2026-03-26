@@ -523,6 +523,26 @@ def main():
                 if len(meal_analysis["contributing_factors"]) > 3:
                     print("  - (More details available in the full analysis.)")
 
+                # Module 4 suggestions appear immediately after meal analysis.
+                suggestion_result = meal_suggestion_planner.generate_suggestions(
+                    meal_items, original_category=meal_analysis["meal_risk_category"], algorithm="astar"
+                )
+                if suggestion_result["suggestions"]:
+                    print("\n" + "=" * 50)
+                    print("MEAL IMPROVEMENT SUGGESTIONS (Module 4)")
+                    print("=" * 50)
+                    print(suggestion_result["target_message"])
+                    print("Pick any one option below:")
+                    for idx, suggestion in enumerate(suggestion_result["suggestions"], 1):
+                        print(f"\nOption {idx}:")
+                        for action in suggestion["actions"]:
+                            print(f"  - {action}")
+                else:
+                    if suggestion_result["status"] == "low_risk_no_suggestions_needed":
+                        print("\nModule 4: No additional risk-lowering suggestions needed for this meal.")
+                    else:
+                        print("\nModule 4: No suggestions found within current search limits.")
+
                 show_more = input("\nShow full meal analysis details? (y/n): ").strip().lower()
                 if show_more in ("y", "yes"):
                     print("\nFull contributing factors:")
@@ -549,27 +569,6 @@ def main():
                             f"Fiber {features['fiber']:.1f}g, "
                             f"Protein {features['protein']:.1f}g"
                         )
-
-                # Module 4 suggestions appear immediately after meal analysis.
-                suggestion_result = meal_suggestion_planner.generate_suggestions(
-                    meal_items, original_category=meal_analysis["meal_risk_category"], algorithm="astar"
-                )
-                if suggestion_result["suggestions"]:
-                    print("\n" + "=" * 50)
-                    print("MEAL IMPROVEMENT SUGGESTIONS (Module 4)")
-                    print("=" * 50)
-                    print(suggestion_result["target_message"])
-                    print("Pick any one option below:")
-                    for idx, suggestion in enumerate(suggestion_result["suggestions"], 1):
-                        print(f"\nOption {idx}:")
-                        for action in suggestion["actions"]:
-                            print(f"  - {action}")
-                        print(f"  Why this helps: {suggestion['explanation']}")
-                else:
-                    if suggestion_result["status"] == "low_risk_no_suggestions_needed":
-                        print("\nModule 4: No additional risk-lowering suggestions needed for this meal.")
-                    else:
-                        print("\nModule 4: No suggestions found within current search limits.")
 
             except FoodNotFoundError as e:
                 print(f"\nError: {e}")
