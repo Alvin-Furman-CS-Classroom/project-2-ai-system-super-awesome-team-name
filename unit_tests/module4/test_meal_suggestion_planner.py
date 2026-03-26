@@ -67,6 +67,23 @@ class NeverGoalAnalyzer:
     def analyze_meal(self, meal_items):
         return {"meal_risk_category": "high", "risk_score": 95.0}
 
+class AddedSwapOnlyAnalyzer:
+    """
+    Fake rule:
+      - medium unless "bean" is present
+      - low only when "bean" is present
+
+    Because "bean" is only introduced in this test by swapping the *added*
+    legume item, the planner should not be able to reach the goal when
+    swaps are restricted to the original meal items.
+    """
+
+    def analyze_meal(self, meal_items):
+        names = [m["food_name"] for m in meal_items]
+        if "bean" in names:
+            return {"meal_risk_category": "low", "risk_score": 25.0}
+        return {"meal_risk_category": "medium", "risk_score": 55.0}
+
 
 class TestMealSuggestionPlanner(unittest.TestCase):
     def test_category_inference_and_counts(self):
@@ -121,6 +138,29 @@ class TestMealSuggestionPlanner(unittest.TestCase):
             original_category="high",
             algorithm="ucs",
         )
+        self.assertEqual(result["status"], "no_suggestions_found")
+        self.assertEqual(result["suggestions"], [])
+
+    def test_swap_cannot_replace_added_items(self):
+        class KB2(FakeKB):
+            def __init__(self):
+                super().__init__()
+                self._foods = {
+                    "chicken breast": {"glycemic_index": 0.0, "fiber": 0.0},
+                    # Qualifies as add-candidate (fiber >= 1.5 and GI <= 55).
+                    "lentils": {"glycemic_index": 30.0, "fiber": 7.0},
+                    # Same category for swap candidates, but should NOT be an add candidate.
+                    "bean": {"glycemic_index": 80.0, "fiber": 0.2},
+                }
+
+        planner = MealSuggestionPlanner(KB2(), AddedSwapOnlyAnalyzer(), matcher=None, max_edits=2, max_expansions=80)
+        result = planner.generate_suggestions(
+            [{"food_name": "chicken breast", "serving_size": "100g"}],
+            original_category="medium",
+            algorithm="astar",
+        )
+        # Goal ("low") would require swapping the added legume (lentils -> bean),
+        # which is disallowed by the "only remove original meal items" rule.
         self.assertEqual(result["status"], "no_suggestions_found")
         self.assertEqual(result["suggestions"], [])
 

@@ -488,6 +488,8 @@ def main():
                     total_fiber_g += float(features["fiber"])
                     total_protein_g += float(features["protein"])
 
+                print("\nLoading meal risk analysis and improvement suggestions...")
+
                 # Compute overall meal risk (Module 3) using precomputed totals.
                 meal_analysis = meal_risk_analyzer.analyze_meal_from_precomputed(
                     meal_items=meal_items,
@@ -497,6 +499,14 @@ def main():
                         "total_fiber_g": total_fiber_g,
                         "total_protein_g": total_protein_g,
                     },
+                )
+
+                # Compute Module 4 suggestions before printing anything, so the
+                # whole report appears all at once.
+                suggestion_result = meal_suggestion_planner.generate_suggestions(
+                    meal_items,
+                    original_category=meal_analysis["meal_risk_category"],
+                    algorithm="astar",
                 )
 
                 print("\n" + "=" * 50)
@@ -523,10 +533,7 @@ def main():
                 if len(meal_analysis["contributing_factors"]) > 3:
                     print("  - (More details available in the full analysis.)")
 
-                # Module 4 suggestions appear immediately after meal analysis.
-                suggestion_result = meal_suggestion_planner.generate_suggestions(
-                    meal_items, original_category=meal_analysis["meal_risk_category"], algorithm="astar"
-                )
+                # Module 4 suggestions section.
                 if suggestion_result["suggestions"]:
                     print("\n" + "=" * 50)
                     print("MEAL IMPROVEMENT SUGGESTIONS (Module 4)")

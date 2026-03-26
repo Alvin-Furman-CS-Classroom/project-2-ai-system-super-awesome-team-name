@@ -166,6 +166,7 @@ class MealSuggestionPlanner:
         self.max_edits = max_edits
         self.max_expansions = max_expansions
         self._all_foods = self.knowledge_base.list_all_foods()
+        self._original_count: int = 0
 
     def generate_suggestions(
         self,
@@ -184,6 +185,8 @@ class MealSuggestionPlanner:
                 "suggestions": [],
                 "status": "low_risk_no_suggestions_needed",
             }
+
+        self._original_count = len(meal_items)
 
         start_meal = tuple((item["food_name"], item["serving_size"]) for item in meal_items)
         start_node = _Node(meal=start_meal, actions=tuple(), edits_count=0)
@@ -275,7 +278,8 @@ class MealSuggestionPlanner:
         out: List[_Node] = []
 
         # Swap actions (same category only).
-        for idx, (food_name, serving_size) in enumerate(node.meal):
+        for idx in range(min(self._original_count, len(node.meal))):
+            food_name, serving_size = node.meal[idx]
             for replacement in self._swap_candidates(food_name):
                 if replacement == food_name:
                     continue
@@ -349,7 +353,11 @@ class MealSuggestionPlanner:
         return float(self.knowledge_base.get_nutrition_features(food_name, "100g")["glycemic_index"])
 
     def _canonical(self, meal: Tuple[Tuple[str, str], ...]) -> Tuple[Tuple[str, str], ...]:
-        return tuple(sorted(meal))
+        # Canonicalize while preserving which positions correspond to the original
+        # meal (so swaps are restricted to removing/replacing original foods).
+        orig_part = meal[: self._original_count]
+        added_part = meal[self._original_count :]
+        return (orig_part, tuple(sorted(added_part)))
 
     def _normalize_food_for_diversity(self, food_name: str) -> str:
         """Normalize food name for diversity checks.
