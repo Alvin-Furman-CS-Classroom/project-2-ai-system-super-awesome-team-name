@@ -1,12 +1,13 @@
 # Module 4 Rubric Review – Meal Modification & Alternative Generator
 
 ## Summary
-Module 4 (`src/module4/meal_suggestion_planner.py`) implements a **search-based meal modification** module that generates actionable **swap/add bundles** to reduce meal risk by **at least one risk tier** after Module 3 performs meal risk analysis. It integrates with:
+Module 4 (`src/module4/meal_suggestion_planner.py`) implements a **search-based meal modification** module that generates actionable **portion / swap / add** bundles to reduce meal risk by **at least one risk tier** after Module 3 performs meal risk analysis. It integrates with:
 - **Module 3** (`MealRiskAnalyzer`) to evaluate candidate meals and check whether the resulting meal risk category meets the goal.
-- **Module 1** (`NutritionKnowledgeBase`) to filter/generate sensible “add” candidates and (when needed) to rank swap candidates.
-- **Embeddings via `FoodMatcher`** (optional) to rank *within* valid swap candidates; however, **same-category** swap validity is enforced deterministically using a keyword-based category inference.
+- **Module 1** (`NutritionKnowledgeBase`) to list foods, read nutrition features for **add** candidates, and to **rank swap candidates** (glycemic index and glycemic load at a standard portion) within the same inferred food category.
 
-The CLI (`src/cli.py`) wires Module 4 directly into option **“2. Check meal risk”**: it computes Module 3’s report and Module 4’s suggestions before printing, and it then prints the suggestions in a compact options list. Unit and integration tests exist for the core constraints in `unit_tests/module4/` and `integration_tests/module4/`.
+**Same-category swaps** use **token/phrase-based** `infer_food_category` (not raw substring matching) and draw only from the knowledge base; the search **drops** states where two **different** original foods would both become the same swap-in. **Word embeddings are not used for Module 4**—they remain optional elsewhere in the CLI when resolving *user-typed* food names during meal entry.
+
+The CLI (`src/cli.py`) wires Module 4 into option **“2. Check meal risk”**: after Module 3’s recap it prints **optional tweaks**—a **top pick** and **more ideas** as resulting category, score, and **bullet steps only** (no full “plate after changes” listing; `edited_meal` remains in the structured result for code/tests). Unit and integration tests live in `unit_tests/module4/` and `integration_tests/module4/`.
 ---
 
 ## Scores
@@ -46,15 +47,15 @@ The table below summarizes the rubric items that were previously identified as n
 **Strengths:**
 - ✅ Search-driven suggestion generation is implemented using **Uniform Cost Search (UCS)** and **A\***-style priority ordering (`algorithm` parameter in `MealSuggestionPlanner.generate_suggestions`).
 - ✅ Goal checking uses Module 3’s meal risk category and returns only candidates that satisfy **“at least one tier down”**.
-- ✅ Swap validity enforces the project requirement: **swap replacements are restricted to the same inferred food category** (`infer_food_category` + `_swap_candidates`).
+- ✅ Swap validity enforces **same inferred food category** and, for **grain/starch**, the same **subfamily** (rice→rice, bread→bread, pasta→pasta) via `infer_grain_starch_subfamily` inside `_swap_candidates`.
 - ✅ Practical “minimal change” behavior is enforced via a capped edit budget (`max_edits`, default 5) and by returning only **up to 3 or 5 suggestions** based on the original meal risk level.
 - ✅ Diversity filtering is applied at the end so returned suggestions are not just cooking/prep variants of the same replacement food.
 - ✅ The CLI integration was updated so Module 4 recommendations show immediately after meal analysis output, and the “show full meal analysis details?” prompt comes after suggestions.
 
 **Assessment:**
-- ✅ The module meets its core specification: swap/add edits, same-category swap constraint, “swap only original meal items” constraint, goal test for at least one-tier improvement, and CLI integration.
-- ✅ Lexicographic intent is implemented explicitly in the UCS/A* frontier priority key (goal-distance/edit count/risk-score ordering) and validated via goal checking using Module 3’s category.
-- ✅ Same-category swap validity is enforced deterministically via the project’s category inference map, ensuring stable swap constraints for the required demo/test inputs.
+- ✅ The module meets its core specification: portion/swap/add edits, same-category swap constraint, “swap only original meal items” constraint, goal test for at least one-tier improvement, and CLI integration.
+- ✅ Lexicographic intent is implemented explicitly in the UCS/A* frontier priority key (goal-distance, edit count, risk score, and **effective glycemic load** tie-break when many high-risk states share the capped risk score) and validated via goal checking using Module 3’s category.
+- ✅ Same-category swap validity is enforced via **token/phrase** category rules (with targeted overrides); swap neighbors are enumerated from the KB and ranked by GI/GL. **Distinct-original / same-replacement** swap combinations are rejected so suggestions stay interpretable (e.g. not rice and bread both → the same cheese).
 
 ---
 
@@ -67,7 +68,7 @@ The table below summarizes the rubric items that were previously identified as n
 **Assessment:**
 - ✅ Implementation structure uses a clean, testable pipeline: search context initialization, goal evaluation, child enqueueing, candidate ranking, and diversity selection are separated into dedicated helpers.
 - ✅ Search and ranking logic is explicit, with named constants replacing tuning “magic numbers.”
-- ✅ Error handling is robust and debuggable (catching common failure modes in neighbor search and falling back to full scanning).
+- ✅ Swap candidate generation is a single, explainable code path (KB scan + category filter + sort keys), without an optional embedding dependency in the planner.
 
 No meaningful elegance improvements remain for this checkpoint.
 
@@ -76,8 +77,8 @@ No meaningful elegance improvements remain for this checkpoint.
 ### 3. Testing — 8/8
 **Test Coverage and Design:**
 - ✅ Unit tests verify:
-  - category inference and correct suggestion counts,
-  - swaps only include valid same-category replacements,
+  - category inference and correct suggestion counts (including token-based fixes and override cases),
+  - swaps only include valid same-category replacements and duplicate cross-swap detection,
   - high-risk requests up to the cap (≤5 actions bundles),
   - status differentiation (`low_risk_no_suggestions_needed` vs `no_suggestions_found`),
   - the important constraint that swap actions cannot replace foods added via `add`.
@@ -113,8 +114,8 @@ This criterion requires repository-level evidence (commit history, PRs, code rev
 - ✅ Module 4 consumes Module 3’s `meal_risk_category` and checks candidate meals using `MealRiskAnalyzer.analyze_meal`.
 
 **Outputs:**
-- ✅ Module 4 returns structured `SuggestionResult` data with a clear `status` field and a list of `suggestions`.
-- ✅ CLI uses only the action lists and status messaging, avoiding extra risk-score/category output as requested.
+- ✅ Module 4 returns structured `SuggestionResult` data with a clear `status` field and a list of `suggestions` (each with `edited_meal`, `actions`, `resulting_category`, `resulting_score`).
+- ✅ CLI presents the **best** suggestion with resulting category, **score out of 100**, and **bullet actions only**; additional options list the same fields without reprinting the full revised meal. Structured `Suggestion` objects still carry `edited_meal` for programmatic use.
 
 ---
 
@@ -125,7 +126,7 @@ This criterion requires repository-level evidence (commit history, PRs, code rev
 - ✅ Explanation-like output is implemented as action lists with user-facing, high-level messaging (rather than per-action numeric rationales).
 
 **Assessment:**
-- ✅ Lexicographic intent is now explicit in the search frontier: the priority key incorporates `(goal-distance, edit count, resulting risk score)` (A*) and `(edit count, resulting risk score)` (UCS), and goal validation still uses Module 3’s category.
+- ✅ Lexicographic intent is explicit in the search frontier: the priority key incorporates goal distance (A*), edit count, resulting risk score, and **effective glycemic load**; UCS uses edit count, risk score, and effective GL. Goal validation uses Module 3’s category.
 - ✅ Diversity filtering remains separate to avoid redundant prep-variant suggestions.
 
 ---

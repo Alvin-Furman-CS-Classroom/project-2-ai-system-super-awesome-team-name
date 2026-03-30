@@ -54,11 +54,11 @@ The theme is appropriate for exploring AI concepts because it uses multiple AI t
 
 **Topics:** Search (Uniform Cost Search, A\*)
 
-**Input:** Original meal (list of foods with portions) + target constraints (max allowed risk level, optional: calorie/carb limits) + user preferences (e.g., foods to avoid)
+**Input:** Original meal (list of foods with serving strings from Module 1) + Module 3 **meal risk category** (`low` / `medium` / `high`). Search is bounded by `max_edits` and `max_expansions` (defaults: 8 edits, 2000 expansions in the shipped CLI).
 
-**Output:** One or more modified meal suggestions, each as a list of foods with adjusted portions/swaps/additions (e.g., [("rice", "0.75 cup"), ("chicken", "4 oz"), ("broccoli", "1 cup"), ("black beans", "0.25 cup")]) + explanation of changes made
+**Output:** Zero or more **suggestion bundles**. Each bundle includes the full **edited meal** (for APIs/tests) plus a list of **action strings** (portion cuts, same-category swaps, optional low-GI adds). Only meals that improve Module 3’s category by **at least one tier** (e.g. high→medium/low) are returned; low starting risk yields “no suggestions needed.”
 
-**Integration:** Uses Module 3's risk score to determine if modification is needed; uses Module 2's rules to evaluate candidate modifications; suggestions displayed to user
+**Integration:** Uses **Module 3** to score every candidate meal; **Module 1** for food lists and nutrition features. Actions: **portion reduction** (75% / 50% / 25% grams) on eligible original lines, **swap** (same inferred category; grains also same **subfamily**), **add** (vegetables/legumes/proteins filtered by GI/fiber). **Embeddings are not used** for swaps. **Distinct** original lines cannot both map to the **same** swap-in. The CLI (meal risk menu) prints **steps only** for the top pick and alternates—not a full redrawn plate.
 
 **Prerequisites:** Course content on Search algorithms (Uniform Cost, A\*). Modules 2 and 3 must be completed first.
 

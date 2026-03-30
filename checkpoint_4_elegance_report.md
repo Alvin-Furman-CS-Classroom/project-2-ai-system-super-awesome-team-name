@@ -12,9 +12,11 @@
 ---
 
 ## Summary
-Module 4 (`src/module4/meal_suggestion_planner.py`) implements search-based suggestion generation using **UCS/A\***-style priority ordering, constrained swap/add actions, and a diversity filter so results are not redundant “prep variants.” The module uses typed internal structures (`TypedDict`, `Literal`, `_Node`) and has docstrings for public APIs. Unit and integration tests validate key constraints.  
+Module 4 (`src/module4/meal_suggestion_planner.py`) implements search-based suggestion generation using **UCS/A\***-style priority ordering (including **effective glycemic load** as a tie-break when risk scores hit the high cap), constrained **portion reduction**, **swap**, and **add** actions, and a diversity filter so results are not redundant “prep variants.” The module uses typed internal structures (`TypedDict`, `Literal`, `_Node`) and has docstrings for public APIs. Unit and integration tests validate key constraints.
 
-Overall, the code is functional and generally readable. Module 4’s implementation now uses a fully refactored helper pipeline (search initialization, goal checking, successor enqueuing, ranking, and diversity selection), centralized tuning constants, and robust neighbor-search fallback with debug logging. Diversity selection is computed from structured meal edits (`edited_meal`) rather than brittle action-string parsing.
+**Swap discovery** is **deterministic**: same coarse category via **token- and phrase-based** `infer_food_category`, and for **grain/starch** the same **subfamily** (`infer_grain_starch_subfamily`: rice vs bread vs pasta vs potato, etc.). Small overrides include **vinegar**, **tempeh/tofu**, **rice milk** (beverage). Candidates come only from the nutrition knowledge base, ranked by glycemic index and glycemic load at a standard portion—not by word embeddings. **Distinct** originals cannot both be swapped to the same replacement in one suggestion. Portion moves apply to eligible carb-heavy categories with nonzero reference GL.
+
+Overall, the code uses a clear helper pipeline (search initialization, goal checking, successor enqueuing, ranking, and diversity selection), centralized tuning constants, and structured diversity selection from `edited_meal` rather than parsing action strings.
 
 ---
 
@@ -73,7 +75,7 @@ Consistent formatting and readable control flow throughout the module align with
 ---
 
 ### 5. Code Hygiene — 4/4
-All search and candidate-generation tuning parameters are centralized as named constants. Diversity-selection logic is computed from structured meal differences rather than brittle parsing of action strings.
+All search and candidate-generation tuning parameters are centralized as named constants. Swap candidates are built from the KB with explicit ranking keys; diversity-selection logic is computed from structured meal differences rather than brittle parsing of action strings.
 
 ---
 
@@ -88,7 +90,7 @@ The implementation uses Python’s standard-library tools idiomatically (`heapq`
 ---
 
 ### 8. Error Handling — 4/4
-Neighbor-search failures catch common failure modes explicitly and then fall back deterministically. Debug logging prevents silent failure without breaking the CLI.
+Meal evaluation flows through Module 3 during search; portion/swap/add candidate generation uses Module 1 feature lookups with predictable inputs. No optional semantic neighbor path remains in Module 4, so there is no embedding-related failure mode in the planner itself.
 
 ---
 

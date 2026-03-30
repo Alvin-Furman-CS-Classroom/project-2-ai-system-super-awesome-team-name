@@ -45,6 +45,54 @@ from src.module4.meal_suggestion_planner import MealSuggestionPlanner
 from src.food_matcher import FoodMatcher
 
 
+def _print_art(lines: tuple[str, ...], indent: str = "  ") -> None:
+    """Print multi-line ASCII art with consistent left padding."""
+    for line in lines:
+        print(f"{indent}{line}")
+
+
+# Tiny terminal-safe doodles (ASCII only so old Windows consoles stay happy).
+ART_WELCOME_MASCOT: tuple[str, ...] = (
+    r"       _____       ",
+    r"      /     \      ",
+    r"     | ^   ^ |     ",
+    r"      \  w  /      ",
+    r"       -----       ",
+    r"      _|   |_      ",
+)
+
+ART_MENU_SPARKLE: tuple[str, ...] = (
+    r"    *  .  *  .  *  .  *  ",
+    r"  .    ~ menu ~    .      ",
+    r"    *  .  *  .  *  .  *  ",
+)
+
+ART_APPLE: tuple[str, ...] = (
+    r"       ,,        ",
+    r"      ( @ )       ",
+    r"       `''        ",
+)
+
+ART_MEAL_PLATE: tuple[str, ...] = (
+    r"      .------.      ",
+    r"     /        \     ",
+    r"    |   nom!   |    ",
+    r"     \________/     ",
+    r"       \____/       ",
+)
+
+ART_LOADING: tuple[str, ...] = (
+    r"   ... mixing numbers ...   ",
+)
+
+ART_GOODBYE: tuple[str, ...] = (
+    r"       \o/         ",
+    r"        |   bye!   ",
+    r"       / \         ",
+    r"      z   z        ",
+)
+
+
 def normalize_food_name(name: str) -> str:
     """Normalize food name (same logic as Module 1's _normalize_name)."""
     if not name:
@@ -323,9 +371,11 @@ def prompt_meal_items(
 
 def display_food_safety(features: dict, safety_result: dict):
     """Display a simplified, plain-language food safety summary."""
-    print("\n" + "="*50)
-    print("FOOD SAFETY ANALYSIS")
-    print("="*50)
+    print()
+    _print_art(ART_APPLE)
+    print("  +----------------------------------------------+")
+    print("  |       One food - quick safety peek           |")
+    print("  +----------------------------------------------+")
     
     # Safety label
     label = safety_result["safety_label"].upper()
@@ -341,32 +391,118 @@ def display_food_safety(features: dict, safety_result: dict):
         "UNSAFE": "High spike risk",
     }.get(label, label.title())
 
-    print(f"\nOverall result: {symbol} {plain_label}")
-    print(f"Why: {safety_result['explanation']}")
+    print(f"\n  Overall: {symbol} {plain_label}")
+    print(f"  Why: {safety_result['explanation']}")
 
     # Show only high-value, easy-to-understand metrics.
-    print("\nQuick facts (for this serving):")
-    print(f"  - Sugar-impact score (Glycemic Load): {features['glycemic_load']:.1f}")
-    print(f"  - Carbs: {features['carbohydrates']:.1f}g")
-    print(f"  - Fiber: {features['fiber']:.1f}g")
-    print(f"  - Protein: {features['protein']:.1f}g")
-    print(f"  - Serving size: {features['serving_size_grams']:.1f}g")
-    print("="*50)
+    print("\n  Quick facts (this serving):")
+    print(f"    • Sugar-impact (glycemic load): {features['glycemic_load']:.1f}")
+    print(
+        f"    • Carbs: {features['carbohydrates']:.1f}g | "
+        f"Fiber: {features['fiber']:.1f}g | Protein: {features['protein']:.1f}g"
+    )
+    print(f"    • Serving: {features['serving_size_grams']:.1f}g")
+    print("  ─────────────────────────────────────────────")
 
-    show_more = input("\nShow more detailed nutrition information? (y/n): ").strip().lower()
+    show_more = input("\n  More numbers? (y/n): ").strip().lower()
     if show_more in ("y", "yes"):
-        print("\nAdditional details:")
-        print(f"  - Glycemic Index (GI): {features['glycemic_index']:.1f}")
-        print(f"  - Fat: {features['fat']:.1f}g")
-        print(f"  - Processing level: {features['processing_level']}")
-        print("=" * 50)
+        print("\n  Extra detail:")
+        print(f"    • Glycemic index (GI): {features['glycemic_index']:.1f}")
+        print(f"    • Fat: {features['fat']:.1f}g")
+        print(f"    • Processing: {features['processing_level']}")
+        print("  ─────────────────────────────────────────────")
+
+
+def meal_risk_category_plain(category: str) -> str:
+    """Plain-language label for Module 3/4 meal risk categories."""
+    return {
+        "low": "Lower spike risk",
+        "medium": "Medium spike risk",
+        "high": "High spike risk",
+    }.get(category, category)
+
+
+def meal_risk_category_cute(category: str) -> str:
+    """Short friendly label with a tiny accent for the meal summary."""
+    return {
+        "low": "Lower spike risk - nice and steady",
+        "medium": "Medium spike risk - room to tweak",
+        "high": "Higher spike risk - worth a second look",
+    }.get(category, meal_risk_category_plain(category))
+
+
+def print_meal_score_and_scale_legend(meal_analysis: dict) -> None:
+    """Under the headline score, explain the 0-100 meal risk scale in plain language."""
+    score = float(meal_analysis["risk_score"])
+    print(f"\n  Meal risk score: {score:.1f} / 100")
+    print()
+    print("  ─── Reading your score (0-100) ───")
+    print("  This is a single snapshot from your foods' sugar impact (fiber and protein")
+    print("  can nudge it toward gentler). Think blood-sugar friendliness:")
+    print()
+    print("    0 - 40   Most friendly on this scale - usually easier on glucose swings.")
+    print("    40 - 70  Middle ground - worth planning around if you are sensitive.")
+    print("    70 - 100 Least friendly here - bigger spike potential for many people.")
+    print()
+    print("  Lower is generally kinder to blood sugar; higher means more caution.")
+    print("  ───────────────────────────")
+
+
+def print_module4_meal_improvements(suggestion_result: dict) -> None:
+    """Print tweak ideas in a light, friendly way (no long Module 4 lecture)."""
+    if not suggestion_result["suggestions"]:
+        print()
+        print("  * Optional tweaks")
+        print("  ───────────────────────────")
+        if suggestion_result["status"] == "low_risk_no_suggestions_needed":
+            print("  You are already in a gentle zone - no homework needed here. Enjoy!")
+        else:
+            print("  We could not find a simple swap bundle that bumps you down a whole")
+            print("  tier this time. Smaller starchy portions or different sides might")
+            print("  still help in real life - worth chatting with your care team too.")
+        print("  ───────────────────────────")
+        return
+
+    suggestions = suggestion_result["suggestions"]
+    best = suggestions[0]
+    print()
+    print("  * Optional tweaks")
+    print("  ───────────────────────────")
+    print("  Here are some same-kind swaps or smaller servings that could soften")
+    print("  the meal a notch (you pick what feels realistic!):")
+    print()
+    print("  >> Top pick")
+    print(
+        f"     After these changes: {meal_risk_category_plain(best['resulting_category'])} "
+        f"| score {best['resulting_score']:.1f}/100"
+    )
+    print("     Steps:")
+    for action in best["actions"]:
+        print(f"       • {action}")
+
+    if len(suggestions) > 1:
+        print()
+        print("  >> More ideas")
+        for opt_idx, suggestion in enumerate(suggestions[1:], start=2):
+            print()
+            print(
+                f"     Idea {opt_idx}: {meal_risk_category_plain(suggestion['resulting_category'])}, "
+                f"score {suggestion['resulting_score']:.1f}/100"
+            )
+            for action in suggestion["actions"]:
+                print(f"       • {action}")
+    print("  ───────────────────────────")
 
 
 def main():
     """Main entry point for terminal UI."""
-    print("="*50)
-    print("GlycemicGuard - Adaptive Diabetic Diet Advisor")
-    print("="*50)
+    print()
+    _print_art(ART_WELCOME_MASCOT)
+    print("  +----------------------------------------------+")
+    print("  |  GlycemicGuard - your friendly meal buddy  |")
+    print("  +----------------------------------------------+")
+    print("  (Nutrition nudges, not medical advice - always check with your care team.)")
+    print()
     
     # Initialize knowledge base (Module 1)
     csv_path = "src/module1/nutrition_data.csv"
@@ -387,7 +523,7 @@ def main():
     # Initialize safety engine (Module 2)
     print("Initializing safety engine...")
     safety_engine = FoodSafetyEngine(kb)
-    print("Ready!\n")
+    print("  All set! Pick a menu option whenever you are ready.\n")
 
     # Initialize meal risk analyzer (Module 3).
     meal_risk_analyzer = MealRiskAnalyzer(
@@ -398,19 +534,21 @@ def main():
     meal_suggestion_planner = MealSuggestionPlanner(
         knowledge_base=kb,
         meal_risk_analyzer=meal_risk_analyzer,
-        matcher=matcher,
+        max_edits=8,
+        max_expansions=2000,
     )
     
     # Main loop
     while True:
-        print("\n" + "="*50)
-        print("MAIN MENU")
-        print("="*50)
-        print("1. Check food safety")
-        print("2. Check meal risk")
-        print("3. Exit")
+        print()
+        _print_art(ART_MENU_SPARKLE)
+        print("  ───────── What would you like to do? ─────────")
+        print("    1  Peek at one food (safety & quick facts)")
+        print("    2  Build a meal & see spike-friendly feedback")
+        print("    3  Exit - thanks for stopping by!")
+        print("  ─────────────────────────────────────────────")
         
-        choice = input("\nChoose option: ").strip()
+        choice = input("\n  Pick 1, 2, or 3: ").strip()
         
         if choice == "1":
             try:
@@ -418,7 +556,7 @@ def main():
                 selected_food = prompt_food_selection(kb, matcher)
                 
                 if selected_food is None:
-                    print("Cancelled.")
+                    print("\n  No problem - cancelled.")
                     continue
                 
                 # Loop until we get a valid serving size
@@ -455,7 +593,7 @@ def main():
             try:
                 meal_items = prompt_meal_items(kb, matcher)
                 if meal_items is None:
-                    print("Cancelled.")
+                    print("\n  No problem - cancelled.")
                     continue
 
                 # Precompute per-food outputs and meal totals.
@@ -488,7 +626,8 @@ def main():
                     total_fiber_g += float(features["fiber"])
                     total_protein_g += float(features["protein"])
 
-                print("\nLoading meal risk analysis and improvement suggestions...")
+                print("\n  Crunching your meal... one moment!")
+                _print_art(ART_LOADING)
 
                 # Compute overall meal risk (Module 3) using precomputed totals.
                 meal_analysis = meal_risk_analyzer.analyze_meal_from_precomputed(
@@ -509,54 +648,39 @@ def main():
                     algorithm="astar",
                 )
 
-                print("\n" + "=" * 50)
-                print("MEAL RISK ANALYSIS (Module 3)")
-                print("=" * 50)
-
-                print("\nYour meal:")
+                print()
+                _print_art(ART_MEAL_PLATE)
+                print("  +----------------------------------------------+")
+                print("  |           Your meal - the recap              |")
+                print("  +----------------------------------------------+")
+                print()
+                print("  On your plate:")
                 for idx, item in enumerate(meal_items, 1):
-                    print(f"  {idx}. {item['food_name']} ({item['serving_size']})")
+                    print(f"    {idx}. {item['food_name']} ({item['serving_size']})")
 
-                readable_meal = {
-                    "low": "Lower spike risk",
-                    "medium": "Medium spike risk",
-                    "high": "High spike risk",
-                }.get(meal_analysis["meal_risk_category"], meal_analysis["meal_risk_category"])
-                print(f"\nOverall meal result: {readable_meal}")
-                print(f"Meal risk score: {meal_analysis['risk_score']:.1f}/100")
+                cat = meal_analysis["meal_risk_category"]
+                print()
+                print(f"  Big picture: {meal_risk_category_cute(cat)}")
+                print_meal_score_and_scale_legend(meal_analysis)
 
                 # Keep this short and scannable: show top 3 factors.
                 factors = meal_analysis["contributing_factors"][:3]
-                print("\nMain reasons:")
+                print()
+                print("  Here is what stood out:")
                 for f in factors:
-                    print(f"  - {f}")
+                    print(f"    • {f}")
                 if len(meal_analysis["contributing_factors"]) > 3:
-                    print("  - (More details available in the full analysis.)")
+                    print("    • ...and a bit more detail if you open the full view below.")
 
-                # Module 4 suggestions section.
-                if suggestion_result["suggestions"]:
-                    print("\n" + "=" * 50)
-                    print("MEAL IMPROVEMENT SUGGESTIONS (Module 4)")
-                    print("=" * 50)
-                    print(suggestion_result["target_message"])
-                    print("Pick any one option below:")
-                    for idx, suggestion in enumerate(suggestion_result["suggestions"], 1):
-                        print(f"\nOption {idx}:")
-                        for action in suggestion["actions"]:
-                            print(f"  - {action}")
-                else:
-                    if suggestion_result["status"] == "low_risk_no_suggestions_needed":
-                        print("\nModule 4: No additional risk-lowering suggestions needed for this meal.")
-                    else:
-                        print("\nModule 4: No suggestions found within current search limits.")
+                print_module4_meal_improvements(suggestion_result)
 
-                show_more = input("\nShow full meal analysis details? (y/n): ").strip().lower()
+                show_more = input("\n  Show full meal breakdown? (y/n): ").strip().lower()
                 if show_more in ("y", "yes"):
-                    print("\nFull contributing factors:")
+                    print("\n  Full contributing factors:")
                     for f in meal_analysis["contributing_factors"]:
-                        print(f"  - {f}")
+                        print(f"    • {f}")
 
-                    print("\nPer-food details:")
+                    print("\n  Per-food details:")
                     for idx, detail in enumerate(per_food_details, 1):
                         features = detail["features"]
                         safety_result = detail["safety_result"]
@@ -567,14 +691,14 @@ def main():
                             "UNSAFE": "High spike risk",
                         }.get(label, label.title())
 
-                        print(f"\nFood {idx}: {detail['food_name']} ({detail['serving_size']})")
-                        print(f"  Result: {plain_label}")
-                        print(f"  Why: {safety_result['explanation']}")
+                        print(f"\n    {idx}. {detail['food_name']} ({detail['serving_size']})")
+                        print(f"       Result: {plain_label}")
+                        print(f"       Why: {safety_result['explanation']}")
                         print(
-                            f"  Quick facts: GL {features['glycemic_load']:.1f}, "
-                            f"Carbs {features['carbohydrates']:.1f}g, "
-                            f"Fiber {features['fiber']:.1f}g, "
-                            f"Protein {features['protein']:.1f}g"
+                            f"       Quick facts: GL {features['glycemic_load']:.1f}, "
+                            f"carbs {features['carbohydrates']:.1f}g, "
+                            f"fiber {features['fiber']:.1f}g, "
+                            f"protein {features['protein']:.1f}g"
                         )
 
             except FoodNotFoundError as e:
@@ -587,11 +711,13 @@ def main():
                 print(f"\nUnexpected error: {e}")
 
         elif choice == "3":
-            print("\nGoodbye!")
+            print()
+            _print_art(ART_GOODBYE)
+            print("\n  Take care - see you at the next meal!\n")
             break
         
         else:
-            print("Invalid choice. Please enter 1, 2, or 3.")
+            print("\n  Oops - try 1, 2, or 3.")
 
 
 if __name__ == "__main__":

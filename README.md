@@ -101,33 +101,44 @@ Your system must include 5-6 modules. Fill in the table below as you plan each m
 - **Original meal**: a non-empty list of meal items, each shaped as:
   - `{"food_name": str, "serving_size": str}`
 - **Original meal risk category** (from Module 3): `low` / `medium` / `high`.
-- **Search constraints** (internal defaults):
-  - edit budget: up to `max_edits` (default `5`)
-  - action set: `swap` and `add` only
-  - swap validity: replacements must share the same coarse food category as the original food
+- **Search constraints** (defaults in `MealSuggestionPlanner`; CLI uses the same):
+  - edit budget: up to `max_edits` (default **8**)
+  - expansion cap: `max_expansions` (default **2000**) to bound runtime
+  - action set: **portion reduction** (75% / 50% / 25% of current grams on eligible original items), **swap**, and **add**
+  - portion reduction applies only to selected coarse categories (e.g. grains, fruit, legumes, sweets, beverages) with nonzero reference glycemic load; swaps never target foods added during search
+  - swap validity: replacements must share the same **inferred** coarse food category as the original item (`infer_food_category`: **whole-word** tokens and multi-word phrases, not raw substrings—so e.g. `oat` does not match inside `goat`; small overrides include **vinegar**, **tempeh/tofu**, **rice milk** as beverage). For **grains/starches**, swaps also require the same **subfamily** (e.g. rice→rice, bread→bread, pasta→pasta—not rice→pasta salad).
+  - **Uniqueness:** two *different* original foods in the meal cannot both be swapped to the *same* replacement in one suggestion (two identical lines, e.g. two rices, may still map to the same swap)
+  - swap candidates: taken from the knowledge base only, ranked by lower glycemic index and load (standard portion)—**not** by word embeddings
 
 ### Outputs
 - **Suggestion bundles** (3–5 depending on original category):
   - `medium` (or `caution`): up to **3** suggestions
   - `high`: up to **5** suggestions
   - `low`: no suggestions needed
-- Each suggestion is presented as a list of **actions**, e.g.:
-  - `Swap white rice -> brown rice`
-  - `Add broccoli (100g)`
+- Each suggestion includes `edited_meal` (full item list for programs/tests) plus human-readable **actions**, e.g.:
+  - `Reduce portion of white rice steamed: 200g -> 100g`
+  - `Swap white rice steamed -> brown rice boiled`
+  - `Add broccoli cruciferous steamed (100g)`
 
 ### Dependencies
 - **Module 3**: evaluates candidate meals and provides the meal risk category used by Module 4’s goal test.
 - **Module 2**: indirectly via Module 3 for per-food safety labeling.
-- **Module 1**: used to generate/filter plausible “add” candidates and to compute nutrition-informed heuristics.
-- **Word embeddings** (optional): used to rank swap candidates *within* the valid same-category pool when the CLI provides a `FoodMatcher`.
+- **Module 1**: used to list foods, generate/filter plausible “add” candidates, and rank same-category **swap** candidates using GI/GL from the database.
+
+**Note:** Optional **word embeddings** (`FoodMatcher` / sentence-transformers) are only for helping users match **typed food names** to KB rows during meal entry—not for Module 4 swap generation.
+
+### CLI (meal risk menu)
+When you choose **“2. Check meal risk”**, after Module 3’s summary the CLI shows **optional tweaks**: a **top pick** (resulting category, score, bullet **steps** only) and **more ideas** the same way. It does not re-print the full revised meal list (that remains in the structured `Suggestion` objects for code/tests). Swaps stay in the same food group; no free-text replacement entry.
 
 ### AI concepts and design rationale
 - **Search (Uniform Cost Search, A\*)**:
-  - Module 4 explores a discrete state space where each action is a small meal edit.
+  - Module 4 explores a discrete state space where each action is a small meal edit (portion / swap / add).
   - The goal test checks whether the candidate meal is at least **one risk tier down** relative to Module 3’s category.
+  - The frontier uses lexicographic priority (edit count, goal distance for A\*, risk score, and **effective glycemic load** when scores tie at the high-risk cap) so search favors materially lower sugar impact.
   - Returned suggestions are ranked to prefer fewer edits and lower resulting risk scores.
 - **Constraint satisfaction**:
-  - Swaps are constrained to **same-category replacements** to keep suggestions realistic.
+  - Swaps are constrained to **same-category replacements** to keep suggestions realistic; category labels come from token/phrase rules on KB food names. **Grains/starches** additionally require the same **subfamily** (rice vs bread vs pasta vs potato, etc.).
+  - The search rejects meals where **distinct** original items would both become the same swapped-in food.
   - Swaps only modify foods that existed in the original meal (added items are not later swapped away).
 - **Diversity filtering**:
   - Prevents redundant suggestions that only differ by preparation-style tokens (e.g., “boiled” vs “steamed”).

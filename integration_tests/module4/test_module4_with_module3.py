@@ -21,7 +21,7 @@ class TestModule4Integration(unittest.TestCase):
             food_safety_engine=safety_engine,
             enable_effective_gl_adjustments=True,
         )
-        planner = MealSuggestionPlanner(kb, analyzer, matcher=None, max_edits=3, max_expansions=140)
+        planner = MealSuggestionPlanner(kb, analyzer, max_edits=3, max_expansions=140)
 
         meal_items = [
             {"food_name": "arborio rice boiled", "serving_size": "100g"},
@@ -47,7 +47,7 @@ class TestModule4Integration(unittest.TestCase):
             food_safety_engine=safety_engine,
             enable_effective_gl_adjustments=True,
         )
-        planner = MealSuggestionPlanner(kb, analyzer, matcher=None, max_edits=2, max_expansions=60)
+        planner = MealSuggestionPlanner(kb, analyzer, max_edits=2, max_expansions=60)
 
         # Two zero-GI foods should produce a low effective GL and a low meal category.
         meal_items = [

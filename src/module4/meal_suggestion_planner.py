@@ -1,16 +1,31 @@
-"""Module 4: Search-based meal modification suggestions."""
+"""Module 4: Search-based meal modification suggestions.
+
+Uses **uniform-cost** or **A\*** search over meals edited by **portion reduction**,
+**same-category swaps**, and **adds**. The **goal** is a meal whose Module 3 risk
+tier improves by at least one step (e.g. high→medium). The frontier orders states
+by edit count, (A\* goal distance), risk score, and **effective glycemic load**
+so many tied high scores still prefer materially lower sugar impact.
+
+**Swaps** use the knowledge base only: same inferred coarse category as the
+original, then—within ``grain_starch``—the same **subfamily** (rice→rice,
+bread→bread, pasta→pasta, etc.), ranked by lower glycemic index and load.
+Category rules use **whole-word** tokens and phrases (plus small overrides such
+as **rice milk** as beverage). **Embeddings are not used** here.
+
+**Portion reduction** scales current servings by 75%, 50%, and 25% on eligible
+original lines (carb-heavy categories with nonzero reference GL). **Adds** pick
+low-GI, higher-fiber vegetables/legumes/proteins from the KB.
+"""
 
 from __future__ import annotations
 
 import heapq
-import logging
+import re
 from dataclasses import dataclass
-from typing import Dict, List, Literal, Optional, Sequence, Tuple, TypedDict
+from typing import Dict, FrozenSet, List, Literal, Optional, Sequence, Tuple, TypedDict
 
-from src.module1.knowledge_base import NutritionKnowledgeBase
+from src.module1.knowledge_base import FoodNotFoundError, MissingDataError, NutritionKnowledgeBase
 from src.module3.meal_risk_analyzer import MealRiskAnalyzer
-
-logger = logging.getLogger(__name__)
 
 MealRiskCategory = Literal["low", "medium", "high"]
 
@@ -108,7 +123,6 @@ _DIVERSITY_PREP_TERMS: Tuple[str, ...] = (
 )
 
 # Search tuning and candidate-generation constants.
-SWAP_NEIGHBORS_TOP_K: int = 60
 SWAP_CANDIDATE_SLICE: int = 8
 
 ADD_CANDIDATE_GI_MAX: float = 55.0
@@ -121,8 +135,23 @@ FOUND_CANDIDATES_MULTIPLIER: int = 8
 
 DEFAULT_ADD_SERVING_SIZE: str = "100g"
 
+# Portion reduction: multiply current serving grams by each factor (gentler → stronger).
+PORTION_REDUCTION_FACTORS: Tuple[float, ...] = (0.75, 0.5, 0.25)
+MIN_PORTION_GRAMS: float = 10.0
+PORTION_REDUCTION_CATEGORIES: FrozenSet[str] = frozenset(
+    {"grain_starch", "fruit", "snack_sweet", "beverage", "legume"}
+)
+
 MAX_ALLOWED_DIVERSITY_OVERLAP: int = 1
 EMPTY_DIVERSITY_SIGNATURE_SENTINEL: str = ""
+
+
+def _format_grams_serving(grams: float) -> str:
+    """Format a gram amount as a serving string (e.g. ``150g``, ``12.5g``)."""
+    g = round(float(grams), 1)
+    if abs(g - round(g)) < 1e-6:
+        return f"{int(round(g))}g"
+    return f"{g}g"
 
 
 class MealItem(TypedDict):
@@ -150,14 +179,129 @@ class _Node:
     edits_count: int
 
 
+def _name_tokens(food_name: str) -> set[str]:
+    """Whole-word tokens from a food name (lowercase)."""
+    return set(re.findall(r"[a-z0-9]+", (food_name or "").lower()))
+
+
 def infer_food_category(food_name: str) -> str:
-    """Assign a coarse category from food name tokens."""
+    """
+    Assign a coarse category using **whole tokens**, not raw substring search.
+
+    This avoids bugs like matching the grain keyword ``oat`` inside ``goat``,
+    which incorrectly classified cheese as a starch.
+    """
     name = (food_name or "").lower()
+    tokens = _name_tokens(food_name)
+    if not tokens:
+        return "other"
+
+    # Overrides: words that imply a category even if another token (e.g. rice) appears.
+    if "tempeh" in tokens or "tofu" in tokens:
+        return "protein"
+    if "vinegar" in tokens:
+        return "fat_condiment"
+    # Plant/dairy drink named with "rice"; not a starchy rice dish (avoids rice→rice milk swaps).
+    if "rice milk" in name:
+        return "beverage"
+
+    # Multi-word phrases first (longest first so "sweet potato" beats "potato").
+    phrases: List[Tuple[str, str]] = []
     for category, keywords in _CATEGORY_KEYWORDS.items():
-        for token in keywords:
-            if token in name:
+        for kw in keywords:
+            if " " in kw:
+                phrases.append((category, kw))
+    phrases.sort(key=lambda x: -len(x[1]))
+    for category, phrase in phrases:
+        if phrase in name:
+            return category
+
+    for category, keywords in _CATEGORY_KEYWORDS.items():
+        for kw in keywords:
+            if " " in kw:
+                continue
+            if kw in tokens:
                 return category
     return "other"
+
+
+# Token sets for starch subfamilies (rice→rice, bread→bread, pasta→pasta, …).
+_PASTA_TOKENS: FrozenSet[str] = frozenset(
+    {
+        "pasta",
+        "noodle",
+        "ravioli",
+        "linguine",
+        "fettuccine",
+        "penne",
+        "macaroni",
+        "lasagna",
+        "gnocchi",
+        "spaghetti",
+        "orzo",
+        "tagliatelle",
+        "farfalle",
+        "rigatoni",
+    }
+)
+
+
+def infer_grain_starch_subfamily(food_name: str) -> Optional[str]:
+    """
+    Within ``grain_starch``, assign a **swap subfamily** so replacements stay sensible
+    (e.g. rice dishes swap to other rice foods, not pasta salad or bread).
+
+    Returns ``None`` if the food is not classified as ``grain_starch``.
+    """
+    if infer_food_category(food_name) != "grain_starch":
+        return None
+    name = (food_name or "").lower()
+    tokens = _name_tokens(food_name)
+
+    if "bread" in tokens or "bagel" in tokens:
+        return "bread"
+    if tokens & _PASTA_TOKENS:
+        return "pasta"
+    if "rice" in tokens:
+        return "rice"
+    if "sweet potato" in name or ("sweet" in tokens and "potato" in tokens):
+        return "potato"
+    if "potato" in tokens or "yam" in tokens:
+        return "potato"
+    if "quinoa" in tokens:
+        return "quinoa"
+    if "oat" in tokens or "oats" in tokens:
+        return "oat"
+    if "barley" in tokens:
+        return "barley"
+    if "couscous" in tokens:
+        return "couscous"
+    if "polenta" in tokens:
+        return "polenta"
+    return "other_starch"
+
+
+def meal_has_duplicate_replacement_across_distinct_foods(
+    start_meal: Tuple[Tuple[str, str], ...],
+    new_meal: Tuple[Tuple[str, str], ...],
+    orig_count: int,
+) -> bool:
+    """
+    True if two *different* original foods were swapped to the *same* replacement.
+
+    Same replacement for two identical original names (e.g. two rice lines) is allowed.
+    """
+    by_new: Dict[str, set[str]] = {}
+    for i in range(min(orig_count, len(start_meal), len(new_meal))):
+        old_f, _ = start_meal[i]
+        new_f, _ = new_meal[i]
+        if new_f == old_f:
+            continue
+        by_new.setdefault(new_f, set()).add(old_f)
+    for olds in by_new.values():
+        if len(olds) >= 2:
+            return True
+    return False
 
 
 def suggestion_count_for_category(risk_category: str) -> int:
@@ -178,17 +322,16 @@ class MealSuggestionPlanner:
         knowledge_base: NutritionKnowledgeBase,
         meal_risk_analyzer: MealRiskAnalyzer,
         *,
-        matcher: Optional[object] = None,
-        max_edits: int = 5,
-        max_expansions: int = 300,
+        max_edits: int = 8,
+        max_expansions: int = 2000,
     ) -> None:
         self.knowledge_base = knowledge_base
         self.meal_risk_analyzer = meal_risk_analyzer
-        self.matcher = matcher
         self.max_edits = max_edits
         self.max_expansions = max_expansions
         self._all_foods = self.knowledge_base.list_all_foods()
         self._original_count: int = 0
+        self._start_meal: Tuple[Tuple[str, str], ...] = ()
 
     def generate_suggestions(
         self,
@@ -209,8 +352,9 @@ class MealSuggestionPlanner:
             }
 
         self._original_count = len(meal_items)
-        target = "Any one of these suggestions should lower your meal risk by at least one category."
         start_meal = tuple((item["food_name"], item["serving_size"]) for item in meal_items)
+        self._start_meal = start_meal
+        target = "Any one of these suggestions should lower your meal risk by at least one category."
         found_candidates = self._collect_goal_candidates(start_meal, original_level, desired_count, algorithm)
         diverse = self._select_diverse(found_candidates, desired_count, start_meal=start_meal)
         if diverse:
@@ -284,19 +428,37 @@ class MealSuggestionPlanner:
         start_meal: Tuple[Tuple[str, str], ...],
         original_level: int,
         algorithm: str,
-    ) -> Tuple[_Node, List[Tuple[Tuple[int, int, float], int, _Node]], int, Dict[Tuple[Tuple[str, str], ...], int], Dict[Tuple[Tuple[str, str], ...], Tuple[str, float]]]:
+    ) -> Tuple[
+        _Node,
+        List[Tuple[Tuple[int, int, float, float], int, _Node]],
+        int,
+        Dict[Tuple[Tuple[str, str], ...], int],
+        Dict[Tuple[Tuple[str, str], ...], Tuple[str, float, float]],
+    ]:
         """Initialize frontier and memoization for the search."""
         start_node = _Node(meal=start_meal, actions=tuple(), edits_count=0)
-        frontier: List[Tuple[Tuple[int, int, float], int, _Node]] = []
+        frontier: List[Tuple[Tuple[int, int, float, float], int, _Node]] = []
         counter = 0
+        analysis_cache: Dict[Tuple[Tuple[str, str], ...], Tuple[str, float, float]] = {}
+        st_cat, st_score, st_eg = self._get_cached_analysis(start_meal, analysis_cache)
         heapq.heappush(
             frontier,
-            (self._priority_tuple(start_node, original_level, algorithm, analysis_category=None, risk_score=0.0), counter, start_node),
+            (
+                self._priority_tuple(
+                    start_node,
+                    original_level,
+                    algorithm,
+                    analysis_category=st_cat,
+                    risk_score=st_score,
+                    effective_gl=st_eg,
+                ),
+                counter,
+                start_node,
+            ),
         )
         best_seen_edits: Dict[Tuple[Tuple[str, str], ...], int] = {
             self._canonical(start_node.meal): 0
         }
-        analysis_cache: Dict[Tuple[Tuple[str, str], ...], Tuple[str, float]] = {}
         return start_node, frontier, counter, best_seen_edits, analysis_cache
 
     def _try_add_goal_candidate(
@@ -304,17 +466,24 @@ class MealSuggestionPlanner:
         *,
         node: _Node,
         original_level: int,
-        analysis_cache: Dict[Tuple[Tuple[str, str], ...], Tuple[str, float]],
+        analysis_cache: Dict[Tuple[Tuple[str, str], ...], Tuple[str, float, float]],
         found_candidates: List[Suggestion],
     ) -> bool:
         """If the node satisfies the goal, append it and return True."""
         if node.edits_count <= 0:
             return False
 
-        analysis_category, risk_score = self._get_cached_analysis(
+        analysis_category, risk_score, _ = self._get_cached_analysis(
             node.meal, analysis_cache
         )
         if not self._is_goal(original_level, analysis_category):
+            return False
+
+        if meal_has_duplicate_replacement_across_distinct_foods(
+            self._start_meal,
+            node.meal,
+            self._original_count,
+        ):
             return False
 
         found_candidates.append(
@@ -331,12 +500,12 @@ class MealSuggestionPlanner:
         self,
         *,
         node: _Node,
-        frontier: List[Tuple[Tuple[int, int, float], int, _Node]],
+        frontier: List[Tuple[Tuple[int, int, float, float], int, _Node]],
         counter: int,
         best_seen_edits: Dict[Tuple[Tuple[str, str], ...], int],
         original_level: int,
         algorithm: str,
-        analysis_cache: Dict[Tuple[Tuple[str, str], ...], Tuple[str, float]],
+        analysis_cache: Dict[Tuple[Tuple[str, str], ...], Tuple[str, float, float]],
     ) -> int:
         """Expand a node and enqueue successors into the frontier."""
         for next_node in self._expand(node):
@@ -348,7 +517,7 @@ class MealSuggestionPlanner:
             best_seen_edits[key] = next_node.edits_count
             counter += 1
 
-            next_analysis_category, next_risk_score = self._get_cached_analysis(
+            next_analysis_category, next_risk_score, next_effective_gl = self._get_cached_analysis(
                 next_node.meal, analysis_cache
             )
             heapq.heappush(
@@ -360,6 +529,7 @@ class MealSuggestionPlanner:
                         algorithm,
                         analysis_category=next_analysis_category,
                         risk_score=next_risk_score,
+                        effective_gl=next_effective_gl,
                     ),
                     counter,
                     next_node,
@@ -375,25 +545,41 @@ class MealSuggestionPlanner:
         *,
         analysis_category: Optional[str],
         risk_score: float,
-    ) -> Tuple[int, int, float]:
+        effective_gl: float,
+    ) -> Tuple[int, int, float, float]:
         """
         Explicit lexicographic priority:
           1) edits_count (or edits_count + goal-distance for A*)
           2) edits_count (tie-break)
           3) resulting risk score (lower is better)
+          4) effective glycemic load (lower is better)
+
+        Many high-risk meals share ``risk_score == 100`` (score cap); tie-breaking
+        on ``effective_gl`` steers search toward portion reductions and swaps that
+        materially lower sugar impact.
         """
         if algorithm.lower() == "ucs":
-            return (node.edits_count, node.edits_count, float(risk_score))
+            return (
+                node.edits_count,
+                node.edits_count,
+                float(risk_score),
+                float(effective_gl),
+            )
 
         goal_met = False if analysis_category is None else self._is_goal(original_level, analysis_category)
         h = 0 if goal_met else 1
-        return (node.edits_count + h, node.edits_count, float(risk_score))
+        return (
+            node.edits_count + h,
+            node.edits_count,
+            float(risk_score),
+            float(effective_gl),
+        )
 
     def _get_cached_analysis(
         self,
         meal: Tuple[Tuple[str, str], ...],
-        cache: Dict[Tuple[Tuple[str, str], ...], Tuple[str, float]],
-    ) -> Tuple[str, float]:
+        cache: Dict[Tuple[Tuple[str, str], ...], Tuple[str, float, float]],
+    ) -> Tuple[str, float, float]:
         """Memoize Module 3 analysis results during search."""
         key = self._canonical(meal)
         cached = cache.get(key)
@@ -403,7 +589,9 @@ class MealSuggestionPlanner:
         analysis = self.meal_risk_analyzer.analyze_meal(
             [{"food_name": f, "serving_size": s} for f, s in meal]
         )
-        result = (analysis["meal_risk_category"], float(analysis["risk_score"]))
+        raw_eg = analysis.get("effective_gl")
+        effective_gl = float(raw_eg) if raw_eg is not None else float("inf")
+        result = (analysis["meal_risk_category"], float(analysis["risk_score"]), effective_gl)
         cache[key] = result
         return result
 
@@ -414,6 +602,36 @@ class MealSuggestionPlanner:
     def _expand(self, node: _Node) -> List[_Node]:
         out: List[_Node] = []
 
+        # Portion reduction first (often lowers effective GL immediately; listed before
+        # swaps so equal-priority heap ties favor smaller servings in expansion order).
+        for idx in range(self._original_count):
+            food_name, serving_size = node.meal[idx]
+            if infer_food_category(food_name) not in PORTION_REDUCTION_CATEGORIES:
+                continue
+            if self._safe_gl(food_name) <= 0.0:
+                continue
+            grams = self._serving_grams_for_item(food_name, serving_size)
+            if grams is None or grams < MIN_PORTION_GRAMS:
+                continue
+            for factor in PORTION_REDUCTION_FACTORS:
+                new_grams = grams * factor
+                if new_grams < MIN_PORTION_GRAMS:
+                    continue
+                new_serving = _format_grams_serving(new_grams)
+                if round(new_grams, 1) >= round(grams, 1):
+                    continue
+                new_meal = list(node.meal)
+                new_meal[idx] = (food_name, new_serving)
+                new_meal_t = tuple(new_meal)
+                action = f"Reduce portion of {food_name}: {serving_size} -> {new_serving}"
+                out.append(
+                    _Node(
+                        meal=new_meal_t,
+                        actions=node.actions + (action,),
+                        edits_count=node.edits_count + 1,
+                    )
+                )
+
         # Swap actions (same category only).
         for idx in range(self._original_count):
             food_name, serving_size = node.meal[idx]
@@ -422,10 +640,17 @@ class MealSuggestionPlanner:
                     continue
                 new_meal = list(node.meal)
                 new_meal[idx] = (replacement, serving_size)
+                new_meal_t = tuple(new_meal)
+                if meal_has_duplicate_replacement_across_distinct_foods(
+                    self._start_meal,
+                    new_meal_t,
+                    self._original_count,
+                ):
+                    continue
                 action = f"Swap {food_name} -> {replacement}"
                 out.append(
                     _Node(
-                        meal=tuple(new_meal),
+                        meal=new_meal_t,
                         actions=node.actions + (action,),
                         edits_count=node.edits_count + 1,
                     )
@@ -451,30 +676,32 @@ class MealSuggestionPlanner:
         if src_category == "other":
             return []
 
-        pool: List[str] = []
-        if self.matcher is not None and hasattr(self.matcher, "find_nearest_neighbors"):
-            try:
-                neighbors = self.matcher.find_nearest_neighbors(
-                    food_name, top_k=SWAP_NEIGHBORS_TOP_K, offset=0
-                )
-                for candidate, _ in neighbors:
-                    if infer_food_category(candidate) == src_category:
-                        pool.append(candidate)
-            except (AttributeError, TypeError, ValueError) as e:
-                # Best-effort: if neighbor search fails, fall back to scanning all foods.
-                logger.debug("Swap candidate neighbor search failed for %r: %s", food_name, e)
-                pool = []
+        pool = [
+            c
+            for c in self._all_foods
+            if c != food_name and infer_food_category(c) == src_category
+        ]
 
-        if not pool:
-            for candidate in self._all_foods:
-                if infer_food_category(candidate) == src_category:
-                    pool.append(candidate)
+        # Grain/starch: same coarse category is not enough (rice vs pasta salad).
+        if src_category == "grain_starch":
+            src_sub = infer_grain_starch_subfamily(food_name)
+            if src_sub is not None:
+                pool = [
+                    c
+                    for c in pool
+                    if infer_grain_starch_subfamily(c) == src_sub
+                ]
 
-        # Keep lower-risk-direction candidates first.
+        # Prefer same-or-lower GI first, then lower GL at a standard portion, then name.
         src_gi = self._safe_gi(food_name)
         ranked = sorted(
-            {c for c in pool if c != food_name},
-            key=lambda c: (self._safe_gi(c) > src_gi, self._safe_gi(c), c),
+            pool,
+            key=lambda c: (
+                self._safe_gi(c) > src_gi,
+                self._safe_gi(c),
+                self._safe_gl(c),
+                c,
+            ),
         )
         return ranked[:SWAP_CANDIDATE_SLICE]
 
@@ -494,6 +721,25 @@ class MealSuggestionPlanner:
 
     def _safe_gi(self, food_name: str) -> float:
         return float(self.knowledge_base.get_nutrition_features(food_name, "100g")["glycemic_index"])
+
+    def _safe_gl(self, food_name: str) -> float:
+        return float(
+            self.knowledge_base.get_nutrition_features(food_name, "100g")["glycemic_load"]
+        )
+
+    def _serving_grams_for_item(self, food_name: str, serving_size: str) -> Optional[float]:
+        """Resolve the meal item's serving size to grams using Module 1 scaling rules."""
+        try:
+            feats = self.knowledge_base.get_nutrition_features(food_name, serving_size)
+        except (FoodNotFoundError, MissingDataError, ValueError, TypeError):
+            return None
+        raw = feats.get("serving_size_grams")
+        if raw is None:
+            return None
+        grams = float(raw)
+        if grams <= 0:
+            return None
+        return grams
 
     def _canonical(self, meal: Tuple[Tuple[str, str], ...]) -> Tuple[Tuple[str, str], ...]:
         # Canonicalize while preserving which positions correspond to the original
@@ -523,7 +769,8 @@ class MealSuggestionPlanner:
         """Build a diversity signature from the candidate meal edit.
 
         The signature is the set of *underlying* food names introduced by edits
-        (swaps on original positions + added items). Cooking/prep modifiers are
+        (swaps on original positions + added items), plus stable keys for
+        portion-only changes on original slots. Cooking/prep modifiers are
         normalized so prep variants don't count as “different foods.”
         """
         orig_count = len(start_meal)
@@ -532,10 +779,13 @@ class MealSuggestionPlanner:
         signature: set[str] = set()
         # Include swapped-in foods (positions that correspond to original meal items).
         for idx in range(orig_count):
-            original_food = start_meal[idx][0]
+            original_food, original_size = start_meal[idx]
             edited_food = edited[idx][0] if idx < len(edited) else original_food
+            edited_size = edited[idx][1] if idx < len(edited) else original_size
             if edited_food != original_food:
                 signature.add(self._normalize_food_for_diversity(edited_food))
+            elif edited_size.strip() != original_size.strip():
+                signature.add(f"portion:{idx}:{edited_size.strip()}")
 
         # Include added foods (items beyond original positions).
         for idx in range(orig_count, len(edited)):

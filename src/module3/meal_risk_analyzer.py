@@ -29,7 +29,7 @@ stay discoverable and documented in one place.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Dict, List, Optional, Sequence, TypedDict, Tuple, Literal
+from typing import Dict, List, Literal, NotRequired, Optional, Sequence, Tuple, TypedDict
 
 from src.module1.knowledge_base import NutritionKnowledgeBase
 from src.module2.food_safety_engine import FoodSafetyEngine
@@ -77,17 +77,13 @@ class MealAnalysisResult(TypedDict):
       - meal_risk_category: low/medium/high
       - risk_score: numeric 0-100
       - contributing_factors: list of strings for user-facing explanation
+      - effective_gl: when effective-GL mode is enabled, adjusted meal glycemic load (not the 0-100 score)
     """
 
     meal_risk_category: MealRiskCategory
     risk_score: float
     contributing_factors: List[str]
-
-    # Optional debug/insight fields (useful for tests + UI):
-    # total_gl: float
-    # effective_gl: float
-    # total_fiber_g: float
-    # total_protein_g: float
+    effective_gl: NotRequired[float]
 
 
 @dataclass(frozen=True)
@@ -213,6 +209,7 @@ class MealRiskAnalyzer:
             meal_risk_category=meal_category,
             risk_score=score,
             contributing_factors=factors,
+            effective_gl=float(effective_gl),
         )
 
     # ---------------------------------------------------------------------
@@ -447,10 +444,12 @@ class MealRiskAnalyzer:
 
         if effective_gl is not None and effective_gl_reduction is not None:
             factors.append(
-                f"Final meal risk is {readable_category} (final sugar-impact score: {effective_gl:.1f})."
+                f"Meal risk category: {readable_category}. "
+                f"Adjusted glycemic load (after fiber/protein help) is {effective_gl:.1f} "
+                f"— not the same as the 0-100 meal risk score; that score is mapped from this value separately."
             )
             factors.append(
-                f"Before balancing effects, your meal's sugar-impact score was {total_gl:.1f}."
+                f"Combined glycemic load from the foods alone, before that adjustment: {total_gl:.1f}."
             )
             factors.append(
                 f"This meal has {total_fiber_g:.1f}g of fiber and {total_protein_g:.1f}g of protein."
@@ -545,5 +544,6 @@ class MealRiskAnalyzer:
             meal_risk_category=meal_category,
             risk_score=score,
             contributing_factors=factors,
+            effective_gl=float(effective_gl),
         )
 
