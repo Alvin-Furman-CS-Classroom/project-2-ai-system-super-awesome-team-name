@@ -1,16 +1,22 @@
 ## Project Context
 
-- System title: [Your System Title]
-- Theme: [Your Theme]
-- Proposal link or summary: [Your Proposal Link or Summary]
+- System title: GlycemicGuard : Adpative Diabetic Diet Advisor
+- Theme: Nutrition
+- Proposal link or summary: check in the file `PROPOSAL.md`.
 
 **Module plan:**
 
-[Your Module Plan Table copied from README.md]
+| Module | Required Topic(s)                                   |Topic Covered By| Checkpoint Due       |
+| ------ | ----------------------------------------------------| ---------------| ---------------------|
+| 1      | Knowledge Representation, Knowledge Bases           | Week 2         | Checkpoint 1 (Feb 11)|
+| 2      | Propositional Logic, Knowledge Bases, Inference     | Week 3         | Checkpoint 2 (Feb 26)|
+| 3      | First-Order Logic                                   | Week 4         | Checkpoint 3 (Mar 19)|
+| 4      | Search (Uniform Cost, A\*)                          | Week 5         | Checkpoint 4 (Apr 2) |
+| 5      | Reinforcement Learning (Policy Learning, Q-Learning)| Week 8-9       | Checkpoint 5 (Apr 16)|
 
 ## Constraints
 
-- 5-6 modules total, each tied to course topics.
+- 5 modules total, each tied to course topics.
 - Each module must have clear inputs/outputs and tests.
 - Align module timing with the course schedule.
 
@@ -20,6 +26,7 @@
 - Suggest clean architecture and module boundaries.
 - Identify missing tests and edge cases.
 - Review work against the rubric using the code-review skill.
+- Suggest code concepts instead of code, unless asked.
 
 ## Agent Workflow
 
@@ -34,3 +41,8 @@
 - Code elegance rubric: https://csc-343.path.app/rubrics/code-elegance.rubric.md
 - Course schedule: https://csc-343.path.app/resources/course.schedule.md
 - Rubric: https://csc-343.path.app/projects/project-2-ai-system/ai-system.rubric.md
+
+## Technical notes
+
+- **Food name matching (CLI):** Implemented using **word embeddings** via the **sentence-transformers** library (`src/food_matcher.py`). When the user’s input does not exactly match a food in the knowledge base, the CLI uses sentence-transformers to encode food names and compute cosine similarity to suggest similar foods. If the library is not installed, the code falls back to substring matching.
+- **Module 4 (search / meal modifications):** Search explores **portion reduction** (on eligible categories), **same-category swaps**, and **adds**. Swap candidates come from the **knowledge base**, ordered by **glycemic index and glycemic load** (standard portion). Within **grain/starch**, swaps match the same **subfamily** (rice→rice, bread→bread, pasta→pasta). **Embeddings are not used** for Module 4. **Category inference** uses **whole-word tokens** (and phrases), plus overrides (e.g. **vinegar**, **tempeh/tofu**, **rice milk** as beverage). **Distinct** original lines cannot both be swapped to the **same** replacement in one suggestion. Frontier ordering uses **effective glycemic load** as a tie-break when risk scores saturate. Defaults: `max_edits=8`, `max_expansions=2000` in CLI/planner.
