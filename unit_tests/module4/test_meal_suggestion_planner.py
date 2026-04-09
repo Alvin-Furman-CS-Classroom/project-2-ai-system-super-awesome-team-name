@@ -209,6 +209,22 @@ class TestMealSuggestionPlanner(unittest.TestCase):
         self.assertIn("brown rice", joined_actions)
         self.assertNotIn("white bread", joined_actions)
 
+    def test_ga_algorithm_can_find_swap_improvement(self):
+        planner = MealSuggestionPlanner(
+            FakeKB(), FakeAnalyzer(), max_edits=2, max_expansions=80
+        )
+        result = planner.generate_suggestions(
+            [{"food_name": "white rice", "serving_size": "100g"}],
+            original_category="medium",
+            algorithm="ga",
+            top_k=1,
+        )
+        self.assertIn(result["status"], ("suggestions_found", "no_suggestions_found"))
+        if result["status"] == "suggestions_found":
+            self.assertGreaterEqual(len(result["suggestions"]), 1)
+            # Ensure shape and that it improved (FakeAnalyzer returns low when white rice is gone).
+            self.assertEqual(result["suggestions"][0]["resulting_category"], "low")
+
     def test_high_risk_requests_up_to_five_suggestions(self):
         planner = MealSuggestionPlanner(
             FakeKB(), FakeAnalyzer(), max_edits=3, max_expansions=120

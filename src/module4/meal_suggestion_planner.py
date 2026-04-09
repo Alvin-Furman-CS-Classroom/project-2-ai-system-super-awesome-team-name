@@ -1,9 +1,9 @@
 """Module 4: Search-based meal modification suggestions.
 
-Uses **uniform-cost** or **A\*** search over meals edited by **portion reduction**,
+Uses **uniform-cost** or **A*** search over meals edited by **portion reduction**,
 **same-category swaps**, and **adds**. The **goal** is a meal whose Module 3 risk
 tier improves by at least one step (e.g. high→medium). The frontier orders states
-by edit count, (A\* goal distance), risk score, and **effective glycemic load**
+by edit count, (A*) goal distance, risk score, and **effective glycemic load**
 so many tied high scores still prefer materially lower sugar impact.
 
 **Swaps** use the knowledge base only: same inferred coarse category as the
@@ -26,6 +26,7 @@ from typing import Dict, FrozenSet, List, Literal, Optional, Sequence, Tuple, Ty
 
 from src.module1.knowledge_base import FoodNotFoundError, MissingDataError, NutritionKnowledgeBase
 from src.module3.meal_risk_analyzer import MealRiskAnalyzer
+from src.module4.ga_meal_optimizer import generate_candidates_ga
 
 MealRiskCategory = Literal["low", "medium", "high"]
 
@@ -377,6 +378,17 @@ class MealSuggestionPlanner:
         algorithm: str,
     ) -> List[Suggestion]:
         """Run the search and return all goal-satisfying candidates found."""
+        if algorithm.lower() == "ga":
+            # GA returns already-filtered goal candidates (may include more than desired_count).
+            found = generate_candidates_ga(
+                planner=self,
+                start_meal=start_meal,
+                original_level=original_level,
+                desired_count=desired_count,
+            )
+            # Cast to expected Suggestion type (same shape).
+            return found  # type: ignore[return-value]
+
         start_node, frontier, counter, best_seen_edits, analysis_cache = self._init_search(
             start_meal=start_meal,
             original_level=original_level,
