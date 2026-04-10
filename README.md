@@ -36,11 +36,11 @@ Your system must include 5-6 modules. Fill in the table below as you plan each m
 
 ### Inputs
 
-- **Food name**: A string identifier for the food (case-insensitive, whitespace-tolerant), e.g. `"cabbage cruciferous boiled"` or `"Arborio Rice   Boiled"`.
+- **Food name**: A string identifier for the food (case-insensitive, whitespace-tolerant), e.g. `"cabbage"` or `"arborio rice"` (see `src/module1/NAMING_CONVENTIONS.md` and curated `nutrition_data.csv`).
 - **Serving size**: A string describing the amount, parsed by Module 1. Supported formats include:
   - `"100g"`, `"200 g"` (grams, with or without space before `g`)
   - `"1 serving"`, `"2.5 servings"`, `"0.5 serving"` (multiples of the food's base serving size)
-- **Example call**: `engine.evaluate_food("cabbage cruciferous boiled", "100g")`
+- **Example call**: `engine.evaluate_food("cabbage", "100g")`
 
 ### Outputs
 

@@ -35,7 +35,7 @@ class TestIntegration(unittest.TestCase):
 
     def test_get_nutrition_features_basic(self):
         """Test basic feature lookup with default serving size."""
-        features = self.kb.get_nutrition_features("cabbage cruciferous boiled")
+        features = self.kb.get_nutrition_features("cabbage")
         
         # Check all required keys are present
         required_keys = {
@@ -56,13 +56,13 @@ class TestIntegration(unittest.TestCase):
 
     def test_get_nutrition_features_default_serving_size(self):
         """Test that default serving size is 100g."""
-        features = self.kb.get_nutrition_features("cabbage cruciferous boiled")
+        features = self.kb.get_nutrition_features("cabbage")
         self.assertEqual(features["serving_size_grams"], 100.0)
 
     def test_get_nutrition_features_custom_serving_size_grams(self):
         """Test custom serving size in grams."""
-        features_100g = self.kb.get_nutrition_features("cabbage cruciferous boiled", "100g")
-        features_200g = self.kb.get_nutrition_features("cabbage cruciferous boiled", "200g")
+        features_100g = self.kb.get_nutrition_features("cabbage", "100g")
+        features_200g = self.kb.get_nutrition_features("cabbage", "200g")
         
         # 200g should have exactly 2x the nutrients
         self.assertEqual(features_200g["carbohydrates"], features_100g["carbohydrates"] * 2)
@@ -73,24 +73,24 @@ class TestIntegration(unittest.TestCase):
 
     def test_get_nutrition_features_custom_serving_size_servings(self):
         """Test custom serving size in servings."""
-        # cabbage has serving_size_grams = 98
-        features_1serving = self.kb.get_nutrition_features("cabbage cruciferous boiled", "1 serving")
-        features_2servings = self.kb.get_nutrition_features("cabbage cruciferous boiled", "2 servings")
+        # cabbage has serving_size_grams = 89.5 (merged median)
+        features_1serving = self.kb.get_nutrition_features("cabbage", "1 serving")
+        features_2servings = self.kb.get_nutrition_features("cabbage", "2 servings")
         
         # 2 servings should be 2x the nutrients
         self.assertEqual(features_2servings["carbohydrates"], features_1serving["carbohydrates"] * 2)
-        self.assertEqual(features_2servings["serving_size_grams"], 98.0 * 2)
+        self.assertEqual(features_2servings["serving_size_grams"], 89.5 * 2)
 
     def test_get_nutrition_features_glycemic_load_calculation(self):
         """Test that glycemic load is calculated correctly: (GI × carbs) / 100."""
-        # cabbage: GI=20, carbs per 100g = 6.0
-        features = self.kb.get_nutrition_features("cabbage cruciferous boiled", "100g")
-        expected_gl = (20.0 * 6.0) / 100
+        # cabbage (merged): GI=16.5, carbs per 100g = 5.9
+        features = self.kb.get_nutrition_features("cabbage", "100g")
+        expected_gl = (16.5 * 5.9) / 100
         self.assertAlmostEqual(features["glycemic_load"], expected_gl, places=5)
 
     def test_get_nutrition_features_scaling_consistency(self):
         """Test that scaling works consistently across different serving sizes."""
-        food = "arborio rice boiled"
+        food = "arborio rice"
         
         features_50g = self.kb.get_nutrition_features(food, "50g")
         features_100g = self.kb.get_nutrition_features(food, "100g")
@@ -103,17 +103,17 @@ class TestIntegration(unittest.TestCase):
 
     def test_get_nutrition_features_name_case_insensitive(self):
         """Test that food lookup is case-insensitive."""
-        features1 = self.kb.get_nutrition_features("CABBAGE CRUCIFEROUS BOILED")
-        features2 = self.kb.get_nutrition_features("cabbage cruciferous boiled")
-        features3 = self.kb.get_nutrition_features("Cabbage Cruciferous Boiled")
+        features1 = self.kb.get_nutrition_features("CABBAGE")
+        features2 = self.kb.get_nutrition_features("cabbage")
+        features3 = self.kb.get_nutrition_features("Cabbage")
         
         self.assertEqual(features1["glycemic_index"], features2["glycemic_index"])
         self.assertEqual(features2["glycemic_index"], features3["glycemic_index"])
 
     def test_get_nutrition_features_name_whitespace(self):
         """Test that food lookup handles whitespace variations."""
-        features1 = self.kb.get_nutrition_features("  cabbage cruciferous   boiled  ")
-        features2 = self.kb.get_nutrition_features("cabbage cruciferous boiled")
+        features1 = self.kb.get_nutrition_features("  cabbage   ")
+        features2 = self.kb.get_nutrition_features("cabbage")
         
         self.assertEqual(features1["glycemic_index"], features2["glycemic_index"])
 
@@ -123,7 +123,7 @@ class TestIntegration(unittest.TestCase):
         
         self.assertIsInstance(foods, list)
         self.assertGreater(len(foods), 0)
-        self.assertIn("cabbage cruciferous boiled", foods)
+        self.assertIn("cabbage", foods)
         # All entries should be strings
         for food in foods:
             self.assertIsInstance(food, str)
@@ -146,9 +146,9 @@ class TestIntegration(unittest.TestCase):
     def test_multiple_foods_sequence(self):
         """Test looking up multiple different foods in sequence."""
         foods_to_test = [
-            "cabbage cruciferous boiled",
-            "deli turkey poached",
-            "arborio rice boiled",
+            "cabbage",
+            "deli turkey",
+            "arborio rice",
         ]
         
         for food in foods_to_test:
@@ -187,30 +187,30 @@ class TestErrors(unittest.TestCase):
     def test_invalid_serving_size_empty_string(self):
         """Test ValueError for empty serving size string."""
         with self.assertRaises(ValueError):
-            self.kb.get_nutrition_features("cabbage cruciferous boiled", "")
+            self.kb.get_nutrition_features("cabbage", "")
 
     def test_invalid_serving_size_invalid_format(self):
         """Test ValueError for unrecognized serving size format."""
         with self.assertRaises(ValueError):
-            self.kb.get_nutrition_features("cabbage cruciferous boiled", "invalid format")
+            self.kb.get_nutrition_features("cabbage", "invalid format")
 
     def test_invalid_serving_size_negative_grams(self):
         """Test ValueError for negative grams."""
         with self.assertRaises(ValueError):
-            self.kb.get_nutrition_features("cabbage cruciferous boiled", "-100g")
+            self.kb.get_nutrition_features("cabbage", "-100g")
 
     def test_invalid_serving_size_negative_servings(self):
         """Test ValueError for negative servings."""
         with self.assertRaises(ValueError):
-            self.kb.get_nutrition_features("cabbage cruciferous boiled", "-1 serving")
+            self.kb.get_nutrition_features("cabbage", "-1 serving")
 
     def test_invalid_serving_size_no_number(self):
         """Test ValueError for serving size with no number."""
         with self.assertRaises(ValueError):
-            self.kb.get_nutrition_features("cabbage cruciferous boiled", "g")
+            self.kb.get_nutrition_features("cabbage", "g")
         
         with self.assertRaises(ValueError):
-            self.kb.get_nutrition_features("cabbage cruciferous boiled", "serving")
+            self.kb.get_nutrition_features("cabbage", "serving")
 
 
 class TestEdgeCases(unittest.TestCase):
@@ -225,20 +225,20 @@ class TestEdgeCases(unittest.TestCase):
 
     def test_zero_gi_food(self):
         """Test food with GI=0 (like meat/protein foods)."""
-        features = self.kb.get_nutrition_features("deli turkey poached")
+        features = self.kb.get_nutrition_features("deli turkey")
         self.assertEqual(features["glycemic_index"], 0.0)
         # GL should be 0 when GI is 0
         self.assertEqual(features["glycemic_load"], 0.0)
 
     def test_zero_carbs_food(self):
         """Test food with very low carbs."""
-        features = self.kb.get_nutrition_features("deli turkey poached", "100g")
+        features = self.kb.get_nutrition_features("deli turkey", "100g")
         # deli turkey has 0.3 carbs per 100g, so GL should be (0 * 0.3) / 100 = 0
         self.assertEqual(features["glycemic_load"], 0.0)
 
     def test_zero_serving_size(self):
         """Test serving size of 0g."""
-        features = self.kb.get_nutrition_features("cabbage cruciferous boiled", "0g")
+        features = self.kb.get_nutrition_features("cabbage", "0g")
         self.assertEqual(features["serving_size_grams"], 0.0)
         self.assertEqual(features["carbohydrates"], 0.0)
         self.assertEqual(features["fiber"], 0.0)
@@ -248,56 +248,56 @@ class TestEdgeCases(unittest.TestCase):
 
     def test_zero_servings(self):
         """Test serving size of 0 servings."""
-        features = self.kb.get_nutrition_features("cabbage cruciferous boiled", "0 serving")
+        features = self.kb.get_nutrition_features("cabbage", "0 serving")
         self.assertEqual(features["serving_size_grams"], 0.0)
         self.assertEqual(features["carbohydrates"], 0.0)
 
     def test_very_large_serving_size(self):
         """Test very large serving size."""
-        features = self.kb.get_nutrition_features("cabbage cruciferous boiled", "1000g")
+        features = self.kb.get_nutrition_features("cabbage", "1000g")
         self.assertEqual(features["serving_size_grams"], 1000.0)
         # Should scale correctly (10x for 1000g vs 100g)
-        features_100g = self.kb.get_nutrition_features("cabbage cruciferous boiled", "100g")
+        features_100g = self.kb.get_nutrition_features("cabbage", "100g")
         self.assertAlmostEqual(features["carbohydrates"], features_100g["carbohydrates"] * 10, places=5)
 
     def test_fractional_servings(self):
         """Test fractional serving sizes."""
-        features = self.kb.get_nutrition_features("cabbage cruciferous boiled", "0.5 serving")
-        # cabbage base serving is 98g, so 0.5 serving = 49g
-        self.assertEqual(features["serving_size_grams"], 49.0)
+        features = self.kb.get_nutrition_features("cabbage", "0.5 serving")
+        # cabbage base serving is 89.5g, so 0.5 serving = 44.75g
+        self.assertEqual(features["serving_size_grams"], 44.75)
         
-        features_2_5 = self.kb.get_nutrition_features("cabbage cruciferous boiled", "2.5 servings")
-        self.assertEqual(features_2_5["serving_size_grams"], 98.0 * 2.5)
+        features_2_5 = self.kb.get_nutrition_features("cabbage", "2.5 servings")
+        self.assertEqual(features_2_5["serving_size_grams"], 89.5 * 2.5)
 
     def test_decimal_grams(self):
         """Test serving size with decimal grams."""
-        features = self.kb.get_nutrition_features("cabbage cruciferous boiled", "50.5g")
+        features = self.kb.get_nutrition_features("cabbage", "50.5g")
         self.assertEqual(features["serving_size_grams"], 50.5)
 
     def test_space_before_g(self):
         """Test serving size with space before 'g'."""
-        features1 = self.kb.get_nutrition_features("cabbage cruciferous boiled", "100g")
-        features2 = self.kb.get_nutrition_features("cabbage cruciferous boiled", "100 g")
+        features1 = self.kb.get_nutrition_features("cabbage", "100g")
+        features2 = self.kb.get_nutrition_features("cabbage", "100 g")
         self.assertEqual(features1["serving_size_grams"], features2["serving_size_grams"])
 
     def test_high_gi_food(self):
         """Test food with high GI (like white rice)."""
-        features = self.kb.get_nutrition_features("arborio rice boiled", "100g")
+        features = self.kb.get_nutrition_features("arborio rice", "100g")
         # arborio rice has GI=94, should have high GL
         self.assertGreater(features["glycemic_index"], 70.0)
         self.assertGreater(features["glycemic_load"], 0.0)
 
     def test_different_processing_levels(self):
         """Test that processing_level is preserved correctly."""
-        whole_food = self.kb.get_nutrition_features("cabbage cruciferous boiled")
-        processed_food = self.kb.get_nutrition_features("arborio rice boiled")
+        whole_food = self.kb.get_nutrition_features("cabbage")
+        processed_food = self.kb.get_nutrition_features("arborio rice")
         
         self.assertEqual(whole_food["processing_level"], "whole")
         self.assertEqual(processed_food["processing_level"], "processed")
 
     def test_name_with_multiple_spaces(self):
         """Test food name with multiple spaces."""
-        features = self.kb.get_nutrition_features("cabbage   cruciferous   boiled")
+        features = self.kb.get_nutrition_features("cabbage   ")
         # Should still find the food (normalization handles multiple spaces)
         self.assertIsNotNone(features["glycemic_index"])
 

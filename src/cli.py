@@ -51,45 +51,13 @@ def _print_art(lines: tuple[str, ...], indent: str = "  ") -> None:
         print(f"{indent}{line}")
 
 
-# Tiny terminal-safe doodles (ASCII only so old Windows consoles stay happy).
-ART_WELCOME_MASCOT: tuple[str, ...] = (
-    r"       _____       ",
-    r"      /     \      ",
-    r"     | ^   ^ |     ",
-    r"      \  w  /      ",
-    r"       -----       ",
-    r"      _|   |_      ",
+# Minimal terminal-safe separators for a cleaner look.
+ART_HEADER: tuple[str, ...] = (
+    r"  ==============================================",
 )
 
-ART_MENU_SPARKLE: tuple[str, ...] = (
-    r"    *  .  *  .  *  .  *  ",
-    r"  .    ~ menu ~    .      ",
-    r"    *  .  *  .  *  .  *  ",
-)
-
-ART_APPLE: tuple[str, ...] = (
-    r"       ,,        ",
-    r"      ( @ )       ",
-    r"       `''        ",
-)
-
-ART_MEAL_PLATE: tuple[str, ...] = (
-    r"      .------.      ",
-    r"     /        \     ",
-    r"    |   nom!   |    ",
-    r"     \________/     ",
-    r"       \____/       ",
-)
-
-ART_LOADING: tuple[str, ...] = (
-    r"   ... mixing numbers ...   ",
-)
-
-ART_GOODBYE: tuple[str, ...] = (
-    r"       \o/         ",
-    r"        |   bye!   ",
-    r"       / \         ",
-    r"      z   z        ",
+ART_SECTION: tuple[str, ...] = (
+    r"  ----------------------------------------------",
 )
 
 
@@ -372,9 +340,9 @@ def prompt_meal_items(
 def display_food_safety(features: dict, safety_result: dict):
     """Display a simplified, plain-language food safety summary."""
     print()
-    _print_art(ART_APPLE)
+    _print_art(ART_SECTION)
     print("  +----------------------------------------------+")
-    print("  |       One food - quick safety peek           |")
+    print("  |          Food Safety Snapshot                |")
     print("  +----------------------------------------------+")
     
     # Safety label
@@ -402,7 +370,7 @@ def display_food_safety(features: dict, safety_result: dict):
         f"Fiber: {features['fiber']:.1f}g | Protein: {features['protein']:.1f}g"
     )
     print(f"    • Serving: {features['serving_size_grams']:.1f}g")
-    print("  ─────────────────────────────────────────────")
+    _print_art(ART_SECTION)
 
     show_more = input("\n  More numbers? (y/n): ").strip().lower()
     if show_more in ("y", "yes"):
@@ -410,7 +378,7 @@ def display_food_safety(features: dict, safety_result: dict):
         print(f"    • Glycemic index (GI): {features['glycemic_index']:.1f}")
         print(f"    • Fat: {features['fat']:.1f}g")
         print(f"    • Processing: {features['processing_level']}")
-        print("  ─────────────────────────────────────────────")
+        _print_art(ART_SECTION)
 
 
 def meal_risk_category_plain(category: str) -> str:
@@ -452,26 +420,26 @@ def print_module4_meal_improvements(suggestion_result: dict) -> None:
     """Print tweak ideas in a light, friendly way (no long Module 4 lecture)."""
     if not suggestion_result["suggestions"]:
         print()
-        print("  * Optional tweaks")
-        print("  ───────────────────────────")
+        print("  Optional meal adjustments")
+        _print_art(ART_SECTION)
         if suggestion_result["status"] == "low_risk_no_suggestions_needed":
-            print("  You are already in a gentle zone - no homework needed here. Enjoy!")
+            print("  You are already in a lower-risk zone. No changes required.")
         else:
             print("  We could not find a simple swap bundle that bumps you down a whole")
             print("  tier this time. Smaller starchy portions or different sides might")
             print("  still help in real life - worth chatting with your care team too.")
-        print("  ───────────────────────────")
+        _print_art(ART_SECTION)
         return
 
     suggestions = suggestion_result["suggestions"]
     best = suggestions[0]
     print()
-    print("  * Optional tweaks")
-    print("  ───────────────────────────")
+    print("  Optional meal adjustments")
+    _print_art(ART_SECTION)
     print("  Here are some same-kind swaps or smaller servings that could soften")
-    print("  the meal a notch (you pick what feels realistic!):")
+    print("  the meal risk while keeping the meal practical:")
     print()
-    print("  >> Top pick")
+    print("  Top recommendation")
     print(
         f"     After these changes: {meal_risk_category_plain(best['resulting_category'])} "
         f"| score {best['resulting_score']:.1f}/100"
@@ -482,7 +450,7 @@ def print_module4_meal_improvements(suggestion_result: dict) -> None:
 
     if len(suggestions) > 1:
         print()
-        print("  >> More ideas")
+        print("  Additional options")
         for opt_idx, suggestion in enumerate(suggestions[1:], start=2):
             print()
             print(
@@ -491,17 +459,18 @@ def print_module4_meal_improvements(suggestion_result: dict) -> None:
             )
             for action in suggestion["actions"]:
                 print(f"       • {action}")
-    print("  ───────────────────────────")
+    _print_art(ART_SECTION)
 
 
 def main():
     """Main entry point for terminal UI."""
     print()
-    _print_art(ART_WELCOME_MASCOT)
+    _print_art(ART_HEADER)
     print("  +----------------------------------------------+")
-    print("  |  GlycemicGuard - your friendly meal buddy  |")
+    print("  |   GlycemicGuard - Diabetic Diet Advisor     |")
     print("  +----------------------------------------------+")
-    print("  (Nutrition nudges, not medical advice - always check with your care team.)")
+    print("  (Educational support only, not medical advice.)")
+    _print_art(ART_HEADER)
     print()
     
     # Initialize knowledge base (Module 1)
@@ -523,7 +492,7 @@ def main():
     # Initialize safety engine (Module 2)
     print("Initializing safety engine...")
     safety_engine = FoodSafetyEngine(kb)
-    print("  All set! Pick a menu option whenever you are ready.\n")
+    print("  Setup complete. Choose an option to continue.\n")
 
     # Initialize meal risk analyzer (Module 3).
     meal_risk_analyzer = MealRiskAnalyzer(
@@ -541,11 +510,11 @@ def main():
     # Main loop
     while True:
         print()
-        _print_art(ART_MENU_SPARKLE)
+        _print_art(ART_SECTION)
         print("  ───────── What would you like to do? ─────────")
-        print("    1  Peek at one food (safety & quick facts)")
-        print("    2  Build a meal & see spike-friendly feedback")
-        print("    3  Exit - thanks for stopping by!")
+        print("    1  Check one food (safety + quick facts)")
+        print("    2  Analyze a meal and view improvement options")
+        print("    3  Exit")
         print("  ─────────────────────────────────────────────")
         
         choice = input("\n  Pick 1, 2, or 3: ").strip()
@@ -556,7 +525,7 @@ def main():
                 selected_food = prompt_food_selection(kb, matcher)
                 
                 if selected_food is None:
-                    print("\n  No problem - cancelled.")
+                    print("\n  Cancelled.")
                     continue
                 
                 # Loop until we get a valid serving size
@@ -593,7 +562,7 @@ def main():
             try:
                 meal_items = prompt_meal_items(kb, matcher)
                 if meal_items is None:
-                    print("\n  No problem - cancelled.")
+                    print("\n  Cancelled.")
                     continue
 
                 # Precompute per-food outputs and meal totals.
@@ -626,8 +595,7 @@ def main():
                     total_fiber_g += float(features["fiber"])
                     total_protein_g += float(features["protein"])
 
-                print("\n  Crunching your meal... one moment!")
-                _print_art(ART_LOADING)
+                print("\n  Analyzing meal... please wait.")
 
                 # Compute overall meal risk (Module 3) using precomputed totals.
                 meal_analysis = meal_risk_analyzer.analyze_meal_from_precomputed(
@@ -649,9 +617,9 @@ def main():
                 )
 
                 print()
-                _print_art(ART_MEAL_PLATE)
+                _print_art(ART_SECTION)
                 print("  +----------------------------------------------+")
-                print("  |           Your meal - the recap              |")
+                print("  |                Meal Summary                  |")
                 print("  +----------------------------------------------+")
                 print()
                 print("  On your plate:")
@@ -711,9 +679,7 @@ def main():
                 print(f"\nUnexpected error: {e}")
 
         elif choice == "3":
-            print()
-            _print_art(ART_GOODBYE)
-            print("\n  Take care - see you at the next meal!\n")
+            print("\n  Session ended. Thanks for using GlycemicGuard.\n")
             break
         
         else:

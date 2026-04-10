@@ -9,6 +9,7 @@ if project_root not in sys.path:
 from src.module4.meal_suggestion_planner import (
     MealSuggestionPlanner,
     _Node,
+    infer_dairy_subfamily,
     infer_food_category,
     infer_grain_starch_subfamily,
     meal_has_duplicate_replacement_across_distinct_foods,
@@ -120,6 +121,12 @@ class TestMealSuggestionPlanner(unittest.TestCase):
         self.assertEqual(infer_grain_starch_subfamily("potato salad with dressing"), "potato")
         self.assertIsNone(infer_grain_starch_subfamily("broccoli"))
 
+    def test_dairy_subfamily_ice_cream_not_cheese(self):
+        self.assertEqual(infer_dairy_subfamily("vanilla ice cream"), "frozen_dessert")
+        self.assertEqual(infer_dairy_subfamily("blue cheese"), "cheese")
+        self.assertIsNone(infer_dairy_subfamily("broccoli"))
+        self.assertEqual(infer_dairy_subfamily("greek plain yogurt"), "yogurt")
+
     def test_duplicate_replacement_detection(self):
         start = (("white rice", "100g"), ("white bread", "100g"))
         bad = (("brown rice", "100g"), ("brown rice", "100g"))
@@ -153,6 +160,20 @@ class TestMealSuggestionPlanner(unittest.TestCase):
         self.assertIn("150g", joined)
         self.assertIn("100g", joined)
         self.assertIn("50g", joined)
+
+    def test_no_portion_reduction_after_swap_same_slot(self):
+        """Do not stack a portion cut on a line that already used a swap."""
+        planner = MealSuggestionPlanner(FakeKB(), FakeAnalyzer(), max_edits=3)
+        planner._original_count = 1
+        planner._start_meal = (("white rice", "200g"),)
+        swapped = _Node(
+            meal=(("brown rice", "200g"),),
+            actions=("Swap white rice -> brown rice",),
+            edits_count=1,
+        )
+        children = planner._expand(swapped)
+        reduce_after = [n for n in children if n.actions and "Reduce portion" in n.actions[-1]]
+        self.assertEqual(len(reduce_after), 0)
 
     def test_portion_reduction_can_reach_goal(self):
         class RiceOnlyKB(FakeKB):
@@ -192,6 +213,31 @@ class TestMealSuggestionPlanner(unittest.TestCase):
         cands = planner._swap_candidates("white rice")
         self.assertIn("brown rice", cands)
         self.assertNotIn("pasta salad no dressing", cands)
+
+    def test_dairy_swaps_stay_within_subfamily(self):
+        class KB(FakeKB):
+            def __init__(self):
+                super().__init__()
+                self._foods["vanilla ice cream"] = {
+                    "glycemic_index": 52.0,
+                    "fiber": 0.9,
+                    "glycemic_load": 14.8,
+                }
+                self._foods["strawberry ice cream"] = {
+                    "glycemic_index": 45.0,
+                    "fiber": 0.2,
+                    "glycemic_load": 13.0,
+                }
+                self._foods["cheddar cheese"] = {
+                    "glycemic_index": 0.0,
+                    "fiber": 2.5,
+                    "glycemic_load": 0.5,
+                }
+
+        planner = MealSuggestionPlanner(KB(), FakeAnalyzer(), max_edits=1, max_expansions=5)
+        cands = planner._swap_candidates("vanilla ice cream")
+        self.assertIn("strawberry ice cream", cands)
+        self.assertNotIn("cheddar cheese", cands)
 
     def test_same_category_swaps_are_used(self):
         planner = MealSuggestionPlanner(

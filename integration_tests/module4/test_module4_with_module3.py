@@ -24,8 +24,8 @@ class TestModule4Integration(unittest.TestCase):
         planner = MealSuggestionPlanner(kb, analyzer, max_edits=3, max_expansions=140)
 
         meal_items = [
-            {"food_name": "arborio rice boiled", "serving_size": "100g"},
-            {"food_name": "bagel bread stale", "serving_size": "100g"},
+            {"food_name": "arborio rice", "serving_size": "100g"},
+            {"food_name": "bagel bread", "serving_size": "100g"},
         ]
         original = analyzer.analyze_meal(meal_items)
         result = planner.generate_suggestions(
@@ -51,8 +51,8 @@ class TestModule4Integration(unittest.TestCase):
 
         # Two zero-GI foods should produce a low effective GL and a low meal category.
         meal_items = [
-            {"food_name": "deli turkey poached", "serving_size": "100g"},
-            {"food_name": "loin pork baked", "serving_size": "100g"},
+            {"food_name": "deli turkey", "serving_size": "100g"},
+            {"food_name": "loin pork", "serving_size": "100g"},
         ]
         original = analyzer.analyze_meal(meal_items)
         result = planner.generate_suggestions(

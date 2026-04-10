@@ -209,12 +209,14 @@ def _derive_actions_from_diff(planner: object, start_meal: MealTuple, meal: Meal
         start_food, start_serv = start_meal[idx]
         new_food, new_serv = meal[idx]
         if new_food != start_food:
-            actions.append(f"Swap {start_food} -> {new_food}")
-        if new_food == start_food and new_serv.strip() != start_serv.strip():
+            if new_serv.strip() == start_serv.strip():
+                actions.append(f"Swap {start_food} -> {new_food}")
+            else:
+                # One user-facing step: swap includes serving change (no separate
+                # "reduce" line for the replacement food).
+                actions.append(f"Swap {start_food} -> {new_food}: {start_serv} -> {new_serv}")
+        elif new_serv.strip() != start_serv.strip():
             actions.append(f"Reduce portion of {start_food}: {start_serv} -> {new_serv}")
-        if new_food != start_food and new_serv.strip() != start_serv.strip():
-            # If both changed, treat as swap (primary) plus serving change.
-            actions.append(f"Reduce portion of {new_food}: {start_serv} -> {new_serv}")
 
     # Added items: beyond original slots.
     for idx in range(orig_count, len(meal)):

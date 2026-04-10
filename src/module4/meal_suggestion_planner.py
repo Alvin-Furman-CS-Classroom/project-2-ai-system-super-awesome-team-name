@@ -8,7 +8,8 @@ so many tied high scores still prefer materially lower sugar impact.
 
 **Swaps** use the knowledge base only: same inferred coarse category as the
 original, then—within ``grain_starch``—the same **subfamily** (rice→rice,
-bread→bread, pasta→pasta, etc.), ranked by lower glycemic index and load.
+bread→bread, pasta→pasta, etc.), and—within ``dairy``—the same **subfamily**
+(e.g. ice cream↔ice cream, not ice cream→cheese), ranked by lower glycemic index and load.
 Category rules use **whole-word** tokens and phrases (plus small overrides such
 as **rice milk** as beverage). **Embeddings are not used** here.
 
@@ -280,6 +281,50 @@ def infer_grain_starch_subfamily(food_name: str) -> Optional[str]:
     if "polenta" in tokens:
         return "polenta"
     return "other_starch"
+
+
+def infer_dairy_subfamily(food_name: str) -> Optional[str]:
+    """
+    Within ``dairy``, assign a **swap subfamily** so replacements stay plausible
+    (e.g. frozen desserts swap to other frozen desserts, not to hard cheese).
+
+    Returns ``None`` if the food is not classified as ``dairy``.
+    """
+    if infer_food_category(food_name) != "dairy":
+        return None
+    name = (food_name or "").lower()
+
+    if "ice cream" in name or "gelato" in name:
+        return "frozen_dessert"
+    if "frozen yogurt" in name:
+        return "frozen_dessert"
+    if "yogurt" in name:
+        return "yogurt"
+    if "sour cream" in name or "half and half" in name:
+        return "cream"
+    if "cream" in name and "ice cream" not in name:
+        # Pourable / cooking cream (e.g. heavy cream); not frozen desserts.
+        if any(
+            phrase in name
+            for phrase in (
+                "heavy cream",
+                "whipping cream",
+                "light cream",
+                "table cream",
+                "coffee with cream",
+            )
+        ):
+            return "cream"
+        if name.strip() == "cream":
+            return "cream"
+    tokens = _name_tokens(food_name)
+    if "cheese" in tokens:
+        return "cheese"
+    if "milk" in tokens or "kefir" in tokens:
+        return "milk"
+    if "cream" in tokens:
+        return "cream"
+    return "other_dairy"
 
 
 def meal_has_duplicate_replacement_across_distinct_foods(
@@ -618,6 +663,11 @@ class MealSuggestionPlanner:
         # swaps so equal-priority heap ties favor smaller servings in expansion order).
         for idx in range(self._original_count):
             food_name, serving_size = node.meal[idx]
+            # After a swap, this line is already a different food than the user's
+            # original; do not stack a portion cut on the replacement (one clear
+            # action per original item).
+            if food_name != self._start_meal[idx][0]:
+                continue
             if infer_food_category(food_name) not in PORTION_REDUCTION_CATEGORIES:
                 continue
             if self._safe_gl(food_name) <= 0.0:
@@ -702,6 +752,15 @@ class MealSuggestionPlanner:
                     c
                     for c in pool
                     if infer_grain_starch_subfamily(c) == src_sub
+                ]
+
+        if src_category == "dairy":
+            src_sub = infer_dairy_subfamily(food_name)
+            if src_sub is not None:
+                pool = [
+                    c
+                    for c in pool
+                    if infer_dairy_subfamily(c) == src_sub
                 ]
 
         # Prefer same-or-lower GI first, then lower GL at a standard portion, then name.
