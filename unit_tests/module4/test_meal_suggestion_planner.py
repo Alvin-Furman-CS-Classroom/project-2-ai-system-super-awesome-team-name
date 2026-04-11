@@ -161,6 +161,21 @@ class TestMealSuggestionPlanner(unittest.TestCase):
         self.assertIn("100g", joined)
         self.assertIn("50g", joined)
 
+    def test_no_second_portion_reduction_same_slot(self):
+        """At most one portion edit per original line (no chained cuts)."""
+        planner = MealSuggestionPlanner(FakeKB(), FakeAnalyzer(), max_edits=3)
+        planner._original_count = 1
+        planner._start_meal = (("white rice", "200g"),)
+        once = _Node(
+            meal=(("white rice", "100g"),),
+            actions=("Reduce portion of white rice: 200g -> 100g",),
+            edits_count=1,
+            modified_original_indices=frozenset({0}),
+        )
+        children = planner._expand(once)
+        reduce_again = [n for n in children if n.actions and "Reduce portion" in n.actions[-1]]
+        self.assertEqual(len(reduce_again), 0)
+
     def test_no_portion_reduction_after_swap_same_slot(self):
         """Do not stack a portion cut on a line that already used a swap."""
         planner = MealSuggestionPlanner(FakeKB(), FakeAnalyzer(), max_edits=3)
@@ -170,6 +185,7 @@ class TestMealSuggestionPlanner(unittest.TestCase):
             meal=(("brown rice", "200g"),),
             actions=("Swap white rice -> brown rice",),
             edits_count=1,
+            modified_original_indices=frozenset({0}),
         )
         children = planner._expand(swapped)
         reduce_after = [n for n in children if n.actions and "Reduce portion" in n.actions[-1]]

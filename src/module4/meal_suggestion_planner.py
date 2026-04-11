@@ -14,15 +14,16 @@ Category rules use **whole-word** tokens and phrases (plus small overrides such
 as **rice milk** as beverage). **Embeddings are not used** here.
 
 **Portion reduction** scales current servings by 75%, 50%, and 25% on eligible
-original lines (carb-heavy categories with nonzero reference GL). **Adds** pick
-low-GI, higher-fiber vegetables/legumes/proteins from the KB.
+original lines (carb-heavy categories with nonzero reference GL), **at most once per
+original line** (no chained cuts on the same food; swap and portion are also
+mutually exclusive per line). **Adds** pick low-GI, higher-fiber vegetables/legumes/proteins from the KB.
 """
 
 from __future__ import annotations
 
 import heapq
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Dict, FrozenSet, List, Literal, Optional, Sequence, Tuple, TypedDict
 
 from src.module1.knowledge_base import FoodNotFoundError, MissingDataError, NutritionKnowledgeBase
@@ -174,11 +175,31 @@ class SuggestionResult(TypedDict):
     status: Literal["low_risk_no_suggestions_needed", "suggestions_found", "no_suggestions_found"]
 
 
+def modified_original_indices_from_meal(
+    start_meal: Tuple[Tuple[str, str], ...],
+    meal: Tuple[Tuple[str, str], ...],
+    orig_count: int,
+) -> frozenset[int]:
+    """
+    Indices in [0, orig_count) whose original line has been edited (portion change
+    or swap). At most one such edit per index is allowed by search expansion.
+    """
+    touched: set[int] = set()
+    for idx in range(min(orig_count, len(start_meal), len(meal))):
+        sf, ss = start_meal[idx]
+        nf, ns = meal[idx]
+        if nf != sf or ns.strip() != ss.strip():
+            touched.add(idx)
+    return frozenset(touched)
+
+
 @dataclass(frozen=True)
 class _Node:
     meal: Tuple[Tuple[str, str], ...]
     actions: Tuple[str, ...]
     edits_count: int
+    # Original meal positions that already had a portion change or swap (adds are separate).
+    modified_original_indices: frozenset[int] = field(default_factory=frozenset)
 
 
 def _name_tokens(food_name: str) -> set[str]:
@@ -493,7 +514,7 @@ class MealSuggestionPlanner:
         Dict[Tuple[Tuple[str, str], ...], Tuple[str, float, float]],
     ]:
         """Initialize frontier and memoization for the search."""
-        start_node = _Node(meal=start_meal, actions=tuple(), edits_count=0)
+        start_node = _Node(meal=start_meal, actions=tuple(), edits_count=0, modified_original_indices=frozenset())
         frontier: List[Tuple[Tuple[int, int, float, float], int, _Node]] = []
         counter = 0
         analysis_cache: Dict[Tuple[Tuple[str, str], ...], Tuple[str, float, float]] = {}
@@ -662,6 +683,8 @@ class MealSuggestionPlanner:
         # Portion reduction first (often lowers effective GL immediately; listed before
         # swaps so equal-priority heap ties favor smaller servings in expansion order).
         for idx in range(self._original_count):
+            if idx in node.modified_original_indices:
+                continue
             food_name, serving_size = node.meal[idx]
             # After a swap, this line is already a different food than the user's
             # original; do not stack a portion cut on the replacement (one clear
@@ -691,11 +714,14 @@ class MealSuggestionPlanner:
                         meal=new_meal_t,
                         actions=node.actions + (action,),
                         edits_count=node.edits_count + 1,
+                        modified_original_indices=node.modified_original_indices | {idx},
                     )
                 )
 
         # Swap actions (same category only).
         for idx in range(self._original_count):
+            if idx in node.modified_original_indices:
+                continue
             food_name, serving_size = node.meal[idx]
             for replacement in self._swap_candidates(food_name):
                 if replacement == food_name:
@@ -715,6 +741,7 @@ class MealSuggestionPlanner:
                         meal=new_meal_t,
                         actions=node.actions + (action,),
                         edits_count=node.edits_count + 1,
+                        modified_original_indices=node.modified_original_indices | {idx},
                     )
                 )
 
@@ -729,6 +756,7 @@ class MealSuggestionPlanner:
                     meal=new_meal,
                     actions=node.actions + (action,),
                     edits_count=node.edits_count + 1,
+                    modified_original_indices=node.modified_original_indices,
                 )
             )
         return out

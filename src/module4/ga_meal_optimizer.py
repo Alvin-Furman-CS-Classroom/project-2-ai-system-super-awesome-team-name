@@ -173,8 +173,18 @@ def _tournament_select(
 def _node_from_meal(planner: object, meal: MealTuple, *, actions: Tuple[str, ...]) -> object:
     # _Node is defined inside meal_suggestion_planner; instantiate via its name on the module.
     # We avoid importing it directly here.
-    node_cls = getattr(__import__("src.module4.meal_suggestion_planner", fromlist=["_Node"]), "_Node")
-    return node_cls(meal=meal, actions=actions, edits_count=len(actions))
+    mspm = __import__("src.module4.meal_suggestion_planner", fromlist=["_Node"])
+    node_cls = getattr(mspm, "_Node")
+    mod_fn = getattr(mspm, "modified_original_indices_from_meal")
+    start = getattr(planner, "_start_meal")
+    orig_count = int(getattr(planner, "_original_count"))
+    modified = mod_fn(start, meal, orig_count) if orig_count else frozenset()
+    return node_cls(
+        meal=meal,
+        actions=actions,
+        edits_count=len(actions),
+        modified_original_indices=modified,
+    )
 
 
 def _make_individual(
