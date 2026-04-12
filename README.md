@@ -147,6 +147,59 @@ When you choose **“2. Check meal risk”**, after Module 3’s summary the CLI
 - Unit tests: `unit_tests/module4/test_meal_suggestion_planner.py`
 - Integration test: `integration_tests/module4/test_module4_with_module3.py`
 
+---
+
+## Module 5: User Feedback & Threshold Adaptation (Reinforcement Learning)
+
+### Inputs
+
+- **Prediction context** (from the current run, typically after **Module 3**):
+  - `meal_risk_category`: `low` | `medium` | `high` (same literals as Module 3).
+  - `risk_score`: float in **0–100** (Module 3’s numeric spike-risk score).
+- **User-reported outcome** (what actually happened for that meal, from the user):
+  - `no_spike` | `mild_spike` | `spike` (maps to clinical-style feedback for learning).
+- **Current personalization state**:
+  - **Thresholds** — the GI/GL limits that drive Module 2 rules and should stay aligned with Module 3’s effective-glycemic-load bands: `safe_gl`, `caution_gl`, `safe_gi`, `caution_gi` (defaults match `src/module2/safety_rules.py`).
+  - **RL state** — learning-rate, exploration rate, Q-table, and update counter (see `src/module5/` outlines).
+- **Historical context (conceptual):** Each feedback event updates stored state; an optional append-only log of (meal summary, prediction, outcome, timestamp) may be added later for demos or analysis, but the **minimum deliverable** is persisted thresholds + Q-state.
+
+### Outputs
+
+- **Updated personalized thresholds** (same keys as above), clamped and **ordered** (`safe_gl < caution_gl`, `safe_gi < caution_gi`) so rules remain interpretable.
+- **Updated RL state** (Q-values and counters) saved with the profile so learning continues across CLI sessions.
+
+### Dependencies
+
+- **Module 3:** supplies `meal_risk_category` and `risk_score` used as part of the RL **state** encoding.
+- **Module 2:** must **apply** the persisted thresholds when evaluating foods (not only accept them in the constructor); explanations should quote the active numbers.
+- **Module 3 (effective GL mode):** meal-level GL bands used for category/score should use the same **`safe_gl` / `caution_gl`** as Module 2 so personalized limits stay consistent end-to-end.
+- **Module 4:** not required for the learning algorithm itself; users may give feedback after trying a suggested meal, so the **workflow** can reference suggestions, but Module 5’s core update is prediction + outcome → threshold adjustment.
+
+### Persistence
+
+- **Default path:** `data/user_profile.json` (single JSON document: `version`, `thresholds`, `rl_state`, `meta` such as `last_updated_utc`). Missing or corrupt files fall back to defaults; saves should be **atomic** (write temp, then rename). See `src/module5/user_profile.py` and `src/module5/types.py` for the intended schema.
+
+### RL framing (policy / Q-learning)
+
+- **State:** Coarse encoding from the system’s prediction, e.g. predicted category plus a **score bucket** (such as 0–39 / 40–69 / 70–100) to keep the Q-table small.
+- **Actions:** Discrete nudges to each threshold (increase/decrease safe or caution GL/GI) plus **`no_op`**, with small step sizes and hard clamps.
+- **Rewards:** **Safety-first** shaping — e.g. reward when prediction aligns with outcome; **larger penalty** when the user reports a spike after a low/medium prediction; **smaller penalty** when the system was overly cautious and the user reports no spike.
+- **Policy:** **ε-greedy** over Q(state, action); **Q-learning** with each feedback treated as **terminal** (discount γ = 0) unless you extend to sequences later:  
+  `Q(s,a) ← Q(s,a) + α (r − Q(s,a))`.
+
+### CLI (planned)
+
+- Load profile at startup; pass loaded **thresholds** into Module 2 (and aligned GL cuts into Module 3).
+- After a meal risk assessment (and optionally after the user reviews Module 4-style suggestions), prompt once for **observed outcome** and run **load → update → save** via the Module 5 service API (`src/module5/personalization_service.py` outline).
+- Optional: display current thresholds or reset to defaults.
+
+### Testing (planned)
+
+- **Unit tests:** `unit_tests/module5/` — persistence, reward and Q-update math, action clamps/invariants, deterministic RNG for ε-greedy.
+- **Integration tests:** `integration_tests/module5/` — profile + Module 2/3 with non-default thresholds; feedback loop improves alignment on a fixed scripted scenario.
+
+**Status:** Implementation in `src/module5/` is currently **outline / skeleton** (docstrings and planned API only); this section is the module spec for completion before Checkpoint 5.
+
 ## Repository Layout
 
 ```
@@ -171,7 +224,8 @@ your-repo/
 │   └── module5/                      # Integration tests for Module 5 (uses Modules 2, 3, 4)
 ├── data/                             # Sample nutrition data files (CSV/JSON)
 │   ├── sample_nutrition_data.csv     # Sample nutrition data in CSV format
-│   └── sample_nutrition_data.json    # Sample nutrition data in JSON format
+│   ├── sample_nutrition_data.json    # Sample nutrition data in JSON format
+│   └── user_profile.json             # Module 5: persisted thresholds + RL state (created at runtime; optional .gitignore)
 ├── .claude/skills/code-review/SKILL.md  # rubric-based agent review
 ├── AGENTS.md                         # instructions for your LLM agent
 ├── PROPOSAL.md                       # Full project proposal
