@@ -17,11 +17,27 @@ Public API (planned)
   - update_thresholds_from_feedback(...)
   - (optional) apply_feedback_and_persist(...) convenience wrapper
 
-Types (planned exports)
-- UserOutcome, Thresholds, RLState, UserProfile
+Types
+- UserOutcome, Thresholds, RLState, UserProfile, MealRiskCategory, RLAction, ScoreBucket
 """
 
-# from .types import UserOutcome, Thresholds, RLState, UserProfile
-# from .user_profile import load_profile, save_profile, default_profile_path
-# from .rl_threshold_adapter import update_thresholds_from_feedback
+from .types import (
+    MealRiskCategory,
+    RLAction,
+    RLState,
+    ScoreBucket,
+    Thresholds,
+    UserOutcome,
+    UserProfile,
+)
+
+__all__ = [
+    "MealRiskCategory",
+    "RLAction",
+    "RLState",
+    "ScoreBucket",
+    "Thresholds",
+    "UserOutcome",
+    "UserProfile",
+]
 
