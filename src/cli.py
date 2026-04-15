@@ -402,14 +402,101 @@ def meal_risk_category_cute(category: str) -> str:
     }.get(category, meal_risk_category_plain(category))
 
 
-def prompt_user_outcome() -> Optional[UserOutcome]:
-    """Optionally collect user-reported outcome for Module 5 learning."""
-    wants_feedback = input(
+def prompt_meal_context_for_feedback(
+    kb: NutritionKnowledgeBase,
+    safety_engine: FoodSafetyEngine,
+    meal_risk_analyzer: MealRiskAnalyzer,
+    meal_analysis: dict,
+    meal_items: list[dict],
+    suggestion_result: dict,
+) -> tuple[dict, list[dict]]:
+    """
+    Ask whether feedback refers to the original meal or a Module 4 suggestion.
+
+    If the user followed a suggestion, re-run Module 2/3 on that edited meal so
+    predicted category/score match what they actually ate for personalization.
+    """
+    suggestions = suggestion_result.get("suggestions") or []
+    if suggestion_result.get("status") != "suggestions_found" or not suggestions:
+        return meal_analysis, meal_items
+
+    print()
+    print("  ─── Feedback: which meal did you actually eat? ───")
+    print("  We use this so your outcome matches the prediction we learn from.")
+    print("    1  The meal as you entered it (summary above)")
+    print("    2  I followed the top recommendation")
+    if len(suggestions) > 1:
+        for i in range(1, len(suggestions)):
+            print(f"    {i + 2}  I followed idea {i + 1}")
+    choice = input("  Pick a number (default 1): ").strip()
+    if not choice or choice == "1":
+        return meal_analysis, meal_items
+
+    try:
+        pick = int(choice)
+    except ValueError:
+        print("  Using your original meal for feedback.")
+        return meal_analysis, meal_items
+
+    # 2 -> suggestion index 0, 3 -> index 1, ...
+    sug_idx = pick - 2
+    if sug_idx < 0 or sug_idx >= len(suggestions):
+        print("  Using your original meal for feedback.")
+        return meal_analysis, meal_items
+
+    edited_meal = suggestions[sug_idx]["edited_meal"]
+    per_food_results: list[dict] = []
+    total_gl = 0.0
+    total_fiber_g = 0.0
+    total_protein_g = 0.0
+
+    try:
+        for item in edited_meal:
+            features = kb.get_nutrition_features(item["food_name"], item["serving_size"])
+            safety_result = safety_engine.evaluate_food(
+                item["food_name"], item["serving_size"]
+            )
+            per_food_results.append(
+                {
+                    "safety_label": safety_result["safety_label"],
+                    "explanation": safety_result["explanation"],
+                }
+            )
+            total_gl += float(features["glycemic_load"])
+            total_fiber_g += float(features["fiber"])
+            total_protein_g += float(features["protein"])
+    except (FoodNotFoundError, MissingDataError, ValueError) as e:
+        print(f"\n  Could not re-analyze that suggestion ({e}). Using original meal for feedback.")
+        return meal_analysis, meal_items
+
+    adjusted = meal_risk_analyzer.analyze_meal_from_precomputed(
+        meal_items=edited_meal,
+        per_food_results=per_food_results,  # type: ignore[arg-type]
+        precomputed_totals={
+            "total_gl": total_gl,
+            "total_fiber_g": total_fiber_g,
+            "total_protein_g": total_protein_g,
+        },
+    )
+    print()
+    print(
+        "  Feedback will use this adjusted meal's predicted risk: "
+        f"{meal_risk_category_plain(adjusted['meal_risk_category'])} "
+        f"| score {float(adjusted['risk_score']):.1f}/100"
+    )
+    return adjusted, edited_meal
+
+
+def prompt_wants_feedback_log() -> bool:
+    """Ask whether to log this meal for personalization (Module 5) before other prompts."""
+    wants = input(
         "\n  Log observed outcome to personalize future predictions? (y/n): "
     ).strip().lower()
-    if wants_feedback not in ("y", "yes"):
-        return None
+    return wants in ("y", "yes")
 
+
+def prompt_spike_outcome() -> Optional[UserOutcome]:
+    """Ask what happened after the meal (call only after user chose to log)."""
     print("  What happened after this meal?")
     print("    1  No noticeable spike")
     print("    2  Mild spike")
@@ -709,11 +796,23 @@ def main():
                             f"protein {features['protein']:.1f}g"
                         )
 
-                feedback_outcome = prompt_user_outcome()
+                meal_analysis_for_feedback = meal_analysis
+                feedback_outcome: Optional[UserOutcome] = None
+                if prompt_wants_feedback_log():
+                    meal_analysis_for_feedback, _ = prompt_meal_context_for_feedback(
+                        kb,
+                        safety_engine,
+                        meal_risk_analyzer,
+                        meal_analysis,
+                        meal_items,
+                        suggestion_result,
+                    )
+                    feedback_outcome = prompt_spike_outcome()
+
                 if feedback_outcome is not None:
                     updated_profile = apply_feedback_and_persist(
-                        predicted_category=meal_analysis["meal_risk_category"],
-                        predicted_score=float(meal_analysis["risk_score"]),
+                        predicted_category=meal_analysis_for_feedback["meal_risk_category"],
+                        predicted_score=float(meal_analysis_for_feedback["risk_score"]),
                         outcome=feedback_outcome,
                     )
                     active_thresholds = dict(updated_profile["thresholds"])
