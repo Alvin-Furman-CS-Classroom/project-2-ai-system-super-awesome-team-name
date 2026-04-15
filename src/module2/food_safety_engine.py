@@ -36,7 +36,7 @@ class FoodSafetyEngine:
         if not isinstance(knowledge_base, NutritionKnowledgeBase):
             raise TypeError("knowledge_base must be a NutritionKnowledgeBase instance.")
         self.knowledge_base = knowledge_base
-        self._thresholds = thresholds  # Stored for future use; safety_rules uses module constants for now.
+        self._thresholds = thresholds or {}
 
     def evaluate_food(self, food_name: str, serving_size: str = "100g") -> Dict[str, str]:
         """Evaluate safety of a food at the given serving size.
@@ -58,5 +58,5 @@ class FoodSafetyEngine:
         """
         raw_features = self.knowledge_base.get_nutrition_features(food_name, serving_size)
         features = cast(NutritionFeatures, raw_features)
-        label, explanation = evaluate_propositions(features)
+        label, explanation = evaluate_propositions(features, thresholds=self._thresholds)
         return {"safety_label": label, "explanation": explanation}

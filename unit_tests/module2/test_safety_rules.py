@@ -155,6 +155,21 @@ class TestEvaluatePropositions(unittest.TestCase):
         self.assertIn(str(CAUTION_GL_THRESHOLD), explanation)
         self.assertIn(str(CAUTION_GI_THRESHOLD), explanation)
 
+    def test_custom_thresholds_are_applied(self):
+        """evaluate_propositions honors caller-provided threshold overrides."""
+        thresholds = {
+            "safe_gl": 8.0,
+            "caution_gl": 12.0,
+            "safe_gi": 45.0,
+            "caution_gi": 60.0,
+        }
+        label, explanation = evaluate_propositions(_features(50.0, 9.0), thresholds=thresholds)
+        self.assertEqual(label, "caution")
+        self.assertIn("8.0", explanation)
+        self.assertIn("12.0", explanation)
+        self.assertIn("45.0", explanation)
+        self.assertIn("60.0", explanation)
+
 
 if __name__ == "__main__":
     unittest.main()

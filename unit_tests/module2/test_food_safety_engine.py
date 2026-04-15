@@ -173,6 +173,32 @@ class TestFoodSafetyEngineEvaluate(unittest.TestCase):
         result = engine.evaluate_food("high gl food")
         self.assertEqual(result["safety_label"], "unsafe")
 
+    def test_evaluate_uses_custom_thresholds(self):
+        """Custom thresholds affect both label and explanation text."""
+        features = {
+            "glycemic_index": 50.0,
+            "glycemic_load": 9.0,
+            "carbohydrates": 20.0,
+            "fiber": 2.0,
+            "protein": 1.0,
+            "fat": 0.0,
+            "processing_level": "whole",
+            "serving_size_grams": 100.0,
+        }
+        mock_kb = _MockKB(features=features)
+        engine = FoodSafetyEngine(
+            mock_kb,
+            thresholds={
+                "safe_gl": 8.0,
+                "caution_gl": 12.0,
+                "safe_gi": 45.0,
+                "caution_gi": 60.0,
+            },
+        )
+        result = engine.evaluate_food("custom threshold food")
+        self.assertEqual(result["safety_label"], "caution")
+        self.assertIn("8.0", result["explanation"])
+
 
 class TestFoodSafetyEngineErrorPropagation(unittest.TestCase):
     """Tests that Module 1 errors are propagated by evaluate_food."""

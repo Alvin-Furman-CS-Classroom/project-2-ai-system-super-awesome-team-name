@@ -12,7 +12,7 @@ Created 2/3/2026
 Authors: Jia Lin and Della Avent
 """
 
-from typing import Dict, Tuple, TypedDict
+from typing import Dict, Mapping, Tuple, TypedDict
 
 
 class NutritionFeatures(TypedDict):
@@ -43,7 +43,31 @@ CAUTION_GI_THRESHOLD = 70.0    # GI > 55 and < 70 is caution
 # by downstream modules. For Checkpoint 2, we focus on transparent GI/GL rules.
 
 
-def get_gl_category(glycemic_load: float) -> str:
+def _resolve_thresholds(
+    thresholds: Mapping[str, float] | None,
+) -> tuple[float, float, float, float]:
+    """Resolve active thresholds, falling back to module defaults when omitted."""
+    if thresholds is None:
+        return (
+            SAFE_GL_THRESHOLD,
+            CAUTION_GL_THRESHOLD,
+            SAFE_GI_THRESHOLD,
+            CAUTION_GI_THRESHOLD,
+        )
+    return (
+        float(thresholds.get("safe_gl", SAFE_GL_THRESHOLD)),
+        float(thresholds.get("caution_gl", CAUTION_GL_THRESHOLD)),
+        float(thresholds.get("safe_gi", SAFE_GI_THRESHOLD)),
+        float(thresholds.get("caution_gi", CAUTION_GI_THRESHOLD)),
+    )
+
+
+def get_gl_category(
+    glycemic_load: float,
+    *,
+    safe_gl_threshold: float = SAFE_GL_THRESHOLD,
+    caution_gl_threshold: float = CAUTION_GL_THRESHOLD,
+) -> str:
     """Determine safety category based on glycemic load.
     
     Args:
@@ -54,14 +78,19 @@ def get_gl_category(glycemic_load: float) -> str:
         "caution" if GL > SAFE_GL_THRESHOLD and <= CAUTION_GL_THRESHOLD,
         "unsafe" if GL > CAUTION_GL_THRESHOLD.
     """
-    if glycemic_load <= SAFE_GL_THRESHOLD:
+    if glycemic_load <= safe_gl_threshold:
         return "safe"
-    if glycemic_load <= CAUTION_GL_THRESHOLD:
+    if glycemic_load <= caution_gl_threshold:
         return "caution"
     return "unsafe"
 
 
-def get_gi_category(glycemic_index: float) -> str:
+def get_gi_category(
+    glycemic_index: float,
+    *,
+    safe_gi_threshold: float = SAFE_GI_THRESHOLD,
+    caution_gi_threshold: float = CAUTION_GI_THRESHOLD,
+) -> str:
     """Determine safety category based on glycemic index.
     
     Args:
@@ -72,40 +101,51 @@ def get_gi_category(glycemic_index: float) -> str:
         "caution" if GI > SAFE_GI_THRESHOLD and <= CAUTION_GI_THRESHOLD,
         "unsafe" if GI > CAUTION_GI_THRESHOLD.
     """
-    if glycemic_index <= SAFE_GI_THRESHOLD:
+    if glycemic_index <= safe_gi_threshold:
         return "safe"
-    if glycemic_index <= CAUTION_GI_THRESHOLD:
+    if glycemic_index <= caution_gi_threshold:
         return "caution"
     return "unsafe"
 
 
-def _build_explanation(gl: float, gi: float) -> str:
+def _build_explanation(
+    gl: float,
+    gi: float,
+    *,
+    safe_gl_threshold: float,
+    caution_gl_threshold: float,
+    safe_gi_threshold: float,
+    caution_gi_threshold: float,
+) -> str:
     """Build a human-readable explanation for the given GL and GI values."""
     parts = []
-    if gl <= SAFE_GL_THRESHOLD:
-        parts.append(f"Glycemic load {gl:.1f} within safe range (≤{SAFE_GL_THRESHOLD}).")
-    elif gl <= CAUTION_GL_THRESHOLD:
+    if gl <= safe_gl_threshold:
+        parts.append(f"Glycemic load {gl:.1f} within safe range (≤{safe_gl_threshold}).")
+    elif gl <= caution_gl_threshold:
         parts.append(
-            f"Glycemic load {gl:.1f} exceeds safe threshold ({SAFE_GL_THRESHOLD}); "
-            f"within caution range (≤{CAUTION_GL_THRESHOLD})."
+            f"Glycemic load {gl:.1f} exceeds safe threshold ({safe_gl_threshold}); "
+            f"within caution range (≤{caution_gl_threshold})."
         )
     else:
-        parts.append(f"Glycemic load {gl:.1f} exceeds caution threshold ({CAUTION_GL_THRESHOLD}).")
+        parts.append(f"Glycemic load {gl:.1f} exceeds caution threshold ({caution_gl_threshold}).")
 
-    if gi <= SAFE_GI_THRESHOLD:
-        parts.append(f"Glycemic index {gi:.1f} within safe range (≤{SAFE_GI_THRESHOLD}).")
-    elif gi <= CAUTION_GI_THRESHOLD:
+    if gi <= safe_gi_threshold:
+        parts.append(f"Glycemic index {gi:.1f} within safe range (≤{safe_gi_threshold}).")
+    elif gi <= caution_gi_threshold:
         parts.append(
-            f"Glycemic index {gi:.1f} exceeds safe threshold ({SAFE_GI_THRESHOLD}); "
-            f"within caution range (≤{CAUTION_GI_THRESHOLD})."
+            f"Glycemic index {gi:.1f} exceeds safe threshold ({safe_gi_threshold}); "
+            f"within caution range (≤{caution_gi_threshold})."
         )
     else:
-        parts.append(f"Glycemic index {gi:.1f} exceeds caution threshold ({CAUTION_GI_THRESHOLD}).")
+        parts.append(f"Glycemic index {gi:.1f} exceeds caution threshold ({caution_gi_threshold}).")
 
     return " ".join(parts)
 
 
-def evaluate_propositions(features: NutritionFeatures) -> Tuple[str, str]:
+def evaluate_propositions(
+    features: NutritionFeatures,
+    thresholds: Mapping[str, float] | None = None,
+) -> Tuple[str, str]:
     """Evaluate all propositional rules against nutrition features.
     
     Args:
@@ -122,8 +162,19 @@ def evaluate_propositions(features: NutritionFeatures) -> Tuple[str, str]:
     """
     gl = features["glycemic_load"]
     gi = features["glycemic_index"]
-    gl_cat = get_gl_category(gl)
-    gi_cat = get_gi_category(gi)
+    safe_gl_threshold, caution_gl_threshold, safe_gi_threshold, caution_gi_threshold = _resolve_thresholds(
+        thresholds
+    )
+    gl_cat = get_gl_category(
+        gl,
+        safe_gl_threshold=safe_gl_threshold,
+        caution_gl_threshold=caution_gl_threshold,
+    )
+    gi_cat = get_gi_category(
+        gi,
+        safe_gi_threshold=safe_gi_threshold,
+        caution_gi_threshold=caution_gi_threshold,
+    )
 
     if gl_cat == "unsafe" or gi_cat == "unsafe":
         label = "unsafe"
@@ -132,5 +183,12 @@ def evaluate_propositions(features: NutritionFeatures) -> Tuple[str, str]:
     else:
         label = "safe"
 
-    explanation = _build_explanation(gl, gi)
+    explanation = _build_explanation(
+        gl,
+        gi,
+        safe_gl_threshold=safe_gl_threshold,
+        caution_gl_threshold=caution_gl_threshold,
+        safe_gi_threshold=safe_gi_threshold,
+        caution_gi_threshold=caution_gi_threshold,
+    )
     return (label, explanation)

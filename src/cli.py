@@ -42,6 +42,9 @@ from src.module1.knowledge_base import NutritionKnowledgeBase, FoodNotFoundError
 from src.module2.food_safety_engine import FoodSafetyEngine
 from src.module3.meal_risk_analyzer import MealRiskAnalyzer
 from src.module4.meal_suggestion_planner import MealSuggestionPlanner
+from src.module5.personalization_service import apply_feedback_and_persist
+from src.module5.types import UserOutcome
+from src.module5.user_profile import load_profile
 from src.food_matcher import FoodMatcher
 
 
@@ -399,6 +402,22 @@ def meal_risk_category_cute(category: str) -> str:
     }.get(category, meal_risk_category_plain(category))
 
 
+def prompt_user_outcome() -> Optional[UserOutcome]:
+    """Optionally collect user-reported outcome for Module 5 learning."""
+    wants_feedback = input(
+        "\n  Log observed outcome to personalize future predictions? (y/n): "
+    ).strip().lower()
+    if wants_feedback not in ("y", "yes"):
+        return None
+
+    print("  What happened after this meal?")
+    print("    1  No noticeable spike")
+    print("    2  Mild spike")
+    print("    3  Spike")
+    outcome_choice = input("  Pick 1, 2, or 3: ").strip()
+    return {"1": "no_spike", "2": "mild_spike", "3": "spike"}.get(outcome_choice)  # type: ignore[return-value]
+
+
 def print_meal_score_and_scale_legend(meal_analysis: dict) -> None:
     """Under the headline score, explain the 0-100 meal risk scale in plain language."""
     score = float(meal_analysis["risk_score"])
@@ -491,7 +510,9 @@ def main():
     
     # Initialize safety engine (Module 2)
     print("Initializing safety engine...")
-    safety_engine = FoodSafetyEngine(kb)
+    user_profile = load_profile()
+    active_thresholds = dict(user_profile["thresholds"])
+    safety_engine = FoodSafetyEngine(kb, thresholds=active_thresholds)
     print("  Setup complete. Choose an option to continue.\n")
 
     # Initialize meal risk analyzer (Module 3).
@@ -499,6 +520,8 @@ def main():
         knowledge_base=kb,
         food_safety_engine=safety_engine,
         enable_effective_gl_adjustments=True,
+        safe_gl_threshold=active_thresholds["safe_gl"],
+        caution_gl_threshold=active_thresholds["caution_gl"],
     )
     meal_suggestion_planner = MealSuggestionPlanner(
         knowledge_base=kb,
@@ -609,12 +632,29 @@ def main():
                 )
 
                 # Compute Module 4 suggestions before printing anything, so the
-                # whole report appears all at once.
+                # whole report appears all at once. Keep algorithm details hidden
+                # from users: try A* first, then GA, then UCS if needed.
                 suggestion_result = meal_suggestion_planner.generate_suggestions(
                     meal_items,
                     original_category=meal_analysis["meal_risk_category"],
                     algorithm="astar",
                 )
+                if suggestion_result["status"] == "no_suggestions_found":
+                    ga_fallback = meal_suggestion_planner.generate_suggestions(
+                        meal_items,
+                        original_category=meal_analysis["meal_risk_category"],
+                        algorithm="ga",
+                    )
+                    if ga_fallback["status"] == "suggestions_found":
+                        suggestion_result = ga_fallback
+                    else:
+                        ucs_fallback = meal_suggestion_planner.generate_suggestions(
+                            meal_items,
+                            original_category=meal_analysis["meal_risk_category"],
+                            algorithm="ucs",
+                        )
+                        if ucs_fallback["status"] == "suggestions_found":
+                            suggestion_result = ucs_fallback
 
                 print()
                 _print_art(ART_SECTION)
@@ -668,6 +708,30 @@ def main():
                             f"fiber {features['fiber']:.1f}g, "
                             f"protein {features['protein']:.1f}g"
                         )
+
+                feedback_outcome = prompt_user_outcome()
+                if feedback_outcome is not None:
+                    updated_profile = apply_feedback_and_persist(
+                        predicted_category=meal_analysis["meal_risk_category"],
+                        predicted_score=float(meal_analysis["risk_score"]),
+                        outcome=feedback_outcome,
+                    )
+                    active_thresholds = dict(updated_profile["thresholds"])
+                    safety_engine = FoodSafetyEngine(kb, thresholds=active_thresholds)
+                    meal_risk_analyzer = MealRiskAnalyzer(
+                        knowledge_base=kb,
+                        food_safety_engine=safety_engine,
+                        enable_effective_gl_adjustments=True,
+                        safe_gl_threshold=active_thresholds["safe_gl"],
+                        caution_gl_threshold=active_thresholds["caution_gl"],
+                    )
+                    meal_suggestion_planner = MealSuggestionPlanner(
+                        knowledge_base=kb,
+                        meal_risk_analyzer=meal_risk_analyzer,
+                        max_edits=8,
+                        max_expansions=2000,
+                    )
+                    print("\n  Saved. Future checks will use your updated profile.")
 
             except FoodNotFoundError as e:
                 print(f"\nError: {e}")

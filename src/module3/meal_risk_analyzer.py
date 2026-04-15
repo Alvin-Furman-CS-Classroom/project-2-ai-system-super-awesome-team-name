@@ -33,6 +33,7 @@ from typing import Dict, List, Literal, NotRequired, Optional, Sequence, Tuple, 
 
 from src.module1.knowledge_base import NutritionKnowledgeBase
 from src.module2.food_safety_engine import FoodSafetyEngine
+from src.module2.safety_rules import CAUTION_GL_THRESHOLD, SAFE_GL_THRESHOLD
 
 MealRiskCategory = Literal["low", "medium", "high"]
 FoodSafetyLabel = Literal["safe", "caution", "unsafe"]
@@ -115,6 +116,8 @@ class MealRiskAnalyzer:
         food_safety_engine: FoodSafetyEngine,
         *,
         enable_effective_gl_adjustments: bool = True,
+        safe_gl_threshold: float = SAFE_GL_THRESHOLD,
+        caution_gl_threshold: float = CAUTION_GL_THRESHOLD,
     ) -> None:
         """
         Args:
@@ -126,6 +129,10 @@ class MealRiskAnalyzer:
         self.knowledge_base = knowledge_base
         self.food_safety_engine = food_safety_engine
         self.enable_effective_gl_adjustments = enable_effective_gl_adjustments
+        self.safe_gl_threshold = float(safe_gl_threshold)
+        self.caution_gl_threshold = float(caution_gl_threshold)
+        if self.safe_gl_threshold >= self.caution_gl_threshold:
+            raise ValueError("safe_gl_threshold must be less than caution_gl_threshold.")
 
     # ---------------------------------------------------------------------
     # 1) Orchestration method (recommended)
@@ -374,13 +381,9 @@ class MealRiskAnalyzer:
         """
         effective_gl = float(effective_gl)
 
-        # Module 2 GL thresholds are:
-        # - safe: GL <= 10.0
-        # - caution: GL > 10.0 and <= 20.0
-        # - unsafe: GL > 20.0
-        if effective_gl <= 10.0:
+        if effective_gl <= self.safe_gl_threshold:
             return "low"
-        if effective_gl <= 20.0:
+        if effective_gl <= self.caution_gl_threshold:
             return "medium"
         return "high"
 
@@ -389,19 +392,24 @@ class MealRiskAnalyzer:
     ) -> float:
         """
         Map effective GL to a ``risk_score`` in ``[0, 100]`` using a piecewise
-        linear curve: ``0–10`` → ``0–40``, ``10–20`` → ``40–70``, ``>20`` →
+        linear curve: ``0–safe_gl`` → ``0–40``, ``safe_gl–caution_gl`` → ``40–70``, ``>caution_gl`` →
         ``70–100`` (capped at 100).
         """
         effective_gl = float(effective_gl)
-        if effective_gl <= 10.0:
-            # 0..10 maps to 0..40
-            score = (effective_gl / 10.0) * 40.0
-        elif effective_gl <= 20.0:
-            # 10..20 maps to 40..70
-            score = 40.0 + ((effective_gl - 10.0) / 10.0) * 30.0
+        safe = self.safe_gl_threshold
+        caution = self.caution_gl_threshold
+        caution_span = max(caution - safe, 1e-9)
+
+        if effective_gl <= safe:
+            # 0..safe maps to 0..40
+            score = (effective_gl / safe) * 40.0
+        elif effective_gl <= caution:
+            # safe..caution maps to 40..70
+            score = 40.0 + ((effective_gl - safe) / caution_span) * 30.0
         else:
-            # >20 maps to 70..100 with a gentler slope
-            score = 70.0 + ((effective_gl - 20.0) / 20.0) * 30.0
+            # >caution maps to 70..100 with a gentler slope
+            tail_span = max(caution, 1e-9)
+            score = 70.0 + ((effective_gl - caution) / tail_span) * 30.0
 
         return float(max(0.0, min(100.0, score)))
 

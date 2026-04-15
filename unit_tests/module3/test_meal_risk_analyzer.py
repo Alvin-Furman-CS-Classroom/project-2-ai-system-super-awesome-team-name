@@ -41,6 +41,28 @@ class TestMealRiskAnalyzer(unittest.TestCase):
         self.assertEqual(analyzer.classify_meal_by_effective_gl(20.0), "medium")
         self.assertEqual(analyzer.classify_meal_by_effective_gl(20.1), "high")
 
+    def test_classify_meal_by_effective_gl_custom_thresholds(self):
+        analyzer = MealRiskAnalyzer(
+            knowledge_base=object(),
+            food_safety_engine=object(),
+            enable_effective_gl_adjustments=True,
+            safe_gl_threshold=8.0,
+            caution_gl_threshold=12.0,
+        )
+        self.assertEqual(analyzer.classify_meal_by_effective_gl(8.0), "low")
+        self.assertEqual(analyzer.classify_meal_by_effective_gl(9.0), "medium")
+        self.assertEqual(analyzer.classify_meal_by_effective_gl(12.1), "high")
+
+    def test_invalid_gl_threshold_order_raises(self):
+        with self.assertRaises(ValueError):
+            MealRiskAnalyzer(
+                knowledge_base=object(),
+                food_safety_engine=object(),
+                enable_effective_gl_adjustments=True,
+                safe_gl_threshold=12.0,
+                caution_gl_threshold=12.0,
+            )
+
     def test_effective_gl_can_override_unsafe_label(self):
         # Even if one food is labeled unsafe, effective GL can lower the overall
         # meal risk category when fiber/protein are high enough.
