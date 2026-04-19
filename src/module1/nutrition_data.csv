@@ -1,0 +1,962 @@
+name,glycemic_index,carbohydrates,fiber,protein,fat,processing_level,serving_size_grams
+1% milk,35.0,7.1,1.1,5.3,0.8,minimally_processed,246.0
+2% milk,38.0,8.5,1.6,2.7,1.0,minimally_processed,226.0
+acorn squash,42.0,5.55,2.0,1.4,0.2,whole,116.0
+agave sweetener,81.0,85.5,0.6,0.2,0.0,minimally_processed,19.0
+air-popped popcorn,66.0,57.2,13.2,9.3,12.2,processed,27.0
+alfredo sauce,43.0,24.6,1.7,4.0,0.7,processed,30.0
+almond croissant,64.0,49.3,2.7,8.1,22.5,processed,53.0
+almond milk,24.0,7.5,0.3,4.6,3.1,processed,266.0
+almond nut,5.0,27.3,6.0,17.9,60.7,minimally_processed,27.0
+almond nut butter,7.0,23.7,6.7,25.1,54.1,processed,33.0
+almond nut unsalted,1.0,19.1,11.1,15.1,64.5,minimally_processed,28.0
+andouille sausage,8.5,1.75,0.0,19.75,23.95,processed,81.5
+angel food cake,58.0,50.3,1.6,5.5,20.1,processed,85.0
+apple,35.0,14.0,2.8,0.3,0.2,whole,182.0
+apple canned,35.0,14.5,2.8,0.4,0.2,whole,178.0
+apple cider vinegar,7.0,0.3,0.0,0.0,0.0,processed,16.0
+apple cinnamon muffin,50.0,57.1,4.9,7.3,20.8,processed,58.0
+apple cinnamon rice cake,65.0,80.5,1.7,7.7,2.1,processed,8.0
+apple dried,35.0,13.8,2.8,0.4,0.2,whole,190.0
+apple juice,45.0,13.7,0.2,1.8,0.1,processed,265.0
+apple juice canned,53.0,14.4,0.3,0.7,0.1,processed,241.0
+apple juice from concentrate,57.0,11.5,0.1,1.1,0.2,processed,250.0
+apple juiced,38.0,13.9,3.1,0.3,0.2,whole,180.0
+apple pie,66.0,53.6,2.8,3.8,16.3,processed,120.0
+apricot canned fruit in juice,47.0,21.2,1.5,0.5,0.0,processed,123.0
+apricot canned fruit in syrup,64.0,21.1,1.5,0.8,0.1,processed,121.0
+apricot dried fruit,56.0,67.0,10.6,2.4,0.7,processed,36.0
+apricot jam,55.0,70.7,0.8,0.3,0.1,processed,19.0
+apricot stone fruit,39.0,9.0,2.0,1.0,0.4,whole,141.0
+apricot stone fruit canned,43.0,11.9,1.6,1.0,0.2,whole,159.0
+apricot stone fruit dried,37.0,11.7,2.5,1.1,0.3,whole,155.0
+arborio rice,94.0,21.9,1.7,3.2,0.5,processed,149.0
+arborio rice pilaf,88.0,21.4,1.3,3.1,0.5,processed,166.0
+artichoke dip,39.0,6.1,2.0,3.8,16.1,processed,31.0
+arugula,15.0,3.4,2.3,3.05,0.4,whole,29.5
+avocado oil,0.0,0.0,0.0,0.0,100.0,minimally_processed,14.0
+bacon pork,0.0,0.75,0.0,23.55,15.8,processed,100.5
+bagel bread,60.5,46.45,3.95,12.3,2.7,processed,27.0
+bagel bread toasted,66.0,41.9,7.4,12.3,4.7,processed,25.0
+baguette bread,60.0,42.15,6.1,12.3,3.9,processed,29.0
+baguette bread toasted,52.0,54.3,2.9,10.6,3.1,processed,29.0
+baked tofu,4.0,2.0,0.7,8.9,4.8,processed,92.0
+baked tofu fried,14.0,2.3,0.5,11.9,5.5,processed,104.0
+balsamic salad dressing,22.0,4.5,0.1,2.0,28.0,processed,27.0
+balsamic vinegar,10.0,2.3,0.0,0.0,0.0,processed,13.0
+banana pancake,68.0,56.6,1.3,11.0,13.4,processed,79.0
+banana pancake with syrup,70.0,57.5,1.7,8.7,7.7,processed,72.0
+banana smoothie,43.0,15.7,3.5,13.9,4.6,processed,221.0
+basmati rice,88.0,26.3,0.8,3.1,0.4,processed,165.0
+basmati rice pilaf,79.0,23.9,1.5,2.7,0.8,processed,150.0
+bbq chicken pizza regular crust,60.0,29.0,2.3,11.1,16.9,processed,101.0
+bbq chicken pizza thin crust,63.0,34.4,2.6,13.3,12.7,processed,110.0
+bbq sauce,37.0,23.6,1.8,3.3,14.3,processed,30.0
+bean burrito flour tortilla,50.0,57.5,7.4,30.2,24.9,processed,232.0
+bean burrito whole wheat tortilla,60.0,58.6,6.8,31.6,20.6,processed,257.0
+bean chips,67.0,58.7,7.4,9.2,27.9,ultra_processed,29.0
+bean chips fried,72.0,54.7,6.5,9.2,30.7,ultra_processed,28.0
+bean dip,40.0,10.0,2.6,3.3,14.0,processed,31.0
+bean taco corn tortilla,48.0,34.2,4.6,15.6,10.0,processed,106.0
+bean taco hard shell,45.0,28.9,3.8,16.3,17.4,processed,95.0
+bean taco soft shell,64.0,22.5,5.7,14.0,20.5,processed,104.0
+beef burger double,47.0,39.2,1.3,21.0,37.9,processed,161.0
+beef burger single,50.0,35.1,1.7,27.0,28.5,processed,150.0
+beef burrito flour tortilla,59.0,56.5,5.3,18.2,19.6,processed,235.0
+beef burrito whole wheat tortilla,51.0,59.2,6.6,26.5,19.7,processed,233.0
+beef dinner frozen meal,51.0,37.2,5.4,12.8,10.8,processed,257.0
+beef instant noodle cup,67.0,53.7,2.0,10.8,15.1,ultra_processed,78.0
+beef instant noodle pack,69.0,45.9,2.3,9.4,17.4,ultra_processed,93.0
+beef quesadilla corn tortilla,64.0,30.8,3.5,17.4,14.4,processed,149.0
+beef quesadilla flour tortilla,62.0,31.2,2.6,15.6,15.5,processed,144.0
+beef stir fry with noodles,61.0,38.5,3.7,17.5,11.1,processed,336.0
+beef stir fry with rice,55.0,25.8,4.7,24.9,11.8,processed,357.0
+beef taco corn tortilla,47.0,23.8,4.8,13.0,24.8,processed,102.0
+beef taco hard shell,57.0,33.9,5.4,20.7,14.2,processed,96.0
+beef taco soft shell,65.0,24.8,3.1,14.3,17.8,processed,92.0
+beet,43.5,11.2,2.8,1.25,0.1,whole,123.5
+beet juice,41.0,13.3,0.3,1.6,0.2,processed,266.0
+beet juice canned,45.0,12.2,0.2,0.9,0.2,processed,248.0
+beet juice from concentrate,65.0,11.7,0.3,1.3,0.0,processed,249.0
+belgian waffle,65.0,52.9,1.1,7.3,8.8,processed,67.0
+bell pepper,14.0,5.45,2.0,1.2,0.3,whole,145.0
+berry smoothie,35.0,21.9,5.5,9.7,1.3,processed,257.0
+bison burger double,56.0,32.3,2.0,25.1,38.5,processed,139.0
+bison burger single,47.0,33.9,2.9,32.9,26.8,processed,154.0
+black bean,37.0,24.0,8.5,7.2,1.0,minimally_processed,167.0
+black bean canned,32.0,27.3,7.2,7.0,0.6,minimally_processed,180.0
+black bean hummus,12.0,16.0,4.8,6.4,10.6,processed,65.0
+black bean refried,25.0,26.4,9.3,7.3,0.4,minimally_processed,160.0
+black bean soup,41.0,12.15,3.8,6.45,3.95,processed,253.0
+black lentil,32.0,19.6,8.7,9.4,0.4,minimally_processed,212.0
+black lentil canned,25.0,19.5,8.5,9.2,0.6,minimally_processed,183.0
+black lentil refried,35.0,21.0,7.7,8.3,0.4,minimally_processed,196.0
+black quinoa,55.0,21.1,2.7,4.6,1.9,minimally_processed,188.0
+black quinoa pilaf,53.0,21.9,2.7,4.9,1.9,minimally_processed,184.0
+black rice,88.0,25.9,1.3,3.2,0.6,processed,159.0
+black rice pilaf,56.0,29.5,1.5,2.6,0.8,processed,170.0
+black tea hot,19.0,6.4,0.0,0.2,0.0,minimally_processed,256.0
+black tea iced,21.0,6.2,0.0,0.4,0.0,minimally_processed,225.0
+black tea sweetened,5.0,1.1,0.0,0.2,0.0,minimally_processed,254.0
+black tea unsweetened,10.0,0.9,0.0,0.2,0.0,minimally_processed,228.0
+black-eyed pea,39.0,14.85,6.55,5.35,0.55,minimally_processed,149.5
+black-eyed pea canned,30.0,16.2,7.1,5.3,0.4,minimally_processed,154.0
+blackberry,40.0,9.8,4.2,1.1,0.35,whole,152.5
+blackberry dried,44.0,8.7,5.3,1.3,0.4,whole,138.0
+blackberry jam,55.0,72.1,1.8,0.3,0.2,processed,19.0
+blt sandwich on rye,50.0,41.1,2.8,17.3,25.8,processed,155.0
+blt sandwich on wheat,58.0,52.4,4.1,19.6,13.9,processed,138.0
+blt sandwich on white,46.0,45.2,4.9,16.9,18.9,processed,159.0
+blt sandwich wrap,56.0,55.0,2.0,22.0,29.2,processed,163.0
+blue cheese,0.0,1.2,0.0,19.6,20.9,processed,26.0
+blue cheese salad dressing,15.0,11.7,0.0,0.9,18.3,processed,29.0
+blueberry,35.0,12.3,4.2,0.8,0.6,whole,146.5
+blueberry dried,35.0,10.6,4.8,0.9,0.6,whole,140.0
+blueberry muffin,67.0,57.9,3.0,8.2,18.8,processed,52.0
+blueberry pancake,72.0,58.5,1.9,10.1,13.4,processed,77.0
+blueberry pancake with syrup,59.0,46.5,3.7,9.9,9.8,processed,78.0
+blueberry pie,56.0,52.7,1.6,4.8,20.5,processed,128.0
+boiled egg,0.0,1.3,0.0,12.3,9.1,minimally_processed,46.0
+bok choy,16.5,5.75,2.8,2.75,0.3,whole,93.5
+boysenberry,31.0,12.55,6.55,1.1,0.3,whole,139.5
+boysenberry dried,50.0,9.5,2.0,1.0,0.3,whole,139.0
+braeburn apple,36.0,14.2,3.0,0.4,0.2,whole,175.0
+braeburn apple canned,31.0,14.7,3.5,0.2,0.2,whole,164.0
+braeburn apple dried,38.0,15.3,2.1,0.5,0.2,whole,186.0
+braeburn apple juiced,39.0,14.9,2.4,0.5,0.3,whole,181.0
+bran flakes cereal dry,58.0,71.6,10.0,13.5,12.6,processed,27.0
+bran flakes cereal with milk,78.0,63.7,9.3,14.5,9.6,ultra_processed,30.0
+bran muffin,69.0,57.4,4.8,8.1,24.7,processed,52.0
+bratwurst sausage,11.0,3.05,0.0,17.75,29.4,processed,84.5
+brazil nut,7.0,25.4,4.1,19.0,44.6,minimally_processed,28.0
+brazil nut unsalted,16.0,11.3,9.1,24.6,60.2,minimally_processed,29.0
+breakfast burrito flour tortilla,64.0,45.5,6.2,30.5,18.6,processed,233.0
+breakfast burrito whole wheat tortilla,54.0,64.8,9.9,24.3,21.7,processed,274.0
+breast chicken,0.0,0.0,0.0,25.85,9.3,minimally_processed,100.0
+breast turkey,0.0,0.2,0.0,28.0,5.6,minimally_processed,96.0
+brie cheese,0.0,1.3,0.0,30.8,27.2,processed,29.0
+broccoli,17.0,4.75,2.45,2.65,0.35,whole,90.0
+brown lentil,34.0,20.0,8.7,9.5,0.3,minimally_processed,202.0
+brown lentil canned,29.0,19.4,8.7,9.0,0.5,minimally_processed,194.0
+brown lentil refried,34.0,18.7,8.8,9.2,0.4,minimally_processed,199.0
+brown rice,100.0,20.9,0.7,2.8,0.6,processed,151.0
+brown rice pilaf,107.0,21.8,1.7,3.2,0.3,processed,148.0
+brown rice rice cake,67.0,87.7,1.4,6.4,1.2,processed,9.0
+brown sugar sweetener,73.0,92.7,0.7,0.5,0.0,minimally_processed,20.0
+brussels sprouts,12.0,5.6,2.8,3.25,0.3,whole,89.5
+buckwheat pancake,56.0,54.8,3.6,11.8,9.7,processed,76.0
+buckwheat pancake with syrup,70.0,46.5,2.1,10.8,10.6,processed,71.0
+burrito frozen meal,70.0,28.6,5.5,21.5,15.6,processed,268.0
+butter croissant,70.0,45.5,2.7,10.6,26.2,processed,55.0
+butter lettuce,13.5,3.5,2.4,2.75,0.35,whole,29.0
+butter peanut,12.0,14.3,8.7,27.3,50.5,minimally_processed,28.0
+buttermilk pancake,68.0,54.5,3.4,9.9,13.5,processed,80.0
+buttermilk pancake with syrup,55.0,54.0,1.1,10.7,13.3,processed,79.0
+buttermilk waffle,72.0,47.2,2.9,9.6,13.0,processed,78.0
+butternut squash,49.5,5.35,2.3,1.6,0.25,whole,118.5
+butternut squash soup,38.0,14.1,2.4,7.8,4.95,processed,266.5
+butterscotch pudding,70.0,18.5,0.2,4.0,6.5,processed,106.0
+button mushroom,17.0,2.6,1.75,2.8,0.4,whole,69.0
+cabbage,16.5,5.9,2.95,2.65,0.4,whole,89.5
+caesar salad dressing,38.0,9.8,0.1,0.5,28.6,processed,28.0
+caesar salad no dressing,18.0,16.5,2.1,3.9,11.4,processed,155.0
+caesar salad with dressing,32.0,32.6,5.6,8.7,8.3,processed,146.0
+california sushi roll with brown rice,55.0,36.2,2.1,10.6,3.6,processed,107.0
+california sushi roll with white rice,73.0,34.9,1.2,8.1,9.0,processed,103.0
+canadian bacon,0.0,0.2,0.0,26.1,48.55,processed,14.0
+canadian bacon chewy,0.0,0.4,0.0,27.1,48.1,processed,14.0
+canned corn,59.0,19.4,2.9,3.1,1.4,processed,151.0
+cannellini bean,25.0,22.7,9.9,9.4,1.2,minimally_processed,164.0
+cannellini bean canned,28.0,22.9,9.6,9.6,1.3,minimally_processed,186.0
+cannellini bean refried,34.0,26.6,9.3,8.9,0.8,minimally_processed,165.0
+canola oil,0.0,0.0,0.0,0.0,100.0,minimally_processed,14.0
+caramel popcorn,55.0,61.6,13.0,8.3,10.7,minimally_processed,29.0
+caramel rice cake,63.0,85.2,0.7,8.0,2.2,processed,9.0
+carnitas taco corn tortilla,58.0,33.0,4.5,23.0,14.7,processed,93.0
+carnitas taco hard shell,45.0,27.1,4.9,17.1,12.1,processed,109.0
+carnitas taco soft shell,50.0,26.5,6.0,18.5,24.3,processed,101.0
+carrot,37.5,9.4,2.8,1.15,0.2,whole,126.0
+carrot cake,60.0,55.0,0.6,6.3,19.9,processed,73.0
+carrot juice,41.0,13.0,0.1,0.8,0.0,processed,247.0
+carrot juice canned,47.0,11.6,0.2,1.9,0.1,processed,249.0
+carrot juice from concentrate,56.0,12.0,0.3,1.7,0.1,processed,267.0
+cashew nut,16.0,14.3,9.4,23.4,56.7,minimally_processed,26.0
+cashew nut butter,13.0,24.9,7.3,24.8,48.3,processed,33.0
+cashew nut unsalted,7.0,19.5,5.7,22.6,59.8,minimally_processed,28.0
+cauliflower,15.0,5.5,2.55,2.6,0.3,whole,91.5
+center cut bacon,0.0,0.05,0.0,29.75,42.65,processed,15.5
+center cut bacon chewy,0.0,0.4,0.0,28.2,47.6,processed,14.0
+chai tea hot,21.0,3.2,0.0,0.2,0.0,minimally_processed,238.0
+chai tea iced,11.0,6.4,0.0,0.3,0.0,minimally_processed,257.0
+chai tea sweetened,17.0,4.5,0.0,0.3,0.0,minimally_processed,257.0
+chai tea unsweetened,0.0,5.1,0.0,0.5,0.0,minimally_processed,235.0
+cheddar cheese,0.0,2.5,0.0,25.0,15.5,processed,27.0
+cheddar popcorn,66.0,65.0,11.7,9.7,2.2,processed,26.0
+cheddar rice cake,61.0,86.5,1.6,7.2,2.0,processed,9.0
+cheerios cereal dry,86.0,70.9,6.4,11.4,1.9,processed,30.0
+cheerios cereal with milk,85.0,80.5,12.0,11.4,13.4,processed,28.0
+cheese cracker,60.0,69.8,6.8,9.9,12.2,processed,27.0
+cheese omelette,8.0,2.4,0.7,16.0,16.7,minimally_processed,128.0
+cheese pizza regular crust,67.0,29.9,3.2,15.3,14.7,processed,108.0
+cheese pizza thin crust,67.0,34.9,3.5,14.5,16.6,processed,103.0
+cheese quesadilla corn tortilla,63.0,33.4,2.8,26.1,13.2,processed,138.0
+cheese quesadilla flour tortilla,52.0,41.0,3.5,21.5,23.9,processed,161.0
+cheesecake cake,65.0,58.1,1.6,5.9,18.6,processed,85.0
+cherry pie,51.0,52.6,1.3,3.1,13.2,processed,120.0
+cherry stone fruit,43.0,9.6,1.6,1.0,0.3,whole,149.0
+cherry stone fruit canned,42.0,9.8,1.9,1.1,0.4,whole,163.0
+cherry stone fruit dried,32.0,11.0,1.5,1.0,0.4,whole,144.0
+chia seed,19.0,16.9,10.8,22.0,39.6,minimally_processed,28.0
+chia seed unsalted,14.0,15.5,31.2,19.1,48.5,minimally_processed,26.0
+chicken burger double,47.0,37.6,2.2,27.7,35.4,processed,141.0
+chicken burger single,59.0,30.7,2.7,34.0,35.6,processed,139.0
+chicken burrito flour tortilla,54.0,60.4,7.4,29.7,25.9,processed,234.0
+chicken burrito whole wheat tortilla,47.0,63.6,6.3,30.0,23.9,processed,235.0
+chicken curry green,58.0,19.7,5.6,13.0,16.9,processed,250.0
+chicken curry red,57.0,23.7,5.1,12.0,20.9,processed,243.0
+chicken dinner frozen meal,54.0,46.0,3.2,12.9,8.6,processed,305.0
+chicken dumpling,50.0,34.4,2.8,13.9,9.0,processed,100.0
+chicken dumpling fried,52.0,30.0,1.1,10.3,9.7,processed,101.0
+chicken fried rice brown rice,66.0,36.5,2.9,17.8,5.1,processed,227.0
+chicken fried rice white rice,58.0,40.8,2.7,16.0,7.1,processed,245.0
+chicken instant noodle cup,55.0,45.6,3.1,10.2,21.7,ultra_processed,87.0
+chicken instant noodle pack,62.0,51.8,2.2,8.4,18.9,ultra_processed,90.0
+chicken noodle soup,56.0,14.25,1.15,10.9,5.6,processed,255.0
+chicken quesadilla corn tortilla,53.0,30.7,3.6,16.7,18.8,processed,141.0
+chicken quesadilla flour tortilla,64.0,41.3,2.0,17.9,24.1,processed,153.0
+chicken sandwich on rye,45.0,49.6,4.4,28.3,24.1,processed,146.0
+chicken sandwich on wheat,45.0,45.7,2.6,31.6,29.7,processed,146.0
+chicken sandwich on white,45.0,53.4,3.2,15.9,30.0,processed,147.0
+chicken sandwich wrap,46.0,43.8,2.1,24.5,23.5,processed,141.0
+chicken sausage,9.5,2.95,0.0,18.9,27.75,processed,80.5
+chicken stir fry with noodles,46.0,35.2,4.6,20.1,7.7,processed,326.0
+chicken stir fry with rice,60.0,42.4,3.2,20.2,10.4,processed,336.0
+chicken taco corn tortilla,56.0,31.4,2.8,19.5,12.6,processed,94.0
+chicken taco hard shell,46.0,30.3,5.1,13.3,9.4,processed,92.0
+chicken taco soft shell,51.0,32.5,5.5,20.6,18.3,processed,94.0
+chickpea,30.0,25.9,6.6,8.9,1.4,minimally_processed,185.0
+chickpea canned,40.0,24.3,9.8,9.2,0.6,minimally_processed,158.0
+chickpea curry green,41.0,20.0,2.5,18.0,20.1,processed,254.0
+chickpea curry red,57.0,17.4,4.5,20.4,20.3,processed,263.0
+chickpea refried,32.0,24.9,9.8,8.1,1.0,minimally_processed,162.0
+chocolate cake,73.0,50.7,1.5,7.5,24.3,processed,77.0
+chocolate chip cookie,57.0,69.8,1.6,6.2,21.0,ultra_processed,26.0
+chocolate croissant,68.0,54.4,2.8,8.6,22.8,processed,51.0
+chocolate energy bar,53.0,63.3,7.1,22.7,19.5,processed,56.0
+chocolate ice cream,52.0,22.8,0.7,4.9,14.4,processed,68.0
+chocolate muffin,63.0,49.1,4.1,7.5,19.6,processed,58.0
+chocolate pudding,74.0,24.1,0.3,2.0,6.9,processed,93.0
+chocolate trail mix,44.0,53.5,9.4,12.6,28.0,processed,38.0
+chocolate waffle,60.0,50.4,1.6,9.4,11.3,processed,74.0
+chop pork,0.0,1.15,0.0,22.2,13.2,minimally_processed,95.0
+ciabatta bread,71.0,45.45,4.45,10.95,2.65,processed,27.0
+ciabatta bread toasted,79.0,40.8,3.5,8.3,2.7,processed,26.0
+clams seafood,0.0,1.7,0.0,18.7,1.4,minimally_processed,93.0
+club sandwich on rye,63.0,46.7,5.5,29.3,10.4,processed,156.0
+club sandwich on wheat,62.0,49.3,5.9,31.0,27.4,processed,139.0
+club sandwich on white,56.0,37.2,4.3,15.0,29.8,processed,162.0
+club sandwich wrap,62.0,49.2,5.0,31.3,26.5,processed,148.0
+cocoa powder chocolate,34.0,51.7,11.3,7.2,41.4,processed,29.0
+coconut milk,36.0,1.1,1.2,7.9,1.6,minimally_processed,253.0
+coconut oil,0.0,0.0,0.0,0.0,100.0,minimally_processed,13.0
+coconut sugar sweetener,67.0,80.7,0.3,0.1,0.0,minimally_processed,19.0
+coconut water sports drink,63.0,12.7,0.0,0.2,0.0,processed,218.0
+cod fish,0.0,0.0,0.0,23.95,4.65,minimally_processed,96.5
+coffee,14.0,8.5,0.0,2.05,3.0,minimally_processed,241.0
+coffee ice cream,61.0,22.9,0.4,3.6,13.8,processed,70.0
+coffee with cream,17.0,5.9,0.0,2.9,2.1,minimally_processed,224.0
+coffee with milk,12.0,4.0,0.0,1.7,2.3,minimally_processed,238.0
+coffee with sugar,65.0,5.3,0.0,0.4,0.0,minimally_processed,250.0
+cola soda,52.0,29.9,0.0,0.0,0.0,ultra_processed,322.0
+coleslaw salad no dressing,30.0,32.9,4.8,11.0,5.9,processed,161.0
+coleslaw salad with dressing,46.0,16.4,2.2,11.2,23.0,processed,150.0
+collard greens,14.5,2.9,2.35,3.05,0.4,whole,28.5
+cookie dough ice cream,50.0,25.6,0.0,4.2,15.2,processed,69.0
+corn chips,62.0,52.9,7.0,7.6,28.8,ultra_processed,27.0
+corn chips fried,56.0,46.0,5.8,6.7,29.8,ultra_processed,27.0
+corn muffin,56.0,56.3,3.7,7.3,22.9,processed,62.0
+cornflakes cereal dry,68.0,81.0,9.5,9.5,2.9,processed,26.0
+cornflakes cereal with milk,47.0,80.9,7.4,9.0,6.3,ultra_processed,30.0
+cottage cheese,0.0,3.4,0.0,25.9,18.6,processed,27.0
+crab seafood,0.0,1.55,0.0,19.8,1.25,minimally_processed,97.5
+cranberry,33.0,11.9,4.65,1.05,0.5,whole,148.0
+cranberry dried,45.0,12.3,4.3,1.2,0.4,whole,150.0
+cranberry dried fruit,40.0,70.2,6.1,2.3,0.8,processed,36.0
+cranberry juice,65.0,13.2,0.5,0.8,0.1,processed,267.0
+cranberry juice canned,62.0,13.6,0.2,1.5,0.2,processed,252.0
+cranberry juice from concentrate,44.0,12.3,0.1,0.9,0.1,processed,225.0
+cream soda soda,72.0,7.2,0.0,0.0,0.0,ultra_processed,364.0
+cremini mushroom,18.0,2.65,1.75,2.7,0.35,whole,69.0
+cuban sandwich on rye,59.0,44.2,5.9,28.7,28.8,processed,158.0
+cuban sandwich on wheat,45.0,37.2,5.3,26.3,10.9,processed,143.0
+cuban sandwich on white,55.0,49.0,5.5,26.8,22.0,processed,146.0
+cuban sandwich wrap,48.0,37.4,4.7,22.4,12.3,processed,148.0
+danish pastry,61.0,51.4,1.1,5.5,20.5,processed,71.0
+dark 70% chocolate,24.0,53.3,10.2,5.1,31.3,processed,30.0
+dark 85% chocolate,20.0,44.0,11.4,6.5,33.1,processed,26.0
+date dried fruit,52.0,73.5,8.5,2.3,1.2,processed,38.0
+deli turkey,0.0,0.3,0.0,27.0,4.4,minimally_processed,100.0
+denver omelette,0.0,2.2,0.5,15.1,18.8,minimally_processed,115.0
+diet cola soda,65.0,8.0,0.0,0.0,0.0,ultra_processed,330.0
+distilled vinegar,12.0,2.8,0.0,0.0,0.0,processed,13.0
+dr pepper soda,50.0,1.3,0.0,0.0,0.0,ultra_processed,326.0
+drumstick chicken,0.0,0.0,0.0,27.05,6.5,minimally_processed,103.5
+earl grey tea hot,8.0,7.7,0.0,0.4,0.0,minimally_processed,250.0
+earl grey tea iced,9.0,4.4,0.0,0.1,0.0,minimally_processed,253.0
+earl grey tea sweetened,3.0,5.2,0.0,0.2,0.0,minimally_processed,228.0
+earl grey tea unsweetened,25.0,5.5,0.0,0.2,0.0,minimally_processed,221.0
+edamame hummus,25.0,17.7,4.2,7.7,9.3,processed,64.0
+eel sushi roll with brown rice,55.0,30.8,2.1,10.2,2.8,processed,109.0
+eel sushi roll with white rice,56.0,25.3,1.6,12.4,11.4,processed,95.0
+egg,0.0,1.2,0.0,12.1,10.8,minimally_processed,52.0
+egg fried rice brown rice,57.0,43.3,2.9,12.1,8.9,processed,261.0
+egg fried rice white rice,73.0,37.8,2.0,11.4,9.3,processed,265.0
+egg salad sandwich on rye,62.0,36.8,4.4,17.6,22.4,processed,157.0
+egg salad sandwich on wheat,63.0,44.8,2.6,26.6,17.6,processed,158.0
+egg salad sandwich on white,61.0,47.4,5.2,27.2,28.9,processed,138.0
+egg salad sandwich wrap,57.0,39.0,2.6,27.4,25.3,processed,135.0
+elderberry,38.5,8.7,3.3,0.9,0.25,whole,137.0
+elderberry dried,26.0,8.0,6.9,0.7,0.2,whole,148.0
+electrolyte sports drink,71.0,10.0,0.0,0.2,0.0,processed,261.0
+enchilada frozen meal,65.0,43.9,4.1,20.3,10.4,processed,261.0
+energy sports drink,57.0,12.2,0.0,0.0,0.0,processed,227.0
+enoki mushroom,15.0,2.95,1.3,2.65,0.3,whole,68.0
+extra firm tofu,19.0,2.1,1.3,9.0,5.2,processed,101.0
+extra firm tofu fried,14.0,1.8,1.1,11.0,6.0,processed,90.0
+fava bean,36.0,27.6,7.4,9.0,0.5,minimally_processed,172.0
+fava bean canned,34.0,20.7,6.8,9.4,0.6,minimally_processed,165.0
+fava bean refried,37.0,25.9,9.1,8.2,1.0,minimally_processed,182.0
+feta cheese,0.0,2.6,0.0,26.3,8.2,processed,29.0
+fettuccine pasta,47.0,24.2,2.5,4.7,1.7,processed,147.0
+fig dried fruit,53.0,77.6,9.9,3.5,0.4,processed,41.0
+fig jam,70.0,71.1,0.7,0.3,0.0,processed,21.0
+firm tofu,8.0,1.6,1.0,9.3,4.7,processed,103.0
+firm tofu fried,3.0,1.6,1.3,11.7,5.1,processed,109.0
+fish frozen meal,54.0,47.6,4.3,22.2,14.6,processed,266.0
+fish taco corn tortilla,60.0,27.2,3.7,13.5,8.8,processed,101.0
+fish taco hard shell,52.0,20.4,4.2,17.7,16.4,processed,99.0
+fish taco soft shell,60.0,28.8,4.4,17.5,12.4,processed,99.0
+five grain tempeh,9.0,9.3,0.0,19.6,10.2,processed,103.0
+five grain tempeh fried,1.0,9.8,0.0,18.4,8.4,processed,93.0
+flax seed,13.0,21.0,11.4,23.4,40.2,minimally_processed,28.0
+flax seed unsalted,4.0,18.1,20.5,29.0,39.5,minimally_processed,27.0
+flax tempeh,12.0,8.5,0.0,20.3,9.3,processed,105.0
+flax tempeh fried,13.0,10.0,0.0,19.9,9.9,processed,102.0
+focaccia bread,66.5,51.15,5.75,13.35,2.75,processed,27.0
+focaccia bread toasted,64.0,52.7,4.7,14.4,2.8,processed,26.0
+fried egg,0.0,1.0,0.0,12.0,11.5,minimally_processed,48.0
+frozen corn,54.0,19.2,2.7,3.6,1.3,whole,143.0
+fruit and nut trail mix,29.0,54.7,6.5,11.5,37.5,processed,38.0
+fruit cocktail canned fruit in juice,56.0,23.5,1.3,0.7,0.0,processed,109.0
+fruit cocktail canned fruit in syrup,61.0,21.6,2.2,0.5,0.2,processed,109.0
+fruit cocktail fruit cup in juice,57.0,20.3,1.9,0.7,0.1,processed,110.0
+fruit cocktail fruit cup in syrup,63.0,16.7,1.3,0.5,0.0,processed,115.0
+fruit energy bar,57.0,64.3,4.9,14.4,19.8,processed,61.0
+fruit punch soda,65.0,36.9,0.0,0.0,0.0,ultra_processed,347.0
+fruit salad no dressing,19.0,26.0,3.8,11.7,3.9,processed,161.0
+fruit salad with dressing,17.0,34.7,5.6,6.8,3.8,processed,143.0
+full-fat yogurt,23.0,14.7,0.0,4.5,6.3,processed,164.0
+garbanzo,29.0,24.8,7.2,9.4,1.4,minimally_processed,158.0
+garbanzo canned,35.0,20.8,7.8,8.4,1.3,minimally_processed,179.0
+garbanzo refried,26.0,23.9,9.5,8.4,1.4,minimally_processed,186.0
+garlic hummus,12.0,15.6,5.4,6.5,11.9,processed,63.0
+ginger ale soda,74.0,26.2,0.0,0.0,0.0,ultra_processed,357.0
+ginger cookie,66.0,74.3,1.7,6.8,25.0,ultra_processed,27.0
+ginger tea hot,12.0,7.8,0.0,0.1,0.0,minimally_processed,252.0
+ginger tea iced,13.0,2.8,0.0,0.1,0.0,minimally_processed,250.0
+ginger tea sweetened,6.0,7.1,0.0,0.2,0.0,minimally_processed,240.0
+ginger tea unsweetened,24.0,6.1,0.0,0.5,0.0,minimally_processed,260.0
+gnocchi pasta,43.0,26.6,2.9,4.4,1.4,processed,146.0
+goat cheese,0.0,0.8,0.0,13.9,10.0,processed,25.0
+gooseberry,49.0,13.6,2.45,1.2,0.5,whole,134.0
+gooseberry dried,36.0,7.6,3.3,1.5,0.6,whole,154.0
+granola cereal dry,90.0,63.5,13.3,15.0,7.7,ultra_processed,30.0
+granola cereal with milk,78.0,81.2,12.7,13.6,6.4,processed,29.0
+granola energy bar,56.0,64.7,5.2,10.4,24.0,processed,64.0
+grape,60.5,17.9,1.05,0.8,0.2,whole,93.5
+grape jam,66.0,69.2,0.8,0.3,0.1,processed,20.0
+grape juice,53.0,10.6,0.1,0.7,0.1,processed,259.0
+grape juice canned,51.0,13.5,0.0,1.9,0.2,processed,269.0
+grape juice from concentrate,58.0,14.9,0.1,1.8,0.1,processed,256.0
+grape soda,63.0,6.5,0.0,0.0,0.0,ultra_processed,374.0
+grapefruit juice,67.0,14.8,0.4,0.6,0.1,processed,243.0
+grapefruit juice canned,42.0,12.8,0.1,1.2,0.1,processed,242.0
+grapefruit juice from concentrate,58.0,14.3,0.2,0.6,0.1,processed,250.0
+greek plain yogurt,19.0,14.2,0.0,14.8,7.9,processed,167.0
+greek salad no dressing,27.0,27.6,4.4,3.3,7.5,processed,159.0
+greek salad with dressing,52.0,6.1,2.1,2.4,12.9,processed,138.0
+greek vanilla yogurt,30.0,6.6,0.0,12.8,4.1,processed,170.0
+green banana,59.5,22.95,3.0,1.1,0.4,whole,115.5
+green banana dried,60.0,24.6,3.1,1.3,0.4,whole,107.0
+green lentil,34.0,21.9,8.6,8.6,0.4,minimally_processed,193.0
+green lentil canned,31.0,18.7,9.3,8.6,0.5,minimally_processed,209.0
+green lentil refried,25.0,20.7,7.9,9.0,0.4,minimally_processed,201.0
+green pea,28.5,15.05,6.45,5.2,0.55,minimally_processed,134.0
+green pea canned,49.0,14.3,4.3,5.8,0.5,minimally_processed,142.0
+green salad no dressing,20.0,24.4,1.3,6.5,7.7,processed,161.0
+green salad with dressing,48.0,27.9,2.9,9.4,15.2,processed,154.0
+green smoothie,46.0,15.9,3.2,6.9,2.0,processed,248.0
+green tea hot,11.0,6.5,0.0,0.5,0.0,minimally_processed,224.0
+green tea iced,5.0,6.1,0.0,0.3,0.0,minimally_processed,231.0
+green tea smoothie,34.0,19.8,2.2,3.7,4.1,processed,261.0
+green tea sweetened,15.0,1.3,0.0,0.3,0.0,minimally_processed,235.0
+green tea unsweetened,18.0,2.7,0.0,0.1,0.0,minimally_processed,222.0
+grilled cheese sandwich on rye,55.0,42.1,2.9,30.1,20.5,processed,135.0
+grilled cheese sandwich on wheat,46.0,43.7,4.4,29.4,10.6,processed,136.0
+grilled cheese sandwich on white,54.0,43.6,5.0,16.4,25.3,processed,164.0
+grilled cheese sandwich wrap,53.0,44.3,2.9,21.0,27.6,processed,149.0
+ground chicken,0.0,0.0,0.0,29.7,9.05,minimally_processed,96.0
+ground lean beef,0.0,0.0,0.0,23.8,15.6,minimally_processed,100.0
+ground regular beef,0.0,0.0,0.0,24.05,16.7,minimally_processed,94.0
+ground turkey,0.0,0.2,0.0,28.5,3.6,minimally_processed,104.0
+guacamole avocado,11.0,8.4,6.2,3.0,15.7,whole,154.0
+guacamole avocado ripe,14.0,8.1,6.0,2.5,15.6,whole,142.0
+guacamole dip,40.0,10.2,0.7,2.5,17.5,processed,27.0
+guava tropical fruit,43.5,13.2,2.75,1.3,0.3,whole,145.5
+guava tropical fruit dried,62.0,12.2,2.6,0.9,0.5,whole,157.0
+halibut fish,0.0,0.0,0.0,23.95,9.7,minimally_processed,103.0
+ham and cheese croissant,59.0,49.5,2.8,9.7,22.5,processed,62.0
+ham sandwich on rye,58.0,43.5,4.9,32.9,24.8,processed,164.0
+ham sandwich on wheat,61.0,35.5,2.4,22.6,17.4,processed,158.0
+ham sandwich on white,48.0,35.2,4.8,25.5,18.0,processed,145.0
+ham sandwich wrap,45.0,45.1,6.0,21.3,12.1,processed,149.0
+hard pretzel,84.0,73.9,3.9,9.5,12.9,processed,30.0
+hawaiian pizza regular crust,54.0,29.6,3.0,10.4,17.8,processed,111.0
+hawaiian pizza thin crust,51.0,28.2,3.0,14.4,15.9,processed,109.0
+hazelnut nut,4.0,19.3,10.0,24.5,57.5,minimally_processed,28.0
+hazelnut nut unsalted,8.0,28.3,6.6,20.2,54.5,minimally_processed,28.0
+hemp seed,6.0,17.4,8.0,24.7,40.7,minimally_processed,30.0
+hemp seed unsalted,0.0,12.6,19.3,25.2,48.7,minimally_processed,28.0
+herbal tea hot,2.0,6.0,0.0,0.4,0.0,minimally_processed,224.0
+herbal tea iced,21.0,4.7,0.0,0.4,0.0,minimally_processed,237.0
+herbal tea sweetened,2.0,6.1,0.0,0.1,0.0,minimally_processed,247.0
+herbal tea unsweetened,22.0,7.2,0.0,0.1,0.0,minimally_processed,235.0
+honey mustard salad dressing,20.0,9.4,0.1,1.6,36.7,processed,27.0
+honey sweetener,51.0,77.2,0.4,0.3,0.0,processed,21.0
+hot sauce,38.0,17.5,0.6,4.3,2.8,processed,31.0
+hulled barley,27.0,71.2,16.3,11.8,2.1,minimally_processed,155.0
+hulled barley pilaf,28.0,70.8,17.5,10.1,2.4,minimally_processed,148.0
+iceberg,15.0,4.2,1.75,2.2,0.4,whole,29.5
+instant oats,49.0,64.9,10.2,17.7,7.6,minimally_processed,88.0
+instant oats porridge,43.0,68.1,10.6,16.7,6.6,minimally_processed,89.0
+italian salad dressing,36.0,14.4,0.0,1.5,38.1,processed,27.0
+italian sausage,4.5,3.8,0.0,18.8,24.05,processed,87.5
+jalapeno pepper,12.5,5.2,2.0,1.2,0.3,whole,153.5
+jasmine rice,90.0,23.5,2.1,2.7,0.8,processed,155.0
+jasmine rice pilaf,55.0,21.9,1.9,2.9,0.6,processed,154.0
+jasmine tea hot,18.0,1.1,0.0,0.1,0.0,minimally_processed,253.0
+jasmine tea iced,0.0,7.6,0.0,0.1,0.0,minimally_processed,250.0
+jasmine tea sweetened,17.0,6.4,0.0,0.0,0.0,minimally_processed,249.0
+jasmine tea unsweetened,18.0,1.0,0.0,0.1,0.0,minimally_processed,234.0
+kabocha squash,52.0,8.05,2.15,1.6,0.2,whole,122.0
+kale,14.0,3.2,2.45,2.6,0.4,whole,30.0
+kale chips,57.0,54.2,5.0,6.7,33.6,ultra_processed,28.0
+kale chips fried,56.0,50.6,7.0,8.9,32.2,ultra_processed,28.0
+kernels corn,54.0,19.2,2.6,3.8,1.2,processed,137.0
+key lime pie,61.0,48.1,2.8,5.1,16.5,processed,112.0
+kidney bean,33.0,23.9,9.6,8.8,1.5,minimally_processed,187.0
+kidney bean canned,39.0,24.5,8.2,7.7,0.3,minimally_processed,164.0
+kidney bean refried,26.0,20.8,7.8,9.4,1.4,minimally_processed,177.0
+kielbasa sausage,12.0,1.85,0.0,18.9,26.5,processed,82.0
+kimchi instant noodle cup,57.0,47.1,2.2,12.3,18.5,ultra_processed,81.0
+kimchi instant noodle pack,67.0,54.2,3.5,8.5,17.2,ultra_processed,79.0
+kiwi tropical fruit,64.0,12.5,2.1,1.05,0.3,whole,153.0
+kiwi tropical fruit dried,51.0,16.3,1.5,1.4,0.1,whole,160.0
+kohlrabi,19.0,5.65,2.75,2.75,0.4,whole,92.5
+lamb curry green,40.0,22.6,5.4,20.8,18.1,processed,274.0
+lamb curry red,43.0,22.9,5.6,19.5,20.8,processed,269.0
+lasagna frozen meal,66.0,44.5,3.5,23.4,20.2,processed,264.0
+lasagna pasta,53.0,23.5,3.3,5.3,1.5,processed,152.0
+lemon juice,40.0,10.6,0.1,1.5,0.0,processed,224.0
+lemon juice canned,70.0,10.6,0.4,1.0,0.2,processed,234.0
+lemon juice from concentrate,60.0,10.0,0.4,1.4,0.2,processed,255.0
+lemon-lime soda,74.0,39.1,0.0,0.0,0.0,ultra_processed,326.0
+lentil soup,45.5,13.6,1.7,6.35,1.25,processed,226.0
+lima bean,40.0,21.7,8.4,7.6,0.9,minimally_processed,170.0
+lima bean canned,39.0,21.5,7.5,8.8,0.6,minimally_processed,176.0
+lima bean refried,29.0,24.8,6.7,9.5,0.3,minimally_processed,181.0
+lime juice,69.0,11.3,0.2,1.4,0.2,processed,265.0
+lime juice canned,64.0,14.6,0.1,0.8,0.2,processed,233.0
+lime juice from concentrate,53.0,11.9,0.2,0.5,0.0,processed,223.0
+linguine pasta,47.0,23.8,3.2,4.3,1.8,processed,145.0
+lo mein noodle dish stir fried,62.0,54.1,4.0,16.4,18.1,processed,349.0
+lo mein noodle dish with broth,63.0,51.4,3.2,16.6,12.2,processed,328.0
+lobster seafood,0.0,1.25,0.0,19.85,0.8,minimally_processed,98.0
+loin pork,0.0,1.6,0.0,24.35,12.8,processed,98.5
+low calorie sports drink,58.0,10.4,0.0,0.2,0.0,processed,242.0
+low-fat yogurt,20.0,10.9,0.0,16.1,8.3,processed,183.0
+mac and cheese frozen meal,48.0,33.7,4.2,20.4,15.5,processed,300.0
+macadamia nut,17.0,17.2,3.5,20.0,63.1,minimally_processed,25.0
+macadamia nut unsalted,13.0,10.6,11.3,20.0,40.0,minimally_processed,29.0
+macaroni pasta,52.0,27.2,3.1,4.5,1.6,processed,132.0
+mackerel fish,0.0,0.0,0.0,21.75,7.05,minimally_processed,102.5
+maitake mushroom,15.0,2.75,1.45,2.65,0.4,whole,72.5
+mandarin canned fruit in juice,61.0,26.7,1.1,0.4,0.0,processed,121.0
+mandarin canned fruit in syrup,61.0,27.7,1.4,0.9,0.0,processed,121.0
+mandarin fruit cup in juice,59.0,20.5,1.1,0.4,0.0,processed,109.0
+mandarin fruit cup in syrup,58.0,22.3,1.0,0.7,0.0,processed,102.0
+mango dried fruit,65.0,75.1,8.1,2.6,0.9,processed,36.0
+mango juice,66.0,11.4,0.3,0.9,0.1,processed,246.0
+mango juice canned,45.0,10.3,0.0,1.3,0.2,processed,263.0
+mango juice from concentrate,48.0,12.2,0.2,1.8,0.1,processed,270.0
+mango tropical fruit,53.0,15.9,3.35,1.05,0.3,whole,142.0
+mango tropical fruit dried,42.0,15.2,1.9,0.6,0.3,whole,164.0
+maple syrup sweetener,76.0,80.3,0.0,0.3,0.0,processed,19.0
+margherita pizza regular crust,57.0,32.2,3.2,13.8,10.4,processed,100.0
+margherita pizza thin crust,68.0,26.2,2.9,16.0,17.0,processed,113.0
+marinara sauce,56.0,24.8,0.6,3.0,17.4,processed,27.0
+mashed avocado,14.0,9.9,6.9,2.8,15.2,whole,153.0
+mashed avocado ripe,14.0,8.6,6.4,2.0,14.9,whole,137.0
+meat lovers pizza regular crust,69.0,39.6,2.2,15.0,8.9,processed,110.0
+meat lovers pizza thin crust,54.0,32.6,3.6,13.7,16.2,processed,110.0
+melon,69.5,7.9,0.5,0.65,0.2,whole,149.5
+microwave popcorn,64.0,57.8,12.8,10.6,12.2,minimally_processed,25.0
+milk chocolate,20.0,52.6,9.1,7.8,42.4,processed,27.0
+minestrone soup,54.0,16.6,3.0,7.0,4.8,processed,238.5
+mini pretzel,76.0,72.0,2.6,9.4,12.4,processed,28.0
+mint ice cream,64.0,22.2,0.9,4.0,13.1,processed,70.0
+miso instant noodle cup,55.0,48.5,2.0,12.9,21.8,ultra_processed,81.0
+miso instant noodle pack,57.0,50.9,2.6,10.0,17.1,ultra_processed,91.0
+miso soup,33.0,8.1,3.05,7.35,2.85,processed,263.0
+mixed fruit fruit cup in juice,50.0,22.0,1.3,0.3,0.0,processed,102.0
+mixed fruit fruit cup in syrup,62.0,16.8,1.1,0.6,0.0,processed,113.0
+mountain trail mix,42.0,54.5,7.9,17.9,32.6,processed,45.0
+mozzarella cheese,0.0,1.2,0.0,16.9,4.7,processed,29.0
+muesli cereal dry,90.0,76.5,9.7,10.6,12.3,ultra_processed,27.0
+muesli cereal with milk,64.0,64.4,4.2,10.1,7.4,ultra_processed,29.0
+multigrain bread,73.5,46.6,5.95,11.35,4.25,processed,29.0
+multigrain bread toasted,76.0,45.5,2.9,11.6,3.4,processed,25.0
+multigrain cracker,60.0,67.2,6.3,11.5,9.1,processed,30.0
+multigrain rice cake,82.0,87.7,0.9,6.9,2.9,processed,8.0
+mung bean,30.0,20.9,7.0,9.4,0.9,minimally_processed,178.0
+mung bean canned,40.0,27.5,8.4,9.6,1.3,minimally_processed,171.0
+mung bean refried,36.0,22.3,8.6,10.0,1.0,minimally_processed,161.0
+mussels seafood,0.0,1.85,0.0,20.8,1.35,minimally_processed,100.5
+mustard greens,14.5,3.95,2.35,2.65,0.4,whole,28.0
+naan bread,59.0,49.25,4.8,12.45,2.8,processed,26.5
+naan bread toasted,68.0,53.5,6.6,10.3,2.4,processed,29.0
+navy bean,36.0,20.8,6.4,7.4,1.2,minimally_processed,161.0
+navy bean canned,39.0,20.4,6.8,9.1,0.7,minimally_processed,172.0
+navy bean refried,29.0,23.1,7.2,8.7,1.4,minimally_processed,165.0
+nectarine stone fruit,36.0,10.8,1.9,0.8,0.2,whole,140.0
+nectarine stone fruit canned,32.0,9.4,1.4,0.8,0.4,whole,142.0
+nectarine stone fruit dried,38.0,10.0,2.2,1.1,0.3,whole,151.0
+non-fat yogurt,20.0,5.7,0.0,13.1,6.7,processed,155.0
+nut energy bar,61.0,56.3,4.1,11.5,22.6,processed,64.0
+oat energy bar,46.0,47.4,4.4,18.1,13.6,processed,55.0
+oat milk,35.0,3.1,1.6,1.5,0.7,minimally_processed,229.0
+oatmeal cereal dry,74.0,77.3,5.5,13.2,13.0,processed,26.0
+oatmeal cereal with milk,42.0,62.3,8.9,9.5,8.0,processed,29.0
+oatmeal cookie,68.0,60.5,2.2,5.7,23.2,ultra_processed,25.0
+oil-popped popcorn,61.0,59.6,13.6,10.9,27.0,processed,29.0
+old fashioned oats,60.0,60.1,10.2,16.0,7.5,minimally_processed,88.0
+old fashioned oats porridge,57.0,67.4,11.6,16.2,6.1,minimally_processed,79.0
+olive oil,0.0,0.0,0.0,0.0,100.0,minimally_processed,13.0
+on cob corn,54.0,20.0,2.3,3.8,1.1,processed,134.0
+onion,16.0,8.65,1.9,1.25,0.2,whole,157.5
+oolong tea hot,19.0,3.8,0.0,0.2,0.0,minimally_processed,220.0
+oolong tea iced,3.0,6.8,0.0,0.4,0.0,minimally_processed,262.0
+oolong tea sweetened,19.0,6.5,0.0,0.4,0.0,minimally_processed,255.0
+oolong tea unsweetened,10.0,0.7,0.0,0.3,0.0,minimally_processed,248.0
+orange,45.5,11.8,2.6,1.0,0.2,whole,132.0
+orange canned,44.5,12.15,2.75,0.9,0.1,whole,129.0
+orange jam,56.0,71.9,1.5,0.4,0.2,processed,19.0
+orange juice,56.0,12.6,0.4,0.7,0.1,processed,262.0
+orange juice canned,48.0,11.8,0.2,0.6,0.0,processed,256.0
+orange juice from concentrate,66.0,11.2,0.4,1.8,0.0,processed,233.0
+orange juiced,45.0,11.7,2.45,0.9,0.2,whole,132.0
+orange soda,74.0,16.3,0.0,0.0,0.0,ultra_processed,337.0
+original sports drink,51.0,10.9,0.0,0.5,0.0,processed,227.0
+overripe banana,52.5,23.05,2.9,1.1,0.2,whole,119.0
+overripe banana dried,60.0,22.7,2.6,1.1,0.2,whole,109.0
+oyster mushroom,17.5,2.85,1.35,2.55,0.4,whole,68.5
+oysters seafood,0.0,0.75,0.0,19.25,1.2,minimally_processed,101.5
+pad thai noodle dish stir fried,52.0,46.6,2.8,11.7,13.8,processed,359.0
+pad thai noodle dish with broth,58.0,50.0,3.7,18.7,18.1,processed,337.0
+paneer curry green,41.0,19.9,5.8,12.9,18.6,processed,267.0
+paneer curry red,47.0,22.9,2.7,16.1,13.8,processed,253.0
+papaya tropical fruit,64.0,12.85,3.1,1.05,0.2,whole,157.5
+papaya tropical fruit dried,45.0,15.1,2.3,1.2,0.4,whole,146.0
+parmesan cheese,0.0,2.2,0.0,22.5,11.0,processed,25.0
+parsnip,42.5,10.3,3.15,1.3,0.2,whole,125.0
+passion fruit tropical fruit,60.5,14.9,2.7,0.9,0.35,whole,152.5
+passion fruit tropical fruit dried,67.0,13.1,2.7,0.9,0.4,whole,148.0
+pasta salad no dressing,25.0,10.0,3.4,5.3,13.4,processed,157.0
+pasta salad with dressing,22.0,14.0,3.5,10.7,13.8,processed,157.0
+pb and j sandwich on rye,64.0,48.5,5.7,17.1,11.4,processed,143.0
+pb and j sandwich on wheat,58.0,48.0,2.0,34.0,21.6,processed,164.0
+pb and j sandwich on white,50.0,51.9,4.0,31.1,29.7,processed,156.0
+pb and j sandwich wrap,49.0,43.9,3.1,33.0,19.2,processed,139.0
+peach canned fruit in juice,51.0,19.7,2.4,0.5,0.1,processed,111.0
+peach canned fruit in syrup,61.0,20.3,2.8,0.8,0.0,processed,114.0
+peach pie,66.0,50.1,2.8,5.8,18.2,processed,124.0
+peach stone fruit,30.0,9.7,1.9,0.8,0.3,whole,143.0
+peach stone fruit canned,36.0,9.7,2.0,1.0,0.3,whole,150.0
+peach stone fruit dried,39.0,9.2,2.3,1.1,0.3,whole,154.0
+peaches fruit cup in juice,50.0,21.6,1.0,0.6,0.1,processed,115.0
+peaches fruit cup in syrup,50.0,20.3,1.3,0.7,0.0,processed,104.0
+peanut butter cookie,57.0,74.3,1.2,5.7,20.3,ultra_processed,28.0
+peanut nut butter,2.0,19.8,6.3,24.1,52.3,processed,33.0
+peanut oil,0.0,0.0,0.0,0.0,100.0,minimally_processed,14.0
+pear canned fruit in juice,57.0,22.6,2.5,0.9,0.1,processed,116.0
+pear canned fruit in syrup,61.0,19.3,2.6,0.8,0.1,processed,120.0
+pearl barley,34.0,71.4,17.0,11.2,2.2,minimally_processed,149.0
+pearl barley pilaf,27.0,73.2,16.7,10.0,2.5,minimally_processed,141.0
+pecan nut,15.0,23.2,3.6,21.8,47.4,minimally_processed,27.0
+pecan nut unsalted,23.0,18.1,8.0,21.1,55.2,minimally_processed,26.0
+pecan pie,66.0,52.5,3.8,3.9,16.1,processed,117.0
+penne pasta,50.0,25.2,2.5,4.5,1.7,processed,147.0
+pepperoni pizza regular crust,55.0,25.9,2.3,14.6,12.7,processed,96.0
+pepperoni pizza thin crust,52.0,37.5,2.9,14.8,11.7,processed,97.0
+pesto sauce,35.0,7.9,1.3,2.1,18.2,processed,27.0
+pine nut,16.0,19.0,8.3,23.5,54.1,minimally_processed,28.0
+pine nut unsalted,5.0,22.4,10.3,23.7,67.8,minimally_processed,25.0
+pineapple canned fruit in juice,64.0,25.8,2.2,0.3,0.2,processed,110.0
+pineapple canned fruit in syrup,62.0,27.4,2.0,0.8,0.2,processed,122.0
+pineapple dried fruit,52.0,73.7,10.2,2.8,1.0,processed,38.0
+pineapple juice,61.0,11.0,0.1,1.5,0.1,processed,232.0
+pineapple juice canned,52.0,10.1,0.2,1.1,0.1,processed,236.0
+pineapple juice from concentrate,70.0,13.1,0.2,0.5,0.0,processed,243.0
+pineapple tropical fruit,60.5,13.75,2.9,1.1,0.35,whole,151.5
+pineapple tropical fruit dried,61.0,12.8,2.7,0.5,0.4,whole,163.0
+pinto bean,40.0,20.4,7.7,9.8,0.7,minimally_processed,160.0
+pinto bean canned,35.0,25.4,7.1,9.5,1.0,minimally_processed,174.0
+pinto bean refried,28.0,26.2,9.0,9.0,0.9,minimally_processed,183.0
+pistachio ice cream,49.0,24.1,0.8,4.5,14.6,processed,69.0
+pistachio nut,7.0,27.4,5.0,22.8,64.3,minimally_processed,26.0
+pistachio nut unsalted,25.0,17.8,10.8,15.4,63.4,minimally_processed,29.0
+pita bread,56.5,43.15,6.7,13.4,3.2,processed,28.0
+pita bread toasted,62.0,51.8,4.9,13.3,4.6,processed,25.0
+pita chips,63.0,58.8,4.5,8.0,30.6,ultra_processed,29.0
+pita chips fried,59.0,54.5,3.8,5.3,33.7,ultra_processed,30.0
+plain croissant,59.0,49.6,2.9,10.2,20.3,processed,52.0
+plain hummus,14.0,19.8,4.5,7.8,8.0,processed,64.0
+plain omelette,12.0,3.9,0.2,14.7,14.4,minimally_processed,110.0
+plain rice cake,79.0,83.1,1.6,6.3,2.5,processed,9.0
+plain tempeh,9.0,9.4,0.0,18.7,10.8,processed,100.0
+plain tempeh fried,2.0,8.9,0.0,18.0,10.3,processed,91.0
+plum stone fruit,45.0,11.5,2.5,1.1,0.4,whole,150.0
+plum stone fruit canned,41.0,10.8,1.7,0.9,0.3,whole,147.0
+plum stone fruit dried,42.0,10.6,2.4,1.0,0.3,whole,145.0
+poached egg,0.0,1.4,0.0,12.6,11.0,minimally_processed,48.0
+poblano pepper,12.0,5.7,2.15,1.15,0.3,whole,143.0
+pomegranate juice,64.0,14.6,0.0,1.9,0.1,processed,244.0
+pomegranate juice canned,68.0,13.7,0.2,1.8,0.0,processed,230.0
+pomegranate juice from concentrate,65.0,12.4,0.4,0.7,0.1,processed,229.0
+poppy seed,6.0,23.2,13.9,27.4,49.2,minimally_processed,27.0
+poppy seed unsalted,11.0,16.0,11.5,24.6,35.1,minimally_processed,26.0
+pork bacon,0.0,0.5,0.0,29.45,37.85,processed,15.0
+pork bacon chewy,0.0,1.0,0.0,34.2,40.0,processed,15.0
+pork dumpling,55.0,32.3,1.5,11.5,18.0,processed,105.0
+pork dumpling fried,46.0,26.6,1.9,8.9,11.3,processed,103.0
+pork sausage,8.0,1.2,0.0,18.8,28.05,processed,83.0
+pork spring roll,59.5,27.6,1.75,8.1,10.8,processed,80.0
+portobello mushroom,13.5,2.7,1.7,2.75,0.3,whole,72.5
+pot barley,32.0,71.7,16.7,12.3,2.4,minimally_processed,167.0
+pot barley pilaf,34.0,73.6,15.3,10.2,2.2,minimally_processed,168.0
+pot pie frozen meal,50.0,33.8,3.6,23.6,23.9,processed,268.0
+potato,72.5,19.6,2.95,2.4,6.5,processed,146.5
+potato chips,67.0,59.9,3.4,8.5,26.6,ultra_processed,27.0
+potato chips fried,73.0,49.6,7.2,5.3,38.2,ultra_processed,30.0
+potato fried,73.5,20.75,2.5,1.7,6.4,whole,151.5
+potato mashed,64.5,21.75,2.95,2.6,2.55,processed,147.0
+potato salad no dressing,36.0,15.8,5.4,10.2,13.6,processed,143.0
+potato salad with dressing,23.0,16.0,1.7,7.4,22.9,processed,151.0
+pound cake,71.0,52.8,1.9,5.0,23.4,processed,78.0
+powder peanut,14.0,16.1,8.9,27.0,51.5,processed,27.0
+protein energy bar,65.0,45.9,4.8,17.8,13.3,processed,63.0
+protein smoothie,40.0,28.3,3.5,12.2,0.5,processed,232.0
+prune dried fruit,42.0,68.1,9.6,3.9,1.5,processed,41.0
+prune juice,60.0,10.9,0.0,0.6,0.0,processed,255.0
+prune juice canned,48.0,11.3,0.1,1.1,0.0,processed,226.0
+prune juice from concentrate,50.0,10.3,0.4,1.0,0.0,processed,244.0
+pumpernickel bread,63.0,41.05,5.0,9.05,4.75,processed,28.5
+pumpernickel bread toasted,59.0,44.7,6.1,9.1,3.5,processed,26.0
+pumpkin muffin,54.0,53.8,4.9,8.5,23.6,processed,52.0
+pumpkin pie,57.0,52.5,1.4,4.4,19.6,processed,118.0
+pumpkin seed,14.0,17.0,14.5,20.9,46.9,minimally_processed,29.0
+pumpkin seed unsalted,15.0,6.2,20.4,19.7,38.2,minimally_processed,26.0
+pumpkin squash,41.5,10.35,2.1,1.45,0.25,whole,120.0
+quick oats,59.0,67.0,11.9,16.6,7.7,minimally_processed,79.0
+quick oats porridge,54.0,69.5,11.6,15.0,7.3,minimally_processed,81.0
+quinoa rice cake,81.0,89.1,1.2,7.1,1.6,processed,9.0
+quinoa salad no dressing,54.0,13.8,3.9,3.6,20.6,processed,146.0
+quinoa salad with dressing,28.0,16.2,5.9,6.5,15.7,processed,162.0
+radish,37.0,9.95,2.5,1.2,0.2,whole,131.0
+raisin dried fruit,70.0,67.5,7.6,2.9,0.5,processed,39.0
+ramen noodle dish stir fried,63.0,48.5,4.0,17.7,12.2,processed,332.0
+ramen noodle dish with broth,57.0,47.6,2.4,21.3,10.7,processed,329.0
+ranch dip,29.0,9.9,1.8,2.4,10.1,processed,27.0
+ranch salad dressing,19.0,6.9,0.4,1.0,19.2,processed,29.0
+raspberry,42.0,10.7,4.05,1.25,0.65,whole,140.5
+raspberry dried,54.0,10.0,7.3,0.8,0.6,whole,141.0
+raspberry jam,51.0,68.7,0.8,0.5,0.1,processed,18.0
+ravioli pasta,43.0,24.4,3.2,5.3,1.3,processed,131.0
+raw peanut,15.0,16.9,8.5,24.9,49.3,processed,27.0
+red lentil,32.0,19.4,9.0,9.0,0.4,minimally_processed,205.0
+red lentil canned,31.0,20.5,7.6,8.2,0.6,minimally_processed,216.0
+red lentil refried,27.0,20.4,9.9,8.1,0.6,minimally_processed,212.0
+red quinoa,54.0,21.3,2.7,4.9,2.1,minimally_processed,183.0
+red quinoa pilaf,50.0,21.8,2.7,4.6,2.1,minimally_processed,168.0
+red rice,77.0,28.0,0.9,3.2,0.6,processed,146.0
+red rice pilaf,100.0,29.4,2.4,2.6,0.3,processed,171.0
+red velvet cake,74.0,59.0,0.8,5.8,24.3,processed,87.0
+red wine vinegar,8.0,2.6,0.0,0.0,0.0,processed,13.0
+regular plain yogurt,34.0,15.0,0.0,11.0,0.9,processed,182.0
+regular vanilla yogurt,24.0,13.7,0.0,11.8,2.8,processed,179.0
+reuben sandwich on rye,66.0,50.9,5.9,22.4,12.8,processed,141.0
+reuben sandwich on wheat,52.0,41.9,2.3,32.8,16.4,processed,155.0
+reuben sandwich on white,63.0,48.0,6.0,20.5,21.3,processed,141.0
+reuben sandwich wrap,45.0,51.7,5.3,26.7,19.8,processed,136.0
+ribeye beef,0.0,0.0,0.0,23.7,9.15,minimally_processed,97.0
+rice cracker,74.0,72.7,6.8,8.4,19.5,processed,27.0
+rice krispies cereal dry,47.0,75.9,13.6,5.7,8.2,processed,26.0
+rice krispies cereal with milk,52.0,79.1,3.2,14.1,19.3,ultra_processed,28.0
+rice milk,36.0,1.3,0.6,1.1,0.1,minimally_processed,232.0
+rice pudding,70.0,19.1,0.7,2.3,4.8,processed,98.0
+rice vinegar,9.0,2.1,0.0,0.0,0.0,processed,13.0
+ricotta cheese,0.0,1.0,0.0,20.4,7.0,processed,26.0
+ripe banana,52.0,22.65,2.6,1.35,0.2,whole,122.0
+ripe banana dried,48.0,20.4,2.8,1.0,0.3,whole,108.0
+roast beef,0.0,0.0,0.0,24.2,11.9,minimally_processed,96.5
+roasted peanut,12.0,14.3,8.5,25.0,50.4,processed,25.0
+roasted red pepper hummus,7.0,14.2,5.8,6.5,11.7,processed,58.0
+rod pretzel,76.0,77.8,3.5,11.6,3.4,processed,25.0
+rolled oats,46.0,64.4,10.3,16.0,6.3,minimally_processed,73.0
+rolled oats porridge,60.0,60.2,10.1,16.4,6.2,minimally_processed,88.0
+romaine,17.5,3.8,2.1,2.5,0.45,whole,29.0
+root beer soda,57.0,23.0,0.0,0.0,0.0,ultra_processed,326.0
+rotisserie chicken,0.0,0.0,0.0,24.9,9.65,minimally_processed,101.5
+rutabaga,41.5,9.65,2.7,1.2,0.2,whole,127.0
+rye bread,66.5,52.25,6.0,11.6,3.85,processed,25.5
+rye bread toasted,57.0,48.9,6.8,12.3,4.9,processed,28.0
+rye cracker,57.0,72.6,6.9,12.1,10.3,processed,26.0
+salmon burger double,52.0,38.0,1.6,38.2,21.3,processed,158.0
+salmon burger single,55.0,38.3,2.7,20.3,35.6,processed,138.0
+salmon fish,0.0,0.0,0.0,23.75,7.65,minimally_processed,97.5
+salmon sushi roll with brown rice,60.0,30.5,2.5,14.3,7.4,processed,90.0
+salmon sushi roll with white rice,65.0,30.7,2.5,15.7,5.9,processed,92.0
+salted peanut,13.0,14.1,8.2,26.1,48.3,minimally_processed,29.0
+saltine cracker,56.0,75.3,6.9,11.3,7.1,processed,30.0
+sardines fish,0.0,0.0,0.0,21.0,5.95,minimally_processed,100.5
+sausage pork,0.0,0.65,0.0,25.05,22.7,processed,101.0
+scallops seafood,0.0,0.9,0.0,21.05,1.6,minimally_processed,99.0
+scone pastry,61.0,49.9,2.5,5.7,23.7,processed,70.0
+scotch barley,31.0,71.0,15.7,11.0,2.3,minimally_processed,159.0
+scotch barley pilaf,27.0,74.2,17.6,11.4,2.2,minimally_processed,154.0
+scrambled egg,0.0,0.7,0.0,12.5,10.0,minimally_processed,46.0
+seedless grape,55.0,18.45,0.9,0.65,0.15,whole,100.0
+seltzer soda,51.0,31.0,0.0,0.0,0.0,ultra_processed,374.0
+serrano pepper,14.0,5.35,2.05,1.2,0.35,whole,151.5
+sesame oil,0.0,0.0,0.0,0.0,100.0,minimally_processed,12.0
+sesame seed,5.0,19.0,14.1,22.2,42.4,minimally_processed,27.0
+sesame seed unsalted,2.0,17.0,5.1,15.3,46.4,minimally_processed,26.0
+shiitake mushroom,14.5,3.05,1.7,2.7,0.35,whole,73.0
+shortbread cookie,60.0,72.1,1.1,7.3,19.4,ultra_processed,25.0
+shoulder pork,0.0,1.1,0.0,22.85,14.1,minimally_processed,104.0
+shrimp burrito flour tortilla,62.0,54.7,9.0,34.0,19.3,processed,249.0
+shrimp burrito whole wheat tortilla,57.0,57.7,7.9,34.8,13.2,processed,268.0
+shrimp curry green,59.0,22.9,3.4,17.6,8.9,processed,260.0
+shrimp curry red,53.0,20.5,4.6,18.3,18.3,processed,262.0
+shrimp dumpling,58.0,34.1,2.7,9.5,15.3,processed,90.0
+shrimp dumpling fried,45.0,32.2,2.0,12.7,7.7,processed,100.0
+shrimp fried rice brown rice,69.0,38.1,2.8,19.8,6.7,processed,261.0
+shrimp fried rice white rice,64.0,40.8,1.6,10.7,12.2,processed,255.0
+shrimp instant noodle cup,61.0,53.5,3.4,10.8,16.0,ultra_processed,88.0
+shrimp instant noodle pack,64.0,51.7,3.2,11.1,15.2,ultra_processed,87.0
+shrimp seafood,0.0,2.35,0.0,18.35,1.75,minimally_processed,100.5
+shrimp spring roll,59.0,29.7,1.95,7.9,13.05,processed,88.5
+shrimp stir fry with noodles,45.0,28.1,4.8,22.1,8.0,processed,351.0
+shrimp stir fry with rice,48.0,40.7,2.7,28.5,9.5,processed,369.0
+shrimp taco corn tortilla,64.0,33.8,2.5,19.0,16.7,processed,102.0
+shrimp taco hard shell,60.0,29.5,4.9,22.8,18.7,processed,100.0
+shrimp taco soft shell,57.0,30.2,3.4,14.2,17.6,processed,107.0
+silken tofu,19.0,2.1,1.3,10.2,4.8,processed,96.0
+silken tofu fried,4.0,2.3,1.1,10.2,4.8,processed,102.0
+sirloin beef,0.0,0.0,0.0,22.2,15.7,minimally_processed,103.5
+skim milk,35.0,5.3,0.5,4.7,1.0,processed,226.0
+snow pea,23.0,13.15,5.5,4.4,0.4,minimally_processed,141.5
+snow pea canned,22.0,17.8,6.8,5.4,0.6,minimally_processed,159.0
+soba noodle dish stir fried,55.0,41.4,3.9,21.2,15.3,processed,320.0
+soba noodle dish with broth,53.0,52.2,3.2,14.0,11.5,processed,336.0
+soft pretzel,85.0,74.4,3.2,8.6,12.5,processed,25.0
+soft tofu,15.0,2.3,1.2,9.6,4.3,processed,97.0
+soft tofu fried,9.0,2.4,1.1,10.5,4.9,processed,90.0
+sour cream dip,32.0,10.2,0.8,3.3,22.9,processed,27.0
+sourdough bread,61.5,48.0,4.1,13.35,3.9,processed,26.5
+sourdough bread toasted,52.0,48.6,6.0,13.8,2.8,processed,28.0
+soy milk,19.0,10.7,1.0,4.3,3.9,minimally_processed,226.0
+soy sauce,47.0,6.6,1.6,2.7,18.7,processed,27.0
+spaghetti pasta,45.0,26.9,2.3,4.8,1.4,processed,131.0
+spaghetti squash,58.5,7.3,2.2,1.4,0.2,whole,116.0
+spicy trail mix,32.0,49.8,7.7,12.6,37.8,processed,40.0
+spicy tuna sushi roll with brown rice,66.0,32.2,2.2,9.1,2.9,processed,108.0
+spicy tuna sushi roll with white rice,57.0,38.4,2.0,17.9,7.5,processed,106.0
+spinach,13.0,3.3,2.7,2.5,0.3,whole,30.0
+spinach dip,29.0,10.3,1.8,4.0,23.4,processed,31.0
+split pea,44.5,19.15,7.25,4.45,0.35,minimally_processed,145.5
+split pea canned,37.0,12.5,6.6,5.5,0.4,minimally_processed,143.0
+sprite soda,74.0,20.0,0.0,0.0,0.0,ultra_processed,389.0
+sprouted bread,57.0,46.6,5.05,13.1,4.05,processed,28.5
+sprouted bread toasted,60.0,52.8,5.5,9.2,4.3,processed,25.0
+steak beef,0.0,0.0,0.0,25.35,17.15,minimally_processed,97.5
+steel cut oats,52.0,67.5,10.8,15.6,6.7,minimally_processed,85.0
+steel cut oats porridge,45.0,64.1,10.8,17.6,6.8,minimally_processed,73.0
+sticky rice,88.0,24.0,1.7,3.3,0.6,processed,151.0
+sticky rice pilaf,55.0,23.0,0.8,3.1,0.9,processed,159.0
+stir fry frozen meal,56.0,37.0,3.9,16.0,20.0,processed,271.0
+strawberry,27.5,10.7,7.1,1.1,0.4,whole,143.0
+strawberry dried,27.0,11.0,7.9,1.4,0.5,whole,156.0
+strawberry ice cream,45.0,22.2,0.2,3.8,13.0,processed,60.0
+strawberry jam,61.0,67.1,1.5,0.2,0.1,processed,20.0
+strudel pastry,64.0,51.0,1.6,6.2,26.4,processed,59.0
+sugar cookie,64.0,63.9,1.5,7.2,23.3,ultra_processed,26.0
+sugar snap pea,28.5,20.5,7.45,5.4,0.35,minimally_processed,150.0
+sugar snap pea canned,26.0,19.6,6.0,6.0,0.6,minimally_processed,138.0
+sun-dried tomato,17.5,3.65,1.35,0.9,0.2,whole,177.0
+sundried tomato hummus,11.0,15.0,5.6,6.7,12.6,processed,59.0
+sunflower nut butter,15.0,19.7,6.0,23.8,49.3,processed,32.0
+sunflower oil,0.0,0.0,0.0,0.0,100.0,minimally_processed,13.0
+sunflower seed,5.0,10.3,16.1,23.1,42.0,minimally_processed,29.0
+sunflower seed unsalted,11.0,15.9,10.9,24.9,49.9,minimally_processed,29.0
+supreme pizza regular crust,56.0,26.6,3.5,14.9,16.3,processed,110.0
+supreme pizza thin crust,59.0,31.3,3.9,12.1,16.1,processed,98.0
+sushi rice,93.0,28.8,2.1,3.1,1.0,processed,163.0
+sushi rice pilaf,91.0,30.0,0.7,2.6,0.4,processed,168.0
+sweet and salty trail mix,44.0,54.0,7.3,11.4,27.9,processed,46.0
+sweet corn,58.0,20.2,2.2,3.6,1.4,processed,138.0
+sweet potato,65.0,22.0,3.05,2.2,7.6,processed,146.5
+sweet potato chips,62.0,51.2,6.3,8.6,27.8,ultra_processed,27.0
+sweet potato chips fried,59.0,57.6,3.6,7.1,35.3,ultra_processed,30.0
+sweet potato fried,50.0,22.5,2.5,2.7,14.7,processed,164.0
+sweet potato mashed,90.0,23.0,3.7,2.0,14.0,processed,155.0
+swiss chard,16.5,4.15,2.05,2.65,0.5,whole,30.0
+swiss cheese,0.0,3.1,0.0,11.1,25.3,processed,30.0
+tahini nut butter,0.0,20.2,8.2,25.6,54.8,processed,30.0
+tahini sauce,23.0,22.1,1.7,2.0,8.7,processed,27.0
+tapioca pudding,74.0,18.6,0.1,3.9,4.9,processed,97.0
+tempura sushi roll with brown rice,73.0,34.8,2.2,13.3,11.0,processed,94.0
+tempura sushi roll with white rice,61.0,31.6,2.3,8.9,11.0,processed,106.0
+tenderloin beef,0.0,0.0,0.0,24.5,19.7,minimally_processed,101.5
+tenderloin pork,0.0,1.2,0.0,23.75,20.4,processed,96.5
+teriyaki sauce,30.0,15.6,1.1,1.9,9.2,processed,30.0
+thigh chicken,0.0,0.0,0.0,25.9,9.15,minimally_processed,98.5
+thigh turkey,0.0,0.2,0.0,27.6,5.2,minimally_processed,102.0
+thousand island salad dressing,41.0,5.0,0.4,1.3,26.3,processed,30.0
+tilapia fish,0.0,0.0,0.0,23.45,6.4,minimally_processed,102.5
+tofu stir fry with noodles,63.0,40.1,3.4,15.8,10.3,processed,330.0
+tofu stir fry with rice,59.0,48.0,4.9,20.2,7.2,processed,331.0
+tomato,16.0,3.45,1.45,1.05,0.2,whole,181.0
+tomato canned,17.5,3.95,1.25,1.05,0.2,whole,176.5
+tomato juice,43.0,14.2,0.5,0.6,0.0,processed,259.0
+tomato juice canned,40.0,12.0,0.2,1.5,0.2,processed,240.0
+tomato juice from concentrate,64.0,14.2,0.2,1.9,0.2,processed,267.0
+tomato soup,46.0,9.55,2.35,5.7,4.8,processed,267.0
+tortilla chips,66.5,52.95,6.9,6.95,28.7,ultra_processed,29.0
+traditional trail mix,36.0,50.1,8.6,16.9,29.7,processed,43.0
+tricolor quinoa,53.0,21.0,2.8,4.4,1.9,minimally_processed,178.0
+tricolor quinoa pilaf,54.0,21.6,2.7,5.0,2.0,minimally_processed,201.0
+tropical smoothie,37.0,25.0,5.3,8.5,0.7,processed,227.0
+tropical trail mix,40.0,46.3,9.5,17.0,25.8,processed,46.0
+trout fish,0.0,0.0,0.0,25.15,5.6,minimally_processed,98.0
+tuna fish,0.0,0.0,0.0,26.05,5.6,minimally_processed,100.5
+tuna sandwich on rye,45.0,38.0,5.5,17.0,13.4,processed,158.0
+tuna sandwich on wheat,51.0,42.9,4.0,27.8,29.1,processed,146.0
+tuna sandwich on white,63.0,39.1,4.2,31.6,29.4,processed,136.0
+tuna sandwich wrap,70.0,47.1,3.9,32.9,16.2,processed,140.0
+turkey bacon,0.0,0.7,0.0,31.95,46.8,processed,14.5
+turkey bacon chewy,0.0,0.1,0.0,28.8,40.2,processed,15.0
+turkey burger double,57.0,35.1,2.4,26.7,24.7,processed,146.0
+turkey burger single,51.0,39.6,1.9,40.2,33.4,processed,162.0
+turkey sandwich on rye,53.0,47.1,4.2,24.1,29.2,processed,152.0
+turkey sandwich on wheat,68.0,42.8,4.0,30.6,10.5,processed,141.0
+turkey sandwich on white,51.0,42.7,2.9,15.1,21.8,processed,163.0
+turkey sandwich wrap,58.0,43.4,4.3,33.3,23.8,processed,152.0
+turkey sausage,6.5,2.2,0.0,16.75,20.35,processed,88.0
+turnip,47.0,10.9,3.25,1.3,0.15,whole,124.5
+turnover pastry,69.0,50.9,2.5,6.0,20.8,processed,61.0
+twist pretzel,75.0,75.7,2.7,10.6,5.5,processed,26.0
+tzatziki dip,27.0,10.7,1.1,3.8,23.1,processed,28.0
+udon noodle dish stir fried,58.0,43.3,2.2,15.0,11.3,processed,341.0
+udon noodle dish with broth,65.0,47.9,3.5,14.6,13.6,processed,359.0
+unsalted peanut,15.0,16.8,8.4,25.0,51.0,minimally_processed,25.0
+vanilla cake,64.0,59.5,0.6,6.1,28.5,processed,87.0
+vanilla ice cream,52.0,22.3,0.9,3.3,14.8,processed,68.0
+vanilla pudding,70.0,24.6,0.1,3.7,5.7,processed,106.0
+vegetable curry green,40.0,24.6,4.1,16.4,11.3,processed,225.0
+vegetable curry red,51.0,22.3,5.4,18.7,9.0,processed,249.0
+vegetable dumpling,46.0,27.9,1.7,10.3,15.8,processed,90.0
+vegetable dumpling fried,58.0,26.9,1.4,9.7,8.4,processed,99.0
+vegetable fried rice brown rice,55.0,40.2,1.9,14.5,12.7,processed,252.0
+vegetable fried rice white rice,58.0,35.3,1.2,16.6,7.7,processed,234.0
+vegetable frozen meal,52.0,31.2,4.9,18.8,22.4,processed,290.0
+vegetable instant noodle cup,54.0,54.4,3.7,10.0,15.2,ultra_processed,84.0
+vegetable instant noodle pack,51.0,54.8,3.6,11.8,14.4,ultra_processed,81.0
+vegetable soup,37.0,11.55,2.6,4.0,7.25,processed,263.0
+vegetable spring roll,64.5,23.2,1.95,10.5,11.1,processed,89.0
+veggie burger double,59.0,30.8,1.8,28.0,17.5,processed,149.0
+veggie burger single,53.0,37.0,1.8,29.0,22.4,processed,151.0
+veggie burrito flour tortilla,50.0,53.8,7.9,22.9,22.8,processed,251.0
+veggie burrito whole wheat tortilla,52.0,51.6,11.0,33.9,27.1,processed,270.0
+veggie omelette,2.0,2.9,0.5,13.5,15.3,minimally_processed,109.0
+veggie pizza regular crust,70.0,34.6,3.1,14.4,9.5,processed,106.0
+veggie pizza thin crust,51.0,39.6,2.4,15.6,13.9,processed,96.0
+veggie quesadilla corn tortilla,53.0,40.8,3.5,26.7,21.6,processed,152.0
+veggie quesadilla flour tortilla,57.0,41.7,3.2,24.1,19.8,processed,159.0
+veggie sandwich on rye,63.0,52.2,3.6,19.9,18.6,processed,145.0
+veggie sandwich on wheat,56.0,52.7,2.6,19.9,22.9,processed,140.0
+veggie sandwich on white,56.0,36.5,2.6,15.3,29.4,processed,161.0
+veggie sandwich wrap,46.0,54.5,5.2,31.9,20.5,processed,159.0
+veggie stir fry with noodles,47.0,48.9,3.1,24.6,6.2,processed,363.0
+veggie stir fry with rice,52.0,39.8,4.7,23.0,9.4,processed,320.0
+veggie sushi roll with brown rice,62.0,33.6,3.0,8.2,11.7,processed,108.0
+veggie sushi roll with white rice,59.0,37.2,1.1,10.2,7.0,processed,109.0
+veggie taco corn tortilla,59.0,27.3,4.7,17.8,13.2,processed,101.0
+veggie taco hard shell,52.0,34.0,5.3,14.6,24.9,processed,102.0
+veggie taco soft shell,47.0,34.4,4.5,21.0,20.3,processed,104.0
+vinaigrette salad dressing,20.0,10.9,0.3,0.9,16.2,processed,28.0
+walnut nut,11.0,19.0,12.4,17.6,54.1,minimally_processed,25.0
+walnut nut unsalted,4.0,28.1,3.1,16.9,64.6,minimally_processed,25.0
+water cracker,73.0,68.8,3.2,10.4,19.5,processed,30.0
+watercress,16.0,3.1,1.95,2.2,0.4,whole,30.0
+watermelon,66.5,7.0,0.55,0.7,0.3,whole,161.5
+western omelette,5.0,3.6,0.3,12.6,19.1,minimally_processed,113.0
+wheat cracker,67.0,66.2,4.4,9.2,7.6,processed,28.0
+white bread,75.0,50.0,5.2,10.95,3.7,processed,28.0
+white bread toasted,78.0,43.7,6.3,14.8,3.7,processed,28.0
+white chocolate,37.0,42.9,7.1,9.0,44.7,processed,28.0
+white pasta,45.0,21.1,2.3,4.7,1.7,processed,137.0
+white quinoa,51.0,20.9,2.8,4.4,2.1,minimally_processed,169.0
+white quinoa pilaf,52.0,20.4,2.6,4.6,2.1,minimally_processed,166.0
+white rice,98.0,27.2,1.4,3.3,0.6,processed,145.0
+white rice pilaf,51.0,26.8,0.5,3.4,0.2,processed,159.0
+white sugar sweetener,36.0,78.9,0.3,0.1,0.0,processed,22.0
+white tea hot,2.0,0.2,0.0,0.4,0.0,minimally_processed,238.0
+white tea iced,6.0,6.4,0.0,0.1,0.0,minimally_processed,221.0
+white tea sweetened,23.0,4.1,0.0,0.1,0.0,minimally_processed,248.0
+white tea unsweetened,3.0,1.7,0.0,0.5,0.0,minimally_processed,236.0
+white wine vinegar,10.0,1.8,0.0,0.0,0.0,processed,13.0
+whole avocado,12.0,8.6,6.6,2.1,15.7,whole,164.0
+whole avocado ripe,15.0,9.6,6.8,2.0,15.0,whole,135.0
+whole chicken,0.0,0.0,0.0,23.45,4.95,minimally_processed,97.0
+whole grain cracker,67.0,71.7,7.4,9.8,7.2,processed,25.0
+whole milk,29.0,3.5,0.2,2.0,3.6,minimally_processed,267.0
+whole wheat bread,74.0,46.45,4.7,11.55,4.05,processed,25.5
+whole wheat bread toasted,50.0,44.9,2.6,13.1,3.5,processed,25.0
+whole wheat pancake,71.0,53.8,2.1,9.1,6.3,processed,72.0
+whole wheat pancake with syrup,72.0,52.5,1.7,10.8,6.8,processed,81.0
+whole wheat pasta,53.0,26.7,3.4,5.1,1.7,processed,153.0
+whole wheat waffle,59.0,46.8,2.1,7.7,13.0,processed,74.0
+wild rice,81.0,24.9,2.4,2.6,0.3,processed,166.0
+wild rice pilaf,61.0,27.4,0.7,3.0,0.9,processed,149.0
+wild rice tempeh,16.0,8.9,0.0,19.1,11.1,processed,96.0
+wild rice tempeh fried,14.0,7.3,0.0,19.9,8.0,processed,93.0
+wing chicken,0.0,0.0,0.0,26.05,9.85,minimally_processed,96.5
+yellow banana,50.0,22.5,3.2,1.15,0.25,whole,120.0
+yellow banana dried,55.0,24.7,3.2,1.4,0.4,whole,119.0
+yellow lentil,25.0,18.8,9.0,9.8,0.4,minimally_processed,192.0
+yellow lentil canned,34.0,20.8,8.7,9.3,0.4,minimally_processed,179.0
+yellow lentil refried,30.0,21.9,8.9,9.1,0.5,minimally_processed,213.0
+yellow squash squash,47.5,7.2,1.75,1.85,0.2,whole,128.0
+yogurt covered pretzel,70.0,77.6,2.9,8.9,8.9,processed,30.0
+zucchini squash,30.0,8.45,2.6,1.7,0.1,whole,124.0

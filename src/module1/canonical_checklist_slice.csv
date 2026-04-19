@@ -1,0 +1,96 @@
+name,glycemic_index,carbohydrates,fiber,protein,fat,processing_level,serving_size_grams
+apple,35.0,14.0,2.8,0.3,0.2,whole,182.0
+banana,52.0,22.65,2.6,1.35,0.2,whole,122.0
+orange,45.5,11.8,2.6,1.0,0.2,whole,132.0
+grape,60.5,17.9,1.05,0.8,0.2,whole,93.5
+raisin,70.0,67.5,7.6,2.9,0.5,processed,39.0
+strawberry,27.5,10.7,7.1,1.1,0.4,whole,143.0
+blueberry,35.0,12.3,4.2,0.8,0.6,whole,146.5
+watermelon,66.5,7.0,0.55,0.7,0.3,whole,161.5
+lettuce,13.5,3.5,2.4,2.75,0.35,whole,29.0
+tomato,16.0,3.45,1.45,1.05,0.2,whole,181.0
+cucumber,,,,,,,
+carrot,37.5,9.4,2.8,1.15,0.2,whole,126.0
+broccoli,17.0,4.75,2.45,2.65,0.35,whole,90.0
+spinach,13.0,3.3,2.7,2.5,0.3,whole,30.0
+onion,16.0,8.65,1.9,1.25,0.2,whole,157.5
+bell pepper,14.0,5.45,2.0,1.2,0.3,whole,145.0
+potato,72.5,19.6,2.95,2.4,6.5,processed,146.5
+sweet potato,65.0,22.0,3.05,2.2,7.6,processed,146.5
+white rice,98.0,27.2,1.4,3.3,0.6,processed,145.0
+brown rice,100.0,20.9,0.7,2.8,0.6,processed,151.0
+pasta,50.0,25.2,2.5,4.5,1.7,processed,147.0
+oatmeal,68.0,60.5,2.2,5.7,23.2,ultra_processed,25.0
+bread,66.5,52.25,6.0,11.6,3.85,processed,25.5
+tortilla,66.5,52.95,6.9,6.95,28.7,ultra_processed,29.0
+quinoa,54.0,21.3,2.7,4.9,2.1,minimally_processed,183.0
+black beans,,,,,,,
+chickpea,30.0,25.9,6.6,8.9,1.4,minimally_processed,185.0
+lentils,,,,,,,
+chicken breast,,,,,,,
+ground beef,,,,,,,
+salmon,0.0,0.0,0.0,23.75,7.65,minimally_processed,97.5
+egg,0.0,1.2,0.0,12.1,10.8,minimally_processed,52.0
+tofu,8.0,1.6,1.0,9.3,4.7,processed,103.0
+milk,35.0,7.1,1.1,5.3,0.8,minimally_processed,246.0
+yogurt,20.0,10.9,0.0,16.1,8.3,processed,183.0
+cheddar cheese,0.0,2.5,0.0,25.0,15.5,processed,27.0
+butter,12.0,14.3,8.7,27.3,50.5,minimally_processed,28.0
+olive oil,0.0,0.0,0.0,0.0,100.0,minimally_processed,13.0
+peanut butter,57.0,74.3,1.2,5.7,20.3,ultra_processed,28.0
+almond,5.0,27.3,6.0,17.9,60.7,minimally_processed,27.0
+walnut,11.0,19.0,12.4,17.6,54.1,minimally_processed,25.0
+honey,51.0,77.2,0.4,0.3,0.0,processed,21.0
+sugar,64.0,63.9,1.5,7.2,23.3,ultra_processed,26.0
+cabbage,16.5,5.9,2.95,2.65,0.4,whole,89.5
+cauliflower,15.0,5.5,2.55,2.6,0.3,whole,91.5
+mushroom,15.0,2.95,1.3,2.65,0.3,whole,68.0
+zucchini,30.0,8.45,2.6,1.7,0.1,whole,124.0
+rice,77.0,28.0,0.9,3.2,0.6,processed,146.0
+corn,62.0,52.9,7.0,7.6,28.8,ultra_processed,27.0
+peas,,,,,,,
+green beans,,,,,,,
+asparagus,,,,,,,
+kale,14.0,3.2,2.45,2.6,0.4,whole,30.0
+avocado,0.0,0.0,0.0,0.0,100.0,minimally_processed,14.0
+pineapple,61.0,11.0,0.1,1.5,0.1,processed,232.0
+mango,66.0,11.4,0.3,0.9,0.1,processed,246.0
+pear,57.0,22.6,2.5,0.9,0.1,processed,116.0
+cherry,51.0,52.6,1.3,3.1,13.2,processed,120.0
+lime,69.0,11.3,0.2,1.4,0.2,processed,265.0
+lemon,40.0,10.6,0.1,1.5,0.0,processed,224.0
+coffee,14.0,8.5,0.0,2.05,3.0,minimally_processed,241.0
+tea,21.0,3.2,0.0,0.2,0.0,minimally_processed,238.0
+orange juice,56.0,12.6,0.4,0.7,0.1,processed,262.0
+soda,52.0,29.9,0.0,0.0,0.0,ultra_processed,322.0
+beer,57.0,23.0,0.0,0.0,0.0,ultra_processed,326.0
+wine,8.0,2.6,0.0,0.0,0.0,processed,13.0
+potato chips,67.0,59.9,3.4,8.5,26.6,ultra_processed,27.0
+ice cream,64.0,22.2,0.9,4.0,13.1,processed,70.0
+chocolate,73.0,50.7,1.5,7.5,24.3,processed,77.0
+cookie,64.0,63.9,1.5,7.2,23.3,ultra_processed,26.0
+pizza,67.0,34.9,3.5,14.5,16.6,processed,103.0
+burger,47.0,39.2,1.3,21.0,37.9,processed,161.0
+soup,33.0,8.1,3.05,7.35,2.85,processed,263.0
+oat,35.0,3.1,1.6,1.5,0.7,minimally_processed,229.0
+bagel,60.5,46.45,3.95,12.3,2.7,processed,27.0
+croissant,59.0,49.6,2.9,10.2,20.3,processed,52.0
+pancake,68.0,56.6,1.3,11.0,13.4,processed,79.0
+waffle,65.0,52.9,1.1,7.3,8.8,processed,67.0
+cereal,90.0,76.5,9.7,10.6,12.3,ultra_processed,27.0
+mayonnaise,,,,,,,
+ketchup,,,,,,,
+mustard,14.5,3.95,2.35,2.65,0.4,whole,28.0
+vinegar,9.0,2.1,0.0,0.0,0.0,processed,13.0
+soy sauce,47.0,6.6,1.6,2.7,18.7,processed,27.0
+hot sauce,38.0,17.5,0.6,4.3,2.8,processed,31.0
+cottage cheese,0.0,3.4,0.0,25.9,18.6,processed,27.0
+cream cheese,,,,,,,
+mozzarella,0.0,1.2,0.0,16.9,4.7,processed,29.0
+turkey,0.0,0.3,0.0,27.0,4.4,minimally_processed,100.0
+pork,0.0,1.15,0.0,22.2,13.2,minimally_processed,95.0
+bacon,0.0,0.75,0.0,23.55,15.8,processed,100.5
+ham,45.0,45.1,6.0,21.3,12.1,processed,149.0
+shrimp,0.0,2.35,0.0,18.35,1.75,minimally_processed,100.5
+tuna,0.0,0.0,0.0,26.05,5.6,minimally_processed,100.5
+beans,,,,,,,

@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "thresholds": {
+    "safe_gl": 10.0,
+    "caution_gl": 20.0,
+    "safe_gi": 55.0,
+    "caution_gi": 68.0
+  },
+  "rl_state": {
+    "alpha": 0.2,
+    "gamma": 0.0,
+    "epsilon": 0.1,
+    "q": {
+      "pred=medium|score=40_69|a=dec_caution_gi": 0.24000000000000002
+    },
+    "updates": 2
+  },
+  "meta": {
+    "last_updated_utc": "2026-04-15T23:08:27+00:00"
+  }
+}
